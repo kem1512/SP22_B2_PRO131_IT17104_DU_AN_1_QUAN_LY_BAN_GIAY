@@ -49,6 +49,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.bunifuGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
             this.panel1.SuspendLayout();
@@ -180,11 +181,11 @@
             this.btnClose.BackColor = System.Drawing.Color.White;
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.ForeColor = System.Drawing.Color.Red;
-            this.btnClose.IconChar = FontAwesome.Sharp.IconChar.Circle;
+            this.btnClose.IconChar = FontAwesome.Sharp.IconChar.Times;
             this.btnClose.IconColor = System.Drawing.Color.Red;
             this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnClose.IconSize = 42;
-            this.btnClose.Location = new System.Drawing.Point(670, 7);
+            this.btnClose.IconSize = 40;
+            this.btnClose.Location = new System.Drawing.Point(665, 7);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(44, 42);
             this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -300,10 +301,10 @@
             this.btnLoginTag.IdleFillColor = System.Drawing.Color.White;
             this.btnLoginTag.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnLoginTag.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnLoginTag.Location = new System.Drawing.Point(149, 363);
+            this.btnLoginTag.Location = new System.Drawing.Point(128, 363);
             this.btnLoginTag.Margin = new System.Windows.Forms.Padding(5);
             this.btnLoginTag.Name = "btnLoginTag";
-            this.btnLoginTag.Size = new System.Drawing.Size(434, 86);
+            this.btnLoginTag.Size = new System.Drawing.Size(455, 86);
             this.btnLoginTag.TabIndex = 17;
             this.btnLoginTag.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -312,7 +313,7 @@
             this.cbxRemember.AutoSize = true;
             this.cbxRemember.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxRemember.ForeColor = System.Drawing.Color.Black;
-            this.cbxRemember.Location = new System.Drawing.Point(138, 301);
+            this.cbxRemember.Location = new System.Drawing.Point(143, 301);
             this.cbxRemember.Name = "cbxRemember";
             this.cbxRemember.Size = new System.Drawing.Size(154, 29);
             this.cbxRemember.TabIndex = 16;
@@ -323,9 +324,9 @@
             // 
             this.lblForgot.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblForgot.AutoSize = true;
-            this.lblForgot.Font = new System.Drawing.Font("Segoe UI", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblForgot.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblForgot.ForeColor = System.Drawing.Color.Black;
-            this.lblForgot.Location = new System.Drawing.Point(406, 301);
+            this.lblForgot.Location = new System.Drawing.Point(403, 298);
             this.lblForgot.Name = "lblForgot";
             this.lblForgot.Size = new System.Drawing.Size(180, 31);
             this.lblForgot.TabIndex = 15;
@@ -362,6 +363,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.comboBox1);
             this.tabPage2.Controls.Add(this.bunifuThinButton21);
             this.tabPage2.Controls.Add(this.panel2);
             this.tabPage2.Location = new System.Drawing.Point(4, 44);
@@ -389,7 +391,7 @@
             this.bunifuThinButton21.IdleFillColor = System.Drawing.Color.White;
             this.bunifuThinButton21.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.bunifuThinButton21.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.Location = new System.Drawing.Point(115, 372);
+            this.bunifuThinButton21.Location = new System.Drawing.Point(115, 407);
             this.bunifuThinButton21.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuThinButton21.Name = "bunifuThinButton21";
             this.bunifuThinButton21.Size = new System.Drawing.Size(493, 86);
@@ -399,10 +401,20 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Location = new System.Drawing.Point(115, 23);
+            this.panel2.Location = new System.Drawing.Point(115, 72);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(493, 314);
             this.panel2.TabIndex = 12;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(115, 17);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(493, 39);
+            this.comboBox1.TabIndex = 19;
             // 
             // FrmLogin
             // 
@@ -453,5 +465,6 @@
         private System.Windows.Forms.TabPage tabPage2;
         private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton21;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }

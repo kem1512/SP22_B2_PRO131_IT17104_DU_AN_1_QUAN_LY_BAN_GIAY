@@ -137,5 +137,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BUS_BussinessLayer\BUS_BussinessLayer.csproj">
+      <Project>{ca4557fa-3b18-4802-be94-fa15c55f76c0}</Project>
+      <Name>BUS_BussinessLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL_DataAccessLayer\DAL_DataAccessLayer.csproj">
+      <Project>{f6203aa9-a24f-4c8a-a6ec-5cb8926e0090}</Project>
+      <Name>DAL_DataAccessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
