@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Du_An_1_Nhom_1
+namespace GUI_PresentationLayer.View
 {
     public partial class FrmSales : Form
     {
@@ -19,7 +19,7 @@ namespace Du_An_1_Nhom_1
             _frmMain = frmMain;
             for (int i = 0; i < 5; i++)
             {
-                bunifuCustomDataGrid1.Rows.Add(Image.FromFile(@"F:\giay.jpeg"), "Giày 1", "99.999.999 đ", "12", Image.FromFile(@"F:\shopping-cart.png"));
+                dgridProduct.Rows.Add(Image.FromFile(@"F:\giay.jpeg"), "Giày 1", "99.999.999 đ", "12", Image.FromFile(@"F:\shopping-cart.png"));
             }
         }
 

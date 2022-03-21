@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Du_An_1_Nhom_1.Properties
+namespace GUI_PresentationLayer.Properties
 {
 
 

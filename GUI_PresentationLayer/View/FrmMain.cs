@@ -1,4 +1,4 @@
-﻿using Du_An_1_Nhom_1.View;
+﻿using GUI_PresentationLayer.View;
 using FontAwesome.Sharp;
 using System;
 using System.Collections.Generic;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Du_An_1_Nhom_1
+namespace GUI_PresentationLayer.View
 {
     public partial class FrmMain : Form
     {
@@ -92,6 +92,7 @@ namespace Du_An_1_Nhom_1
 
         private void btnProduct_Click(object sender, EventArgs e)
         {
+            ActiveteButton(sender, Color.Red);
             OpenChildForm(new FrmProduct());
         }
 
@@ -110,11 +111,13 @@ namespace Du_An_1_Nhom_1
 
         private void btnStaff_Click(object sender, EventArgs e)
         {
+            ActiveteButton(sender, Color.White);
             OpenChildForm(new FrmEmployee());
         }
 
         private void btnOrder_Click(object sender, EventArgs e)
         {
+            ActiveteButton(sender, Color.BlueViolet);
             OpenChildForm(new FrmStatistics());
         }
     }

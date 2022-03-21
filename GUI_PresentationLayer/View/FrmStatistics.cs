@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Du_An_1_Nhom_1.View
+namespace GUI_PresentationLayer.View
 {
-    public partial class FrmEmployee : Form
+    public partial class FrmStatistics : Form
     {
-        public FrmEmployee()
+        public FrmStatistics()
         {
             InitializeComponent();
         }

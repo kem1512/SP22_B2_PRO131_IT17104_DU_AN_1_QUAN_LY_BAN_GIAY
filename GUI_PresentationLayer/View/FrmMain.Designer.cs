@@ -1,4 +1,4 @@
-﻿namespace Du_An_1_Nhom_1
+﻿namespace GUI_PresentationLayer.View
 {
     partial class FrmMain
     {
@@ -277,7 +277,7 @@
             // 
             // lblTitleChild
             // 
-            this.lblTitleChild.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblTitleChild.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTitleChild.AutoSize = true;
             this.lblTitleChild.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -310,7 +310,7 @@
             // 
             // btnHomeMain
             // 
-            this.btnHomeMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.btnHomeMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
             | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHomeMain.BackColor = System.Drawing.Color.Transparent;
             this.btnHomeMain.IconChar = FontAwesome.Sharp.IconChar.Home;

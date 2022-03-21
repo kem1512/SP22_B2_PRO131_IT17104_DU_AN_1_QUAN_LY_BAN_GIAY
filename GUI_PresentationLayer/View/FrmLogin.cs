@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Du_An_1_Nhom_1.View
+namespace GUI_PresentationLayer.View
 {
     public partial class FrmLogin : Form
     {
@@ -29,12 +29,12 @@ namespace Du_An_1_Nhom_1.View
 
         private void btnQr_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 1;
+            tabctrlMain.SelectedIndex = 1;
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectedIndex = 0;
+            tabctrlMain.SelectedIndex = 0;
         }
 
         private void btnClose_Click(object sender, EventArgs e)
