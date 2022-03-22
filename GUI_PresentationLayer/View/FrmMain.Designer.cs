@@ -31,8 +31,8 @@
             this.pnlTopBar = new System.Windows.Forms.Panel();
             this.pnlLeftBar = new System.Windows.Forms.Panel();
             this.btnDetail = new FontAwesome.Sharp.IconButton();
-            this.btnEvent = new FontAwesome.Sharp.IconButton();
             this.btnOrder = new FontAwesome.Sharp.IconButton();
+            this.btnThongKe = new FontAwesome.Sharp.IconButton();
             this.btnStaff = new FontAwesome.Sharp.IconButton();
             this.btnProduct = new FontAwesome.Sharp.IconButton();
             this.btnHome = new FontAwesome.Sharp.IconButton();
@@ -64,8 +64,8 @@
             this.pnlLeftBar.AutoScroll = true;
             this.pnlLeftBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
             this.pnlLeftBar.Controls.Add(this.btnDetail);
-            this.pnlLeftBar.Controls.Add(this.btnEvent);
             this.pnlLeftBar.Controls.Add(this.btnOrder);
+            this.pnlLeftBar.Controls.Add(this.btnThongKe);
             this.pnlLeftBar.Controls.Add(this.btnStaff);
             this.pnlLeftBar.Controls.Add(this.btnProduct);
             this.pnlLeftBar.Controls.Add(this.btnHome);
@@ -99,28 +99,6 @@
             this.btnDetail.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDetail.UseVisualStyleBackColor = false;
             // 
-            // btnEvent
-            // 
-            this.btnEvent.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.btnEvent.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnEvent.FlatAppearance.BorderSize = 0;
-            this.btnEvent.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnEvent.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEvent.ForeColor = System.Drawing.Color.White;
-            this.btnEvent.IconChar = FontAwesome.Sharp.IconChar.Otter;
-            this.btnEvent.IconColor = System.Drawing.Color.White;
-            this.btnEvent.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnEvent.IconSize = 75;
-            this.btnEvent.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEvent.Location = new System.Drawing.Point(0, 460);
-            this.btnEvent.Name = "btnEvent";
-            this.btnEvent.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnEvent.Size = new System.Drawing.Size(272, 85);
-            this.btnEvent.TabIndex = 7;
-            this.btnEvent.Text = "Sự kiện";
-            this.btnEvent.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnEvent.UseVisualStyleBackColor = false;
-            // 
             // btnOrder
             // 
             this.btnOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
@@ -129,20 +107,43 @@
             this.btnOrder.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOrder.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOrder.ForeColor = System.Drawing.Color.White;
-            this.btnOrder.IconChar = FontAwesome.Sharp.IconChar.Opera;
+            this.btnOrder.IconChar = FontAwesome.Sharp.IconChar.Otter;
             this.btnOrder.IconColor = System.Drawing.Color.White;
             this.btnOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnOrder.IconSize = 75;
             this.btnOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrder.Location = new System.Drawing.Point(0, 375);
+            this.btnOrder.Location = new System.Drawing.Point(0, 460);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnOrder.Size = new System.Drawing.Size(272, 85);
-            this.btnOrder.TabIndex = 6;
-            this.btnOrder.Text = "Thống kê";
+            this.btnOrder.TabIndex = 7;
+            this.btnOrder.Text = "Hóa đơn";
             this.btnOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnOrder.UseVisualStyleBackColor = false;
-            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click);
+            this.btnOrder.Click += new System.EventHandler(this.btnOrder_Click_1);
+            // 
+            // btnThongKe
+            // 
+            this.btnThongKe.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btnThongKe.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnThongKe.FlatAppearance.BorderSize = 0;
+            this.btnThongKe.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThongKe.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThongKe.ForeColor = System.Drawing.Color.White;
+            this.btnThongKe.IconChar = FontAwesome.Sharp.IconChar.Opera;
+            this.btnThongKe.IconColor = System.Drawing.Color.White;
+            this.btnThongKe.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnThongKe.IconSize = 75;
+            this.btnThongKe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThongKe.Location = new System.Drawing.Point(0, 375);
+            this.btnThongKe.Name = "btnThongKe";
+            this.btnThongKe.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnThongKe.Size = new System.Drawing.Size(272, 85);
+            this.btnThongKe.TabIndex = 6;
+            this.btnThongKe.Text = "Thống kê";
+            this.btnThongKe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnThongKe.UseVisualStyleBackColor = false;
+            this.btnThongKe.Click += new System.EventHandler(this.btnOrder_Click);
             // 
             // btnStaff
             // 
@@ -277,7 +278,7 @@
             // 
             // lblTitleChild
             // 
-            this.lblTitleChild.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.lblTitleChild.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTitleChild.AutoSize = true;
             this.lblTitleChild.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -310,7 +311,7 @@
             // 
             // btnHomeMain
             // 
-            this.btnHomeMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            this.btnHomeMain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHomeMain.BackColor = System.Drawing.Color.Transparent;
             this.btnHomeMain.IconChar = FontAwesome.Sharp.IconChar.Home;
@@ -371,8 +372,8 @@
         private System.Windows.Forms.Panel pnlTopBar;
         private System.Windows.Forms.Panel pnlLeftBar;
         private FontAwesome.Sharp.IconButton btnDetail;
-        private FontAwesome.Sharp.IconButton btnEvent;
         private FontAwesome.Sharp.IconButton btnOrder;
+        private FontAwesome.Sharp.IconButton btnThongKe;
         private FontAwesome.Sharp.IconButton btnStaff;
         private FontAwesome.Sharp.IconButton btnProduct;
         private FontAwesome.Sharp.IconButton btnHome;

@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace GUI_PresentationLayer.View
 {
-    public partial class FrmProduct : Form
+    public partial class FrmCategories : Form
     {
-        public FrmProduct()
+        public FrmCategories()
         {
             InitializeComponent();
-        }
-
-        private void pbxEditBrand_Click(object sender, EventArgs e)
-        {
-            FrmCategories frm = new FrmCategories();
-            frm.ShowDialog();
         }
     }
 }

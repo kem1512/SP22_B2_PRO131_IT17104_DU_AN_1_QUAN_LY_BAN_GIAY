@@ -68,7 +68,9 @@
             this.cmbColorTop = new System.Windows.Forms.ComboBox();
             this.lblFilter = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.gbxProduct = new System.Windows.Forms.GroupBox();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).BeginInit();
             this.tlpBot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
@@ -80,7 +82,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
             this.tlpFilter.SuspendLayout();
-            this.gbxProduct.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgridProduct
@@ -88,32 +91,30 @@
             this.dgridProduct.AllowUserToAddRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgridProduct.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgridProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgridProduct.BackgroundColor = System.Drawing.Color.White;
             this.dgridProduct.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgridProduct.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.SeaGreen;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgridProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgridProduct.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgridProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgridProduct.DoubleBuffered = true;
             this.dgridProduct.EnableHeadersVisualStyles = false;
             this.dgridProduct.HeaderBgColor = System.Drawing.Color.SeaGreen;
             this.dgridProduct.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.dgridProduct.Location = new System.Drawing.Point(3, 33);
+            this.dgridProduct.Location = new System.Drawing.Point(3, 3);
             this.dgridProduct.Name = "dgridProduct";
             this.dgridProduct.ReadOnly = true;
             this.dgridProduct.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgridProduct.RowHeadersWidth = 51;
             this.dgridProduct.RowTemplate.Height = 24;
-            this.dgridProduct.Size = new System.Drawing.Size(982, 364);
+            this.dgridProduct.Size = new System.Drawing.Size(974, 356);
             this.dgridProduct.TabIndex = 0;
             // 
             // tlpBot
@@ -227,6 +228,7 @@
             this.pbxEditBrand.Size = new System.Drawing.Size(32, 32);
             this.pbxEditBrand.TabIndex = 24;
             this.pbxEditBrand.TabStop = false;
+            this.pbxEditBrand.Click += new System.EventHandler(this.pbxEditBrand_Click);
             // 
             // pbxEditMat
             // 
@@ -675,19 +677,42 @@
             this.label11.TabIndex = 29;
             this.label11.Text = "VNĐ";
             // 
-            // gbxProduct
+            // tabControl1
             // 
-            this.gbxProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbxProduct.Controls.Add(this.dgridProduct);
-            this.gbxProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbxProduct.Location = new System.Drawing.Point(26, 85);
-            this.gbxProduct.Name = "gbxProduct";
-            this.gbxProduct.Size = new System.Drawing.Size(988, 400);
-            this.gbxProduct.TabIndex = 30;
-            this.gbxProduct.TabStop = false;
-            this.gbxProduct.Text = "Sản phẩm";
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabControl1.ItemSize = new System.Drawing.Size(200, 30);
+            this.tabControl1.Location = new System.Drawing.Point(23, 82);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(988, 400);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.BackColor = System.Drawing.Color.White;
+            this.tabPage1.Controls.Add(this.dgridProduct);
+            this.tabPage1.Location = new System.Drawing.Point(4, 34);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(980, 362);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Sản phẩm";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Location = new System.Drawing.Point(4, 34);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(980, 362);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Đã xóa";
             // 
             // FrmProduct
             // 
@@ -695,13 +720,13 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1405, 755);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.tlpFilter);
             this.Controls.Add(this.pbxSearch);
             this.Controls.Add(this.txtSearch);
             this.Controls.Add(this.tlpRight);
             this.Controls.Add(this.tlpBot);
-            this.Controls.Add(this.gbxProduct);
             this.Name = "FrmProduct";
             this.Text = "FrmProduct";
             ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).EndInit();
@@ -718,7 +743,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).EndInit();
             this.tlpFilter.ResumeLayout(false);
             this.tlpFilter.PerformLayout();
-            this.gbxProduct.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -763,6 +789,8 @@
         private System.Windows.Forms.ComboBox cmbMat;
         private System.Windows.Forms.ComboBox cmbCat;
         private System.Windows.Forms.ComboBox cmbColorBot;
-        private System.Windows.Forms.GroupBox gbxProduct;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
     }
 }

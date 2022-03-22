@@ -120,5 +120,11 @@ namespace GUI_PresentationLayer.View
             ActiveteButton(sender, Color.BlueViolet);
             OpenChildForm(new FrmStatistics());
         }
+
+        private void btnOrder_Click_1(object sender, EventArgs e)
+        {
+            ActiveteButton(sender, Color.Azure);
+            OpenChildForm(new FrmOrder());
+        }
     }
 }

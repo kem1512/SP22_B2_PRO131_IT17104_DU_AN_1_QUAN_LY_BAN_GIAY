@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ff076fcb897e449089af4f5ad965e6b5" Name="Diagram1">
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Brand" Width="1.5" PointX="3.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Color" Width="1.5" PointX="3.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Customer" Width="1.5" PointX="3.75" PointY="16.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Employee" Width="1.5" PointX="3.75" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Inventory" Width="1.5" PointX="3" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Invoice" Width="1.5" PointX="6" PointY="17.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.InvoiceDetail" Width="1.5" PointX="8.25" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Material" Width="1.5" PointX="3.75" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Product" Width="1.5" PointX="0.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.ProductDetail" Width="1.5" PointX="6" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Roles" Width="1.5" PointX="1.5" PointY="19.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Shipper" Width="1.5" PointX="3.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QuanLyBanGiayModel.Size" Width="1.5" PointX="3.75" PointY="13.625" IsExpanded="true" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__ProductDe__Brand__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__ProductDe__Color__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__Invoice__Custome__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__Employee__RoleId__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__Invoice__Employe__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__Inventory__Produ__286302EC" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK_Invoice" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK_ProductDetail" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__ProductDe__Mater__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__ProductDe__Produ__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__ProductDe__SizeI__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="QuanLyBanGiayModel.FK__Shipper__RoleId__3C69FB99" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

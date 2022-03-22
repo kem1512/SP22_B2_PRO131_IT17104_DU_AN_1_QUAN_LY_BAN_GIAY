@@ -62,7 +62,7 @@
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(1319, 118);
+            this.lblTitle.Size = new System.Drawing.Size(1339, 118);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "THỐNG KÊ";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -77,7 +77,7 @@
             this.panel2.Controls.Add(this.dgridTurnover);
             this.panel2.Location = new System.Drawing.Point(12, 121);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1295, 288);
+            this.panel2.Size = new System.Drawing.Size(1315, 311);
             this.panel2.TabIndex = 2;
             // 
             // pnlTurnover
@@ -91,7 +91,7 @@
             this.pnlTurnover.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTurnover.Location = new System.Drawing.Point(0, 0);
             this.pnlTurnover.Name = "pnlTurnover";
-            this.pnlTurnover.Size = new System.Drawing.Size(1293, 84);
+            this.pnlTurnover.Size = new System.Drawing.Size(1313, 84);
             this.pnlTurnover.TabIndex = 4;
             // 
             // dgdtpcDateBegin
@@ -102,7 +102,7 @@
             this.dgdtpcDateBegin.ForeColor = System.Drawing.Color.White;
             this.dgdtpcDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dgdtpcDateBegin.FormatCustom = null;
-            this.dgdtpcDateBegin.Location = new System.Drawing.Point(343, 17);
+            this.dgdtpcDateBegin.Location = new System.Drawing.Point(363, 17);
             this.dgdtpcDateBegin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgdtpcDateBegin.Name = "dgdtpcDateBegin";
             this.dgdtpcDateBegin.Size = new System.Drawing.Size(335, 48);
@@ -114,7 +114,7 @@
             this.lblDateBegin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDateBegin.AutoSize = true;
             this.lblDateBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateBegin.Location = new System.Drawing.Point(220, 29);
+            this.lblDateBegin.Location = new System.Drawing.Point(240, 29);
             this.lblDateBegin.Name = "lblDateBegin";
             this.lblDateBegin.Size = new System.Drawing.Size(84, 25);
             this.lblDateBegin.TabIndex = 6;
@@ -128,7 +128,7 @@
             this.dgdtpcDateEnd.ForeColor = System.Drawing.Color.White;
             this.dgdtpcDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dgdtpcDateEnd.FormatCustom = null;
-            this.dgdtpcDateEnd.Location = new System.Drawing.Point(896, 17);
+            this.dgdtpcDateEnd.Location = new System.Drawing.Point(916, 17);
             this.dgdtpcDateEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgdtpcDateEnd.Name = "dgdtpcDateEnd";
             this.dgdtpcDateEnd.Size = new System.Drawing.Size(335, 48);
@@ -140,7 +140,7 @@
             this.lblDateEnd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDateEnd.AutoSize = true;
             this.lblDateEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateEnd.Location = new System.Drawing.Point(773, 29);
+            this.lblDateEnd.Location = new System.Drawing.Point(793, 29);
             this.lblDateEnd.Name = "lblDateEnd";
             this.lblDateEnd.Size = new System.Drawing.Size(96, 25);
             this.lblDateEnd.TabIndex = 2;
@@ -161,7 +161,7 @@
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgridTurnover.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgridTurnover.BackgroundColor = System.Drawing.Color.White;
+            this.dgridTurnover.BackgroundColor = System.Drawing.SystemColors.ControlDark;
             this.dgridTurnover.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgridTurnover.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -183,7 +183,7 @@
             this.dgridTurnover.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgridTurnover.RowHeadersWidth = 51;
             this.dgridTurnover.RowTemplate.Height = 24;
-            this.dgridTurnover.Size = new System.Drawing.Size(1293, 286);
+            this.dgridTurnover.Size = new System.Drawing.Size(1313, 309);
             this.dgridTurnover.TabIndex = 1;
             // 
             // sctnBot
@@ -191,7 +191,7 @@
             this.sctnBot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sctnBot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sctnBot.Location = new System.Drawing.Point(13, 415);
+            this.sctnBot.Location = new System.Drawing.Point(13, 438);
             this.sctnBot.Name = "sctnBot";
             // 
             // sctnBot.Panel1
@@ -201,8 +201,8 @@
             // sctnBot.Panel2
             // 
             this.sctnBot.Panel2.Controls.Add(this.pnlCancel);
-            this.sctnBot.Size = new System.Drawing.Size(1293, 280);
-            this.sctnBot.SplitterDistance = 662;
+            this.sctnBot.Size = new System.Drawing.Size(1313, 318);
+            this.sctnBot.SplitterDistance = 672;
             this.sctnBot.SplitterWidth = 10;
             this.sctnBot.TabIndex = 3;
             // 
@@ -214,7 +214,7 @@
             this.pnlBrand.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBrand.Location = new System.Drawing.Point(0, 0);
             this.pnlBrand.Name = "pnlBrand";
-            this.pnlBrand.Size = new System.Drawing.Size(660, 60);
+            this.pnlBrand.Size = new System.Drawing.Size(670, 60);
             this.pnlBrand.TabIndex = 0;
             // 
             // cmbFilter
@@ -224,7 +224,7 @@
             this.cmbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilter.FormattingEnabled = true;
-            this.cmbFilter.Location = new System.Drawing.Point(421, 9);
+            this.cmbFilter.Location = new System.Drawing.Point(431, 9);
             this.cmbFilter.Name = "cmbFilter";
             this.cmbFilter.Size = new System.Drawing.Size(215, 39);
             this.cmbFilter.TabIndex = 2;
@@ -248,7 +248,7 @@
             this.pnlCancel.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlCancel.Location = new System.Drawing.Point(0, 0);
             this.pnlCancel.Name = "pnlCancel";
-            this.pnlCancel.Size = new System.Drawing.Size(619, 60);
+            this.pnlCancel.Size = new System.Drawing.Size(629, 60);
             this.pnlCancel.TabIndex = 1;
             // 
             // lblCancel
@@ -268,7 +268,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1319, 707);
+            this.ClientSize = new System.Drawing.Size(1339, 768);
             this.Controls.Add(this.sctnBot);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.lblTitle);
