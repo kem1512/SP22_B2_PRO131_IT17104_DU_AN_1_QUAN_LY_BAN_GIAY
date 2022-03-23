@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DAL_Services\DAL_Categories.cs" />
     <Compile Include="DAL_Services\DAL_Product.cs" />
     <Compile Include="Entities\Brand.cs">
