@@ -12,20 +12,16 @@ namespace DAL_DataAccessLayer.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Category
     {
-        public Customer()
+        public Category()
         {
-            this.Invoice = new HashSet<Invoice>();
+            this.ProductDetail = new HashSet<ProductDetail>();
         }
     
-        public string CustomerId { get; set; }
-        public string CustomerName { get; set; }
-        public string Phone { get; set; }
-        public string Address { get; set; }
-        public int ShoppingCount { get; set; }
-        public bool Status { get; set; }
+        public string CategoryId { get; set; }
+        public string CategoryName { get; set; }
     
-        public virtual ICollection<Invoice> Invoice { get; set; }
+        public virtual ICollection<ProductDetail> ProductDetail { get; set; }
     }
 }

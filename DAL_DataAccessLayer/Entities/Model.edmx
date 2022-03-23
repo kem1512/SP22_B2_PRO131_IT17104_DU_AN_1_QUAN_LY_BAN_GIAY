@@ -12,12 +12,19 @@
           <Property Name="BrandId" Type="varchar" MaxLength="9" Nullable="false" />
           <Property Name="BrandName" Type="varchar" MaxLength="100" Nullable="false" />
         </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="CategoryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="ColorId" />
           </Key>
           <Property Name="ColorId" Type="varchar" MaxLength="9" Nullable="false" />
-          <Property Name="ColorName" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ColorName" Type="nvarchar" MaxLength="25" Nullable="false" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -28,7 +35,7 @@
           <Property Name="Phone" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ShoppingCount" Type="int" Nullable="false" />
-          <Property Name="Status" Type="bit" />
+          <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -46,10 +53,9 @@
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
-            <PropertyRef Name="InventoryId" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="InventoryId" Type="varchar" MaxLength="9" Nullable="false" />
-          <Property Name="ProductId" Type="varchar" MaxLength="9" />
+          <Property Name="ProductId" Type="varchar" MaxLength="9" Nullable="false" />
           <Property Name="Amount" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Invoice">
@@ -79,7 +85,7 @@
             <PropertyRef Name="MaterialId" />
           </Key>
           <Property Name="MaterialId" Type="varchar" MaxLength="9" Nullable="false" />
-          <Property Name="MaterialName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="MaterialName" Type="nvarchar" MaxLength="100" Nullable="false" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -89,7 +95,7 @@
           <Property Name="ProductName" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
           <Property Name="ProductImage" Type="varchar" MaxLength="250" Nullable="false" />
-          <Property Name="Status" Type="bit" />
+          <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductDetail">
           <Key>
@@ -100,6 +106,7 @@
           <Property Name="SizeId" Type="varchar" MaxLength="9" />
           <Property Name="BrandId" Type="varchar" MaxLength="9" />
           <Property Name="MaterialId" Type="varchar" MaxLength="9" />
+          <Property Name="CategoryId" Type="varchar" MaxLength="9" />
           <Property Name="UnitPrice" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
@@ -126,7 +133,7 @@
           <Property Name="SizeId" Type="varchar" MaxLength="9" Nullable="false" />
           <Property Name="SizeName" Type="varchar" MaxLength="9" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Employee__RoleId__398D8EEE">
+        <Association Name="FK__Employee__RoleId__3C69FB99">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -138,9 +145,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inventory__Produ__34C8D9D1">
-          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="0..1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+        <Association Name="FK__Inventory__Produ__37A5467C">
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="ProductDetail">
               <PropertyRef Name="ProductId" />
@@ -150,7 +157,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Custome__412EB0B6">
+        <Association Name="FK__Invoice__Custome__440B1D61">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -162,7 +169,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Employe__4222D4EF">
+        <Association Name="FK__Invoice__Employe__44FF419A">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -174,7 +181,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Brand__30F848ED">
+        <Association Name="FK__ProductDe__Brand__32E0915F">
           <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -186,7 +193,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Color__2F10007B">
+        <Association Name="FK__ProductDe__Categ__34C8D9D1">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ProductDetail">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductDe__Color__30F848ED">
           <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -198,7 +217,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Mater__31EC6D26">
+        <Association Name="FK__ProductDe__Mater__33D4B598">
           <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -210,7 +229,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Produ__2E1BDC42">
+        <Association Name="FK__ProductDe__Produ__300424B4">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -222,7 +241,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__SizeI__300424B4">
+        <Association Name="FK__ProductDe__SizeI__31EC6D26">
           <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -234,7 +253,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shipper__RoleId__3C69FB99">
+        <Association Name="FK__Shipper__RoleId__3F466844">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Shipper" Type="Self.Shipper" Multiplicity="*" />
           <ReferentialConstraint>
@@ -272,6 +291,7 @@
         </Association>
         <EntityContainer Name="QuanLyBanGiayModelStoreContainer">
           <EntitySet Name="Brand" EntityType="Self.Brand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Category" EntityType="Self.Category" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Color" EntityType="Self.Color" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
@@ -284,43 +304,47 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Shipper" EntityType="Self.Shipper" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Size" EntityType="Self.Size" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Employee__RoleId__398D8EEE" Association="Self.FK__Employee__RoleId__398D8EEE">
+          <AssociationSet Name="FK__Employee__RoleId__3C69FB99" Association="Self.FK__Employee__RoleId__3C69FB99">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inventory__Produ__34C8D9D1" Association="Self.FK__Inventory__Produ__34C8D9D1">
+          <AssociationSet Name="FK__Inventory__Produ__37A5467C" Association="Self.FK__Inventory__Produ__37A5467C">
             <End Role="ProductDetail" EntitySet="ProductDetail" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Custome__412EB0B6" Association="Self.FK__Invoice__Custome__412EB0B6">
+          <AssociationSet Name="FK__Invoice__Custome__440B1D61" Association="Self.FK__Invoice__Custome__440B1D61">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Employe__4222D4EF" Association="Self.FK__Invoice__Employe__4222D4EF">
+          <AssociationSet Name="FK__Invoice__Employe__44FF419A" Association="Self.FK__Invoice__Employe__44FF419A">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Brand__30F848ED" Association="Self.FK__ProductDe__Brand__30F848ED">
+          <AssociationSet Name="FK__ProductDe__Brand__32E0915F" Association="Self.FK__ProductDe__Brand__32E0915F">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Color__2F10007B" Association="Self.FK__ProductDe__Color__2F10007B">
+          <AssociationSet Name="FK__ProductDe__Categ__34C8D9D1" Association="Self.FK__ProductDe__Categ__34C8D9D1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ProductDetail" EntitySet="ProductDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductDe__Color__30F848ED" Association="Self.FK__ProductDe__Color__30F848ED">
             <End Role="Color" EntitySet="Color" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Mater__31EC6D26" Association="Self.FK__ProductDe__Mater__31EC6D26">
+          <AssociationSet Name="FK__ProductDe__Mater__33D4B598" Association="Self.FK__ProductDe__Mater__33D4B598">
             <End Role="Material" EntitySet="Material" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Produ__2E1BDC42" Association="Self.FK__ProductDe__Produ__2E1BDC42">
+          <AssociationSet Name="FK__ProductDe__Produ__300424B4" Association="Self.FK__ProductDe__Produ__300424B4">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__SizeI__300424B4" Association="Self.FK__ProductDe__SizeI__300424B4">
+          <AssociationSet Name="FK__ProductDe__SizeI__31EC6D26" Association="Self.FK__ProductDe__SizeI__31EC6D26">
             <End Role="Size" EntitySet="Size" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shipper__RoleId__3C69FB99" Association="Self.FK__Shipper__RoleId__3C69FB99">
+          <AssociationSet Name="FK__Shipper__RoleId__3F466844" Association="Self.FK__Shipper__RoleId__3F466844">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Shipper" EntitySet="Shipper" />
           </AssociationSet>
@@ -344,15 +368,23 @@
           </Key>
           <Property Name="BrandId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BrandName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Brand__30F848ED" FromRole="Brand" ToRole="ProductDetail" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Brand__32E0915F" FromRole="Brand" ToRole="ProductDetail" />
+        </EntityType>
+        <EntityType Name="Category">
+          <Key>
+            <PropertyRef Name="CategoryId" />
+          </Key>
+          <Property Name="CategoryId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CategoryName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Categ__34C8D9D1" FromRole="Category" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="Color">
           <Key>
             <PropertyRef Name="ColorId" />
           </Key>
           <Property Name="ColorId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ColorName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Color__2F10007B" FromRole="Color" ToRole="ProductDetail" />
+          <Property Name="ColorName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Color__30F848ED" FromRole="Color" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -363,8 +395,8 @@
           <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ShoppingCount" Type="Int32" Nullable="false" />
-          <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Custome__412EB0B6" FromRole="Customer" ToRole="Invoice" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Custome__440B1D61" FromRole="Customer" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -379,17 +411,16 @@
           <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RoleId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Employee__RoleId__398D8EEE" FromRole="Employee" ToRole="Roles" />
-          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Employe__4222D4EF" FromRole="Employee" ToRole="Invoice" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Employee__RoleId__3C69FB99" FromRole="Employee" ToRole="Roles" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Employe__44FF419A" FromRole="Employee" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
-            <PropertyRef Name="InventoryId" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="InventoryId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__Inventory__Produ__34C8D9D1" FromRole="Inventory" ToRole="ProductDetail" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__Inventory__Produ__37A5467C" FromRole="Inventory" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -401,8 +432,8 @@
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="InvoiceStatus" Type="Int32" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__Invoice__Custome__412EB0B6" FromRole="Invoice" ToRole="Customer" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Invoice__Employe__4222D4EF" FromRole="Invoice" ToRole="Employee" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Invoice__Custome__440B1D61" FromRole="Invoice" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Invoice__Employe__44FF419A" FromRole="Invoice" ToRole="Employee" />
           <NavigationProperty Name="InvoiceDetail" Relationship="Self.FK_Invoice" FromRole="Invoice" ToRole="InvoiceDetail" />
         </EntityType>
         <EntityType Name="InvoiceDetail">
@@ -423,8 +454,8 @@
             <PropertyRef Name="MaterialId" />
           </Key>
           <Property Name="MaterialId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="MaterialName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Mater__31EC6D26" FromRole="Material" ToRole="ProductDetail" />
+          <Property Name="MaterialName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Mater__33D4B598" FromRole="Material" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -434,8 +465,8 @@
           <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ProductImage" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Produ__2E1BDC42" FromRole="Product" ToRole="ProductDetail" />
+          <Property Name="Status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Produ__300424B4" FromRole="Product" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="ProductDetail">
           <Key>
@@ -446,14 +477,16 @@
           <Property Name="SizeId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="BrandId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="MaterialId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="CategoryId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="UnitPrice" Type="Double" Nullable="false" />
-          <NavigationProperty Name="Brand" Relationship="Self.FK__ProductDe__Brand__30F848ED" FromRole="ProductDetail" ToRole="Brand" />
-          <NavigationProperty Name="Color" Relationship="Self.FK__ProductDe__Color__2F10007B" FromRole="ProductDetail" ToRole="Color" />
-          <NavigationProperty Name="Inventory" Relationship="Self.FK__Inventory__Produ__34C8D9D1" FromRole="ProductDetail" ToRole="Inventory" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK__ProductDe__Brand__32E0915F" FromRole="ProductDetail" ToRole="Brand" />
+          <NavigationProperty Name="Category" Relationship="Self.FK__ProductDe__Categ__34C8D9D1" FromRole="ProductDetail" ToRole="Category" />
+          <NavigationProperty Name="Color" Relationship="Self.FK__ProductDe__Color__30F848ED" FromRole="ProductDetail" ToRole="Color" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK__Inventory__Produ__37A5467C" FromRole="ProductDetail" ToRole="Inventory" />
           <NavigationProperty Name="InvoiceDetail" Relationship="Self.FK_ProductDetail" FromRole="ProductDetail" ToRole="InvoiceDetail" />
-          <NavigationProperty Name="Material" Relationship="Self.FK__ProductDe__Mater__31EC6D26" FromRole="ProductDetail" ToRole="Material" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__ProductDe__Produ__2E1BDC42" FromRole="ProductDetail" ToRole="Product" />
-          <NavigationProperty Name="Size" Relationship="Self.FK__ProductDe__SizeI__300424B4" FromRole="ProductDetail" ToRole="Size" />
+          <NavigationProperty Name="Material" Relationship="Self.FK__ProductDe__Mater__33D4B598" FromRole="ProductDetail" ToRole="Material" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductDe__Produ__300424B4" FromRole="ProductDetail" ToRole="Product" />
+          <NavigationProperty Name="Size" Relationship="Self.FK__ProductDe__SizeI__31EC6D26" FromRole="ProductDetail" ToRole="Size" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -461,8 +494,8 @@
           </Key>
           <Property Name="RoleId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__RoleId__398D8EEE" FromRole="Roles" ToRole="Employee" />
-          <NavigationProperty Name="Shipper" Relationship="Self.FK__Shipper__RoleId__3C69FB99" FromRole="Roles" ToRole="Shipper" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__RoleId__3C69FB99" FromRole="Roles" ToRole="Employee" />
+          <NavigationProperty Name="Shipper" Relationship="Self.FK__Shipper__RoleId__3F466844" FromRole="Roles" ToRole="Shipper" />
         </EntityType>
         <EntityType Name="Shipper">
           <Key>
@@ -473,7 +506,7 @@
           <Property Name="ShipperPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RoleId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="ShipperStatus" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Shipper__RoleId__3C69FB99" FromRole="Shipper" ToRole="Roles" />
+          <NavigationProperty Name="Roles" Relationship="Self.FK__Shipper__RoleId__3F466844" FromRole="Shipper" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Size">
           <Key>
@@ -481,9 +514,9 @@
           </Key>
           <Property Name="SizeId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SizeName" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__SizeI__300424B4" FromRole="Size" ToRole="ProductDetail" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__SizeI__31EC6D26" FromRole="Size" ToRole="ProductDetail" />
         </EntityType>
-        <Association Name="FK__ProductDe__Brand__30F848ED">
+        <Association Name="FK__ProductDe__Brand__32E0915F">
           <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -495,7 +528,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Color__2F10007B">
+        <Association Name="FK__ProductDe__Categ__34C8D9D1">
+          <End Role="Category" Type="Self.Category" Multiplicity="0..1" />
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Category">
+              <PropertyRef Name="CategoryId" />
+            </Principal>
+            <Dependent Role="ProductDetail">
+              <PropertyRef Name="CategoryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ProductDe__Color__30F848ED">
           <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -507,7 +552,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Custome__412EB0B6">
+        <Association Name="FK__Invoice__Custome__440B1D61">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -519,7 +564,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Employee__RoleId__398D8EEE">
+        <Association Name="FK__Employee__RoleId__3C69FB99">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
           <ReferentialConstraint>
@@ -531,7 +576,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Employe__4222D4EF">
+        <Association Name="FK__Invoice__Employe__44FF419A">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -543,9 +588,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inventory__Produ__34C8D9D1">
-          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="0..1" />
-          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+        <Association Name="FK__Inventory__Produ__37A5467C">
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="ProductDetail">
               <PropertyRef Name="ProductId" />
@@ -579,7 +624,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Mater__31EC6D26">
+        <Association Name="FK__ProductDe__Mater__33D4B598">
           <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -591,7 +636,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Produ__2E1BDC42">
+        <Association Name="FK__ProductDe__Produ__300424B4">
           <End Role="Product" Type="Self.Product" Multiplicity="1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -603,7 +648,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__SizeI__300424B4">
+        <Association Name="FK__ProductDe__SizeI__31EC6D26">
           <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -615,7 +660,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shipper__RoleId__3C69FB99">
+        <Association Name="FK__Shipper__RoleId__3F466844">
           <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
           <End Role="Shipper" Type="Self.Shipper" Multiplicity="*" />
           <ReferentialConstraint>
@@ -629,6 +674,7 @@
         </Association>
         <EntityContainer Name="QuanLyBanGiayEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Brand" EntityType="Self.Brand" />
+          <EntitySet Name="Category" EntityType="Self.Category" />
           <EntitySet Name="Color" EntityType="Self.Color" />
           <EntitySet Name="Customer" EntityType="Self.Customer" />
           <EntitySet Name="Employee" EntityType="Self.Employee" />
@@ -641,27 +687,31 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Shipper" EntityType="Self.Shipper" />
           <EntitySet Name="Size" EntityType="Self.Size" />
-          <AssociationSet Name="FK__ProductDe__Brand__30F848ED" Association="Self.FK__ProductDe__Brand__30F848ED">
+          <AssociationSet Name="FK__ProductDe__Brand__32E0915F" Association="Self.FK__ProductDe__Brand__32E0915F">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Color__2F10007B" Association="Self.FK__ProductDe__Color__2F10007B">
+          <AssociationSet Name="FK__ProductDe__Categ__34C8D9D1" Association="Self.FK__ProductDe__Categ__34C8D9D1">
+            <End Role="Category" EntitySet="Category" />
+            <End Role="ProductDetail" EntitySet="ProductDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ProductDe__Color__30F848ED" Association="Self.FK__ProductDe__Color__30F848ED">
             <End Role="Color" EntitySet="Color" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Custome__412EB0B6" Association="Self.FK__Invoice__Custome__412EB0B6">
+          <AssociationSet Name="FK__Invoice__Custome__440B1D61" Association="Self.FK__Invoice__Custome__440B1D61">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Employee__RoleId__398D8EEE" Association="Self.FK__Employee__RoleId__398D8EEE">
+          <AssociationSet Name="FK__Employee__RoleId__3C69FB99" Association="Self.FK__Employee__RoleId__3C69FB99">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Employe__4222D4EF" Association="Self.FK__Invoice__Employe__4222D4EF">
+          <AssociationSet Name="FK__Invoice__Employe__44FF419A" Association="Self.FK__Invoice__Employe__44FF419A">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inventory__Produ__34C8D9D1" Association="Self.FK__Inventory__Produ__34C8D9D1">
+          <AssociationSet Name="FK__Inventory__Produ__37A5467C" Association="Self.FK__Inventory__Produ__37A5467C">
             <End Role="ProductDetail" EntitySet="ProductDetail" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
@@ -673,19 +723,19 @@
             <End Role="ProductDetail" EntitySet="ProductDetail" />
             <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Mater__31EC6D26" Association="Self.FK__ProductDe__Mater__31EC6D26">
+          <AssociationSet Name="FK__ProductDe__Mater__33D4B598" Association="Self.FK__ProductDe__Mater__33D4B598">
             <End Role="Material" EntitySet="Material" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Produ__2E1BDC42" Association="Self.FK__ProductDe__Produ__2E1BDC42">
+          <AssociationSet Name="FK__ProductDe__Produ__300424B4" Association="Self.FK__ProductDe__Produ__300424B4">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__SizeI__300424B4" Association="Self.FK__ProductDe__SizeI__300424B4">
+          <AssociationSet Name="FK__ProductDe__SizeI__31EC6D26" Association="Self.FK__ProductDe__SizeI__31EC6D26">
             <End Role="Size" EntitySet="Size" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Shipper__RoleId__3C69FB99" Association="Self.FK__Shipper__RoleId__3C69FB99">
+          <AssociationSet Name="FK__Shipper__RoleId__3F466844" Association="Self.FK__Shipper__RoleId__3F466844">
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Shipper" EntitySet="Shipper" />
           </AssociationSet>
@@ -701,6 +751,14 @@
               <MappingFragment StoreEntitySet="Brand">
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="BrandName" ColumnName="BrandName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Category">
+            <EntityTypeMapping TypeName="QuanLyBanGiayModel.Category">
+              <MappingFragment StoreEntitySet="Category">
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
+                <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -742,7 +800,6 @@
           <EntitySetMapping Name="Inventory">
             <EntityTypeMapping TypeName="QuanLyBanGiayModel.Inventory">
               <MappingFragment StoreEntitySet="Inventory">
-                <ScalarProperty Name="InventoryId" ColumnName="InventoryId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
               </MappingFragment>
@@ -798,6 +855,7 @@
                 <ScalarProperty Name="SizeId" ColumnName="SizeId" />
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
+                <ScalarProperty Name="CategoryId" ColumnName="CategoryId" />
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
               </MappingFragment>
             </EntityTypeMapping>

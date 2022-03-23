@@ -2,6 +2,7 @@
 using DAL_DataAccessLayer.iDAL_Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,32 +12,81 @@ namespace DAL_DataAccessLayer.DAL_Services
     public class DAL_Product : iDAL_Product
     {
         private QuanLyBanGiayEntities _db;
-        public string AddProduct(Product product, ProductDetail productDetail)
+        public string AddProduct(Product product, ProductDetail productDetail, Inventory inventory)
         {
-            using (_db = new QuanLyBanGiayEntities())
+            try
             {
-                _db.Product.Add(product); 
-                _db.ProductDetail.Add(productDetail);
-                return _db.SaveChanges() > 0 ? "Thêm thành công" : "Thêm thất bại";
+                using (_db = new QuanLyBanGiayEntities())
+                {
+                    var image = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" +
+                                product.ProductId + Path.GetExtension(product.ProductImage);
+                    File.Copy(product.ProductImage, image);
+                    product.ProductImage = image;
+                    _db.Product.Add(product);
+                    _db.ProductDetail.Add(productDetail);
+                    _db.Inventory.Add(inventory);
+                    return _db.SaveChanges() > 0 ? "Thêm thành công" : "Thêm thất bại";
+                }
+            }
+            catch(Exception e)
+            {
+                return e.ToString();
             }
         }
 
-        public string UpdateProduct(Product product, ProductDetail productDetail)
+        public string UpdateProduct(Product product, ProductDetail productDetail, Inventory inventory)
         {
-            using (_db = new QuanLyBanGiayEntities())
+            try
             {
-                var pr = _db.Product.First(c => c.ProductId == product.ProductId); pr = product;
-                var prd = _db.ProductDetail.First(c => c.ProductId == product.ProductId); prd = productDetail;
-                return _db.SaveChanges() > 0 ? "Sửa thành công" : "Sửa thất bại";
+                using (_db = new QuanLyBanGiayEntities())
+                {
+                    var image = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" +
+                                product.ProductId + Path.GetExtension(product.ProductImage);
+                    var pr = _db.Product.First(c => c.ProductId == product.ProductId);
+                    pr.Description = product.Description;
+                    pr.ProductImage = image;
+                    pr.Status = product.Status;
+                    pr.ProductName = product.ProductName;
+                    var prd = _db.ProductDetail.First(c => c.ProductId == product.ProductId);
+                    prd.UnitPrice = productDetail.UnitPrice;
+                    prd.CategoryId = productDetail.CategoryId;
+                    prd.ColorId = productDetail.ColorId;
+                    prd.MaterialId = productDetail.MaterialId;
+                    prd.SizeId = productDetail.SizeId;
+                    prd.BrandId = productDetail.BrandId;
+                    var iv = _db.Inventory.First(c => c.ProductId == product.ProductId);
+                    iv.Amount = inventory.Amount;
+                    var imageOld = _db.Product.First(c => c.ProductId == product.ProductId).ProductImage;
+                    if (product.ProductImage != imageOld)
+                    {
+                        File.Delete(imageOld);
+                        File.Copy(product.ProductImage, image);
+                    }
+                    _db.SaveChanges();
+                    return "Sửa thành công!";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
             }
         }
 
-        public string DeleteProduct(Product product)
+        public string DeleteProduct(string id)
         {
-            using (_db = new QuanLyBanGiayEntities())
+            try
             {
-                _db.Product.Remove(_db.Product.First(c => c.ProductId == product.ProductId));
-                return _db.SaveChanges() > 0 ? "Xóa thành công" : "Xóa thất bại";
+                using (_db = new QuanLyBanGiayEntities())
+                {
+                    _db.Inventory.Remove(_db.Inventory.First(c => c.ProductId == id));
+                    _db.ProductDetail.Remove(_db.ProductDetail.First(c => c.ProductId == id));
+                    _db.Product.Remove(_db.Product.First(c => c.ProductId == id));
+                    return _db.SaveChanges() > 0 ? "Xóa thành công" : "Xóa thất bại";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
             }
         }
 
@@ -58,11 +108,34 @@ namespace DAL_DataAccessLayer.DAL_Services
 
         public string ChangeStatus(string id)
         {
+            try
+            {
+                using (_db = new QuanLyBanGiayEntities())
+                {
+                    var product = _db.Product.First(c => c.ProductId == id);
+                    product.Status = false;
+                    return _db.SaveChanges() > 0 ? "Xóa thành công" : "Xóa thất bại";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
+        public List<ProductDetail> GetProductDetail()
+        {
             using (_db = new QuanLyBanGiayEntities())
             {
-                var product = _db.Product.First(c => c.ProductId == id);
-                product.Status = false;
-                return _db.SaveChanges() > 0 ? "Xóa thành công" : "Xóa thất bại";
+                return _db.ProductDetail.ToList();
+            }
+        }
+
+        public List<Inventory> GetInventory()
+        {
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                return _db.Inventory.ToList();
             }
         }
     }

@@ -14,7 +14,6 @@ namespace DAL_DataAccessLayer.Entities
     
     public partial class Inventory
     {
-        public string InventoryId { get; set; }
         public string ProductId { get; set; }
         public int Amount { get; set; }
     

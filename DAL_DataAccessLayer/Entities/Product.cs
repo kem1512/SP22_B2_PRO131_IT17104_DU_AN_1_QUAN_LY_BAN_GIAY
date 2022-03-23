@@ -18,7 +18,7 @@ namespace DAL_DataAccessLayer.Entities
         public string ProductName { get; set; }
         public string Description { get; set; }
         public string ProductImage { get; set; }
-        public Nullable<bool> Status { get; set; }
+        public bool Status { get; set; }
     
         public virtual ProductDetail ProductDetail { get; set; }
     }

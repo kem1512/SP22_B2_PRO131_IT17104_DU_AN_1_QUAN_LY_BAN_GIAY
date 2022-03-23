@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace GUI_PresentationLayer.View
 {
@@ -130,6 +131,11 @@ namespace GUI_PresentationLayer.View
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnDetail_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

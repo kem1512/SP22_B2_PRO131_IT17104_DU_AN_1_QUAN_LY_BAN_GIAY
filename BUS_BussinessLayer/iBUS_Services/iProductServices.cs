@@ -9,11 +9,13 @@ namespace BUS_BussinessLayer.iBUS_Services
 {
     public interface iProductServices
     {
-        string AddProduct(Product product, ProductDetail productDetail);
-        string UpdateProduct(Product product, ProductDetail productDetail);
-        string DeleteProduct(Product product);
+        string AddProduct(Product product, ProductDetail productDetail, Inventory inventory);
+        string UpdateProduct(Product product, ProductDetail productDetail, Inventory inventory);
+        string DeleteProduct(string id);
         string ChangeStatus(string id);
         List<Product> GetProduct();
+        List<ProductDetail> GetProductDetail();
+        List<Inventory> GetInventory();
         Product GetProductName(string name);
     }
 }

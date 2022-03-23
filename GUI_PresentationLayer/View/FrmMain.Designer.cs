@@ -98,6 +98,7 @@
             this.btnDetail.Text = "Cá nhân";
             this.btnDetail.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDetail.UseVisualStyleBackColor = false;
+            this.btnDetail.Click += new System.EventHandler(this.btnDetail_Click);
             // 
             // btnOrder
             // 

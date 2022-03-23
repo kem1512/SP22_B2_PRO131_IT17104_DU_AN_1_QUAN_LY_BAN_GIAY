@@ -41,12 +41,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BUS_Services\CategoriesServices.cs" />
     <Compile Include="BUS_Services\ProductSevices.cs" />
+    <Compile Include="iBUS_Services\iCategoriesServices.cs" />
     <Compile Include="iBUS_Services\iProductServices.cs" />
+    <Compile Include="Models\TotalProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Utilities\" />
   </ItemGroup>
   <ItemGroup>

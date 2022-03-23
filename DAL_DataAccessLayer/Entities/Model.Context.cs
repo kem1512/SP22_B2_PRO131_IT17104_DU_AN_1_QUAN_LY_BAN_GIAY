@@ -26,6 +26,7 @@ namespace DAL_DataAccessLayer.Entities
         }
     
         public DbSet<Brand> Brand { get; set; }
+        public DbSet<Category> Category { get; set; }
         public DbSet<Color> Color { get; set; }
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Employee> Employee { get; set; }
