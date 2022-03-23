@@ -126,5 +126,10 @@ namespace GUI_PresentationLayer.View
             ActiveteButton(sender, Color.Azure);
             OpenChildForm(new FrmOrder());
         }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            WindowState = FormWindowState.Minimized;
+        }
     }
 }

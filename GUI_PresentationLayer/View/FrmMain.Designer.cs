@@ -255,6 +255,7 @@
             this.btnMinimize.Size = new System.Drawing.Size(54, 28);
             this.btnMinimize.TabIndex = 5;
             this.btnMinimize.UseVisualStyleBackColor = false;
+            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
             // 
             // btnMaximize
             // 

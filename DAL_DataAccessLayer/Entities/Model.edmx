@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QuanLyBanGiayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="QuanLyBanGiayModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Brand">
           <Key>
             <PropertyRef Name="BrandId" />
@@ -66,10 +66,10 @@
         <EntityType Name="InvoiceDetail">
           <Key>
             <PropertyRef Name="InvoiceId" />
-            <PropertyRef Name="ProductDetailId" />
+            <PropertyRef Name="ProductId" />
           </Key>
           <Property Name="InvoiceId" Type="varchar" MaxLength="9" Nullable="false" />
-          <Property Name="ProductDetailId" Type="varchar" MaxLength="9" Nullable="false" />
+          <Property Name="ProductId" Type="varchar" MaxLength="9" Nullable="false" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="TotalPrice" Type="float" Nullable="false" />
@@ -93,16 +93,14 @@
         </EntityType>
         <EntityType Name="ProductDetail">
           <Key>
-            <PropertyRef Name="ProductDetailId" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="ProductDetailId" Type="varchar" MaxLength="9" Nullable="false" />
-          <Property Name="ProductId" Type="varchar" MaxLength="9" />
+          <Property Name="ProductId" Type="varchar" MaxLength="9" Nullable="false" />
           <Property Name="ColorId" Type="varchar" MaxLength="9" />
           <Property Name="SizeId" Type="varchar" MaxLength="9" />
           <Property Name="BrandId" Type="varchar" MaxLength="9" />
           <Property Name="MaterialId" Type="varchar" MaxLength="9" />
-          <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -140,11 +138,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inventory__Produ__286302EC">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+        <Association Name="FK__Inventory__Produ__34C8D9D1">
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="0..1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
+            <Principal Role="ProductDetail">
               <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="Inventory">
@@ -176,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Brand__33D4B598">
+        <Association Name="FK__ProductDe__Brand__30F848ED">
           <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -188,7 +186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Color__31EC6D26">
+        <Association Name="FK__ProductDe__Color__2F10007B">
           <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -200,7 +198,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Mater__34C8D9D1">
+        <Association Name="FK__ProductDe__Mater__31EC6D26">
           <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -212,9 +210,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Produ__30F848ED">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
+        <Association Name="FK__ProductDe__Produ__2E1BDC42">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ProductId" />
@@ -224,7 +222,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__SizeI__32E0915F">
+        <Association Name="FK__ProductDe__SizeI__300424B4">
           <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -265,7 +263,7 @@
           <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductDetail">
-              <PropertyRef Name="ProductDetailId" />
+              <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="InvoiceDetail">
               <PropertyRef Name="InvoiceId" />
@@ -290,8 +288,8 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inventory__Produ__286302EC" Association="Self.FK__Inventory__Produ__286302EC">
-            <End Role="Product" EntitySet="Product" />
+          <AssociationSet Name="FK__Inventory__Produ__34C8D9D1" Association="Self.FK__Inventory__Produ__34C8D9D1">
+            <End Role="ProductDetail" EntitySet="ProductDetail" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK__Invoice__Custome__412EB0B6" Association="Self.FK__Invoice__Custome__412EB0B6">
@@ -302,23 +300,23 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Brand__33D4B598" Association="Self.FK__ProductDe__Brand__33D4B598">
+          <AssociationSet Name="FK__ProductDe__Brand__30F848ED" Association="Self.FK__ProductDe__Brand__30F848ED">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Color__31EC6D26" Association="Self.FK__ProductDe__Color__31EC6D26">
+          <AssociationSet Name="FK__ProductDe__Color__2F10007B" Association="Self.FK__ProductDe__Color__2F10007B">
             <End Role="Color" EntitySet="Color" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Mater__34C8D9D1" Association="Self.FK__ProductDe__Mater__34C8D9D1">
+          <AssociationSet Name="FK__ProductDe__Mater__31EC6D26" Association="Self.FK__ProductDe__Mater__31EC6D26">
             <End Role="Material" EntitySet="Material" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Produ__30F848ED" Association="Self.FK__ProductDe__Produ__30F848ED">
+          <AssociationSet Name="FK__ProductDe__Produ__2E1BDC42" Association="Self.FK__ProductDe__Produ__2E1BDC42">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__SizeI__32E0915F" Association="Self.FK__ProductDe__SizeI__32E0915F">
+          <AssociationSet Name="FK__ProductDe__SizeI__300424B4" Association="Self.FK__ProductDe__SizeI__300424B4">
             <End Role="Size" EntitySet="Size" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
@@ -346,7 +344,7 @@
           </Key>
           <Property Name="BrandId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="BrandName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Brand__33D4B598" FromRole="Brand" ToRole="ProductDetail" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Brand__30F848ED" FromRole="Brand" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="Color">
           <Key>
@@ -354,7 +352,7 @@
           </Key>
           <Property Name="ColorId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ColorName" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Color__31EC6D26" FromRole="Color" ToRole="ProductDetail" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Color__2F10007B" FromRole="Color" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -391,7 +389,7 @@
           <Property Name="InventoryId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ProductId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="Amount" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__Inventory__Produ__286302EC" FromRole="Inventory" ToRole="Product" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__Inventory__Produ__34C8D9D1" FromRole="Inventory" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="Invoice">
           <Key>
@@ -410,10 +408,10 @@
         <EntityType Name="InvoiceDetail">
           <Key>
             <PropertyRef Name="InvoiceId" />
-            <PropertyRef Name="ProductDetailId" />
+            <PropertyRef Name="ProductId" />
           </Key>
           <Property Name="InvoiceId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductDetailId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ProductId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Quantity" Type="Int32" Nullable="false" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="TotalPrice" Type="Double" Nullable="false" />
@@ -426,7 +424,7 @@
           </Key>
           <Property Name="MaterialId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="MaterialName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Mater__34C8D9D1" FromRole="Material" ToRole="ProductDetail" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Mater__31EC6D26" FromRole="Material" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -437,27 +435,25 @@
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ProductImage" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Status" Type="Boolean" />
-          <NavigationProperty Name="Inventory" Relationship="Self.FK__Inventory__Produ__286302EC" FromRole="Product" ToRole="Inventory" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Produ__30F848ED" FromRole="Product" ToRole="ProductDetail" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Produ__2E1BDC42" FromRole="Product" ToRole="ProductDetail" />
         </EntityType>
         <EntityType Name="ProductDetail">
           <Key>
-            <PropertyRef Name="ProductDetailId" />
+            <PropertyRef Name="ProductId" />
           </Key>
-          <Property Name="ProductDetailId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="ProductId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="ProductId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ColorId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="SizeId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="BrandId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="MaterialId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
-          <Property Name="Price" Type="Double" Nullable="false" />
-          <Property Name="Quantity" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Brand" Relationship="Self.FK__ProductDe__Brand__33D4B598" FromRole="ProductDetail" ToRole="Brand" />
-          <NavigationProperty Name="Color" Relationship="Self.FK__ProductDe__Color__31EC6D26" FromRole="ProductDetail" ToRole="Color" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Brand" Relationship="Self.FK__ProductDe__Brand__30F848ED" FromRole="ProductDetail" ToRole="Brand" />
+          <NavigationProperty Name="Color" Relationship="Self.FK__ProductDe__Color__2F10007B" FromRole="ProductDetail" ToRole="Color" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK__Inventory__Produ__34C8D9D1" FromRole="ProductDetail" ToRole="Inventory" />
           <NavigationProperty Name="InvoiceDetail" Relationship="Self.FK_ProductDetail" FromRole="ProductDetail" ToRole="InvoiceDetail" />
-          <NavigationProperty Name="Material" Relationship="Self.FK__ProductDe__Mater__34C8D9D1" FromRole="ProductDetail" ToRole="Material" />
-          <NavigationProperty Name="Product" Relationship="Self.FK__ProductDe__Produ__30F848ED" FromRole="ProductDetail" ToRole="Product" />
-          <NavigationProperty Name="Size" Relationship="Self.FK__ProductDe__SizeI__32E0915F" FromRole="ProductDetail" ToRole="Size" />
+          <NavigationProperty Name="Material" Relationship="Self.FK__ProductDe__Mater__31EC6D26" FromRole="ProductDetail" ToRole="Material" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__ProductDe__Produ__2E1BDC42" FromRole="ProductDetail" ToRole="Product" />
+          <NavigationProperty Name="Size" Relationship="Self.FK__ProductDe__SizeI__300424B4" FromRole="ProductDetail" ToRole="Size" />
         </EntityType>
         <EntityType Name="Roles">
           <Key>
@@ -485,9 +481,9 @@
           </Key>
           <Property Name="SizeId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="SizeName" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__SizeI__32E0915F" FromRole="Size" ToRole="ProductDetail" />
+          <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__SizeI__300424B4" FromRole="Size" ToRole="ProductDetail" />
         </EntityType>
-        <Association Name="FK__ProductDe__Brand__33D4B598">
+        <Association Name="FK__ProductDe__Brand__30F848ED">
           <End Role="Brand" Type="Self.Brand" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -499,7 +495,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Color__31EC6D26">
+        <Association Name="FK__ProductDe__Color__2F10007B">
           <End Role="Color" Type="Self.Color" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -547,11 +543,11 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Inventory__Produ__286302EC">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
+        <Association Name="FK__Inventory__Produ__34C8D9D1">
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="0..1" />
           <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Product">
+            <Principal Role="ProductDetail">
               <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="Inventory">
@@ -576,14 +572,14 @@
           <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="ProductDetail">
-              <PropertyRef Name="ProductDetailId" />
+              <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="InvoiceDetail">
               <PropertyRef Name="InvoiceId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Mater__34C8D9D1">
+        <Association Name="FK__ProductDe__Mater__31EC6D26">
           <End Role="Material" Type="Self.Material" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -595,9 +591,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__Produ__30F848ED">
-          <End Role="Product" Type="Self.Product" Multiplicity="0..1" />
-          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
+        <Association Name="FK__ProductDe__Produ__2E1BDC42">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="0..1" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="ProductId" />
@@ -607,7 +603,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__ProductDe__SizeI__32E0915F">
+        <Association Name="FK__ProductDe__SizeI__300424B4">
           <End Role="Size" Type="Self.Size" Multiplicity="0..1" />
           <End Role="ProductDetail" Type="Self.ProductDetail" Multiplicity="*" />
           <ReferentialConstraint>
@@ -645,11 +641,11 @@
           <EntitySet Name="Roles" EntityType="Self.Roles" />
           <EntitySet Name="Shipper" EntityType="Self.Shipper" />
           <EntitySet Name="Size" EntityType="Self.Size" />
-          <AssociationSet Name="FK__ProductDe__Brand__33D4B598" Association="Self.FK__ProductDe__Brand__33D4B598">
+          <AssociationSet Name="FK__ProductDe__Brand__30F848ED" Association="Self.FK__ProductDe__Brand__30F848ED">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Color__31EC6D26" Association="Self.FK__ProductDe__Color__31EC6D26">
+          <AssociationSet Name="FK__ProductDe__Color__2F10007B" Association="Self.FK__ProductDe__Color__2F10007B">
             <End Role="Color" EntitySet="Color" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
@@ -665,8 +661,8 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Inventory__Produ__286302EC" Association="Self.FK__Inventory__Produ__286302EC">
-            <End Role="Product" EntitySet="Product" />
+          <AssociationSet Name="FK__Inventory__Produ__34C8D9D1" Association="Self.FK__Inventory__Produ__34C8D9D1">
+            <End Role="ProductDetail" EntitySet="ProductDetail" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
           <AssociationSet Name="FK_Invoice" Association="Self.FK_Invoice">
@@ -677,15 +673,15 @@
             <End Role="ProductDetail" EntitySet="ProductDetail" />
             <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Mater__34C8D9D1" Association="Self.FK__ProductDe__Mater__34C8D9D1">
+          <AssociationSet Name="FK__ProductDe__Mater__31EC6D26" Association="Self.FK__ProductDe__Mater__31EC6D26">
             <End Role="Material" EntitySet="Material" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__Produ__30F848ED" Association="Self.FK__ProductDe__Produ__30F848ED">
+          <AssociationSet Name="FK__ProductDe__Produ__2E1BDC42" Association="Self.FK__ProductDe__Produ__2E1BDC42">
             <End Role="Product" EntitySet="Product" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__ProductDe__SizeI__32E0915F" Association="Self.FK__ProductDe__SizeI__32E0915F">
+          <AssociationSet Name="FK__ProductDe__SizeI__300424B4" Association="Self.FK__ProductDe__SizeI__300424B4">
             <End Role="Size" EntitySet="Size" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
@@ -768,7 +764,7 @@
             <EntityTypeMapping TypeName="QuanLyBanGiayModel.InvoiceDetail">
               <MappingFragment StoreEntitySet="InvoiceDetail">
                 <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
-                <ScalarProperty Name="ProductDetailId" ColumnName="ProductDetailId" />
+                <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
@@ -797,14 +793,12 @@
           <EntitySetMapping Name="ProductDetail">
             <EntityTypeMapping TypeName="QuanLyBanGiayModel.ProductDetail">
               <MappingFragment StoreEntitySet="ProductDetail">
-                <ScalarProperty Name="ProductDetailId" ColumnName="ProductDetailId" />
                 <ScalarProperty Name="ProductId" ColumnName="ProductId" />
                 <ScalarProperty Name="ColorId" ColumnName="ColorId" />
                 <ScalarProperty Name="SizeId" ColumnName="SizeId" />
                 <ScalarProperty Name="BrandId" ColumnName="BrandId" />
                 <ScalarProperty Name="MaterialId" ColumnName="MaterialId" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -851,7 +845,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="false" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
