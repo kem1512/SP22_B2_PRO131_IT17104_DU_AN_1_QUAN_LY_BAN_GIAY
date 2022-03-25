@@ -31,6 +31,10 @@ namespace BUS_BussinessLayer.BUS_Services
         public string AddProduct(Product product, ProductDetail productDetail, Inventory inventory)
         {
             var image = GetFullPath() + product.ProductId + Path.GetExtension(product.ProductImage);
+            if (File.Exists(image))
+            {
+                File.Delete(image);
+            }
             File.Copy(product.ProductImage, image);
             product.ProductImage = image;
             return iDAL_Product.AddProduct(product, productDetail, inventory);
