@@ -13,15 +13,24 @@ namespace BUS_BussinessLayer.BUS_Services
 {
     public class ProductSevices : iProductServices
     {
-        private iDAL_Product iDAL_Product; 
+        private iDAL_Product iDAL_Product;
         public ProductSevices()
         {
             iDAL_Product = new DAL_Product();
         }
+
+        public string GetFullPath()
+        {
+            var path = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\";
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            return path;
+        }
         public string AddProduct(Product product, ProductDetail productDetail, Inventory inventory)
         {
-            var image = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" +
-                        product.ProductId + Path.GetExtension(product.ProductImage);
+            var image = GetFullPath() + product.ProductId + Path.GetExtension(product.ProductImage);
             File.Copy(product.ProductImage, image);
             product.ProductImage = image;
             return iDAL_Product.AddProduct(product, productDetail, inventory);

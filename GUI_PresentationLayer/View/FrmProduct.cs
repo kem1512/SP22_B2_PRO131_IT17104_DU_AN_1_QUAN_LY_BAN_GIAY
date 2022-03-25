@@ -269,7 +269,7 @@ namespace GUI_PresentationLayer.View
                 DialogResult.Yes)
             {
                 MessageBox.Show(
-                    _iProductServices.DeleteProduct(dgridProduct.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    _iProductServices.DeleteProduct(dgridProductDeleted.Rows[e.RowIndex].Cells[0].Value.ToString()));
                 LoadData();
             }
         }
