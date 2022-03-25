@@ -33,6 +33,10 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tlpBot = new System.Windows.Forms.TableLayoutPanel();
             this.cmbSize = new System.Windows.Forms.ComboBox();
             this.lblBrand = new System.Windows.Forms.Label();
@@ -79,6 +83,13 @@
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.dgridProductDeleted = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tlpBot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditMat)).BeginInit();
@@ -92,6 +103,8 @@
             this.tabDelete.SuspendLayout();
             this.tabProduct.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridProductDeleted)).BeginInit();
             this.SuspendLayout();
             // 
             // tlpBot
@@ -384,6 +397,7 @@
             this.txtQuantity.Size = new System.Drawing.Size(125, 32);
             this.txtQuantity.TabIndex = 5;
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtQuantity.OnValueChanged += new System.EventHandler(this.txtQuantity_OnValueChanged);
             // 
             // lblName
             // 
@@ -460,6 +474,7 @@
             this.txtPrice.Size = new System.Drawing.Size(110, 32);
             this.txtPrice.TabIndex = 6;
             this.txtPrice.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtPrice.OnValueChanged += new System.EventHandler(this.txtPrice_OnValueChanged);
             // 
             // lblNote
             // 
@@ -790,12 +805,119 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.dgridProductDeleted);
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(983, 362);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Đã xóa";
+            // 
+            // dgridProductDeleted
+            // 
+            this.dgridProductDeleted.AllowUserToAddRows = false;
+            this.dgridProductDeleted.AllowUserToDeleteRows = false;
+            this.dgridProductDeleted.AllowUserToResizeColumns = false;
+            this.dgridProductDeleted.AllowUserToResizeRows = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.White;
+            this.dgridProductDeleted.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgridProductDeleted.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgridProductDeleted.BackgroundColor = System.Drawing.Color.White;
+            this.dgridProductDeleted.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgridProductDeleted.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgridProductDeleted.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgridProductDeleted.ColumnHeadersHeight = 50;
+            this.dgridProductDeleted.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewImageColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewLinkColumn1});
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgridProductDeleted.DefaultCellStyle = dataGridViewCellStyle7;
+            this.dgridProductDeleted.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgridProductDeleted.DoubleBuffered = true;
+            this.dgridProductDeleted.EnableHeadersVisualStyles = false;
+            this.dgridProductDeleted.HeaderBgColor = System.Drawing.Color.SeaGreen;
+            this.dgridProductDeleted.HeaderForeColor = System.Drawing.Color.White;
+            this.dgridProductDeleted.Location = new System.Drawing.Point(3, 3);
+            this.dgridProductDeleted.MultiSelect = false;
+            this.dgridProductDeleted.Name = "dgridProductDeleted";
+            this.dgridProductDeleted.ReadOnly = true;
+            this.dgridProductDeleted.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgridProductDeleted.RowHeadersWidth = 51;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgridProductDeleted.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgridProductDeleted.RowTemplate.Height = 110;
+            this.dgridProductDeleted.Size = new System.Drawing.Size(977, 356);
+            this.dgridProductDeleted.TabIndex = 3;
+            this.dgridProductDeleted.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridProductDeleted_CellContentClick);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã sản phẩm";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.FillWeight = 40F;
+            this.dataGridViewImageColumn1.HeaderText = "Ảnh";
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ReadOnly = true;
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tên sản phẩm";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.FillWeight = 60F;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Đơn giá";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.FillWeight = 30F;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Kho";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewLinkColumn1
+            // 
+            this.dataGridViewLinkColumn1.FillWeight = 20F;
+            this.dataGridViewLinkColumn1.HeaderText = "";
+            this.dataGridViewLinkColumn1.MinimumWidth = 6;
+            this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
+            this.dataGridViewLinkColumn1.ReadOnly = true;
+            this.dataGridViewLinkColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewLinkColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // FrmProduct
             // 
@@ -829,6 +951,8 @@
             this.tabDelete.ResumeLayout(false);
             this.tabProduct.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgridProductDeleted)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -881,5 +1005,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
         private System.Windows.Forms.DataGridViewLinkColumn Column5;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dgridProductDeleted;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
     }
 }

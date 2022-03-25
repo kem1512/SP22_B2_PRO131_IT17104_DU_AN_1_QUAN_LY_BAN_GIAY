@@ -7,16 +7,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DAL_DataAccessLayer.Entities;
 
 namespace BUS_BussinessLayer.Models
 {
-    static public class TotalProduct
+    public class TotalProduct
     {
-        static private iDAL_Product _iDAL_Product;
+        private ProductDetail productDetail { get; set; }
 
-        static TotalProduct()
+        public TotalProduct()
         {
-            _iDAL_Product = new DAL_Product();
+
         }
     }
 }

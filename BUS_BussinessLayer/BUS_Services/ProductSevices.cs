@@ -4,6 +4,7 @@ using DAL_DataAccessLayer.Entities;
 using DAL_DataAccessLayer.iDAL_Services;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,6 +20,10 @@ namespace BUS_BussinessLayer.BUS_Services
         }
         public string AddProduct(Product product, ProductDetail productDetail, Inventory inventory)
         {
+            var image = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" +
+                        product.ProductId + Path.GetExtension(product.ProductImage);
+            File.Copy(product.ProductImage, image);
+            product.ProductImage = image;
             return iDAL_Product.AddProduct(product, productDetail, inventory);
         }
 
@@ -29,6 +34,7 @@ namespace BUS_BussinessLayer.BUS_Services
 
         public string DeleteProduct(string id)
         {
+            File.Delete(iDAL_Product.GetProduct().First(c => c.ProductId == id).ProductImage);
             return iDAL_Product.DeleteProduct(id);
         }
 
@@ -52,8 +58,21 @@ namespace BUS_BussinessLayer.BUS_Services
             return iDAL_Product.GetProductName(name);
         }
 
+        public Product GetProductId(string id)
+        {
+            return iDAL_Product.GetProductId(id);
+        }
+
         public string UpdateProduct(Product product, ProductDetail productDetail, Inventory inventory)
         {
+            var image = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" +
+                        product.ProductId + Path.GetExtension(product.ProductImage);
+            var imageOld = iDAL_Product.GetProduct().First(c => c.ProductId == product.ProductId).ProductImage;
+            if (product.ProductImage != imageOld)
+            {
+                File.Delete(imageOld);
+                File.Copy(product.ProductImage, image);
+            }
             return iDAL_Product.UpdateProduct(product, productDetail, inventory);
         }
     }

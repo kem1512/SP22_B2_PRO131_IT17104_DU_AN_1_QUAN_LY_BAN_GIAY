@@ -18,10 +18,6 @@ namespace DAL_DataAccessLayer.DAL_Services
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    var image = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" +
-                                product.ProductId + Path.GetExtension(product.ProductImage);
-                    File.Copy(product.ProductImage, image);
-                    product.ProductImage = image;
                     _db.Product.Add(product);
                     _db.ProductDetail.Add(productDetail);
                     _db.Inventory.Add(inventory);
@@ -40,11 +36,9 @@ namespace DAL_DataAccessLayer.DAL_Services
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    var image = Directory.GetParent(Directory.GetCurrentDirectory()).Parent.FullName + @"\Images\" +
-                                product.ProductId + Path.GetExtension(product.ProductImage);
                     var pr = _db.Product.First(c => c.ProductId == product.ProductId);
                     pr.Description = product.Description;
-                    pr.ProductImage = image;
+                    pr.ProductImage = product.ProductImage;
                     pr.Status = product.Status;
                     pr.ProductName = product.ProductName;
                     var prd = _db.ProductDetail.First(c => c.ProductId == product.ProductId);
@@ -56,12 +50,6 @@ namespace DAL_DataAccessLayer.DAL_Services
                     prd.BrandId = productDetail.BrandId;
                     var iv = _db.Inventory.First(c => c.ProductId == product.ProductId);
                     iv.Amount = inventory.Amount;
-                    var imageOld = _db.Product.First(c => c.ProductId == product.ProductId).ProductImage;
-                    if (product.ProductImage != imageOld)
-                    {
-                        File.Delete(imageOld);
-                        File.Copy(product.ProductImage, image);
-                    }
                     _db.SaveChanges();
                     return "Sửa thành công!";
                 }
@@ -114,7 +102,7 @@ namespace DAL_DataAccessLayer.DAL_Services
                 {
                     var product = _db.Product.First(c => c.ProductId == id);
                     product.Status = false;
-                    return _db.SaveChanges() > 0 ? "Xóa thành công" : "Xóa thất bại";
+                    return _db.SaveChanges() > 0 ? "Sản phẩm đã được chuyển vào thùng rác" : "Thất bại";
                 }
             }
             catch (Exception e)
@@ -136,6 +124,14 @@ namespace DAL_DataAccessLayer.DAL_Services
             using (_db = new QuanLyBanGiayEntities())
             {
                 return _db.Inventory.ToList();
+            }
+        }
+
+        public Product GetProductId(string id)
+        {
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                return _db.Product.First(c => c.ProductId == id);
             }
         }
     }

@@ -17,5 +17,6 @@ namespace DAL_DataAccessLayer.iDAL_Services
         List<ProductDetail> GetProductDetail();
         List<Inventory> GetInventory();
         Product GetProductName(string name);
+        Product GetProductId(string id);
     }
 }
