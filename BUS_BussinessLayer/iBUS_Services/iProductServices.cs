@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BUS_BussinessLayer.Models;
 
 namespace BUS_BussinessLayer.iBUS_Services
 {
@@ -13,11 +14,9 @@ namespace BUS_BussinessLayer.iBUS_Services
         string UpdateProduct(Product product, ProductDetail productDetail, Inventory inventory);
         string DeleteProduct(string id);
         string ChangeStatus(string id);
-        List<Product> GetProduct();
-        List<ProductDetail> GetProductDetail();
-        List<Inventory> GetInventory();
-        Product GetProductName(string name);
-
-        Product GetProductId(string id);
+        Product GetProductByName(string name);
+        Product GetProductById(string id);
+        List<Product> GetProducts();
+        List<ViewProduct> GetViewProducts();
     }
 }

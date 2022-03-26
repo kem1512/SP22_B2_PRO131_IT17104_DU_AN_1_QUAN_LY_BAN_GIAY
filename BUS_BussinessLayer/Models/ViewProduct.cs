@@ -11,13 +11,10 @@ using DAL_DataAccessLayer.Entities;
 
 namespace BUS_BussinessLayer.Models
 {
-    public class TotalProduct
+    public class ViewProduct
     {
-        private ProductDetail productDetail { get; set; }
-
-        public TotalProduct()
-        {
-
-        }
+        public Product product { get; set; }
+        public ProductDetail productDetail { get; set; }
+        public Inventory inventory { get; set; }
     }
 }

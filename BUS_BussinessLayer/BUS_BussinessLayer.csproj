@@ -41,11 +41,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BUS_Services\CategoriesServices.cs" />
+    <Compile Include="BUS_Services\BrandServices.cs" />
+    <Compile Include="BUS_Services\CategoryServices.cs" />
+    <Compile Include="BUS_Services\ColorServices.cs" />
+    <Compile Include="BUS_Services\MaterialServices.cs" />
     <Compile Include="BUS_Services\ProductSevices.cs" />
-    <Compile Include="iBUS_Services\iCategoriesServices.cs" />
+    <Compile Include="BUS_Services\SizeServices.cs" />
+    <Compile Include="iBUS_Services\iBrandServices.cs" />
+    <Compile Include="iBUS_Services\iCategoryServices.cs" />
+    <Compile Include="iBUS_Services\iColorServices.cs" />
+    <Compile Include="iBUS_Services\iMaterialServices.cs" />
     <Compile Include="iBUS_Services\iProductServices.cs" />
-    <Compile Include="Models\TotalProduct.cs" />
+    <Compile Include="iBUS_Services\iSizeServices.cs" />
+    <Compile Include="Models\ViewProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

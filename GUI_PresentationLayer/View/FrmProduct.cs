@@ -18,63 +18,69 @@ namespace GUI_PresentationLayer.View
     public partial class FrmProduct : Form
     {
         private iProductServices _iProductServices;
-        private iCategoriesServices _iCategoriesServices;
+        private iCategoryServices _iCategoryServices;
+        private iBrandServices _iBrandServices;
+        private iMaterialServices _iMaterialServices;
+        private iSizeServices _iSizeServices;
+        private iColorServices _iColorServices;
         public FrmProduct()
         {
             _iProductServices = new ProductSevices();
-            _iCategoriesServices = new CategoriesServices();
+            _iCategoryServices = new CategoryServices();
+            _iBrandServices = new BrandServices();
+            _iMaterialServices = new MaterialServices();
+            _iSizeServices = new SizeServices();
+            _iColorServices = new ColorServices();
             InitializeComponent();
         }
 
         private void pbxEditBrand_Click(object sender, EventArgs e)
         {
-            FrmCategories frm = new FrmCategories();
+            FrmProperties frm = new FrmProperties(FrmProperties.Properties.Brand);
             frm.ShowDialog();
         }
 
         private void LoadData()
         {
             dgridProduct.Rows.Clear();
-            var result = _iProductServices.GetProduct()
-                .Join(_iProductServices.GetProductDetail(), a => a.ProductId, b => b.ProductId,
-                    (a, b) => new { Product = a, ProductDetail = b }).Join(_iProductServices.GetInventory(), c => c.ProductDetail.ProductId, d => d.ProductId, (c, d) => new { c.Product, c.ProductDetail, Inventory = d }).Select(e => new { e.Product.ProductId, e.Product.ProductName, e.Product.ProductImage, e.ProductDetail.UnitPrice, e.Inventory.Amount, e.Product.Status });
-            foreach (var x in result.Where(c => c.Status))
+            var result = _iProductServices.GetViewProducts();
+            foreach (var x in result.Where(c => c.product.Status))
             {
-                using (FileStream fileStream = new FileStream(x.ProductImage, FileMode.Open))
+                using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
                 {
-                    dgridProduct.Rows.Add(x.ProductId, new Bitmap(fileStream), x.ProductName, x.UnitPrice, x.Amount, "Xóa");
+                    dgridProduct.Rows.Add(x.product.ProductImage, new Bitmap(fileStream), x.product.ProductName, x.productDetail.UnitPrice, x.inventory.Amount, "Xóa");
                 }
             }
 
-            foreach (var x in result.Where(c => c.Status == false))
+            foreach (var x in result.Where(c => c.product.Status == false))
             {
-                using (FileStream fileStream = new FileStream(x.ProductImage, FileMode.Open))
+                using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
                 {
-                    dgridProductDeleted.Rows.Add(x.ProductId, new Bitmap(fileStream), x.ProductName, x.UnitPrice, x.Amount, "Xóa");
+                    dgridProductDeleted.Rows.Add(x.product.ProductImage, new Bitmap(fileStream), x.product.ProductName, x.productDetail.UnitPrice, x.inventory.Amount, "Xóa");
                 }
             }
 
-            cmbBrandBot.DataSource = _iCategoriesServices.GetBrands();
+            cmbBrandBot.DataSource = _iBrandServices.GetBrands();
             cmbBrandBot.DisplayMember = "BrandName";
             cmbBrandBot.ValueMember = "BrandId";
             cmbBrandBot.SelectedIndex = -1;
-
-            cmbColorBot.DataSource = _iCategoriesServices.GetColors();
+            
+            cmbColorBot.DataSource = _iColorServices.GetColors();
             cmbColorBot.DisplayMember = "ColorName";
             cmbColorBot.ValueMember = "ColorId";
             cmbColorBot.SelectedIndex = -1;
-
-            cmbMat.DataSource = _iCategoriesServices.GetMaterials();
+            
+            cmbMat.DataSource = _iMaterialServices.GetMaterials();
             cmbMat.DisplayMember = "MaterialName";
             cmbMat.ValueMember = "MaterialId";
             cmbMat.SelectedIndex = -1;
-
-            cmbCat.DataSource = _iCategoriesServices.GetCategories();
+            
+            cmbCat.DataSource = _iCategoryServices.GetCategories();
             cmbCat.DisplayMember = "CategoryName";
             cmbCat.ValueMember = "CategoryId";
             cmbCat.SelectedIndex = -1;
-
-            cmbSize.DataSource = _iCategoriesServices.GetSizes();
+            
+            cmbSize.DataSource = _iSizeServices.GetSizes();
             cmbSize.DisplayMember = "SizeName";
             cmbSize.ValueMember = "SizeId";
             cmbSize.SelectedIndex = -1;
@@ -128,7 +134,7 @@ namespace GUI_PresentationLayer.View
             {
                 if (MessageBox.Show("Bạn có chắc muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    int productId = !_iProductServices.GetProduct().Any() ? 1 : _iProductServices.GetProduct().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
+                    int productId = !_iProductServices.GetProducts().Any() ? 1 : _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
                     var result = _iProductServices.AddProduct(new Product()
                     {
                         ProductId = "PR" + productId,
@@ -185,7 +191,7 @@ namespace GUI_PresentationLayer.View
         private void dgridProduct_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             var row = dgridProduct.Rows[e.RowIndex];
-            var product = _iProductServices.GetProduct().First(c => c.ProductId == row.Cells[0].Value.ToString());
+            var product = _iProductServices.GetProducts().First(c => c.ProductId == row.Cells[0].Value.ToString());
             using (FileStream fileStream = new FileStream(product.ProductImage, FileMode.Open))
             {
                 pbxProduct.Image = new Bitmap(fileStream);
@@ -219,7 +225,7 @@ namespace GUI_PresentationLayer.View
             {
                 if (MessageBox.Show("Bạn có chắc muốn sửa không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    var product = _iProductServices.GetProductName(dgridProduct.Rows[dgridProduct.CurrentRow.Index].Cells[2].Value.ToString());
+                    var product = _iProductServices.GetProductByName(dgridProduct.Rows[dgridProduct.CurrentRow.Index].Cells[2].Value.ToString());
                     var result = _iProductServices.UpdateProduct(new Product()
                     {
                         ProductId = product.ProductId,
@@ -272,6 +278,30 @@ namespace GUI_PresentationLayer.View
                     _iProductServices.DeleteProduct(dgridProductDeleted.Rows[e.RowIndex].Cells[0].Value.ToString()));
                 LoadData();
             }
+        }
+
+        private void pbxEditMat_Click(object sender, EventArgs e)
+        {
+            FrmProperties frmProperties = new FrmProperties(FrmProperties.Properties.Material);
+            frmProperties.ShowDialog();
+        }
+
+        private void pbxEditColor_Click(object sender, EventArgs e)
+        {
+            FrmProperties frmProperties = new FrmProperties(FrmProperties.Properties.Color);
+            frmProperties.ShowDialog();
+        }
+
+        private void pbxEditSize_Click(object sender, EventArgs e)
+        {
+            FrmProperties frmProperties = new FrmProperties(FrmProperties.Properties.Size);
+            frmProperties.ShowDialog();
+        }
+
+        private void pbxEditCat_Click(object sender, EventArgs e)
+        {
+            FrmProperties frmProperties = new FrmProperties(FrmProperties.Properties.Category);
+            frmProperties.ShowDialog();
         }
     }
 }

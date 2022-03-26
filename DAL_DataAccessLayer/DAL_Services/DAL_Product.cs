@@ -78,7 +78,7 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public List<Product> GetProduct()
+        public List<Product> GetProducts()
         {
             using(_db = new QuanLyBanGiayEntities())
             {
@@ -86,7 +86,7 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public Product GetProductName(string name)
+        public Product GetProductByName(string name)
         {
             using (_db = new QuanLyBanGiayEntities())
             {
@@ -127,7 +127,7 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public Product GetProductId(string id)
+        public Product GetProductById(string id)
         {
             using (_db = new QuanLyBanGiayEntities())
             {
