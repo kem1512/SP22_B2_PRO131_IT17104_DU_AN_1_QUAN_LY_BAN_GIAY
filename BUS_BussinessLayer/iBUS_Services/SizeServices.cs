@@ -37,9 +37,9 @@ namespace BUS_BussinessLayer.BUS_Services
             return _dalSize.AddSize(size);
         }
 
-        public string RemoveSize(Size size)
+        public string RemoveSize(string id)
         {
-            return _dalSize.RemoveSize(size);
+            return _dalSize.RemoveSize(id);
         }
 
         public string UpdateSize(Size size)

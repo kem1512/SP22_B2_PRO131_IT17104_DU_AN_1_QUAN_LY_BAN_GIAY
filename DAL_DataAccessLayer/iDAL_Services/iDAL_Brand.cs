@@ -15,7 +15,7 @@ namespace DAL_DataAccessLayer.iDAL_Services
 
         string AddBrand(Brand brand);
 
-        string RemoveBrand(Brand brand);
+        string RemoveBrand(string brand);
 
         string UpdateBrand(Brand brand);
     }

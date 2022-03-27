@@ -15,7 +15,7 @@ namespace BUS_BussinessLayer.iBUS_Services
 
         string AddSize(Size size);
 
-        string RemoveSize(Size size);
+        string RemoveSize(string id);
 
         string UpdateSize(Size size);
     }

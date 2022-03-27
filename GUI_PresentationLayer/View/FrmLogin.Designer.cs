@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLogin));
             this.bunifuGradientPanel1 = new Bunifu.Framework.UI.BunifuGradientPanel();
             this.btnLogin1 = new Bunifu.Framework.UI.BunifuThinButton2();
@@ -47,9 +48,10 @@
             this.lblLogin = new System.Windows.Forms.Label();
             this.tabctrlMain = new System.Windows.Forms.TabControl();
             this.tabPageQr = new System.Windows.Forms.TabPage();
+            this.pbxCamera = new System.Windows.Forms.PictureBox();
             this.cmbCamera = new System.Windows.Forms.ComboBox();
             this.btnQr2 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.pbxCamera = new System.Windows.Forms.PictureBox();
+            this.tmrScan = new System.Windows.Forms.Timer(this.components);
             this.bunifuGradientPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).BeginInit();
             this.pnlTop.SuspendLayout();
@@ -308,6 +310,7 @@
             this.btnLogin2.Size = new System.Drawing.Size(455, 86);
             this.btnLogin2.TabIndex = 17;
             this.btnLogin2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnLogin2.Click += new System.EventHandler(this.btnLogin2_Click);
             // 
             // cbxRemember
             // 
@@ -373,6 +376,15 @@
             this.tabPageQr.Size = new System.Drawing.Size(708, 539);
             this.tabPageQr.TabIndex = 1;
             // 
+            // pbxCamera
+            // 
+            this.pbxCamera.Location = new System.Drawing.Point(115, 72);
+            this.pbxCamera.Name = "pbxCamera";
+            this.pbxCamera.Size = new System.Drawing.Size(493, 314);
+            this.pbxCamera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxCamera.TabIndex = 0;
+            this.pbxCamera.TabStop = false;
+            // 
             // cmbCamera
             // 
             this.cmbCamera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
@@ -408,14 +420,11 @@
             this.btnQr2.Size = new System.Drawing.Size(493, 86);
             this.btnQr2.TabIndex = 18;
             this.btnQr2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnQr2.Click += new System.EventHandler(this.btnQr2_Click);
             // 
-            // pbxCamera
+            // tmrScan
             // 
-            this.pbxCamera.Location = new System.Drawing.Point(115, 72);
-            this.pbxCamera.Name = "pbxCamera";
-            this.pbxCamera.Size = new System.Drawing.Size(493, 314);
-            this.pbxCamera.TabIndex = 0;
-            this.pbxCamera.TabStop = false;
+            this.tmrScan.Tick += new System.EventHandler(this.tmrScan_Tick);
             // 
             // FrmLogin
             // 
@@ -429,6 +438,7 @@
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmLogin";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmLogin_FormClosing);
             this.bunifuGradientPanel1.ResumeLayout(false);
             this.bunifuGradientPanel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxLogo)).EndInit();
@@ -468,5 +478,6 @@
         private Bunifu.Framework.UI.BunifuThinButton2 btnQr2;
         private System.Windows.Forms.ComboBox cmbCamera;
         private System.Windows.Forms.PictureBox pbxCamera;
+        private System.Windows.Forms.Timer tmrScan;
     }
 }

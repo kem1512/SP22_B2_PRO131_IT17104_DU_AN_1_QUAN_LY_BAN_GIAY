@@ -39,11 +39,16 @@ namespace DAL_DataAccessLayer.DAL_Services
         {
             try
             {
-                using (_db = new QuanLyBanGiayEntities())
+                if(brand != null)
                 {
-                    _db.Brand.Add(brand);
-                    return _db.SaveChanges() > 0 ? "Thêm thành công" : "Thêm thất bại";
+                    using (_db = new QuanLyBanGiayEntities())
+                    {
+                        _db.Brand.Add(brand);
+                        _db.SaveChanges();
+                        return "Thêm thành công!";
+                    }
                 }
+                return "Thêm thất bại!";
             }
             catch (Exception e)
             {
@@ -51,14 +56,26 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public string RemoveBrand(Brand brand)
+        public string RemoveBrand(string id)
         {
             try
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    _db.Brand.Remove(brand);
-                    return _db.SaveChanges() > 0 ? "Xóa thành công" : "Xóa thất bại";
+                    if (id != null)
+                    {
+                        var brand = _db.Brand.FirstOrDefault(c => c.BrandId == id);
+                        var productDetail = _db.ProductDetail.FirstOrDefault(c => c.SizeId == id);
+                        var inventory = productDetail is null ? null : _db.Inventory.FirstOrDefault(c => c.ProductId == productDetail.ProductId);
+                        var product = productDetail is null ? null : _db.Product.FirstOrDefault(c => c.ProductId == productDetail.ProductId);
+                        if (inventory != null) _db.Inventory.Remove(inventory);
+                        if (productDetail != null) _db.ProductDetail.Remove(productDetail);
+                        if (product != null) _db.Product.Remove(product);
+                        if (brand != null) _db.Brand.Remove(brand);
+                        _db.SaveChanges();
+                        return "Xóa thành công!";
+                    }
+                    return "Xóa thất bại!";
                 }
             }
             catch (Exception e)
@@ -74,14 +91,14 @@ namespace DAL_DataAccessLayer.DAL_Services
                 using (_db = new QuanLyBanGiayEntities())
                 {
                     // Tìm brand
-                    var result = GetBrandById(brand.BrandId);
-                    if (result != null)
+                    var result = _db.Brand.FirstOrDefault(c => c.BrandId == brand.BrandId);
+                    if (brand != null && result != null)
                     {
                         result.BrandName = brand.BrandName;
-                        return _db.SaveChanges() > 0 ? "Sửa thành công" : "Sửa thất bại";
+                        _db.SaveChanges();
+                        return "Sửa thành công!";
                     }
-
-                    return "Lỗi không xác định";
+                    return "Sửa thất bại!";
                 }
             }
             catch (Exception e)

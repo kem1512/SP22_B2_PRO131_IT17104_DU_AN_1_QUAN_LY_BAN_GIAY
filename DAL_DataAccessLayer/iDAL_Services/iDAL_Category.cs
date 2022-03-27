@@ -15,7 +15,7 @@ namespace DAL_DataAccessLayer.iDAL_Services
 
         string AddCategory(Category category);
 
-        string RemoveCategory(Category category);
+        string RemoveCategory(string id);
 
         string UpdateCategory(Category category);
     }

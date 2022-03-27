@@ -12,11 +12,12 @@ namespace DAL_DataAccessLayer.iDAL_Services
         string AddProduct(Product product, ProductDetail productDetail, Inventory inventory);
         string UpdateProduct(Product product, ProductDetail productDetail, Inventory inventory);
         string DeleteProduct(string id);
-        string ChangeStatus(string id);
+        string RecoveryProduct(string id);
         List<Product> GetProducts();
         List<ProductDetail> GetProductDetail();
         List<Inventory> GetInventory();
         Product GetProductByName(string name);
         Product GetProductById(string id);
+        string DisableProduct(string id);
     }
 }

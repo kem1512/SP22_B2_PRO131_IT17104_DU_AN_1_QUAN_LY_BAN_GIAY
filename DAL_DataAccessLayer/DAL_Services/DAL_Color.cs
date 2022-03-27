@@ -23,7 +23,8 @@ namespace DAL_DataAccessLayer.DAL_Services
         {
             using (_db = new QuanLyBanGiayEntities())
             {
-                return  _db.Color.FirstOrDefault(c => c.ColorId == id);
+                return _db.Color.First(c => c.ColorId == id);
+                // return _db.Color.Find(id);
             }
         }
 
@@ -41,8 +42,13 @@ namespace DAL_DataAccessLayer.DAL_Services
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    _db.Color.Add(color);
-                    return _db.SaveChanges() > 0 ? "Thêm thành công" : "Thêm thất bại";
+                    if (color != null)
+                    {
+                        _db.Color.Add(color);
+                        _db.SaveChanges();
+                        return "Thêm thành công!";
+                    }
+                    return "Thêm thất bại!";
                 }
             }
             catch (Exception e)
@@ -51,14 +57,26 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public string RemoveColor(Color color)
+        public string RemoveColor(string id)
         {
             try
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    _db.Color.Remove(color);
-                    return _db.SaveChanges() > 0 ? "Xóa thành công" : "Xóa thất bại";
+                    if (id != null)
+                    {
+                        var color = _db.Color.FirstOrDefault(c => c.ColorId == id);
+                        var productDetail = _db.ProductDetail.FirstOrDefault(c => c.ColorId == id);
+                        var inventory = productDetail is null ? null : _db.Inventory.FirstOrDefault(c => c.ProductId == productDetail.ProductId);
+                        var product = productDetail is null ? null : _db.Product.FirstOrDefault(c => c.ProductId == productDetail.ProductId);
+                        if (inventory != null) _db.Inventory.Remove(inventory);
+                        if(productDetail != null) _db.ProductDetail.Remove(productDetail);
+                        if(product != null) _db.Product.Remove(product);
+                        if (color != null) _db.Color.Remove(color);
+                        _db.SaveChanges();
+                        return "Xóa thành công!";
+                    }
+                    return "Xóa thất bại!";
                 }
             }
             catch (Exception e)
@@ -71,17 +89,19 @@ namespace DAL_DataAccessLayer.DAL_Services
         {
             try
             {
-                // Tìm color
-                var result = GetColorById(color.ColorId);
-                if (result != null)
+                using (_db = new QuanLyBanGiayEntities())
                 {
-                    using (_db = new QuanLyBanGiayEntities())
+                    var result = _db.Color.FirstOrDefault(c => c.ColorId == color.ColorId);
+                    if (color != null && result != null)
                     {
-                        _db.Color.Remove(color);
-                        return _db.SaveChanges() > 0 ? "Sửa thành công" : "Sửa thất bại";
+                        // Gán lại giá trị
+                        result.ColorName = color.ColorName;
+                        _db.SaveChanges();
+                        return "Sửa thành công!";
                     }
+                    return "Sửa thất bại!";
                 }
-                return "Lỗi không xác định";
+                // Tìm color
             }
             catch (Exception e)
             {

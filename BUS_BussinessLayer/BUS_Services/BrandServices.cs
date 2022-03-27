@@ -38,9 +38,9 @@ namespace BUS_BussinessLayer.BUS_Services
             return _iDalBrand.AddBrand(brand);
         }
 
-        public string RemoveBrand(Brand brand)
+        public string RemoveBrand(string id)
         {
-            return _iDalBrand.RemoveBrand(brand);
+            return _iDalBrand.RemoveBrand(id);
         }
 
         public string UpdateBrand(Brand brand)

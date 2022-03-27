@@ -34,8 +34,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProperties));
             this.dgridProperties = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.bunifuThinButton22 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.bunifuThinButton23 = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnUpdate = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnDelete = new Bunifu.Framework.UI.BunifuThinButton2();
             this.txtName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.txtId = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.lblId = new System.Windows.Forms.Label();
@@ -87,6 +87,7 @@
             this.dgridProperties.RowTemplate.Height = 45;
             this.dgridProperties.Size = new System.Drawing.Size(509, 436);
             this.dgridProperties.TabIndex = 0;
+            this.dgridProperties.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridProperties_CellClick);
             // 
             // tableLayoutPanel1
             // 
@@ -99,8 +100,8 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.75875F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 16.85083F));
             this.tableLayoutPanel1.Controls.Add(this.dgridProperties, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.bunifuThinButton22, 2, 3);
-            this.tableLayoutPanel1.Controls.Add(this.bunifuThinButton23, 3, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnUpdate, 2, 3);
+            this.tableLayoutPanel1.Controls.Add(this.btnDelete, 3, 3);
             this.tableLayoutPanel1.Controls.Add(this.txtName, 2, 2);
             this.tableLayoutPanel1.Controls.Add(this.txtId, 2, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblId, 1, 1);
@@ -118,57 +119,59 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(1086, 469);
             this.tableLayoutPanel1.TabIndex = 8;
             // 
-            // bunifuThinButton22
+            // btnUpdate
             // 
-            this.bunifuThinButton22.ActiveBorderThickness = 1;
-            this.bunifuThinButton22.ActiveCornerRadius = 20;
-            this.bunifuThinButton22.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.ActiveForecolor = System.Drawing.Color.White;
-            this.bunifuThinButton22.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.bunifuThinButton22.BackColor = System.Drawing.Color.White;
-            this.bunifuThinButton22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton22.BackgroundImage")));
-            this.bunifuThinButton22.ButtonText = "Sửa";
-            this.bunifuThinButton22.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuThinButton22.ForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.IdleBorderThickness = 1;
-            this.bunifuThinButton22.IdleCornerRadius = 20;
-            this.bunifuThinButton22.IdleFillColor = System.Drawing.Color.White;
-            this.bunifuThinButton22.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.Location = new System.Drawing.Point(728, 356);
-            this.bunifuThinButton22.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuThinButton22.Name = "bunifuThinButton22";
-            this.bunifuThinButton22.Size = new System.Drawing.Size(165, 71);
-            this.bunifuThinButton22.TabIndex = 6;
-            this.bunifuThinButton22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnUpdate.ActiveBorderThickness = 1;
+            this.btnUpdate.ActiveCornerRadius = 20;
+            this.btnUpdate.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnUpdate.ActiveForecolor = System.Drawing.Color.White;
+            this.btnUpdate.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnUpdate.BackColor = System.Drawing.Color.White;
+            this.btnUpdate.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnUpdate.BackgroundImage")));
+            this.btnUpdate.ButtonText = "Sửa";
+            this.btnUpdate.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUpdate.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnUpdate.IdleBorderThickness = 1;
+            this.btnUpdate.IdleCornerRadius = 20;
+            this.btnUpdate.IdleFillColor = System.Drawing.Color.White;
+            this.btnUpdate.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnUpdate.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnUpdate.Location = new System.Drawing.Point(728, 356);
+            this.btnUpdate.Margin = new System.Windows.Forms.Padding(5);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(165, 71);
+            this.btnUpdate.TabIndex = 6;
+            this.btnUpdate.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
-            // bunifuThinButton23
+            // btnDelete
             // 
-            this.bunifuThinButton23.ActiveBorderThickness = 1;
-            this.bunifuThinButton23.ActiveCornerRadius = 20;
-            this.bunifuThinButton23.ActiveFillColor = System.Drawing.Color.Red;
-            this.bunifuThinButton23.ActiveForecolor = System.Drawing.Color.White;
-            this.bunifuThinButton23.ActiveLineColor = System.Drawing.Color.Red;
-            this.bunifuThinButton23.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.bunifuThinButton23.BackColor = System.Drawing.Color.White;
-            this.bunifuThinButton23.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton23.BackgroundImage")));
-            this.bunifuThinButton23.ButtonText = "Xóa";
-            this.bunifuThinButton23.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton23.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuThinButton23.ForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton23.IdleBorderThickness = 1;
-            this.bunifuThinButton23.IdleCornerRadius = 20;
-            this.bunifuThinButton23.IdleFillColor = System.Drawing.Color.White;
-            this.bunifuThinButton23.IdleForecolor = System.Drawing.Color.Red;
-            this.bunifuThinButton23.IdleLineColor = System.Drawing.Color.Red;
-            this.bunifuThinButton23.Location = new System.Drawing.Point(911, 356);
-            this.bunifuThinButton23.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuThinButton23.Name = "bunifuThinButton23";
-            this.bunifuThinButton23.Size = new System.Drawing.Size(165, 71);
-            this.bunifuThinButton23.TabIndex = 7;
-            this.bunifuThinButton23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnDelete.ActiveBorderThickness = 1;
+            this.btnDelete.ActiveCornerRadius = 20;
+            this.btnDelete.ActiveFillColor = System.Drawing.Color.Red;
+            this.btnDelete.ActiveForecolor = System.Drawing.Color.White;
+            this.btnDelete.ActiveLineColor = System.Drawing.Color.Red;
+            this.btnDelete.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnDelete.BackColor = System.Drawing.Color.White;
+            this.btnDelete.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnDelete.BackgroundImage")));
+            this.btnDelete.ButtonText = "Xóa";
+            this.btnDelete.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnDelete.IdleBorderThickness = 1;
+            this.btnDelete.IdleCornerRadius = 20;
+            this.btnDelete.IdleFillColor = System.Drawing.Color.White;
+            this.btnDelete.IdleForecolor = System.Drawing.Color.Red;
+            this.btnDelete.IdleLineColor = System.Drawing.Color.Red;
+            this.btnDelete.Location = new System.Drawing.Point(911, 356);
+            this.btnDelete.Margin = new System.Windows.Forms.Padding(5);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(165, 71);
+            this.btnDelete.TabIndex = 7;
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // txtName
             // 
@@ -196,6 +199,7 @@
             this.txtId.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tableLayoutPanel1.SetColumnSpan(this.txtId, 2);
             this.txtId.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtId.Enabled = false;
             this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtId.HintForeColor = System.Drawing.Color.Empty;
@@ -302,8 +306,8 @@
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtName;
         private System.Windows.Forms.Label lblId;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtId;
-        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton23;
-        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton22;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnDelete;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnUpdate;
         private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
         private System.Windows.Forms.Label lblName;
     }

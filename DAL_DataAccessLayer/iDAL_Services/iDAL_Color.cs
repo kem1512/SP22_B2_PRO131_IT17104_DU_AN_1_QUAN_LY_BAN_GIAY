@@ -15,7 +15,7 @@ namespace DAL_DataAccessLayer.iDAL_Services
 
         string AddColor(Color color);
 
-        string RemoveColor(Color color);
+        string RemoveColor(string id);
 
         string UpdateColor(Color color);
     }

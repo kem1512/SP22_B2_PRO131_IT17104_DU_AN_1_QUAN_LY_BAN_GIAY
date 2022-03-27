@@ -15,7 +15,7 @@ namespace BUS_BussinessLayer.iBUS_Services
 
         string AddCategory(Category category);
 
-        string RemoveCategory(Category category);
+        string RemoveCategory(string id);
 
         string UpdateCategory(Category category);
     }

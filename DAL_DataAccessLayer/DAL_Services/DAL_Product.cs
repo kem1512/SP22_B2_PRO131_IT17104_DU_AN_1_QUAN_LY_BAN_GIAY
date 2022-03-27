@@ -12,6 +12,18 @@ namespace DAL_DataAccessLayer.DAL_Services
     public class DAL_Product : iDAL_Product
     {
         private QuanLyBanGiayEntities _db;
+
+        private string GetFullPath()
+        {
+            var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent;
+            if (directoryInfo != null)
+            {
+                var path = directoryInfo?.FullName + @"\Images\";
+                if (!Directory.Exists(path)) Directory.CreateDirectory(path);
+                return path;
+            }
+            return null;
+        }
         public string AddProduct(Product product, ProductDetail productDetail, Inventory inventory)
         {
             try
@@ -21,7 +33,15 @@ namespace DAL_DataAccessLayer.DAL_Services
                     _db.Product.Add(product);
                     _db.ProductDetail.Add(productDetail);
                     _db.Inventory.Add(inventory);
-                    return _db.SaveChanges() > 0 ? "Thêm thành công" : "Thêm thất bại";
+                    var image = GetFullPath() + product.ProductId + Path.GetExtension(product.ProductImage);
+                    if (File.Exists(image))
+                    {
+                        File.Delete(image);
+                    }
+                    File.Copy(product.ProductImage, image);
+                    product.ProductImage = image;
+                    _db.SaveChanges();
+                    return "Thêm thành công!";
                 }
             }
             catch(Exception e)
@@ -36,23 +56,51 @@ namespace DAL_DataAccessLayer.DAL_Services
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    var pr = _db.Product.First(c => c.ProductId == product.ProductId);
-                    pr.Description = product.Description;
-                    pr.ProductImage = product.ProductImage;
-                    pr.Status = product.Status;
-                    pr.ProductName = product.ProductName;
-                    var prd = _db.ProductDetail.First(c => c.ProductId == product.ProductId);
-                    prd.UnitPrice = productDetail.UnitPrice;
-                    prd.CategoryId = productDetail.CategoryId;
-                    prd.ColorId = productDetail.ColorId;
-                    prd.MaterialId = productDetail.MaterialId;
-                    prd.SizeId = productDetail.SizeId;
-                    prd.BrandId = productDetail.BrandId;
-                    var iv = _db.Inventory.First(c => c.ProductId == product.ProductId);
-                    iv.Amount = inventory.Amount;
-                    _db.SaveChanges();
-                    return "Sửa thành công!";
+                    // Tìm sản phẩm cũ
+                    var pr = _db.Product.FirstOrDefault(c => c.ProductId == product.ProductId);
+
+                    // Tìm chi tiết sản phẩm cũ
+                    var prd = _db.ProductDetail.FirstOrDefault(c => c.ProductId == product.ProductId);
+
+                    // Tìm kho hàng cũ
+                    var iv = _db.Inventory.FirstOrDefault(c => c.ProductId == product.ProductId);
+                    if (product != null && productDetail != null && inventory != null && pr != null && prd != null && iv != null)
+                    {
+                        // Gán lại thuộc tính cho sản phẩm
+                        pr.Description = product.Description;
+                        pr.Status = product.Status;
+                        pr.ProductName = product.ProductName;
+
+
+                        //Gán lại thuộc tính cho chi tiết sản phẩm
+                        prd.UnitPrice = productDetail.UnitPrice;
+                        prd.CategoryId = productDetail.CategoryId;
+                        prd.ColorId = productDetail.ColorId;
+                        prd.MaterialId = productDetail.MaterialId;
+                        prd.SizeId = productDetail.SizeId;
+                        prd.BrandId = productDetail.BrandId;
+
+                        // Gán lại số lượng
+                        iv.Amount = inventory.Amount;
+                        _db.SaveChanges();
+
+                        // Tìm đường dẫn của thư mục hiện tại
+                        var image = GetFullPath() + product.ProductId + Path.GetExtension(product.ProductImage);
+
+                        //Tìm ảnh cũ
+                        var imageOld = _db.Product.FirstOrDefault(c => c.ProductId == product.ProductId);
+                        if (imageOld != null && product.ProductImage != imageOld.ProductImage)
+                        {
+                            // Xóa ảnh cũ và copy ảnh mới
+                            File.Delete(imageOld.ProductImage);
+                            if (product.ProductImage != null) File.Copy(product.ProductImage, image);
+                            // Sửa lại đường dẫn ảnh
+                            product.ProductImage = image;
+                        }
+                        return "Sửa thành công!";
+                    }
                 }
+                return "Sửa thất bại!";
             }
             catch (Exception e)
             {
@@ -66,10 +114,46 @@ namespace DAL_DataAccessLayer.DAL_Services
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    _db.Inventory.Remove(_db.Inventory.First(c => c.ProductId == id));
-                    _db.ProductDetail.Remove(_db.ProductDetail.First(c => c.ProductId == id));
-                    _db.Product.Remove(_db.Product.First(c => c.ProductId == id));
-                    return _db.SaveChanges() > 0 ? "Xóa thành công" : "Xóa thất bại";
+                    // Tìm kho hàng
+                    var inventory = _db.Inventory.FirstOrDefault(c => c.ProductId == id);
+
+                    // Tìm chi tiết sản phẩm
+                    var productDetail = _db.ProductDetail.FirstOrDefault(c => c.ProductId == id);
+
+                    // Tìm sản phẩm
+                    var product = _db.Product.FirstOrDefault(c => c.ProductId == id);
+                    if (id != null && inventory != null && productDetail != null && product != null)
+                    {
+                        _db.Inventory.Remove(inventory);
+                        _db.ProductDetail.Remove(productDetail);
+                        _db.Product.Remove(product);
+                        _db.SaveChanges();
+                        File.Delete(product.ProductImage);
+                        return "Xóa thành công!";
+                    }
+                    return "Xóa thất bại!";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
+        public string RecoveryProduct(string id)
+        {
+            try
+            {
+                using (_db = new QuanLyBanGiayEntities())
+                {
+                    var product = _db.Product.FirstOrDefault(c => c.ProductId == id);
+                    if (id != null && product != null)
+                    {
+                        product.Status = true;
+                        _db.SaveChanges();
+                        return "Phục hồi thành công!";
+                    }
+                    return "Phục hồi thất bại!";
                 }
             }
             catch (Exception e)
@@ -90,24 +174,7 @@ namespace DAL_DataAccessLayer.DAL_Services
         {
             using (_db = new QuanLyBanGiayEntities())
             {
-                return _db.Product.First(c => c.ProductName == name);
-            }
-        }
-
-        public string ChangeStatus(string id)
-        {
-            try
-            {
-                using (_db = new QuanLyBanGiayEntities())
-                {
-                    var product = _db.Product.First(c => c.ProductId == id);
-                    product.Status = false;
-                    return _db.SaveChanges() > 0 ? "Sản phẩm đã được chuyển vào thùng rác" : "Thất bại";
-                }
-            }
-            catch (Exception e)
-            {
-                return e.ToString();
+                return _db.Product.FirstOrDefault(c => c.ProductName == name);
             }
         }
 
@@ -131,7 +198,29 @@ namespace DAL_DataAccessLayer.DAL_Services
         {
             using (_db = new QuanLyBanGiayEntities())
             {
-                return _db.Product.First(c => c.ProductId == id);
+                return _db.Product.FirstOrDefault(c => c.ProductId == id);
+            }
+        }
+
+        public string DisableProduct(string id)
+        {
+            try
+            {
+                using (_db = new QuanLyBanGiayEntities())
+                {
+                    var product = _db.Product.FirstOrDefault(c => c.ProductId == id);
+                    if (id != null && product != null)
+                    {
+                        product.Status = false;
+                        _db.SaveChanges();
+                        return "Sản phẩm đã được chuyển vào thùng rác!";
+                    }
+                    return "Xóa thất bại!";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
             }
         }
     }

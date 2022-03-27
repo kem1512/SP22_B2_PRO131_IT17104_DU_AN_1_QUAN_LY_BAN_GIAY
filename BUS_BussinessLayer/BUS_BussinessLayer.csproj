@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -46,7 +49,7 @@
     <Compile Include="BUS_Services\ColorServices.cs" />
     <Compile Include="BUS_Services\MaterialServices.cs" />
     <Compile Include="BUS_Services\ProductSevices.cs" />
-    <Compile Include="BUS_Services\SizeServices.cs" />
+    <Compile Include="BUS_Services\SizeServies.cs" />
     <Compile Include="iBUS_Services\iBrandServices.cs" />
     <Compile Include="iBUS_Services\iCategoryServices.cs" />
     <Compile Include="iBUS_Services\iColorServices.cs" />
@@ -55,10 +58,9 @@
     <Compile Include="iBUS_Services\iSizeServices.cs" />
     <Compile Include="Models\ViewProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Utilities\ValidateForm.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Utilities\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\DAL_DataAccessLayer\DAL_DataAccessLayer.csproj">
       <Project>{41da6eaf-8445-4b46-84e9-dd3ef940c2ca}</Project>

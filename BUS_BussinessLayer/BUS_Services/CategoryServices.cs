@@ -38,9 +38,9 @@ namespace BUS_BussinessLayer.BUS_Services
             return _iDalCategory.AddCategory(category);
         }
 
-        public string RemoveCategory(Category category)
+        public string RemoveCategory(string id)
         {
-            return _iDalCategory.RemoveCategory(category);
+            return _iDalCategory.RemoveCategory(id);
         }
 
         public string UpdateCategory(Category category)

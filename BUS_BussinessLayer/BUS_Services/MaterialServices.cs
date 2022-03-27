@@ -38,9 +38,9 @@ namespace BUS_BussinessLayer.BUS_Services
             return _iDalMaterial.AddMaterial(material);
         }
 
-        public string RemoveMaterial(Material material)
+        public string RemoveMaterial(string id)
         {
-            return _iDalMaterial.RemoveMaterial(material);
+            return _iDalMaterial.RemoveMaterial(id);
         }
 
         public string UpdateMaterial(Material material)

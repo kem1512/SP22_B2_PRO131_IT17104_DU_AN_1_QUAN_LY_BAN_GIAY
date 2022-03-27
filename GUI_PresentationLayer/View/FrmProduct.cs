@@ -17,21 +17,68 @@ namespace GUI_PresentationLayer.View
 {
     public partial class FrmProduct : Form
     {
-        private iProductServices _iProductServices;
-        private iCategoryServices _iCategoryServices;
-        private iBrandServices _iBrandServices;
-        private iMaterialServices _iMaterialServices;
-        private iSizeServices _iSizeServices;
-        private iColorServices _iColorServices;
+        private readonly iProductServices _iProductServices = new ProductSevices();
+        private readonly iCategoryServices _iCategoryServices = new CategoryServices();
+        private readonly iBrandServices _iBrandServices = new BrandServices();
+        private readonly iMaterialServices _iMaterialServices = new MaterialServices();
+        private readonly iSizeServices _iSizeServices = new SizeServices();
+        private readonly iColorServices _iColorServices = new ColorServices();
         public FrmProduct()
         {
-            _iProductServices = new ProductSevices();
-            _iCategoryServices = new CategoryServices();
-            _iBrandServices = new BrandServices();
-            _iMaterialServices = new MaterialServices();
-            _iSizeServices = new SizeServices();
-            _iColorServices = new ColorServices();
             InitializeComponent();
+        }
+
+        private string ValidateForm()
+        {
+            if (pbxProduct.Image == null)
+            {
+                return "Ảnh sản phẩm không được bỏ trống";
+            }
+            if (txtName.Text == "")
+            {
+                return "Tên sản phẩm không được bỏ trống!";
+            }
+            if (txtQuantity.Text == "")
+            {
+                return "Số lượng sản phẩm không được bỏ trống!";
+            }
+            if (txtQuantity.Text == "0")
+            {
+                return "Số lượng sản phẩm không được bằng 0!";
+            }
+            if (txtPrice.Text == "0")
+            {
+                return "Giá sản phẩm không được bỏ trống!";
+            }
+            if (txtPrice.Text == "0")
+            {
+                return "Giá sản phẩm không được bằng 0!";
+            }
+            if (txtNote.Text == "")
+            {
+                return "Ghi chú không được bỏ trống";
+            }
+            if (cmbBrandBot.SelectedIndex == -1)
+            {
+                return "Nhãn hiệu không được bỏ trống";
+            }
+            if (cmbColorBot.SelectedIndex == -1)
+            {
+                return "Màu sắc không được bỏ trống";
+            }
+            if (cmbMat.SelectedIndex == -1)
+            {
+                return "Chất liệu không được bỏ trống";
+            }
+            if (cmbCat.SelectedIndex == -1)
+            {
+                return "Thể loại không được bỏ trống";
+            }
+            if (cmbSize.SelectedIndex == -1)
+            {
+                return "Kích thước không được bỏ trống";
+            }
+            return null;
         }
 
         private void pbxEditBrand_Click(object sender, EventArgs e)
@@ -48,38 +95,49 @@ namespace GUI_PresentationLayer.View
             {
                 using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
                 {
-                    dgridProduct.Rows.Add(x.product.ProductImage, new Bitmap(fileStream), x.product.ProductName, x.productDetail.UnitPrice, x.inventory.Amount, "Xóa");
+                    dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName, x.inventory.Amount, string.Format("{0:0,0}", x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa");
                 }
             }
 
+            dgridProductDeleted.Rows.Clear();
             foreach (var x in result.Where(c => c.product.Status == false))
             {
                 using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
                 {
-                    dgridProductDeleted.Rows.Add(x.product.ProductImage, new Bitmap(fileStream), x.product.ProductName, x.productDetail.UnitPrice, x.inventory.Amount, "Xóa");
+                    dgridProductDeleted.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName, x.inventory.Amount, string.Format("{0:0,0}", x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa", "Phục hồi");
                 }
             }
+
+            cmbBrandTop.DataSource = _iBrandServices.GetBrands();
+            cmbBrandTop.DisplayMember = "BrandName";
+            cmbBrandTop.ValueMember = "BrandId";
+            cmbBrandTop.SelectedIndex = -1;
+
+            cmbColorTop.DataSource = _iColorServices.GetColors();
+            cmbColorTop.DisplayMember = "ColorName";
+            cmbColorTop.ValueMember = "ColorId";
+            cmbColorTop.SelectedIndex = -1;
 
             cmbBrandBot.DataSource = _iBrandServices.GetBrands();
             cmbBrandBot.DisplayMember = "BrandName";
             cmbBrandBot.ValueMember = "BrandId";
             cmbBrandBot.SelectedIndex = -1;
-            
+
             cmbColorBot.DataSource = _iColorServices.GetColors();
             cmbColorBot.DisplayMember = "ColorName";
             cmbColorBot.ValueMember = "ColorId";
             cmbColorBot.SelectedIndex = -1;
-            
+
             cmbMat.DataSource = _iMaterialServices.GetMaterials();
             cmbMat.DisplayMember = "MaterialName";
             cmbMat.ValueMember = "MaterialId";
             cmbMat.SelectedIndex = -1;
-            
+
             cmbCat.DataSource = _iCategoryServices.GetCategories();
             cmbCat.DisplayMember = "CategoryName";
             cmbCat.ValueMember = "CategoryId";
             cmbCat.SelectedIndex = -1;
-            
+
             cmbSize.DataSource = _iSizeServices.GetSizes();
             cmbSize.DisplayMember = "SizeName";
             cmbSize.ValueMember = "SizeId";
@@ -90,6 +148,10 @@ namespace GUI_PresentationLayer.View
             txtSearch.Text = "";
             txtPrice.Text = "";
             txtQuantity.Text = "";
+            pbxProduct.Image = null;
+
+            btnEdit.Cursor = Cursors.No;
+            btnAdd.Cursor = Cursors.Hand;
         }
 
         private void FrmProduct_Load(object sender, EventArgs e)
@@ -99,64 +161,40 @@ namespace GUI_PresentationLayer.View
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (pbxProduct.Image == null)
+            if (btnAdd.Cursor == Cursors.Hand)
             {
-                MessageBox.Show("Ảnh sản phẩm không được bỏ trống");
-            }
-            else if (txtName.Text == "")
-            {
-                MessageBox.Show("Tên sản phẩm không được bỏ trống!");
-            }
-            else if (txtPrice.Text == "")
-            {
-                MessageBox.Show("Giá sản phẩm không được bỏ trống!");
-            }
-            else if (txtNote.Text == "")
-            {
-                MessageBox.Show("Ghi chú không được bỏ trống");
-            }else if (cmbBrandBot.SelectedIndex == -1)
-            {
-                MessageBox.Show("Nhãn hiệu không được bỏ trống");
-            }else if (cmbColorBot.SelectedIndex == -1)
-            {
-                MessageBox.Show("Màu sắc không được bỏ trống");
-            }else if (cmbMat.SelectedIndex == -1)
-            {
-                MessageBox.Show("Chất liệu không được bỏ trống");
-            }else if (cmbCat.SelectedIndex == -1)
-            {
-                MessageBox.Show("Thể loại không được bỏ trống");
-            }else if (cmbSize.SelectedIndex == -1)
-            {
-                MessageBox.Show("Kích thước không được bỏ trống");
-            }
-            else
-            {
-                if (MessageBox.Show("Bạn có chắc muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (ValidateForm() is null)
                 {
-                    int productId = !_iProductServices.GetProducts().Any() ? 1 : _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
-                    var result = _iProductServices.AddProduct(new Product()
+                    var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
+                    if (MessageBox.Show("Bạn có chắc muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
                     {
-                        ProductId = "PR" + productId,
-                        ProductName = txtName.Text,
-                        ProductImage = pbxProduct.Tag.ToString(),
-                        Description = txtNote.Text,
-                        Status = true
-                    }, new ProductDetail()
-                    {
-                        ProductId = "PR" + productId,
-                        BrandId = cmbBrandBot.SelectedValue.ToString(),
-                        ColorId = cmbColorBot.SelectedValue.ToString(),
-                        MaterialId = cmbMat.SelectedValue.ToString(),
-                        SizeId = cmbSize.SelectedValue.ToString(),
-                        UnitPrice = float.Parse(txtPrice.Text),
-                    }, new Inventory()
-                    {
-                        ProductId = "PR" + productId,
-                        Amount = int.Parse(txtQuantity.Text)
-                    });
-                    MessageBox.Show(result);
-                    LoadData();
+                        MessageBox.Show(_iProductServices.AddProduct(new Product()
+                        {
+                            ProductId = productId,
+                            ProductName = txtName.Text,
+                            ProductImage = pbxProduct.Tag.ToString(),
+                            Description = txtNote.Text,
+                            Status = true
+                        }, new ProductDetail()
+                        {
+                            ProductId = productId,
+                            BrandId = cmbBrandBot.SelectedValue.ToString(),
+                            ColorId = cmbColorBot.SelectedValue.ToString(),
+                            MaterialId = cmbMat.SelectedValue.ToString(),
+                            SizeId = cmbSize.SelectedValue.ToString(),
+                            CategoryId = cmbCat.SelectedValue.ToString(),
+                            UnitPrice = float.Parse(txtPrice.Text),
+                        }, new Inventory()
+                        {
+                            ProductId = productId,
+                            Amount = int.Parse(txtQuantity.Text)
+                        }));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(ValidateForm());
                 }
             }
         }
@@ -176,13 +214,12 @@ namespace GUI_PresentationLayer.View
 
         private void dgridProduct_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 5)
+            if (e.ColumnIndex == 11)
             {
                 if (MessageBox.Show("Bạn có chắc muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo) ==
                     DialogResult.Yes)
                 {
-                    MessageBox.Show(
-                        _iProductServices.ChangeStatus(dgridProduct.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    MessageBox.Show(_iProductServices.DisableProduct(dgridProduct.Rows[e.RowIndex].Cells[0].Value.ToString()));
                     LoadData();
                 }
             }
@@ -190,65 +227,69 @@ namespace GUI_PresentationLayer.View
 
         private void dgridProduct_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var row = dgridProduct.Rows[e.RowIndex];
-            var product = _iProductServices.GetProducts().First(c => c.ProductId == row.Cells[0].Value.ToString());
-            using (FileStream fileStream = new FileStream(product.ProductImage, FileMode.Open))
+            if (e.RowIndex != -1)
             {
-                pbxProduct.Image = new Bitmap(fileStream);
-                pbxProduct.Tag = fileStream.Name;
+                btnEdit.Cursor = Cursors.Hand;
+                btnAdd.Cursor = Cursors.No;
+                var row = dgridProduct.Rows[e.RowIndex];
+                var product = _iProductServices.GetProductById(row.Cells[0].Value.ToString());
+                using (FileStream fileStream = new FileStream(product.ProductImage, FileMode.Open))
+                {
+                    pbxProduct.Image = new Bitmap(fileStream);
+                    pbxProduct.Tag = fileStream.Name;
+                }
+                txtName.Text = row.Cells[2].Value.ToString();
+                txtNote.Text = row.Cells[2].Value.ToString();
+                txtQuantity.Text = row.Cells[3].Value.ToString();
+                txtPrice.Text = row.Cells[4].Value.ToString();
+                txtNote.Text = row.Cells[5].Value.ToString();
+                cmbBrandBot.SelectedValue = row.Cells[6].Value.ToString();
+                cmbMat.SelectedValue = row.Cells[7].Value.ToString();
+                cmbColorBot.SelectedValue = row.Cells[8].Value.ToString();
+                cmbSize.SelectedValue = row.Cells[9].Value.ToString();
+                cmbCat.SelectedValue = row.Cells[10].Value.ToString();
             }
-            txtName.Text = row.Cells[2].Value.ToString();
-            txtNote.Text = row.Cells[2].Value.ToString();
-            txtPrice.Text = row.Cells[3].Value.ToString();
-            txtQuantity.Text = row.Cells[4].Value.ToString();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (pbxProduct.Image == null)
+            if (btnEdit.Cursor == Cursors.Hand)
             {
-                MessageBox.Show("Ảnh sản phẩm không được bỏ trống");
-            }
-            else if (txtName.Text == "")
-            {
-                MessageBox.Show("Tên sản phẩm không được bỏ trống!");
-            }
-            else if (txtPrice.Text == "")
-            {
-                MessageBox.Show("Giá sản phẩm không được bỏ trống!");
-            }
-            else if (txtNote.Text == "")
-            {
-                MessageBox.Show("Ghi chú không được bỏ trống");
-            }
-            else
-            {
-                if (MessageBox.Show("Bạn có chắc muốn sửa không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (dgridProduct.CurrentRow != null && ValidateForm() is null)
                 {
-                    var product = _iProductServices.GetProductByName(dgridProduct.Rows[dgridProduct.CurrentRow.Index].Cells[2].Value.ToString());
-                    var result = _iProductServices.UpdateProduct(new Product()
+                    var id = dgridProduct.Rows[dgridProduct.CurrentRow.Index].Cells[0].Value.ToString();
+                    var product = new Product()
                     {
-                        ProductId = product.ProductId,
+                        ProductId = id,
                         ProductName = txtName.Text,
                         ProductImage = pbxProduct.Tag.ToString(),
                         Description = txtNote.Text,
                         Status = true
-                    }, new ProductDetail()
+                    };
+                    var productDetail = new ProductDetail()
                     {
-                        ProductId = product.ProductId,
+                        ProductId = id,
                         BrandId = cmbBrandBot.SelectedValue.ToString(),
                         ColorId = cmbColorBot.SelectedValue.ToString(),
                         MaterialId = cmbMat.SelectedValue.ToString(),
                         CategoryId = cmbCat.SelectedValue.ToString(),
                         SizeId = cmbSize.SelectedValue.ToString(),
-                        UnitPrice = float.Parse(txtPrice.Text),
-                    }, new Inventory()
+                        UnitPrice = float.Parse(txtPrice.Text)
+                    };
+                    var inventoty = new Inventory()
                     {
-                        ProductId = product.ProductId,
+                        ProductId = id,
                         Amount = int.Parse(txtQuantity.Text)
-                    });
-                    MessageBox.Show(result);
-                    LoadData();
+                    };
+                    if (MessageBox.Show("Bạn có chắc muốn sửa không", "Thông báo", MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
+                    {
+                        MessageBox.Show(_iProductServices.UpdateProduct(product, productDetail, inventoty));
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(ValidateForm());
                 }
             }
         }
@@ -271,12 +312,23 @@ namespace GUI_PresentationLayer.View
 
         private void dgridProductDeleted_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
+            if (e.ColumnIndex == 11)
             {
-                MessageBox.Show(
-                    _iProductServices.DeleteProduct(dgridProductDeleted.Rows[e.RowIndex].Cells[0].Value.ToString()));
-                LoadData();
+                if (MessageBox.Show("Bạn có chắc muốn xóa không", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                {
+                    MessageBox.Show(_iProductServices.DeleteProduct(dgridProductDeleted.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    LoadData();
+                }
+            }
+            if (e.ColumnIndex == 12)
+            {
+                if (MessageBox.Show("Bạn có chắc muốn phục hồi không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                {
+                    MessageBox.Show(_iProductServices.RecoveryProduct(dgridProductDeleted.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    LoadData();
+                }
             }
         }
 
@@ -302,6 +354,71 @@ namespace GUI_PresentationLayer.View
         {
             FrmProperties frmProperties = new FrmProperties(FrmProperties.Properties.Category);
             frmProperties.ShowDialog();
+        }
+
+        private void FrmProduct_Click(object sender, EventArgs e)
+        {
+            LoadData();
+        }
+
+        private void txtSearch_OnValueChanged(object sender, EventArgs e)
+        {
+            if (tabProduct.Visible)
+            {
+                foreach (DataGridViewRow x in dgridProduct.Rows)
+                {
+                    x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow x in dgridProductDeleted.Rows)
+                {
+                    x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
+                }
+            }
+        }
+
+        private void cmbBrandTop_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cmbBrandTop.SelectedIndex != -1)
+            {
+                if (tabProduct.Visible)
+                {
+                    foreach (DataGridViewRow x in dgridProduct.Rows)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
+                    }
+                }
+                else
+                {
+                    foreach (DataGridViewRow x in dgridProductDeleted.Rows)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
+                    }
+                }
+            }
+        }
+
+        private void cmbColorTop_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cmbBrandTop.SelectedIndex != -1)
+            {
+                if (tabProduct.Visible)
+                {
+                    foreach (DataGridViewRow x in dgridProduct.Rows)
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                    }
+                }
+                else
+                {
+                    foreach (DataGridViewRow x in dgridProductDeleted.Rows)
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                    }
+                }
+            }
         }
     }
 }

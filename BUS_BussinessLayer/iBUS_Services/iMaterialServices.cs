@@ -15,7 +15,7 @@ namespace BUS_BussinessLayer.iBUS_Services
 
         string AddMaterial(Material material);
 
-        string RemoveMaterial(Material material);
+        string RemoveMaterial(string id);
 
         string UpdateMaterial(Material material);
     }

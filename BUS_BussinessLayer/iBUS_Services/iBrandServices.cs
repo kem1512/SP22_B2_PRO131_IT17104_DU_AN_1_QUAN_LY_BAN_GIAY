@@ -15,7 +15,7 @@ namespace BUS_BussinessLayer.iBUS_Services
 
         string AddBrand(Brand brand);
 
-        string RemoveBrand(Brand brand);
+        string RemoveBrand(string id);
 
         string UpdateBrand(Brand brand);
     }

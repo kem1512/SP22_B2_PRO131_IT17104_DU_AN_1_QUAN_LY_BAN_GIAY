@@ -37,9 +37,9 @@ namespace BUS_BussinessLayer.BUS_Services
             return _iDalColor.AddColor(color);
         }
 
-        public string RemoveColor(Color color)
+        public string RemoveColor(string id)
         {
-            return _iDalColor.RemoveColor(color);
+            return _iDalColor.RemoveColor(id);
         }
 
         public string UpdateColor(Color color)

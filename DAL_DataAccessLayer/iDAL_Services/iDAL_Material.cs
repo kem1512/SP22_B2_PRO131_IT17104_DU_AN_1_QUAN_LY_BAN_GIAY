@@ -15,7 +15,7 @@ namespace DAL_DataAccessLayer.iDAL_Services
 
         string AddMaterial(Material material);
 
-        string RemoveMaterial(Material material);
+        string RemoveMaterial(string id);
 
         string UpdateMaterial(Material material);
     }
