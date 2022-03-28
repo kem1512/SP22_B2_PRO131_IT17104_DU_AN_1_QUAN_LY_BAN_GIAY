@@ -48,6 +48,7 @@
           <Property Name="Phone" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="Gender" Type="bit" Nullable="false" />
           <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="EmployeeImage" Type="varchar" MaxLength="250" Nullable="false" />
           <Property Name="DateOfBirth" Type="datetime" Nullable="false" />
           <Property Name="RoleId" Type="varchar" MaxLength="9" />
         </EntityType>
@@ -409,6 +410,7 @@
           <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Gender" Type="Boolean" Nullable="false" />
           <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmployeeImage" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="RoleId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Roles" Relationship="Self.FK__Employee__RoleId__3C69FB99" FromRole="Employee" ToRole="Roles" />
@@ -792,6 +794,7 @@
                 <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="EmployeeImage" ColumnName="EmployeeImage" />
                 <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
               </MappingFragment>

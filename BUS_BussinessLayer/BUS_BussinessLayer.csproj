@@ -47,12 +47,14 @@
     <Compile Include="BUS_Services\BrandServices.cs" />
     <Compile Include="BUS_Services\CategoryServices.cs" />
     <Compile Include="BUS_Services\ColorServices.cs" />
+    <Compile Include="BUS_Services\EmployeeServices.cs" />
     <Compile Include="BUS_Services\MaterialServices.cs" />
     <Compile Include="BUS_Services\ProductSevices.cs" />
     <Compile Include="BUS_Services\SizeServies.cs" />
     <Compile Include="iBUS_Services\iBrandServices.cs" />
     <Compile Include="iBUS_Services\iCategoryServices.cs" />
     <Compile Include="iBUS_Services\iColorServices.cs" />
+    <Compile Include="iBUS_Services\iEmployeeServices.cs" />
     <Compile Include="iBUS_Services\iMaterialServices.cs" />
     <Compile Include="iBUS_Services\iProductServices.cs" />
     <Compile Include="iBUS_Services\iSizeServices.cs" />

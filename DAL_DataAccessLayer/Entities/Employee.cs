@@ -26,6 +26,7 @@ namespace DAL_DataAccessLayer.Entities
         public string Phone { get; set; }
         public bool Gender { get; set; }
         public string Address { get; set; }
+        public string EmployeeImage { get; set; }
         public System.DateTime DateOfBirth { get; set; }
         public string RoleId { get; set; }
     

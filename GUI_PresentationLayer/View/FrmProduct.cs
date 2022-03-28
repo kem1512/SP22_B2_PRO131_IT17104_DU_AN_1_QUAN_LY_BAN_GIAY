@@ -190,6 +190,7 @@ namespace GUI_PresentationLayer.View
                             ProductId = productId,
                             Amount = int.Parse(txtQuantity.Text)
                         }));
+                        LoadData();
                     }
                 }
                 else
@@ -285,6 +286,7 @@ namespace GUI_PresentationLayer.View
                         DialogResult.Yes)
                     {
                         MessageBox.Show(_iProductServices.UpdateProduct(product, productDetail, inventoty));
+                        LoadData();
                     }
                 }
                 else

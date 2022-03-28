@@ -51,6 +51,7 @@
     <Compile Include="DAL_Services\DAL_Brand.cs" />
     <Compile Include="DAL_Services\DAL_Category.cs" />
     <Compile Include="DAL_Services\DAL_Color.cs" />
+    <Compile Include="DAL_Services\DAL_Employee.cs" />
     <Compile Include="DAL_Services\DAL_Material.cs" />
     <Compile Include="DAL_Services\DAL_Product.cs" />
     <Compile Include="DAL_Services\DAL_Size.cs" />
@@ -114,6 +115,7 @@
     <Compile Include="iDAL_Services\iDAL_Brand.cs" />
     <Compile Include="iDAL_Services\iDAL_Category.cs" />
     <Compile Include="iDAL_Services\iDAL_Color.cs" />
+    <Compile Include="iDAL_Services\iDAL_Employee.cs" />
     <Compile Include="iDAL_Services\iDAL_Material.cs" />
     <Compile Include="iDAL_Services\iDAL_Product.cs" />
     <Compile Include="iDAL_Services\iDAL_Size.cs" />
@@ -133,6 +135,7 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Entities\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

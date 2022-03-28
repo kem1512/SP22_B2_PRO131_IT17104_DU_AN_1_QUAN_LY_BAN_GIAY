@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmployee));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtEmail = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.pbxProduct = new FontAwesome.Sharp.IconPictureBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -49,8 +49,6 @@
             this.txtName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.btnAdd = new Bunifu.Framework.UI.BunifuThinButton2();
             this.rbtnMale = new System.Windows.Forms.RadioButton();
-            this.rbtnStaff = new System.Windows.Forms.RadioButton();
-            this.rbtnAdmin = new System.Windows.Forms.RadioButton();
             this.lblGender = new System.Windows.Forms.Label();
             this.rbtnFemale = new System.Windows.Forms.RadioButton();
             this.tlpBot = new System.Windows.Forms.TableLayoutPanel();
@@ -62,21 +60,22 @@
             this.lblRoles = new System.Windows.Forms.Label();
             this.dgdtpcStaff = new Bunifu.Framework.UI.BunifuDatepicker();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.bunifuCustomDataGrid1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.cmbRoles = new System.Windows.Forms.ComboBox();
+            this.pbxEditBrand = new FontAwesome.Sharp.IconPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).BeginInit();
             this.tlpFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
             this.tlpLeft.SuspendLayout();
             this.tlpBot.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEmail
@@ -372,6 +371,7 @@
             this.btnAdd.Size = new System.Drawing.Size(161, 62);
             this.btnAdd.TabIndex = 9;
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // rbtnMale
             // 
@@ -385,32 +385,6 @@
             this.rbtnMale.TabStop = true;
             this.rbtnMale.Text = "Nam";
             this.rbtnMale.UseVisualStyleBackColor = true;
-            // 
-            // rbtnStaff
-            // 
-            this.rbtnStaff.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.rbtnStaff.AutoSize = true;
-            this.rbtnStaff.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnStaff.Location = new System.Drawing.Point(139, 33);
-            this.rbtnStaff.Name = "rbtnStaff";
-            this.rbtnStaff.Size = new System.Drawing.Size(112, 26);
-            this.rbtnStaff.TabIndex = 26;
-            this.rbtnStaff.TabStop = true;
-            this.rbtnStaff.Text = "Nhân viên";
-            this.rbtnStaff.UseVisualStyleBackColor = true;
-            // 
-            // rbtnAdmin
-            // 
-            this.rbtnAdmin.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.rbtnAdmin.AutoSize = true;
-            this.rbtnAdmin.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnAdmin.Location = new System.Drawing.Point(18, 33);
-            this.rbtnAdmin.Name = "rbtnAdmin";
-            this.rbtnAdmin.Size = new System.Drawing.Size(93, 26);
-            this.rbtnAdmin.TabIndex = 25;
-            this.rbtnAdmin.TabStop = true;
-            this.rbtnAdmin.Text = "Quản lý";
-            this.rbtnAdmin.UseVisualStyleBackColor = true;
             // 
             // lblGender
             // 
@@ -456,7 +430,8 @@
             this.tlpBot.Controls.Add(this.dgdtpcStaff, 4, 1);
             this.tlpBot.Controls.Add(this.panel1, 1, 2);
             this.tlpBot.Controls.Add(this.lblGender, 0, 2);
-            this.tlpBot.Controls.Add(this.panel2, 3, 2);
+            this.tlpBot.Controls.Add(this.cmbRoles, 3, 2);
+            this.tlpBot.Controls.Add(this.pbxEditBrand, 4, 2);
             this.tlpBot.Location = new System.Drawing.Point(27, 506);
             this.tlpBot.Name = "tlpBot";
             this.tlpBot.RowCount = 3;
@@ -580,16 +555,6 @@
             this.panel1.Size = new System.Drawing.Size(224, 93);
             this.panel1.TabIndex = 30;
             // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.rbtnAdmin);
-            this.panel2.Controls.Add(this.rbtnStaff);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(410, 103);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(252, 93);
-            this.panel2.TabIndex = 31;
-            // 
             // tabControl1
             // 
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -620,19 +585,19 @@
             // bunifuCustomDataGrid1
             // 
             this.bunifuCustomDataGrid1.AllowUserToAddRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.bunifuCustomDataGrid1.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.bunifuCustomDataGrid1.BackgroundColor = System.Drawing.Color.White;
             this.bunifuCustomDataGrid1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.bunifuCustomDataGrid1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.bunifuCustomDataGrid1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.bunifuCustomDataGrid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.bunifuCustomDataGrid1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.bunifuCustomDataGrid1.DoubleBuffered = true;
@@ -658,6 +623,33 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Đã nghỉ việc";
             // 
+            // cmbRoles
+            // 
+            this.cmbRoles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRoles.FormattingEnabled = true;
+            this.cmbRoles.Location = new System.Drawing.Point(410, 133);
+            this.cmbRoles.Name = "cmbRoles";
+            this.cmbRoles.Size = new System.Drawing.Size(252, 33);
+            this.cmbRoles.TabIndex = 31;
+            // 
+            // pbxEditBrand
+            // 
+            this.pbxEditBrand.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbxEditBrand.BackColor = System.Drawing.Color.White;
+            this.pbxEditBrand.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxEditBrand.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pbxEditBrand.IconChar = FontAwesome.Sharp.IconChar.Pen;
+            this.pbxEditBrand.IconColor = System.Drawing.SystemColors.ControlText;
+            this.pbxEditBrand.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.pbxEditBrand.Location = new System.Drawing.Point(685, 133);
+            this.pbxEditBrand.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.pbxEditBrand.Name = "pbxEditBrand";
+            this.pbxEditBrand.Size = new System.Drawing.Size(32, 32);
+            this.pbxEditBrand.TabIndex = 32;
+            this.pbxEditBrand.TabStop = false;
+            // 
             // FrmEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -682,11 +674,10 @@
             this.tlpBot.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
-            this.panel2.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -713,15 +704,12 @@
         private System.Windows.Forms.Label lblGender;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtAddress;
         private System.Windows.Forms.RadioButton rbtnMale;
-        private System.Windows.Forms.RadioButton rbtnAdmin;
-        private System.Windows.Forms.RadioButton rbtnStaff;
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcStaff;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtPhone;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtPassword;
         private System.Windows.Forms.RadioButton rbtnFemale;
         private System.Windows.Forms.Label lblRoles;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Panel panel2;
         private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtName;
         private Bunifu.Framework.UI.BunifuThinButton2 btnEdit;
@@ -729,5 +717,7 @@
         private System.Windows.Forms.TabPage tabPage1;
         private Bunifu.Framework.UI.BunifuCustomDataGrid bunifuCustomDataGrid1;
         private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.ComboBox cmbRoles;
+        private FontAwesome.Sharp.IconPictureBox pbxEditBrand;
     }
 }

@@ -13,12 +13,12 @@ namespace DAL_DataAccessLayer.DAL_Services
     {
         private QuanLyBanGiayEntities _db;
 
-        private string GetFullPath()
+        private static string GetFullPath()
         {
             var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent;
             if (directoryInfo != null)
             {
-                var path = directoryInfo?.FullName + @"\Images\";
+                var path = directoryInfo.FullName + @"\Images\Product\";
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -30,18 +30,22 @@ namespace DAL_DataAccessLayer.DAL_Services
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    _db.Product.Add(product);
-                    _db.ProductDetail.Add(productDetail);
-                    _db.Inventory.Add(inventory);
-                    var image = GetFullPath() + product.ProductId + Path.GetExtension(product.ProductImage);
-                    if (File.Exists(image))
+                    if (product != null && productDetail != null && inventory != null)
                     {
-                        File.Delete(image);
+                        _db.Product.Add(product);
+                        _db.ProductDetail.Add(productDetail);
+                        _db.Inventory.Add(inventory);
+                        var image = GetFullPath() + product.ProductId + Path.GetExtension(product.ProductImage);
+                        if (File.Exists(image))
+                        {
+                            File.Delete(image);
+                        }
+                        if (product.ProductImage != null) File.Copy(product.ProductImage, image);
+                        product.ProductImage = image;
+                        _db.SaveChanges();
+                        return "Thêm thành công!";
                     }
-                    File.Copy(product.ProductImage, image);
-                    product.ProductImage = image;
-                    _db.SaveChanges();
-                    return "Thêm thành công!";
+                    return "Thêm thất bại!";
                 }
             }
             catch(Exception e)
@@ -87,15 +91,13 @@ namespace DAL_DataAccessLayer.DAL_Services
                         // Tìm đường dẫn của thư mục hiện tại
                         var image = GetFullPath() + product.ProductId + Path.GetExtension(product.ProductImage);
 
-                        //Tìm ảnh cũ
-                        var imageOld = _db.Product.FirstOrDefault(c => c.ProductId == product.ProductId);
-                        if (imageOld != null && product.ProductImage != imageOld.ProductImage)
+                        if (product.ProductImage != pr.ProductImage)
                         {
                             // Xóa ảnh cũ và copy ảnh mới
-                            File.Delete(imageOld.ProductImage);
+                            File.Delete(pr.ProductImage);
                             if (product.ProductImage != null) File.Copy(product.ProductImage, image);
                             // Sửa lại đường dẫn ảnh
-                            product.ProductImage = image;
+                            pr.ProductImage = image;
                         }
                         return "Sửa thành công!";
                     }
