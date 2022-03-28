@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="BUS_Services\BrandServices.cs" />
     <Compile Include="BUS_Services\CategoryServices.cs" />
+    <Compile Include="BUS_Services\Class1.cs" />
     <Compile Include="BUS_Services\ColorServices.cs" />
     <Compile Include="BUS_Services\EmployeeServices.cs" />
     <Compile Include="BUS_Services\MaterialServices.cs" />
