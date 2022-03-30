@@ -175,9 +175,9 @@
             this.lblBrand.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblBrand.AutoSize = true;
             this.lblBrand.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBrand.Location = new System.Drawing.Point(3, 13);
+            this.lblBrand.Location = new System.Drawing.Point(3, 12);
             this.lblBrand.Name = "lblBrand";
-            this.lblBrand.Size = new System.Drawing.Size(139, 22);
+            this.lblBrand.Size = new System.Drawing.Size(144, 24);
             this.lblBrand.TabIndex = 11;
             this.lblBrand.Text = "Hãng sản xuất";
             // 
@@ -201,9 +201,9 @@
             this.lblMat.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMat.AutoSize = true;
             this.lblMat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMat.Location = new System.Drawing.Point(384, 13);
+            this.lblMat.Location = new System.Drawing.Point(384, 12);
             this.lblMat.Name = "lblMat";
-            this.lblMat.Size = new System.Drawing.Size(90, 22);
+            this.lblMat.Size = new System.Drawing.Size(92, 24);
             this.lblMat.TabIndex = 14;
             this.lblMat.Text = "Chất liệu";
             // 
@@ -212,9 +212,9 @@
             this.lblColor.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblColor.AutoSize = true;
             this.lblColor.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblColor.Location = new System.Drawing.Point(765, 13);
+            this.lblColor.Location = new System.Drawing.Point(765, 12);
             this.lblColor.Name = "lblColor";
-            this.lblColor.Size = new System.Drawing.Size(84, 22);
+            this.lblColor.Size = new System.Drawing.Size(88, 24);
             this.lblColor.TabIndex = 17;
             this.lblColor.Text = "Màu sắc";
             // 
@@ -274,9 +274,9 @@
             this.lblSize.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblSize.AutoSize = true;
             this.lblSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSize.Location = new System.Drawing.Point(3, 111);
+            this.lblSize.Location = new System.Drawing.Point(3, 110);
             this.lblSize.Name = "lblSize";
-            this.lblSize.Size = new System.Drawing.Size(104, 22);
+            this.lblSize.Size = new System.Drawing.Size(109, 24);
             this.lblSize.TabIndex = 21;
             this.lblSize.Text = "Kích thước";
             // 
@@ -285,9 +285,9 @@
             this.lblCat.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblCat.AutoSize = true;
             this.lblCat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCat.Location = new System.Drawing.Point(384, 111);
+            this.lblCat.Location = new System.Drawing.Point(384, 110);
             this.lblCat.Name = "lblCat";
-            this.lblCat.Size = new System.Drawing.Size(91, 22);
+            this.lblCat.Size = new System.Drawing.Size(93, 24);
             this.lblCat.TabIndex = 20;
             this.lblCat.Text = "Loại giày";
             // 
@@ -404,9 +404,9 @@
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(3, 248);
+            this.lblName.Location = new System.Drawing.Point(3, 246);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(137, 22);
+            this.lblName.Size = new System.Drawing.Size(144, 24);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Tên sản phẩm";
             // 
@@ -437,9 +437,9 @@
             this.lblQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuantity.Location = new System.Drawing.Point(3, 325);
+            this.lblQuantity.Location = new System.Drawing.Point(3, 323);
             this.lblQuantity.Name = "lblQuantity";
-            this.lblQuantity.Size = new System.Drawing.Size(89, 22);
+            this.lblQuantity.Size = new System.Drawing.Size(94, 24);
             this.lblQuantity.TabIndex = 3;
             this.lblQuantity.Text = "Số lượng";
             // 
@@ -448,9 +448,9 @@
             this.lblPrice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(178, 325);
+            this.lblPrice.Location = new System.Drawing.Point(178, 323);
             this.lblPrice.Name = "lblPrice";
-            this.lblPrice.Size = new System.Drawing.Size(80, 22);
+            this.lblPrice.Size = new System.Drawing.Size(82, 24);
             this.lblPrice.TabIndex = 4;
             this.lblPrice.Text = "Giá bán";
             // 
@@ -481,9 +481,9 @@
             this.lblNote.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNote.AutoSize = true;
             this.lblNote.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNote.Location = new System.Drawing.Point(3, 401);
+            this.lblNote.Location = new System.Drawing.Point(3, 399);
             this.lblNote.Name = "lblNote";
-            this.lblNote.Size = new System.Drawing.Size(79, 22);
+            this.lblNote.Size = new System.Drawing.Size(83, 24);
             this.lblNote.TabIndex = 7;
             this.lblNote.Text = "Ghi chú";
             // 
