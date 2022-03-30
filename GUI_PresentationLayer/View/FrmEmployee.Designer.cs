@@ -31,6 +31,11 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmployee));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+<<<<<<< HEAD
+=======
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+>>>>>>> 1344865892b8f20916c044125e219b3dde93e7bd
             this.txtEmail = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.pbxProduct = new FontAwesome.Sharp.IconPictureBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -64,8 +69,21 @@
             this.pbxEditBrand = new FontAwesome.Sharp.IconPictureBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.bunifuCustomDataGrid1 = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.dgrid_Employee = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+<<<<<<< HEAD
+=======
+            this.dgrid_Disabled = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
+>>>>>>> 1344865892b8f20916c044125e219b3dde93e7bd
             ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).BeginInit();
             this.tlpFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
@@ -75,7 +93,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).BeginInit();
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Employee)).BeginInit();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).BeginInit();
+>>>>>>> 1344865892b8f20916c044125e219b3dde93e7bd
             this.SuspendLayout();
             // 
             // txtEmail
@@ -123,9 +147,9 @@
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(3, 291);
+            this.lblName.Location = new System.Drawing.Point(3, 289);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(96, 22);
+            this.lblName.Size = new System.Drawing.Size(99, 24);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Họ và tên";
             // 
@@ -134,9 +158,9 @@
             this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(3, 378);
+            this.lblEmail.Location = new System.Drawing.Point(3, 376);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(59, 22);
+            this.lblEmail.Size = new System.Drawing.Size(62, 24);
             this.lblEmail.TabIndex = 3;
             this.lblEmail.Text = "Email";
             // 
@@ -146,9 +170,9 @@
             this.lblPassword.AutoSize = true;
             this.tlpLeft.SetColumnSpan(this.lblPassword, 2);
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(3, 465);
+            this.lblPassword.Location = new System.Drawing.Point(3, 463);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(191, 22);
+            this.lblPassword.Size = new System.Drawing.Size(201, 24);
             this.lblPassword.TabIndex = 7;
             this.lblPassword.Text = "Mật khẩu đăng nhập";
             // 
@@ -380,7 +404,7 @@
             this.rbtnMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnMale.Location = new System.Drawing.Point(21, 33);
             this.rbtnMale.Name = "rbtnMale";
-            this.rbtnMale.Size = new System.Drawing.Size(68, 26);
+            this.rbtnMale.Size = new System.Drawing.Size(71, 28);
             this.rbtnMale.TabIndex = 23;
             this.rbtnMale.TabStop = true;
             this.rbtnMale.Text = "Nam";
@@ -391,9 +415,9 @@
             this.lblGender.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.Location = new System.Drawing.Point(3, 138);
+            this.lblGender.Location = new System.Drawing.Point(3, 137);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(85, 22);
+            this.lblGender.Size = new System.Drawing.Size(87, 24);
             this.lblGender.TabIndex = 21;
             this.lblGender.Text = "Giới tính";
             // 
@@ -404,7 +428,7 @@
             this.rbtnFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnFemale.Location = new System.Drawing.Point(129, 35);
             this.rbtnFemale.Name = "rbtnFemale";
-            this.rbtnFemale.Size = new System.Drawing.Size(54, 26);
+            this.rbtnFemale.Size = new System.Drawing.Size(56, 28);
             this.rbtnFemale.TabIndex = 24;
             this.rbtnFemale.TabStop = true;
             this.rbtnFemale.Text = "Nữ";
@@ -468,9 +492,9 @@
             this.lblAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(3, 24);
+            this.lblAddress.Location = new System.Drawing.Point(3, 22);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(72, 22);
+            this.lblAddress.Size = new System.Drawing.Size(74, 24);
             this.lblAddress.TabIndex = 11;
             this.lblAddress.Text = "Địa chỉ";
             // 
@@ -480,9 +504,9 @@
             this.lblPhone.AutoSize = true;
             this.tlpBot.SetColumnSpan(this.lblPhone, 2);
             this.lblPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhone.Location = new System.Drawing.Point(331, 24);
+            this.lblPhone.Location = new System.Drawing.Point(331, 22);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(128, 22);
+            this.lblPhone.Size = new System.Drawing.Size(134, 24);
             this.lblPhone.TabIndex = 14;
             this.lblPhone.Text = "Số điện thoại";
             // 
@@ -491,9 +515,9 @@
             this.lblDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(668, 12);
+            this.lblDate.Location = new System.Drawing.Point(668, 11);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(99, 22);
+            this.lblDate.Size = new System.Drawing.Size(103, 24);
             this.lblDate.TabIndex = 17;
             this.lblDate.Text = "Ngày sinh";
             // 
@@ -522,9 +546,9 @@
             this.lblRoles.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblRoles.AutoSize = true;
             this.lblRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoles.Location = new System.Drawing.Point(331, 138);
+            this.lblRoles.Location = new System.Drawing.Point(331, 137);
             this.lblRoles.Name = "lblRoles";
-            this.lblRoles.Size = new System.Drawing.Size(69, 22);
+            this.lblRoles.Size = new System.Drawing.Size(70, 24);
             this.lblRoles.TabIndex = 20;
             this.lblRoles.Text = "Vai trò";
             // 
@@ -581,7 +605,10 @@
             this.pbxEditBrand.Size = new System.Drawing.Size(32, 32);
             this.pbxEditBrand.TabIndex = 32;
             this.pbxEditBrand.TabStop = false;
+<<<<<<< HEAD
             this.pbxEditBrand.Click += new System.EventHandler(this.pbxEditBrand_Click);
+=======
+>>>>>>> 1344865892b8f20916c044125e219b3dde93e7bd
             // 
             // tabControl1
             // 
@@ -602,7 +629,7 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.Color.White;
-            this.tabPage1.Controls.Add(this.bunifuCustomDataGrid1);
+            this.tabPage1.Controls.Add(this.dgrid_Employee);
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
@@ -610,6 +637,7 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Nhân viên";
             // 
+<<<<<<< HEAD
             // bunifuCustomDataGrid1
             // 
             this.bunifuCustomDataGrid1.AllowUserToAddRows = false;
@@ -640,21 +668,166 @@
             this.bunifuCustomDataGrid1.RowTemplate.Height = 24;
             this.bunifuCustomDataGrid1.Size = new System.Drawing.Size(974, 349);
             this.bunifuCustomDataGrid1.TabIndex = 0;
+=======
+            // dgrid_Employee
+            // 
+            this.dgrid_Employee.AllowUserToAddRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Employee.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgrid_Employee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgrid_Employee.BackgroundColor = System.Drawing.Color.White;
+            this.dgrid_Employee.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgrid_Employee.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Employee.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgrid_Employee.ColumnHeadersHeight = 54;
+            this.dgrid_Employee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8,
+            this.Column9});
+            this.dgrid_Employee.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrid_Employee.DoubleBuffered = true;
+            this.dgrid_Employee.EnableHeadersVisualStyles = false;
+            this.dgrid_Employee.HeaderBgColor = System.Drawing.Color.SeaGreen;
+            this.dgrid_Employee.HeaderForeColor = System.Drawing.Color.White;
+            this.dgrid_Employee.Location = new System.Drawing.Point(3, 3);
+            this.dgrid_Employee.Name = "dgrid_Employee";
+            this.dgrid_Employee.ReadOnly = true;
+            this.dgrid_Employee.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgrid_Employee.RowHeadersWidth = 51;
+            this.dgrid_Employee.RowTemplate.Height = 110;
+            this.dgrid_Employee.Size = new System.Drawing.Size(974, 349);
+            this.dgrid_Employee.TabIndex = 0;
+            this.dgrid_Employee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_Employee_CellClick);
+            this.dgrid_Employee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_Employee_CellContentClick);
+>>>>>>> 1344865892b8f20916c044125e219b3dde93e7bd
             // 
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.dgrid_Disabled);
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(980, 355);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Đã nghỉ việc";
+            this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
+<<<<<<< HEAD
+=======
+            // dgrid_Disabled
+            // 
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Disabled.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgrid_Disabled.BackgroundColor = System.Drawing.Color.White;
+            this.dgrid_Disabled.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgrid_Disabled.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Disabled.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgrid_Disabled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrid_Disabled.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrid_Disabled.DoubleBuffered = true;
+            this.dgrid_Disabled.EnableHeadersVisualStyles = false;
+            this.dgrid_Disabled.HeaderBgColor = System.Drawing.Color.SeaGreen;
+            this.dgrid_Disabled.HeaderForeColor = System.Drawing.Color.SeaGreen;
+            this.dgrid_Disabled.Location = new System.Drawing.Point(3, 3);
+            this.dgrid_Disabled.Name = "dgrid_Disabled";
+            this.dgrid_Disabled.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgrid_Disabled.RowHeadersWidth = 51;
+            this.dgrid_Disabled.RowTemplate.Height = 24;
+            this.dgrid_Disabled.Size = new System.Drawing.Size(974, 349);
+            this.dgrid_Disabled.TabIndex = 0;
+            this.dgrid_Disabled.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.bunifuCustomDataGrid1_CellContentClick);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Mã NV";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Họ tên";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Email";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "SĐT";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Giới tính";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Địa chỉ";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Ngày sinh";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Vai trò";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Visible = false;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+>>>>>>> 1344865892b8f20916c044125e219b3dde93e7bd
             // FrmEmployee
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1405, 755);
             this.Controls.Add(this.tabControl1);
@@ -678,7 +851,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.bunifuCustomDataGrid1)).EndInit();
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Employee)).EndInit();
+            this.tabPage2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).EndInit();
+>>>>>>> 1344865892b8f20916c044125e219b3dde93e7bd
             this.ResumeLayout(false);
 
         }
@@ -716,9 +895,19 @@
         private Bunifu.Framework.UI.BunifuThinButton2 btnEdit;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
-        private Bunifu.Framework.UI.BunifuCustomDataGrid bunifuCustomDataGrid1;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Employee;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.ComboBox cmbRoles;
         private FontAwesome.Sharp.IconPictureBox pbxEditBrand;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Disabled;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewLinkColumn Column9;
     }
 }
