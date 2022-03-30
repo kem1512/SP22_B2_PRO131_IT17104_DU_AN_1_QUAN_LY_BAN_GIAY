@@ -46,10 +46,10 @@
   <ItemGroup>
     <Compile Include="BUS_Services\BrandServices.cs" />
     <Compile Include="BUS_Services\CategoryServices.cs" />
-    <Compile Include="BUS_Services\Class1.cs" />
     <Compile Include="BUS_Services\ColorServices.cs" />
     <Compile Include="BUS_Services\EmployeeServices.cs" />
     <Compile Include="BUS_Services\MaterialServices.cs" />
+    <Compile Include="BUS_Services\OrderServices.cs" />
     <Compile Include="BUS_Services\ProductSevices.cs" />
     <Compile Include="BUS_Services\SizeServies.cs" />
     <Compile Include="iBUS_Services\iBrandServices.cs" />
@@ -57,13 +57,15 @@
     <Compile Include="iBUS_Services\iColorServices.cs" />
     <Compile Include="iBUS_Services\iEmployeeServices.cs" />
     <Compile Include="iBUS_Services\iMaterialServices.cs" />
+    <Compile Include="iBUS_Services\iOrderServices.cs" />
     <Compile Include="iBUS_Services\iProductServices.cs" />
     <Compile Include="iBUS_Services\iSizeServices.cs" />
     <Compile Include="Models\ViewProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utilities\ValidateForm.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Utilities\" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL_DataAccessLayer\DAL_DataAccessLayer.csproj">
       <Project>{41da6eaf-8445-4b46-84e9-dd3ef940c2ca}</Project>

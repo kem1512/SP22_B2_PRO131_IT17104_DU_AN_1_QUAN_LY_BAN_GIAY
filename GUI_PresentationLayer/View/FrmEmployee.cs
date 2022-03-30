@@ -89,5 +89,10 @@ namespace GUI_PresentationLayer.View
 
             }
         }
+
+        private void pbxEditBrand_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

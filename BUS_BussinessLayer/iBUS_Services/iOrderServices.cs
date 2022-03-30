@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BUS_BussinessLayer.BUS_Services
+namespace BUS_BussinessLayer.iBUS_Services
 {
-    class Class1
+    public interface iOrderServices
     {
+
     }
 }

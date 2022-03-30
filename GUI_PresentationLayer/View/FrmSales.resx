@@ -136,19 +136,19 @@
   </data>
   <data name="btnOk.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
-        iVBORw0KGgoAAAANSUhEUgAAAJkAAABDCAYAAACP+afzAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJqSURBVHhe7d2/S1tRHIbx/kVundycujmJSyY7FMFBl7ro
-        4OTQQn8MGQoZHFoEHQIdMgkiCmKHUkppyZBCIYMWUUqG0A5H3pN7Lk2TXEs87+TzgQshaqaHc86NcL8P
-        AmBGZLAjMtgRGeyIDHZEBrvKyPp/fofW15Pw9P2r8Hh3Kzx6sxJmni1yccUW1MRq83lofj4Mv/q9oppR
-        EyM77nyMH6TAFNqHH19C9/qi+CnuO7WgJg7aZ2GzVY+tKLZxRiJTkfqj5f3t8LN3VbwLVKvqZigy/eLC
-        zvrEIoHbaAesvd0Y2vWGIlOJBIa70jaq81pSRqYCtdQBObw8ehcap834Okamu0gd3DiDIRc1paNX57I7
-        iExbpLZKICetZFrRYmT6rkO3okBO386/x9UsRjbfWIvLGpCTtsyHL2qDyGZfL1V+YwtMS/8diJHpBeBA
-        ZLAjMtgRGeyIDHZEBjsigx2RwY7IYEdksCMy2BEZ7IgMdkQGOyKDHZHBjshgR2SwIzLYERnsiAx2RAY7
-        IoMdkcGOyGBHZLAjMtgRGeyIDHZEBjsigx2RwY7IYEdksCsj03M99XxPILcyMj3Dn+FccCgj0yQSTSQB
-        ctIT1fVk9RhZeqg/kFMaQhIj01ap4jiXIac0hCRGJvWTvXgBOaSJz1JGplVM4+M+ddvFO8B0NAhOO2Ma
-        QFJGJjqopclewDQUmBYrzbxMhiITrWQKLc0qBP6Xzl9awf4OTEYiE22duttUkbpDYA4mJtGWmM5fOuiP
-        m9E1NrJEReoWdK7+JH6pxsX176XhbwpMoU1SGRmQA5HBjshgR2SwIzKYhXADiBypCujB6qEAAAAASUVO
-        RK5CYII=
+        iVBORw0KGgoAAAANSUhEUgAAAJgAAABDCAYAAABgO8zNAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAJpSURBVHhe7d29S1tRHMbx/kXdOrk5uXUSFycdROigiy7t
+        4NRBwZchg5DBQRF0CHTIJEhRKHUQEVEcFAoZWhFFHESHI89JzsWQ5KLNeSa/H7gQ4sv05Zxz73B/HwJg
+        RGCwIjBYERisCAxWBAar0sAenh5D/XQ/zPxYDuObc2Fo9Uv4OD/C9c4vdaAepmoLoXa8G+4e7lvFdOoZ
+        2N7FYfxHikuRHfw5CY3bf62f4j1TB+ph5/x3+FavxE4UWjcdgalG/dHk9vdwdX/T+hborayZtsD0i8Nr
+        sz1rBMpo1xtd/9q207UFpgqJC/3Q1qnzWVIEpvq0xAH9Wvq5Eaq/avFzDEx3izqoceZCDupJR62L60Yz
+        MG2L2h6BXLSCaSWLgel5hm45gVzO/l7GVSwG9rk6HZczIBdtk58WR5uBDayMlT6NBf6HnvrHwPQByI3A
+        YEVgsCIwWBEYrAgMVgQGKwKDFYHBisBgRWCwIjBYERisCAxWBAYrAoMVgcGKwGBFYLAiMFgRGKwIDFYE
+        BisCgxWBwYrAYEVgsCIwWBEYrAgMVgQGKwKDFYHBisBgVQSmd2nqnZpATkVgekc+g66QWxGYJnxo0geQ
+        i95arreXx8DSS/OBXNJwjxiYtkfVxjkMuaThHjEwqexvxQvoV5qSLEVgWr00hu2ocd76Bng7DVTTbpgG
+        exSBiQ5maUoW8FaKS4uUZkYmbYGJVjBFlub9Aa+h85ZWrpdxSUdgou1Sd5WqUXcDzJFEN9oG03lLh/pu
+        8666BpaoRt1qDlYm4kMzLq6Xl4aoKS5F1ktpYEC/CAxWBAYrAoMVgcEohGfW96Hhf9cCiAAAAABJRU5E
+        rkJggg==
 </value>
   </data>
   <data name="lblCancel.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
