@@ -51,6 +51,7 @@
     <Compile Include="DAL_Services\DAL_Brand.cs" />
     <Compile Include="DAL_Services\DAL_Category.cs" />
     <Compile Include="DAL_Services\DAL_Color.cs" />
+    <Compile Include="DAL_Services\DAL_Customer.cs" />
     <Compile Include="DAL_Services\DAL_Employee.cs" />
     <Compile Include="DAL_Services\DAL_Material.cs" />
     <Compile Include="DAL_Services\DAL_Product.cs" />
@@ -115,6 +116,7 @@
     <Compile Include="iDAL_Services\iDAL_Brand.cs" />
     <Compile Include="iDAL_Services\iDAL_Category.cs" />
     <Compile Include="iDAL_Services\iDAL_Color.cs" />
+    <Compile Include="iDAL_Services\iDAL_Customer.cs" />
     <Compile Include="iDAL_Services\iDAL_Employee.cs" />
     <Compile Include="iDAL_Services\iDAL_Material.cs" />
     <Compile Include="iDAL_Services\iDAL_Product.cs" />
