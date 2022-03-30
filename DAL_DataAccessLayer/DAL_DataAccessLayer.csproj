@@ -54,6 +54,7 @@
     <Compile Include="DAL_Services\DAL_Employee.cs" />
     <Compile Include="DAL_Services\DAL_Material.cs" />
     <Compile Include="DAL_Services\DAL_Product.cs" />
+    <Compile Include="DAL_Services\DAL_Role.cs" />
     <Compile Include="DAL_Services\DAL_Size.cs" />
     <Compile Include="Entities\Brand.cs">
       <DependentUpon>Model.tt</DependentUpon>
@@ -118,6 +119,7 @@
     <Compile Include="iDAL_Services\iDAL_Employee.cs" />
     <Compile Include="iDAL_Services\iDAL_Material.cs" />
     <Compile Include="iDAL_Services\iDAL_Product.cs" />
+    <Compile Include="iDAL_Services\iDAL_Roles.cs" />
     <Compile Include="iDAL_Services\iDAL_Size.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

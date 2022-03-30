@@ -51,6 +51,7 @@
     <Compile Include="BUS_Services\EmployeeServices.cs" />
     <Compile Include="BUS_Services\MaterialServices.cs" />
     <Compile Include="BUS_Services\ProductSevices.cs" />
+    <Compile Include="BUS_Services\RoleServices.cs" />
     <Compile Include="BUS_Services\SizeServies.cs" />
     <Compile Include="iBUS_Services\iBrandServices.cs" />
     <Compile Include="iBUS_Services\iCategoryServices.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="iBUS_Services\iEmployeeServices.cs" />
     <Compile Include="iBUS_Services\iMaterialServices.cs" />
     <Compile Include="iBUS_Services\iProductServices.cs" />
+    <Compile Include="iBUS_Services\iRoleServices.cs" />
     <Compile Include="iBUS_Services\iSizeServices.cs" />
     <Compile Include="Models\ViewProduct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
