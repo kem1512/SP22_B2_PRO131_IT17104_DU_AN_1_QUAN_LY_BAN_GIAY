@@ -11,8 +11,8 @@ namespace DAL_DataAccessLayer.iDAL_Services
     {
         string AddRole(Roles role);
         string UpdateRole(Roles role);
-        string RemoveRole(Roles role);
-        Roles GetRolesByID(string id);
-        List<Roles> GetListRoles();
+        string RemoveRole(string id);
+        Roles GetRoleById(string id);
+        List<Roles> GetRoles();
     }
 }

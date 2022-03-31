@@ -80,6 +80,12 @@
   <ItemGroup>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="View\FrmCustomer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmCustomer.Designer.cs">
+      <DependentUpon>FrmCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FrmProperties.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,11 +110,11 @@
     <Compile Include="View\FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\FrmOrder.cs">
+    <Compile Include="View\FrmInvoice.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\FrmOrder.Designer.cs">
-      <DependentUpon>FrmOrder.cs</DependentUpon>
+    <Compile Include="View\FrmInvoice.Designer.cs">
+      <DependentUpon>FrmInvoice.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FrmProduct.cs">
       <SubType>Form</SubType>
@@ -128,6 +134,12 @@
     <Compile Include="View\FrmStatistics.Designer.cs">
       <DependentUpon>FrmStatistics.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\InvoiceIcon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="View\InvoiceIcon.Designer.cs">
+      <DependentUpon>InvoiceIcon.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -137,6 +149,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\FrmCustomer.resx">
+      <DependentUpon>FrmCustomer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FrmProperties.resx">
       <DependentUpon>FrmProperties.cs</DependentUpon>
     </EmbeddedResource>
@@ -149,8 +164,8 @@
     <EmbeddedResource Include="View\FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\FrmOrder.resx">
-      <DependentUpon>FrmOrder.cs</DependentUpon>
+    <EmbeddedResource Include="View\FrmInvoice.resx">
+      <DependentUpon>FrmInvoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FrmProduct.resx">
       <DependentUpon>FrmProduct.cs</DependentUpon>
@@ -160,6 +175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FrmStatistics.resx">
       <DependentUpon>FrmStatistics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\InvoiceIcon.resx">
+      <DependentUpon>InvoiceIcon.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

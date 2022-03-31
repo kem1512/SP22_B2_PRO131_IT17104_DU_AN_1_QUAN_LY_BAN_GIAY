@@ -67,7 +67,7 @@
           <Property Name="CustomerId" Type="varchar" MaxLength="9" />
           <Property Name="EmployeeId" Type="varchar" MaxLength="9" />
           <Property Name="DateCreate" Type="datetime" Nullable="false" />
-          <Property Name="InvoiceStatus" Type="int" Nullable="false" />
+          <Property Name="InvoiceStatus" Type="bit" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
         <EntityType Name="InvoiceDetail">
@@ -286,7 +286,7 @@
               <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="InvoiceDetail">
-              <PropertyRef Name="InvoiceId" />
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -432,7 +432,7 @@
           <Property Name="CustomerId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="InvoiceStatus" Type="Int32" Nullable="false" />
+          <Property Name="InvoiceStatus" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__Invoice__Custome__440B1D61" FromRole="Invoice" ToRole="Customer" />
           <NavigationProperty Name="Employee" Relationship="Self.FK__Invoice__Employe__44FF419A" FromRole="Invoice" ToRole="Employee" />
@@ -622,7 +622,7 @@
               <PropertyRef Name="ProductId" />
             </Principal>
             <Dependent Role="InvoiceDetail">
-              <PropertyRef Name="InvoiceId" />
+              <PropertyRef Name="ProductId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

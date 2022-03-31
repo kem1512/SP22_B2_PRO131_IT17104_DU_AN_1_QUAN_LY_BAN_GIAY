@@ -57,13 +57,13 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public string RemoveRole(Roles role)
+        public string RemoveRole(string id)
         {
             try
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    var rol = _db.Roles.FirstOrDefault(c => c.RoleId == role.RoleId);
+                    var rol = _db.Roles.FirstOrDefault(c => c.RoleId == id);
                     if (rol != null)
                     {
                         _db.Roles.Remove(rol);
@@ -80,12 +80,15 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public Roles GetRolesByID(string id)
+        public Roles GetRoleById(string id)
         {
-            return _db.Roles.FirstOrDefault(c => c.RoleId == id);
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                return _db.Roles.FirstOrDefault(c => c.RoleId == id);
+            }
         }
 
-        public List<Roles> GetListRoles()
+        public List<Roles> GetRoles()
         {
             using (_db = new QuanLyBanGiayEntities())
             {

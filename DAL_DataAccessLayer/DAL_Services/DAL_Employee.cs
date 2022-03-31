@@ -117,7 +117,10 @@ namespace DAL_DataAccessLayer.DAL_Services
 
         public Employee GetEmployeeById(string id)
         {
-            return _db.Employee.FirstOrDefault(c => c.EmployeeId == id);
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                return _db.Employee.FirstOrDefault(c => c.EmployeeId == id);
+            }
         }
 
         public List<Employee> GetEmployees()

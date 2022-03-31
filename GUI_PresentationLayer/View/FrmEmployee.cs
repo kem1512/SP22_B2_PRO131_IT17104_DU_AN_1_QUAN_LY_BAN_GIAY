@@ -21,7 +21,7 @@ namespace GUI_PresentationLayer.View
         public FrmEmployee()
         {
             InitializeComponent();
-            loadData();
+            LoadData();
         }
         private string ValidateEmployee()
         {
@@ -62,12 +62,12 @@ namespace GUI_PresentationLayer.View
             {
                 if (ValidateEmployee() is null)
                 {
-                    var employeeID = !_iEmployeeServices.GetEmployees().Any() ? "NV1" : "NV" + _iEmployeeServices.GetEmployees().Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
+                    var employeeId = !_iEmployeeServices.GetEmployees().Any() ? "NV1" : "NV" + _iEmployeeServices.GetEmployees().Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
                     if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         MessageBox.Show(_iEmployeeServices.AddEmployee(new Employee()
                         {
-                            EmployeeId = employeeID,
+                            EmployeeId = employeeId,
                             FullName = txtName.Text,
                             Email = txtEmail.Text,
                             Phone = txtPhone.Text,
@@ -87,29 +87,13 @@ namespace GUI_PresentationLayer.View
             }
         }
 
-<<<<<<< HEAD
-        private void pbxEditBrand_Click(object sender, EventArgs e)
-        {
-
-        }
-=======
-        private void tabPage2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void bunifuCustomDataGrid1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private void dgrid_Employee_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex != -1)
             {
                 btnEdit.Cursor = Cursors.Hand;
                 btnAdd.Cursor = Cursors.No;
-                var row = dgrid_Employee.Rows[e.RowIndex];
+                var row = dgridEmployee.Rows[e.RowIndex];
                 var employee = _iEmployeeServices.GetEmployeeById(row.Cells[0].Value.ToString());
                 using (FileStream fileStream = new FileStream(employee.EmployeeImage, FileMode.Open))
                 {
@@ -134,30 +118,24 @@ namespace GUI_PresentationLayer.View
             }
         }
 
-        void loadData()
+        private void LoadData()
         {
-            dgrid_Employee.Rows.Clear();
+            dgridEmployee.Rows.Clear();
             var result = _iEmployeeServices.GetEmployees();
             foreach (var x in result.Where(c=>c.RoleId!="R2"))
             {
-                using (FileStream fileStream = new FileStream(x.EmployeeImage, FileMode.Open))
-                {
-                    dgrid_Employee.Rows.Add(x.EmployeeId, x.FullName, x.Email, x.Phone, x.Gender ? "Nam" : "Nu",
-                        x.Address, x.DateOfBirth, x.RoleId,"Xoá");
-                }
+                dgridEmployee.Rows.Add(x.EmployeeId, x.FullName, x.Email, x.Phone, x.Gender ? "Nam" : "Nữ",
+                    x.Address, x.DateOfBirth.ToShortDateString(), x.RoleId, "Xoá");
             }
             dgrid_Disabled.Rows.Clear();
             var dis = _iEmployeeServices.GetEmployees();
-            foreach (var d in dis.Where(c=>c.RoleId=="R2"))
+            foreach (var d in dis.Where(c=> c.RoleId=="R2"))
             {
-                using (FileStream fileStream = new FileStream(d.EmployeeImage, FileMode.Open))
-                {
-                    dgrid_Employee.Rows.Add(d.EmployeeId, d.FullName, d.Email, d.Phone, d.Gender ? "Nam" : "Nu",
-                        d.Address, d.DateOfBirth, d.RoleId);
-                }
+                dgridEmployee.Rows.Add(d.EmployeeId, d.FullName, d.Email, d.Phone, d.Gender ? "Nam" : "Nữ",
+                    d.Address, d.DateOfBirth.ToShortDateString(), d.RoleId);
             }
 
-            cmbRoles.DataSource = _iRoleServices.GetListRole();
+            cmbRoles.DataSource = _iRoleServices.GetRoles();
             cmbRoles.DisplayMember = "RoleName";
             cmbRoles.ValueMember = "RoleId";
         }
@@ -169,11 +147,16 @@ namespace GUI_PresentationLayer.View
                 if (MessageBox.Show("Bạn có chắc chắn muốn xoá không ?","Thông báo",MessageBoxButtons.YesNo)==DialogResult.Yes)
                 {
                     MessageBox.Show(
-                        _iEmployeeServices.RemoveEmployee(dgrid_Employee.Rows[e.RowIndex].Cells[0].Value.ToString()));
-                    loadData();
+                        _iEmployeeServices.RemoveEmployee(dgridEmployee.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    LoadData();
                 }
             }
         }
->>>>>>> 1344865892b8f20916c044125e219b3dde93e7bd
+
+        private void pbxRoles_Click(object sender, EventArgs e)
+        {
+            FrmProperties properties = new FrmProperties(FrmProperties.Properties.Role);
+            properties.ShowDialog();
+        }
     }
 }

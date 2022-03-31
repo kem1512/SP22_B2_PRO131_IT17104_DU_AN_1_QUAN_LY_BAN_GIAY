@@ -20,6 +20,7 @@ namespace GUI_PresentationLayer.View
         private readonly iMaterialServices _iMaterialServices;
         private readonly iSizeServices _iSizeServices;
         private readonly iColorServices _iColorServices;
+        private readonly iRoleServices _iRoleServices;
         public FrmProperties(Properties properties)
         {
             InitializeComponent();
@@ -43,6 +44,10 @@ namespace GUI_PresentationLayer.View
             {
                 _iColorServices = new ColorServices();
                 LoadColors();
+            }else if (Properties.Role == properties)
+            {
+                _iRoleServices = new RoleServices();
+                LoadRoles();
             }
         }
 
@@ -52,12 +57,29 @@ namespace GUI_PresentationLayer.View
             dgridProperties.Columns[0].Name = "Mã thể loại";
             dgridProperties.Columns[1].Name = "Tên thể loại";
             lblContent.Text = "Danh sách thể loại";
-            lblId.Text = "Id thể loại";
+            lblId.Text = "Mã thể loại";
             lblName.Text = "Tên thể loại";
             dgridProperties.Rows.Clear();
             foreach (var x in _iCategoryServices.GetCategories())
             {
                 dgridProperties.Rows.Add(x.CategoryId, x.CategoryName);
+            }
+            txtId.Text = "";
+            txtName.Text = "";
+        }
+
+        private void LoadRoles()
+        {
+            dgridProperties.ColumnCount = 2;
+            dgridProperties.Columns[0].Name = "Mã vai trò";
+            dgridProperties.Columns[1].Name = "Tên vai trò";
+            lblContent.Text = "Danh sách vai trò";
+            lblId.Text = "Mã vai trò";
+            lblName.Text = "Tên vai trò";
+            dgridProperties.Rows.Clear();
+            foreach (var x in _iRoleServices.GetRoles())
+            {
+                dgridProperties.Rows.Add(x.RoleId, x.RoleName);
             }
             txtId.Text = "";
             txtName.Text = "";
@@ -133,7 +155,7 @@ namespace GUI_PresentationLayer.View
 
         public enum Properties
         {
-            Category = 0, Brand = 1, Material = 2, Size = 3, Color = 4
+            Category = 0, Brand = 1, Material = 2, Size = 3, Color = 4, Role = 5
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
@@ -250,6 +272,30 @@ namespace GUI_PresentationLayer.View
                     }
                 }
             }
+            else if (_iRoleServices != null)
+            {
+                if (txtName.Text == "")
+                {
+                    MessageBox.Show("Tên không được bỏ trống!");
+                }
+                else
+                {
+                    // tìm id lớn nhất và cộng thêm 1
+                    int roleId = !_iRoleServices.GetRoles().Any()
+                        ? 1
+                        : _iRoleServices.GetRoles().Max(c => int.Parse(c.RoleId.Replace("R", ""))) + 1;
+                    if (MessageBox.Show("Bạn có chắc muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
+                    {
+                        MessageBox.Show(_iRoleServices.AddRole(new DAL_DataAccessLayer.Entities.Roles()
+                        {
+                            RoleId = "R" + roleId,
+                            RoleName = txtName.Text
+                        }));
+                        LoadRoles();
+                    }
+                }
+            }
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -361,6 +407,27 @@ namespace GUI_PresentationLayer.View
                         }
                     }
                 }
+                else if (_iRoleServices != null)
+                {
+                    if (txtName.Text == "")
+                    {
+                        MessageBox.Show("Tên không được bỏ trống!");
+                    }
+                    else
+                    {
+                        var role = _iRoleServices.GetRoleByID(txtId.Text);
+                        if (MessageBox.Show("Bạn có chắc muốn sửa không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                            DialogResult.Yes)
+                        {
+                            MessageBox.Show(_iRoleServices.UpdateRole(new DAL_DataAccessLayer.Entities.Roles()
+                            {
+                                RoleId = role.RoleId,
+                                RoleName = txtName.Text
+                            }));
+                            LoadColors();
+                        }
+                    }
+                }
             }
         }
 
@@ -444,6 +511,22 @@ namespace GUI_PresentationLayer.View
                             DialogResult.Yes)
                         {
                             MessageBox.Show(_iColorServices.RemoveColor(txtId.Text));
+                            LoadColors();
+                        }
+                    }
+                }
+                else if (_iRoleServices != null)
+                {
+                    if (txtId.Text == "")
+                    {
+                        MessageBox.Show("Mã không được bỏ trống!");
+                    }
+                    else
+                    {
+                        if (MessageBox.Show("Bạn có chắc muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                            DialogResult.Yes)
+                        {
+                            MessageBox.Show(_iRoleServices.RemoveRole(txtId.Text));
                             LoadColors();
                         }
                     }

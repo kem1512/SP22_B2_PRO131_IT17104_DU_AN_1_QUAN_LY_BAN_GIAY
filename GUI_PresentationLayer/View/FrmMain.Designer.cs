@@ -30,7 +30,7 @@
         {
             this.pnlTopBar = new System.Windows.Forms.Panel();
             this.pnlLeftBar = new System.Windows.Forms.Panel();
-            this.btnDetail = new FontAwesome.Sharp.IconButton();
+            this.btnCustomer = new FontAwesome.Sharp.IconButton();
             this.btnOrder = new FontAwesome.Sharp.IconButton();
             this.btnThongKe = new FontAwesome.Sharp.IconButton();
             this.btnStaff = new FontAwesome.Sharp.IconButton();
@@ -44,7 +44,7 @@
             this.btnExit = new FontAwesome.Sharp.IconButton();
             this.btnHomeMain = new FontAwesome.Sharp.IconPictureBox();
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.panel1 = new System.Windows.Forms.Panel();
+            this.fpnlInvoice = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlLeftBar.SuspendLayout();
             this.pnlBottomBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHomeMain)).BeginInit();
@@ -63,7 +63,7 @@
             // 
             this.pnlLeftBar.AutoScroll = true;
             this.pnlLeftBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.pnlLeftBar.Controls.Add(this.btnDetail);
+            this.pnlLeftBar.Controls.Add(this.btnCustomer);
             this.pnlLeftBar.Controls.Add(this.btnOrder);
             this.pnlLeftBar.Controls.Add(this.btnThongKe);
             this.pnlLeftBar.Controls.Add(this.btnStaff);
@@ -77,28 +77,28 @@
             this.pnlLeftBar.Size = new System.Drawing.Size(272, 678);
             this.pnlLeftBar.TabIndex = 8;
             // 
-            // btnDetail
+            // btnCustomer
             // 
-            this.btnDetail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
-            this.btnDetail.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btnDetail.FlatAppearance.BorderSize = 0;
-            this.btnDetail.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDetail.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDetail.ForeColor = System.Drawing.Color.White;
-            this.btnDetail.IconChar = FontAwesome.Sharp.IconChar.Pager;
-            this.btnDetail.IconColor = System.Drawing.Color.White;
-            this.btnDetail.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnDetail.IconSize = 75;
-            this.btnDetail.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDetail.Location = new System.Drawing.Point(0, 545);
-            this.btnDetail.Name = "btnDetail";
-            this.btnDetail.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnDetail.Size = new System.Drawing.Size(272, 85);
-            this.btnDetail.TabIndex = 8;
-            this.btnDetail.Text = "Cá nhân";
-            this.btnDetail.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnDetail.UseVisualStyleBackColor = false;
-            this.btnDetail.Click += new System.EventHandler(this.btnDetail_Click);
+            this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btnCustomer.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnCustomer.FlatAppearance.BorderSize = 0;
+            this.btnCustomer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCustomer.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCustomer.ForeColor = System.Drawing.Color.White;
+            this.btnCustomer.IconChar = FontAwesome.Sharp.IconChar.Pager;
+            this.btnCustomer.IconColor = System.Drawing.Color.White;
+            this.btnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnCustomer.IconSize = 75;
+            this.btnCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCustomer.Location = new System.Drawing.Point(0, 545);
+            this.btnCustomer.Name = "btnCustomer";
+            this.btnCustomer.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnCustomer.Size = new System.Drawing.Size(272, 85);
+            this.btnCustomer.TabIndex = 8;
+            this.btnCustomer.Text = "Khách hàng";
+            this.btnCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnCustomer.UseVisualStyleBackColor = false;
+            this.btnCustomer.Click += new System.EventHandler(this.btnDetail_Click);
             // 
             // btnOrder
             // 
@@ -336,15 +336,16 @@
             this.pnlMain.Size = new System.Drawing.Size(1352, 558);
             this.pnlMain.TabIndex = 10;
             // 
-            // panel1
+            // fpnlInvoice
             // 
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(1391, 643);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(231, 48);
-            this.panel1.TabIndex = 3;
-            this.panel1.Visible = false;
-            this.panel1.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
+            this.fpnlInvoice.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.fpnlInvoice.BackColor = System.Drawing.Color.DimGray;
+            this.fpnlInvoice.Location = new System.Drawing.Point(1326, 591);
+            this.fpnlInvoice.Name = "fpnlInvoice";
+            this.fpnlInvoice.Size = new System.Drawing.Size(296, 100);
+            this.fpnlInvoice.TabIndex = 0;
+            this.fpnlInvoice.Visible = false;
+            this.fpnlInvoice.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
             // 
             // FrmMain
             // 
@@ -352,7 +353,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1624, 695);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.fpnlInvoice);
             this.Controls.Add(this.pnlMain);
             this.Controls.Add(this.pnlBottomBar);
             this.Controls.Add(this.pnlLeftBar);
@@ -373,7 +374,7 @@
 
         private System.Windows.Forms.Panel pnlTopBar;
         private System.Windows.Forms.Panel pnlLeftBar;
-        private FontAwesome.Sharp.IconButton btnDetail;
+        private FontAwesome.Sharp.IconButton btnCustomer;
         private FontAwesome.Sharp.IconButton btnOrder;
         private FontAwesome.Sharp.IconButton btnThongKe;
         private FontAwesome.Sharp.IconButton btnStaff;
@@ -387,7 +388,7 @@
         private FontAwesome.Sharp.IconButton btnExit;
         private FontAwesome.Sharp.IconPictureBox btnHomeMain;
         private System.Windows.Forms.Panel pnlMain;
-        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.FlowLayoutPanel fpnlInvoice;
     }
 }
 

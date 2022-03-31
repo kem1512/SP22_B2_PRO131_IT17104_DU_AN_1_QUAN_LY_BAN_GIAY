@@ -9,10 +9,10 @@ namespace BUS_BussinessLayer.iBUS_Services
 {
     public interface iRoleServices
     {
-        string AddRoles(Roles role);
-        string UpdateRoles(Roles role);
-        string RemoveRoles(Roles role);
+        string AddRole(Roles role);
+        string UpdateRole(Roles role);
+        string RemoveRole(string id);
         Roles GetRoleByID(string id);
-        List<Roles> GetListRole();
+        List<Roles> GetRoles();
     }
 }

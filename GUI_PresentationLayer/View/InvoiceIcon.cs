@@ -10,11 +10,18 @@ using System.Windows.Forms;
 
 namespace GUI_PresentationLayer.View
 {
-    public partial class FrmOrder : Form
+    public partial class InvoiceIcon : UserControl
     {
-        public FrmOrder()
+        public EventHandler OnSelected = null;
+        public InvoiceIcon()
         {
             InitializeComponent();
         }
-    }
+
+        public string Id
+        {
+            get => lblId.Text;
+            set => lblId.Text = value;
+        }
+    } 
 }

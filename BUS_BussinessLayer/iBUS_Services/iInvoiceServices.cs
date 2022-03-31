@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BUS_BussinessLayer.Models;
 using DAL_DataAccessLayer.Entities;
 
-namespace DAL_DataAccessLayer.iDAL_Services
+namespace BUS_BussinessLayer.iBUS_Services
 {
-    public interface iDAL_Invoice
+    public interface iInvoiceServices
     {
         string AddInvoice(Invoice invoice, List<InvoiceDetail> invoiceDetail);
         string UpdateInvoice(Invoice invoice, List<InvoiceDetail> invoiceDetail);
@@ -15,5 +16,7 @@ namespace DAL_DataAccessLayer.iDAL_Services
         List<Invoice> GetInvoices();
         List<InvoiceDetail> GetInvoicesDetail();
         Invoice GetInvoiceById(string id);
+
+        List<ViewInvoice> ViewInvoices();
     }
 }

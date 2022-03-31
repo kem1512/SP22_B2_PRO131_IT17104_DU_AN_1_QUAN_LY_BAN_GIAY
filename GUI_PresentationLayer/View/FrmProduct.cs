@@ -389,7 +389,14 @@ namespace GUI_PresentationLayer.View
                 {
                     foreach (DataGridViewRow x in dgridProduct.Rows)
                     {
-                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
+                        if (cmbColorTop.SelectedIndex != -1)
+                        {
+                            x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                        }
+                        else
+                        {
+                            x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
+                        }
                     }
                 }
                 else
@@ -410,7 +417,14 @@ namespace GUI_PresentationLayer.View
                 {
                     foreach (DataGridViewRow x in dgridProduct.Rows)
                     {
-                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                        if (cmbBrandTop.SelectedIndex != -1)
+                        {
+                            x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
+                        }
+                        else
+                        {
+                            x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                        }
                     }
                 }
                 else

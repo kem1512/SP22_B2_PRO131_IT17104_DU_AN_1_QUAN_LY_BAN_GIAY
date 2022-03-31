@@ -11,7 +11,7 @@ namespace DAL_DataAccessLayer.DAL_Services
     public class DAL_Invoice : iDAL_Invoice
     {
         private QuanLyBanGiayEntities _db;
-        public string AddInvoice(Invoice invoice, InvoiceDetail invoiceDetail)
+        public string AddInvoice(Invoice invoice, List<InvoiceDetail> invoiceDetail)
         {
             try
             {
@@ -20,7 +20,10 @@ namespace DAL_DataAccessLayer.DAL_Services
                     if (invoice != null && invoiceDetail != null)
                     {
                         _db.Invoice.Add(invoice);
-                        _db.InvoiceDetail.Add(invoiceDetail);
+                        foreach (var x in invoiceDetail)
+                        {
+                            _db.InvoiceDetail.Add(x);
+                        }
                         _db.SaveChanges();
                         return "Thêm thành công!";
                     }
@@ -29,19 +32,19 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
             catch (Exception e)
             {
-                return e.Message;
+                return e.ToString();
             }
         }
 
-        public string UpdateInvoice(Invoice invoice, InvoiceDetail invoiceDetail)
+        public string UpdateInvoice(Invoice invoice, List<InvoiceDetail> invoiceDetail)
         {
             try
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
                     var inv = _db.Invoice.FirstOrDefault(c => c.InvoiceId == invoice.InvoiceId);
-                    var invd = _db.InvoiceDetail.FirstOrDefault(c => c.InvoiceId == invoiceDetail.InvoiceId);
-                    if (invoice != null && invoiceDetail != null && inv != null && invd != null)
+                    var invd = _db.InvoiceDetail.Where(c => c.InvoiceId == inv.InvoiceId).ToList();
+                    if (invoice != null && invoiceDetail != null && inv != null)
                     {
                         // Sửa lại hóa đơn
                         inv.EmployeeId = invoice.EmployeeId;
@@ -50,10 +53,13 @@ namespace DAL_DataAccessLayer.DAL_Services
                         inv.Description = invoice.Description;
                         inv.InvoiceStatus = invoice.InvoiceStatus;
 
-                        invd.Price = invoiceDetail.Price;
-                        invd.ProductId = invoiceDetail.ProductId;
-                        invd.Quantity = invoiceDetail.Quantity;
-                        invd.TotalPrice = invoiceDetail.TotalPrice;
+                        for (int i = 0; i < invoiceDetail.Count; i++)
+                        {
+                            invd[i].Price = invoiceDetail[i].Price;
+                            invd[i].ProductId = invoiceDetail[i].ProductId;
+                            invd[i].Quantity = invoiceDetail[i].Quantity;
+                            invd[i].TotalPrice = invoiceDetail[i].TotalPrice;
+                        }
                         _db.SaveChanges();
                         return "Sửa thành công!";
                     }
@@ -100,17 +106,20 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public List<Invoice> GetInvoicesDetail()
+        public List<InvoiceDetail> GetInvoicesDetail()
         {
             using (_db = new QuanLyBanGiayEntities())
             {
-                _db.InvoiceDetail.
+                return _db.InvoiceDetail.ToList();
             }
         }
 
         public Invoice GetInvoiceById(string id)
         {
-            throw new NotImplementedException();
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                return _db.Invoice.FirstOrDefault(c => c.InvoiceId == id);
+            }
         }
     }
 }

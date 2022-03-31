@@ -23,7 +23,7 @@ namespace DAL_DataAccessLayer.Entities
         public string CustomerId { get; set; }
         public string EmployeeId { get; set; }
         public System.DateTime DateCreate { get; set; }
-        public int InvoiceStatus { get; set; }
+        public bool InvoiceStatus { get; set; }
         public string Description { get; set; }
     
         public virtual Customer Customer { get; set; }
