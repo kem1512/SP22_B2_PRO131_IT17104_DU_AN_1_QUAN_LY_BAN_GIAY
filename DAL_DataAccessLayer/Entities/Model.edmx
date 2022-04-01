@@ -66,7 +66,10 @@
           <Property Name="InvoiceId" Type="varchar" MaxLength="9" Nullable="false" />
           <Property Name="CustomerId" Type="varchar" MaxLength="9" />
           <Property Name="EmployeeId" Type="varchar" MaxLength="9" />
+          <Property Name="ShipperId" Type="varchar" MaxLength="9" />
+          <Property Name="ShipCost" Type="float" />
           <Property Name="DateCreate" Type="datetime" Nullable="false" />
+          <Property Name="GuestPayments" Type="float" />
           <Property Name="InvoiceStatus" Type="bit" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
         </EntityType>
@@ -96,6 +99,7 @@
           <Property Name="ProductName" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="250" />
           <Property Name="ProductImage" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Barcode" Type="varchar" MaxLength="13" />
           <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductDetail">
@@ -179,6 +183,18 @@
             </Principal>
             <Dependent Role="Invoice">
               <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__Shipper__45F365D3">
+          <End Role="Shipper" Type="Self.Shipper" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipper">
+              <PropertyRef Name="ShipperId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ShipperId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -321,6 +337,10 @@
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
+          <AssociationSet Name="FK__Invoice__Shipper__45F365D3" Association="Self.FK__Invoice__Shipper__45F365D3">
+            <End Role="Shipper" EntitySet="Shipper" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
           <AssociationSet Name="FK__ProductDe__Brand__32E0915F" Association="Self.FK__ProductDe__Brand__32E0915F">
             <End Role="Brand" EntitySet="Brand" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
@@ -431,11 +451,15 @@
           <Property Name="InvoiceId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CustomerId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="EmployeeId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="ShipperId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
+          <Property Name="ShipCost" Type="Double" />
           <Property Name="DateCreate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="GuestPayments" Type="Double" />
           <Property Name="InvoiceStatus" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__Invoice__Custome__440B1D61" FromRole="Invoice" ToRole="Customer" />
           <NavigationProperty Name="Employee" Relationship="Self.FK__Invoice__Employe__44FF419A" FromRole="Invoice" ToRole="Employee" />
+          <NavigationProperty Name="Shipper" Relationship="Self.FK__Invoice__Shipper__45F365D3" FromRole="Invoice" ToRole="Shipper" />
           <NavigationProperty Name="InvoiceDetail" Relationship="Self.FK_Invoice" FromRole="Invoice" ToRole="InvoiceDetail" />
         </EntityType>
         <EntityType Name="InvoiceDetail">
@@ -467,6 +491,7 @@
           <Property Name="ProductName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ProductImage" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Barcode" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="ProductDetail" Relationship="Self.FK__ProductDe__Produ__300424B4" FromRole="Product" ToRole="ProductDetail" />
         </EntityType>
@@ -508,6 +533,7 @@
           <Property Name="ShipperPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RoleId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="ShipperStatus" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Shipper__45F365D3" FromRole="Shipper" ToRole="Invoice" />
           <NavigationProperty Name="Roles" Relationship="Self.FK__Shipper__RoleId__3F466844" FromRole="Shipper" ToRole="Roles" />
         </EntityType>
         <EntityType Name="Size">
@@ -599,6 +625,18 @@
             </Principal>
             <Dependent Role="Inventory">
               <PropertyRef Name="ProductId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Invoice__Shipper__45F365D3">
+          <End Role="Shipper" Type="Self.Shipper" Multiplicity="0..1" />
+          <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Shipper">
+              <PropertyRef Name="ShipperId" />
+            </Principal>
+            <Dependent Role="Invoice">
+              <PropertyRef Name="ShipperId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -717,6 +755,10 @@
             <End Role="ProductDetail" EntitySet="ProductDetail" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
+          <AssociationSet Name="FK__Invoice__Shipper__45F365D3" Association="Self.FK__Invoice__Shipper__45F365D3">
+            <End Role="Shipper" EntitySet="Shipper" />
+            <End Role="Invoice" EntitySet="Invoice" />
+          </AssociationSet>
           <AssociationSet Name="FK_Invoice" Association="Self.FK_Invoice">
             <End Role="Invoice" EntitySet="Invoice" />
             <End Role="InvoiceDetail" EntitySet="InvoiceDetail" />
@@ -814,7 +856,10 @@
                 <ScalarProperty Name="InvoiceId" ColumnName="InvoiceId" />
                 <ScalarProperty Name="CustomerId" ColumnName="CustomerId" />
                 <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="ShipperId" ColumnName="ShipperId" />
+                <ScalarProperty Name="ShipCost" ColumnName="ShipCost" />
                 <ScalarProperty Name="DateCreate" ColumnName="DateCreate" />
+                <ScalarProperty Name="GuestPayments" ColumnName="GuestPayments" />
                 <ScalarProperty Name="InvoiceStatus" ColumnName="InvoiceStatus" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
@@ -846,6 +891,7 @@
                 <ScalarProperty Name="ProductName" ColumnName="ProductName" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="ProductImage" ColumnName="ProductImage" />
+                <ScalarProperty Name="Barcode" ColumnName="Barcode" />
                 <ScalarProperty Name="Status" ColumnName="Status" />
               </MappingFragment>
             </EntityTypeMapping>

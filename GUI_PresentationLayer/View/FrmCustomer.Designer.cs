@@ -29,31 +29,19 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCustomer));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnAdd = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tabDisable = new System.Windows.Forms.TabPage();
             this.dgridDisable = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dgrid_Disabled = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.tabCustomer = new System.Windows.Forms.TabPage();
             this.dgridCustomer = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.comboBox6 = new System.Windows.Forms.ComboBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -70,11 +58,24 @@
             this.tlpLeft = new System.Windows.Forms.TableLayoutPanel();
             this.btnEdit = new Bunifu.Framework.UI.BunifuThinButton2();
             this.txtAddress = new Bunifu.Framework.UI.BunifuMaterialTextbox();
-            this.tabPage2.SuspendLayout();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.tabDisable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgridDisable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).BeginInit();
             this.tabControl1.SuspendLayout();
-            this.tabPage1.SuspendLayout();
+            this.tabCustomer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgridCustomer)).BeginInit();
             this.tlpFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).BeginInit();
@@ -109,35 +110,35 @@
             this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // tabPage2
+            // tabDisable
             // 
-            this.tabPage2.BackColor = System.Drawing.Color.White;
-            this.tabPage2.Controls.Add(this.dgridDisable);
-            this.tabPage2.Controls.Add(this.dgrid_Disabled);
-            this.tabPage2.Location = new System.Drawing.Point(4, 34);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1102, 504);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Đã nghỉ việc";
+            this.tabDisable.BackColor = System.Drawing.Color.White;
+            this.tabDisable.Controls.Add(this.dgridDisable);
+            this.tabDisable.Controls.Add(this.dgrid_Disabled);
+            this.tabDisable.Location = new System.Drawing.Point(4, 34);
+            this.tabDisable.Name = "tabDisable";
+            this.tabDisable.Padding = new System.Windows.Forms.Padding(3);
+            this.tabDisable.Size = new System.Drawing.Size(1102, 504);
+            this.tabDisable.TabIndex = 1;
+            this.tabDisable.Text = "Đã xóa";
             // 
             // dgridDisable
             // 
             this.dgridDisable.AllowUserToAddRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgridDisable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgridDisable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgridDisable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgridDisable.BackgroundColor = System.Drawing.Color.White;
             this.dgridDisable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgridDisable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgridDisable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgridDisable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgridDisable.ColumnHeadersHeight = 54;
             this.dgridDisable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -145,7 +146,8 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.dataGridViewTextBoxColumn5,
-            this.dataGridViewLinkColumn1});
+            this.dataGridViewLinkColumn1,
+            this.Column7});
             this.dgridDisable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgridDisable.DoubleBuffered = true;
             this.dgridDisable.EnableHeadersVisualStyles = false;
@@ -161,64 +163,21 @@
             this.dgridDisable.TabIndex = 1;
             this.dgridDisable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridDisable_CellContentClick);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mã khách hàng";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.HeaderText = "Tên khách hàng";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Số điện thoại";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.HeaderText = "Địa chỉ";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.HeaderText = "Số lần mua hàng";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewLinkColumn1
-            // 
-            this.dataGridViewLinkColumn1.HeaderText = "";
-            this.dataGridViewLinkColumn1.MinimumWidth = 6;
-            this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
-            this.dataGridViewLinkColumn1.ReadOnly = true;
-            // 
             // dgrid_Disabled
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgrid_Disabled.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Disabled.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
             this.dgrid_Disabled.BackgroundColor = System.Drawing.Color.White;
             this.dgrid_Disabled.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgrid_Disabled.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrid_Disabled.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Disabled.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgrid_Disabled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrid_Disabled.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgrid_Disabled.DoubleBuffered = true;
@@ -238,45 +197,45 @@
             this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.tabControl1.Controls.Add(this.tabPage1);
-            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabCustomer);
+            this.tabControl1.Controls.Add(this.tabDisable);
             this.tabControl1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.ItemSize = new System.Drawing.Size(220, 30);
             this.tabControl1.Location = new System.Drawing.Point(17, 102);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1110, 542);
+            this.tabControl1.Size = new System.Drawing.Size(1110, 530);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 41;
             // 
-            // tabPage1
+            // tabCustomer
             // 
-            this.tabPage1.BackColor = System.Drawing.Color.White;
-            this.tabPage1.Controls.Add(this.dgridCustomer);
-            this.tabPage1.Location = new System.Drawing.Point(4, 34);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1102, 504);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Nhân viên";
+            this.tabCustomer.BackColor = System.Drawing.Color.White;
+            this.tabCustomer.Controls.Add(this.dgridCustomer);
+            this.tabCustomer.Location = new System.Drawing.Point(4, 34);
+            this.tabCustomer.Name = "tabCustomer";
+            this.tabCustomer.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCustomer.Size = new System.Drawing.Size(1102, 492);
+            this.tabCustomer.TabIndex = 0;
+            this.tabCustomer.Text = "Khách hàng";
             // 
             // dgridCustomer
             // 
             this.dgridCustomer.AllowUserToAddRows = false;
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgridCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgridCustomer.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dgridCustomer.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgridCustomer.BackgroundColor = System.Drawing.Color.White;
             this.dgridCustomer.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgridCustomer.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgridCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgridCustomer.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgridCustomer.ColumnHeadersHeight = 54;
             this.dgridCustomer.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
@@ -296,53 +255,10 @@
             this.dgridCustomer.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgridCustomer.RowHeadersWidth = 51;
             this.dgridCustomer.RowTemplate.Height = 70;
-            this.dgridCustomer.Size = new System.Drawing.Size(1096, 498);
+            this.dgridCustomer.Size = new System.Drawing.Size(1096, 486);
             this.dgridCustomer.TabIndex = 0;
             this.dgridCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridCustomer_CellClick);
             this.dgridCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridCustomer_CellContentClick);
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Mã khách hàng";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Tên khách hàng";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Số điện thoại";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.HeaderText = "Địa chỉ";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Số lần mua hàng";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
             // 
             // comboBox6
             // 
@@ -437,13 +353,14 @@
             this.tlpLeft.SetColumnSpan(this.pbxProduct, 2);
             this.pbxProduct.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pbxProduct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pbxProduct.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.pbxProduct.IconChar = FontAwesome.Sharp.IconChar.User;
             this.pbxProduct.IconColor = System.Drawing.SystemColors.ControlText;
             this.pbxProduct.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.pbxProduct.IconSize = 264;
             this.pbxProduct.Location = new System.Drawing.Point(3, 3);
             this.pbxProduct.Name = "pbxProduct";
             this.pbxProduct.Size = new System.Drawing.Size(344, 264);
+            this.pbxProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxProduct.TabIndex = 0;
             this.pbxProduct.TabStop = false;
             // 
@@ -532,6 +449,7 @@
             this.txtSearch.Size = new System.Drawing.Size(279, 41);
             this.txtSearch.TabIndex = 38;
             this.txtSearch.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtSearch.OnValueChanged += new System.EventHandler(this.txtSearch_OnValueChanged);
             // 
             // tlpLeft
             // 
@@ -613,6 +531,100 @@
             this.txtAddress.TabIndex = 11;
             this.txtAddress.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã khách hàng";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tên khách hàng";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Số điện thoại";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Số lần mua hàng";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewLinkColumn1
+            // 
+            this.dataGridViewLinkColumn1.HeaderText = "";
+            this.dataGridViewLinkColumn1.MinimumWidth = 6;
+            this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
+            this.dataGridViewLinkColumn1.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Mã khách hàng";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Tên khách hàng";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Số điện thoại";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Địa chỉ";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Số lần mua hàng";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.FillWeight = 50F;
+            this.Column6.HeaderText = "";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // FrmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -627,11 +639,11 @@
             this.Name = "FrmCustomer";
             this.Text = "FrmCustomer";
             this.Load += new System.EventHandler(this.FrmCustomer_Load);
-            this.tabPage2.ResumeLayout(false);
+            this.tabDisable.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgridDisable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).EndInit();
             this.tabControl1.ResumeLayout(false);
-            this.tabPage1.ResumeLayout(false);
+            this.tabCustomer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgridCustomer)).EndInit();
             this.tlpFilter.ResumeLayout(false);
             this.tlpFilter.PerformLayout();
@@ -646,10 +658,10 @@
         #endregion
 
         private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tabDisable;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Disabled;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabCustomer;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgridCustomer;
         private System.Windows.Forms.ComboBox comboBox6;
         private System.Windows.Forms.Label lblEmail;
@@ -667,12 +679,6 @@
         private System.Windows.Forms.Label lblFilter;
         private System.Windows.Forms.PictureBox pbxSearch;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtSearch;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewLinkColumn Column6;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgridDisable;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -680,5 +686,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
+        private System.Windows.Forms.DataGridViewLinkColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewLinkColumn Column6;
     }
 }

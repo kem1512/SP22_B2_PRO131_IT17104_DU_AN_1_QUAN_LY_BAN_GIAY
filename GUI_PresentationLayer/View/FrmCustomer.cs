@@ -32,7 +32,7 @@ namespace GUI_PresentationLayer.View
             dgridDisable.Rows.Clear();
             foreach (var x in _iCustomerServices.GetCustomers().Where(c => c.Status == false))
             {
-                dgridDisable.Rows.Add(x.CustomerId, x.CustomerName, x.Phone, x.Address, x.ShoppingCount, "Phục hồi");
+                dgridDisable.Rows.Add(x.CustomerId, x.CustomerName, x.Phone, x.Address, x.ShoppingCount, "Phục hồi", "Xóa");
             }
 
             txtName.Text = "";
@@ -145,6 +145,34 @@ namespace GUI_PresentationLayer.View
                     MessageBox.Show(
                         _iCustomerServices.RecoveryCustomer(dgridDisable.Rows[e.RowIndex].Cells[0].Value.ToString()));
                     LoadData();
+                }
+            }
+            if (e.ColumnIndex == 6)
+            {
+                if (MessageBox.Show("Bạn có chắc muốn phục hồi không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                {
+                    MessageBox.Show(
+                        _iCustomerServices.RemoveCustomer(dgridDisable.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    LoadData();
+                }
+            }
+        }
+
+        private void txtSearch_OnValueChanged(object sender, EventArgs e)
+        {
+            if (tabCustomer.Visible)
+            {
+                foreach (DataGridViewRow x in dgridCustomer.Rows)
+                {
+                    x.Visible = x.Cells[1].Value.ToString().Contains(txtSearch.Text);
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow x in dgridDisable.Rows)
+                {
+                    x.Visible = x.Cells[1].Value.ToString().Contains(txtSearch.Text);
                 }
             }
         }

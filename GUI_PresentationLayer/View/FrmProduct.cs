@@ -85,6 +85,10 @@ namespace GUI_PresentationLayer.View
             {
                 return "Kích thước không được bỏ trống";
             }
+            if (txtBarcode.Text == "")
+            {
+                return "Mã vạch không được bỏ trống";
+            }
             return null;
         }
 
@@ -182,7 +186,8 @@ namespace GUI_PresentationLayer.View
                             ProductName = txtName.Text,
                             ProductImage = pbxProduct.Tag.ToString(),
                             Description = txtNote.Text,
-                            Status = true
+                            Status = true,
+                            Barcode = txtBarcode.Text
                         }, new ProductDetail()
                         {
                             ProductId = productId,
@@ -256,6 +261,7 @@ namespace GUI_PresentationLayer.View
                 cmbColorBot.SelectedValue = row.Cells[8].Value.ToString();
                 cmbSize.SelectedValue = row.Cells[9].Value.ToString();
                 cmbCat.SelectedValue = row.Cells[10].Value.ToString();
+                txtBarcode.Text = product.Barcode;
             }
         }
 
@@ -272,6 +278,7 @@ namespace GUI_PresentationLayer.View
                         ProductName = txtName.Text,
                         ProductImage = pbxProduct.Tag.ToString(),
                         Description = txtNote.Text,
+                        Barcode = txtBarcode.Text,
                         Status = true
                     };
                     var productDetail = new ProductDetail()
@@ -313,7 +320,7 @@ namespace GUI_PresentationLayer.View
 
         private void txtPrice_OnValueChanged(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(txtPrice.Text, "^[0-9]+$"))
+            if (!Regex.IsMatch(txtPrice.Text, "^[0-9.]+$"))
             {
                 txtPrice.Text = "";
             }
@@ -410,7 +417,14 @@ namespace GUI_PresentationLayer.View
                 {
                     foreach (DataGridViewRow x in dgridProductDeleted.Rows)
                     {
-                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
+                        if (cmbColorTop.SelectedIndex != -1)
+                        {
+                            x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                        }
+                        else
+                        {
+                            x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
+                        }
                     }
                 }
             }
@@ -451,17 +465,10 @@ namespace GUI_PresentationLayer.View
             {
                 for (int i = 0; i < dgridProduct.Rows.Count; i++)
                 {
-                    EncodingOptions encodingOptions = new EncodingOptions() { Width = 500, Height = 500 };
-                    var result = GenerateBarcode.CreateQrCode(dgridProduct.Rows[i].Cells[0].Value.ToString(), encodingOptions);
+                    EncodingOptions encodingOptions = new EncodingOptions() { Width = 700, Height = 450};
+                    var result = GenerateBarcode.CreateQrCode(_iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString()).Barcode, encodingOptions);
                     args.Graphics.DrawImage(result, new Point(250, i * 500));
                 }
-                // foreach (DataGridViewRow x in dgridProduct.Rows)
-                // {
-                //     EncodingOptions encodingOptions = new EncodingOptions() { Width = 500, Height = 500 };
-                //     var result = GenerateBarcode.CreateQrCode(x.Cells[0].Value.ToString(), encodingOptions);
-                //     args.Graphics.DrawImage(result, new Point(250, i * 500));
-                //     i++;
-                // }
             };
             PrintDialog printDialog = new PrintDialog();
             printDialog.Document = printDocument;
@@ -470,22 +477,15 @@ namespace GUI_PresentationLayer.View
             {
                 printDocument.Print();
             }
-            // SaveFileDialog saveFileDialog = new SaveFileDialog();
-            // if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            // {
-            //     // PdfDocument pdfDocument = new PdfDocument();
-            //     // foreach (DataGridViewRow x in dgridProduct.Rows)
-            //     // {
-            //     //     EncodingOptions encodingOptions = new EncodingOptions() { Width = 500, Height = 500 };
-            //     //     var result = GenerateBarcode.CreateQrCode(x.Cells[0].Value.ToString(), encodingOptions);
-            //     //     PdfPage pdfPage = pdfDocument.AddPage();
-            //     //     XGraphics xGraphics = XGraphics.FromPdfPage(pdfPage);
-            //     //     XImage xImage = XBitmapImage.CreateBitmap(result.Width, result.Height);
-            //     //     xGraphics.DrawImage(xImage, 0, 0, 500, 500);
-            //     // }
-            //     // pdfDocument.Save(saveFileDialog.FileName);
-            //     //Create a new PDF document
-            // }
+        }
+
+        private void bunifuThinButton21_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                GenerateExcel.ToExcel(dgridProduct, saveFileDialog.FileName);
+            }
         }
     }
 }

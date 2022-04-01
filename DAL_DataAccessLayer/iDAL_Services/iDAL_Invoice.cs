@@ -15,5 +15,6 @@ namespace DAL_DataAccessLayer.iDAL_Services
         List<Invoice> GetInvoices();
         List<InvoiceDetail> GetInvoicesDetail();
         Invoice GetInvoiceById(string id);
+        InvoiceDetail GetInvoiceDetail(string id);
     }
 }

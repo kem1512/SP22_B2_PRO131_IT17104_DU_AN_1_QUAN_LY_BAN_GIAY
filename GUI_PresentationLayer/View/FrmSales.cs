@@ -28,6 +28,7 @@ namespace GUI_PresentationLayer.View
         private iEmployeeServices _iEmployeeServices = new EmployeeServices();
         private FilterInfoCollection _filterInfo;
         private VideoCaptureDevice _videoCaptureDevice;
+        public string invoidId { get; set; }
 
         public FrmSales(FrmMain frmMain)
         {
@@ -43,7 +44,7 @@ namespace GUI_PresentationLayer.View
 
         private string ValidateSale()
         {
-            if (cmbPhone.SelectedIndex != -1)
+            if (cmbPhone.SelectedIndex == -1)
             {
                 return "Vui lòng nhập số điện thoại!";
             }
@@ -63,7 +64,7 @@ namespace GUI_PresentationLayer.View
                 return "Vui lòng nhập giá ship!";
             }
 
-            if (cmbShipper.SelectedIndex != -1)
+            if (rbtnShip.Checked && cmbShipper.SelectedIndex != -1)
             {
                 return "Vui lòng chọn shipper!";
             }
@@ -76,7 +77,15 @@ namespace GUI_PresentationLayer.View
             return null;
         }
 
-        public string Email { get; set; }
+        private string TotalPrice()
+        {
+            float totalPrice = 0;
+            foreach (DataGridViewRow x in dgridOrder.Rows)
+            {
+                totalPrice += float.Parse(x.Cells[3].Value.ToString()) * float.Parse(x.Cells[4].Value.ToString());
+            }
+            return string.Format("{0:0,0}", totalPrice);
+        }
 
         private void LoadData()
         {
@@ -114,9 +123,46 @@ namespace GUI_PresentationLayer.View
             cmbPhone.SelectedIndex = -1;
         }
 
-        private void bunifuThinButton24_Click(object sender, EventArgs e)
+        private void btnViewOrder_Click(object sender, EventArgs e)
         {
             _frmMain.HackerMan();
+        }
+
+        public void AddInvoiceFromMain(string id)
+        {
+            var invoice = _iInvoiceServices.GetInvoices().FirstOrDefault(c => c.InvoiceId == id);
+            var invoiceDetail = _iInvoiceServices.GetInvoicesDetail().Where(c => invoice != null && c.InvoiceId == invoice.InvoiceId).ToList();
+            if (invoice != null)
+            {
+                var customer = _iCustomerServices.GetCustomerById(invoice.CustomerId);
+                cmbPhone.SelectedValue = invoice.CustomerId;
+                txtAddress.Text = customer.Address;
+                txtName.Text = customer.CustomerName;
+                if (invoice.ShipperId != null)
+                {
+                    rbtnShip.Checked = true;
+                    txtShipCost.Text = string.Format("{0:0,0}", invoice.ShipCost);
+                    cmbShipper.SelectedValue = invoice.ShipperId;
+                }
+                else
+                {
+                    rbtnShop.Checked = true;
+                }
+
+                dgridOrder.Rows.Clear();
+                var i = 0;
+                foreach (var x in invoiceDetail)
+                {
+                    using (FileStream fileStream = new FileStream(_iProductServices.GetProductById(x.ProductId).ProductImage, FileMode.Open))
+                    {
+                        dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream), _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, string.Format("{0:0,0}", x.Price), string.Format("{0:0,0}", x.TotalPrice),"Thêm");
+                    }
+                    i += int.Parse(x.TotalPrice.ToString());
+                }
+                lblTotalPrice.Text = string.Format("{0:0,0}", i);
+                txtCost.Text = string.Format("{0:0,0}", invoice.GuestPayments);
+                btnCancel.Tag = invoice.InvoiceId;
+            }
         }
 
         private void FrmSales_Load(object sender, EventArgs e)
@@ -137,9 +183,9 @@ namespace GUI_PresentationLayer.View
                         if (x.Cells[2].Value.ToString() == result.product.ProductName)
                         {
                             x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
-                            x.Cells[4].Value = int.Parse(x.Cells[4].Value.ToString()) + result.productDetail.UnitPrice;
-                            x.Cells[5].Value = int.Parse(x.Cells[3].Value.ToString()) *
-                                               int.Parse(x.Cells[4].Value.ToString());
+                            x.Cells[4].Value = string.Format("{0:0,0}", result.productDetail.UnitPrice);
+                            x.Cells[5].Value = string.Format("{0:0,0}", float.Parse(x.Cells[3].Value.ToString()) * float.Parse(x.Cells[4].Value.ToString()));
+                            lblTotalPrice.Text = TotalPrice();
                             return;
                         }
                     }
@@ -148,7 +194,8 @@ namespace GUI_PresentationLayer.View
                     {
                         dgridOrder.Rows.Add(result.product.ProductId, new Bitmap(fileStream),
                             result.product.ProductName,
-                            "1", result.productDetail.UnitPrice, result.productDetail.UnitPrice, "Xóa");
+                            "1", string.Format("{0:0,0}", result.productDetail.UnitPrice), string.Format("{0:0,0}", result.productDetail.UnitPrice), "Xóa");
+                        lblTotalPrice.Text = TotalPrice();
                     }
                 }
             }
@@ -179,18 +226,32 @@ namespace GUI_PresentationLayer.View
             {
                 foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrand.SelectedValue.ToString());
+                    if (cmbColor.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrand.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColor.SelectedValue.ToString());
+                    }
+                    else
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrand.SelectedValue.ToString());
+                    }
                 }
             }
         }
 
         private void cmbColor_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cmbBrand.SelectedIndex != -1)
+            if (cmbColor.SelectedIndex != -1)
             {
                 foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    x.Visible = x.Cells[8].Value.ToString().Equals(cmbBrand.SelectedValue.ToString());
+                    if (cmbBrand.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColor.SelectedValue.ToString()) && x.Cells[6].Value.ToString().Equals(cmbBrand.SelectedValue.ToString());
+                    }
+                    else
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColor.SelectedValue.ToString());
+                    }
                 }
             }
         }
@@ -202,35 +263,45 @@ namespace GUI_PresentationLayer.View
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc muốn thêm vào hóa đơn chờ?", "Thông báo", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
+            if (ValidateSale() is null)
             {
-                var invoiceId = !_iInvoiceServices.GetInvoices().Any()
-                    ? "IV1"
-                    : "IV" + _iInvoiceServices.GetInvoices().Max(c => int.Parse(c.InvoiceId.Replace("IV", "")) + 1);
-                var invoice = new Invoice()
+                if (MessageBox.Show("Bạn có chắc muốn thêm vào hóa đơn chờ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
                 {
-                    InvoiceId = invoiceId,
-                    DateCreate = DateTime.Now,
-                    CustomerId = cmbPhone.SelectedValue.ToString(),
-                    EmployeeId = _iEmployeeServices.GetEmployees().First().EmployeeId,
-                    InvoiceStatus = false,
-                };
-                List<InvoiceDetail> invoiceDetails = new List<InvoiceDetail>();
-                foreach (DataGridViewRow x in dgridOrder.Rows)
-                {
-                    var result = new InvoiceDetail()
+                    var invoiceId = !_iInvoiceServices.GetInvoices().Any()
+                        ? "IV1"
+                        : "IV" + _iInvoiceServices.GetInvoices().Max(c => int.Parse(c.InvoiceId.Replace("IV", "")) + 1);
+                    var invoice = new Invoice()
                     {
                         InvoiceId = invoiceId,
-                        ProductId = x.Cells[0].Value.ToString(),
-                        Quantity = int.Parse(x.Cells[3].Value.ToString()),
-                        Price = float.Parse(x.Cells[4].Value.ToString()),
-                        TotalPrice = float.Parse(x.Cells[5].Value.ToString())
+                        DateCreate = DateTime.Now,
+                        CustomerId = cmbPhone.SelectedValue.ToString(),
+                        EmployeeId = _iEmployeeServices.GetEmployees().First().EmployeeId,
+                        InvoiceStatus = false,
+                        ShipperId = cmbShipper.Enabled ? cmbShipper.SelectedValue.ToString() : null,
+                        ShipCost = txtShipCost.Text != "" ? float.Parse(txtShipCost.Text) : 0,
+                        GuestPayments = float.Parse(txtCost.Text)
                     };
-                    invoiceDetails.Add(result);
+                    List<InvoiceDetail> invoiceDetails = new List<InvoiceDetail>();
+                    foreach (DataGridViewRow x in dgridOrder.Rows)
+                    {
+                        var result = new InvoiceDetail()
+                        {
+                            InvoiceId = invoiceId,
+                            ProductId = x.Cells[0].Value.ToString(),
+                            Quantity = int.Parse(x.Cells[3].Value.ToString()),
+                            Price = float.Parse(x.Cells[4].Value.ToString()),
+                            TotalPrice = float.Parse(x.Cells[5].Value.ToString())
+                        };
+                        invoiceDetails.Add(result);
+                    }
+                    MessageBox.Show(_iInvoiceServices.AddInvoice(invoice, invoiceDetails));
                 }
-
-                MessageBox.Show(_iInvoiceServices.AddInvoice(invoice, invoiceDetails));
+                _frmMain.LoadData();
+            }
+            else
+            {
+                MessageBox.Show(ValidateSale());
             }
         }
 
@@ -299,7 +370,7 @@ namespace GUI_PresentationLayer.View
                 if (result != null)
                 {
                     var product = _iProductServices.GetViewProducts()
-                        .FirstOrDefault(c => c.product.ProductId == result.ToString());
+                        .FirstOrDefault(c => c.product.Barcode == result.ToString());
                     if (product != null)
                     {
                         foreach (DataGridViewRow x in dgridOrder.Rows)
@@ -311,6 +382,7 @@ namespace GUI_PresentationLayer.View
                                                    product.productDetail.UnitPrice;
                                 x.Cells[5].Value = int.Parse(x.Cells[3].Value.ToString()) *
                                                    int.Parse(x.Cells[4].Value.ToString());
+                                lblTotalPrice.Text = TotalPrice();
                                 return;
                             }
                         }
@@ -321,15 +393,51 @@ namespace GUI_PresentationLayer.View
                                 product.product.ProductName,
                                 "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "Xóa");
                         }
-
+                        lblTotalPrice.Text = TotalPrice();
                         timer1.Stop();
                         if (_videoCaptureDevice.IsRunning)
                             _videoCaptureDevice.Stop();
                         btnQr2.ButtonText = "Quét mã";
                         pbxQr.Image = null;
                     }
+                    else
+                    {
+                        MessageBox.Show("Không tồn tại sản phẩm!");
+                    }
                 }
             }
+        }
+
+        private void rbtnShip_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cmbShipper.Enabled == false)
+            {
+                txtShipCost.Enabled = true;
+                cmbShipper.Enabled = true;
+            }
+            else
+            {
+                txtShipCost.Enabled = false;
+                cmbShipper.Enabled = false;
+            }
+        }
+
+        private void txtCost_OnValueChanged(object sender, EventArgs e)
+        {
+            // txtCost.Text = string.Format("{0:0,0}", float.Parse(txtCost.Text));
+            if (txtCost.Text != "" && lblTotalPrice.Text != "0 VNĐ")
+            {
+                if (float.Parse(txtCost.Text) > float.Parse(lblTotalPrice.Text))
+                {
+                    lblMoneyLeft.Text = string.Format("{0:0,0}", float.Parse(txtCost.Text) - float.Parse(lblTotalPrice.Text));
+                }
+            }
+        }
+
+        private void lblCancel_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(_iInvoiceServices.RemoveInvoice(btnCancel.Tag.ToString()));
+            _frmMain.LoadData();
         }
     }
 }

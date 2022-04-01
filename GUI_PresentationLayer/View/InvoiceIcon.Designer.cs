@@ -59,6 +59,7 @@
             this.iconPictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.iconPictureBox1.TabIndex = 2;
             this.iconPictureBox1.TabStop = false;
+            this.iconPictureBox1.Click += new System.EventHandler(this.iconPictureBox1_Click);
             // 
             // InvoiceIcon
             // 

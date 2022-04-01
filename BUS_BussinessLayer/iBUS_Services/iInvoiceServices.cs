@@ -17,6 +17,6 @@ namespace BUS_BussinessLayer.iBUS_Services
         List<InvoiceDetail> GetInvoicesDetail();
         Invoice GetInvoiceById(string id);
 
-        List<ViewInvoice> ViewInvoices();
+        InvoiceDetail GetInvoiceDetail(string id);
     }
 }

@@ -74,6 +74,7 @@ namespace DAL_DataAccessLayer.DAL_Services
                         pr.Description = product.Description;
                         pr.Status = product.Status;
                         pr.ProductName = product.ProductName;
+                        pr.Barcode = product.Barcode;
 
 
                         //Gán lại thuộc tính cho chi tiết sản phẩm
@@ -124,8 +125,20 @@ namespace DAL_DataAccessLayer.DAL_Services
 
                     // Tìm sản phẩm
                     var product = _db.Product.FirstOrDefault(c => c.ProductId == id);
+
+                    //Tìm chi tiết hóa đơn
+                    var invoiceDetail = _db.InvoiceDetail.Where(c => c.ProductId == product.ProductId).ToList();
                     if (id != null && inventory != null && productDetail != null && product != null)
                     {
+                        foreach (var x in invoiceDetail)
+                        {
+                            var result = _db.InvoiceDetail.Where(c => c.InvoiceId == x.InvoiceId).ToList();
+                            foreach (var y in result)
+                            {
+                                _db.InvoiceDetail.Remove(y);
+                            }
+                            _db.Invoice.Remove(_db.Invoice.FirstOrDefault(c => c.InvoiceId == x.InvoiceId));
+                        }
                         _db.Inventory.Remove(inventory);
                         _db.ProductDetail.Remove(productDetail);
                         _db.Product.Remove(product);

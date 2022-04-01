@@ -23,5 +23,10 @@ namespace GUI_PresentationLayer.View
             get => lblId.Text;
             set => lblId.Text = value;
         }
+
+        private void iconPictureBox1_Click(object sender, EventArgs e)
+        {
+            OnSelected?.Invoke(this, e);
+        }
     } 
 }

@@ -17,11 +17,11 @@ namespace GUI_PresentationLayer.View
 {
     public partial class FrmMain : Form
     {
+        private FrmSales _frmSales;
         private IconButton currentBtn = new IconButton();
         private Panel leftBorderBtn = new Panel();
         private Form currentChildForm;
         private iInvoiceServices _iInvoiceServices = new InvoiceServices();
-        public string invoidId { get; set; }
         public FrmMain()
         {
             InitializeComponent();
@@ -39,11 +39,14 @@ namespace GUI_PresentationLayer.View
             invoiceIcon.OnSelected += (sender, args) =>
             {
                 var invoice = _iInvoiceServices.GetInvoiceById(invoiceIcon.Id);
+                _frmSales.invoidId = invoice.InvoiceId;
+                _frmSales.AddInvoiceFromMain(invoice.InvoiceId);
             };
         }
 
-        private void LoadData()
+        public void LoadData()
         {
+            fpnlInvoice.Controls.Clear();
             var result = _iInvoiceServices.GetInvoices().Where(c => c.InvoiceStatus == false).ToList();
             foreach (var x in result)
             {
@@ -113,7 +116,9 @@ namespace GUI_PresentationLayer.View
         private void btnHome_Click(object sender, EventArgs e)
         {
             ActiveteButton(sender, Color.Gold);
-            OpenChildForm(new FrmSales(this));
+            var sale = new FrmSales(this);
+            _frmSales = sale;
+            OpenChildForm(sale);
         }
 
         private void btnProduct_Click(object sender, EventArgs e)

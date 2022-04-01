@@ -1,6 +1,7 @@
 CREATE DATABASE QuanLyBanGiay
 GO
 
+
 USE QuanLyBanGiay
 GO
 
@@ -10,6 +11,7 @@ CREATE TABLE Product
     ProductName NVARCHAR(250) NOT NULL,
     Description NVARCHAR(250),
     ProductImage VARCHAR(250) NOT NULL,
+    Barcode VARCHAR(13),
     Status BIT NOT NULL,
 )
 
@@ -106,7 +108,10 @@ CREATE TABLE Invoice
     InvoiceId VARCHAR(9) PRIMARY KEY,
     CustomerId VARCHAR(9) FOREIGN KEY REFERENCES Customer(CustomerId),
     EmployeeId VARCHAR(9) FOREIGN KEY REFERENCES Employee(EmployeeId),
+    ShipperId VARCHAR(9) FOREIGN KEY REFERENCES Shipper(ShipperId),
+    ShipCost FLOAT,
     DateCreate DATETIME NOT NULL,
+    GuestPayments FLOAT,
     InvoiceStatus BIT NOT NULL,
     Description NVARCHAR(250)
 )

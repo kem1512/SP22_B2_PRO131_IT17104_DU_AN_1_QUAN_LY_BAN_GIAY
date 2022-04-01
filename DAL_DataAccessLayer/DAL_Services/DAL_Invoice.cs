@@ -121,5 +121,13 @@ namespace DAL_DataAccessLayer.DAL_Services
                 return _db.Invoice.FirstOrDefault(c => c.InvoiceId == id);
             }
         }
+
+        public InvoiceDetail GetInvoiceDetail(string id)
+        {
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                return _db.InvoiceDetail.FirstOrDefault(c => c.InvoiceId == id);
+            }
+        }
     }
 }

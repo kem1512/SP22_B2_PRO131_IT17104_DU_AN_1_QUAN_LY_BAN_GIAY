@@ -48,12 +48,9 @@ namespace BUS_BussinessLayer.BUS_Services
             return _iDalInvoice.GetInvoiceById(id);
         }
 
-        public List<ViewInvoice> ViewInvoices()
+        public InvoiceDetail GetInvoiceDetail(string id)
         {
-            List<ViewInvoice> viewInvoices = (from a in _iDalInvoice.GetInvoices()
-                join b in _iDalInvoice.GetInvoicesDetail() on a.InvoiceId equals b.InvoiceId
-                select new ViewInvoice {Invoice = a, InvoiceDetail = b}).ToList();
-            return viewInvoices;
+            return _iDalInvoice.GetInvoiceDetail(id);
         }
     }
 }

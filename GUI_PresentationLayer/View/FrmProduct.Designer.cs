@@ -53,6 +53,8 @@
             this.cmbCat = new System.Windows.Forms.ComboBox();
             this.cmbColorBot = new System.Windows.Forms.ComboBox();
             this.pbxEditSize = new FontAwesome.Sharp.IconPictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtBarcode = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.tlpRight = new System.Windows.Forms.TableLayoutPanel();
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
@@ -104,6 +106,7 @@
             this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.btnQrCode = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.tlpBot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditMat)).BeginInit();
@@ -147,6 +150,8 @@
             this.tlpBot.Controls.Add(this.cmbCat, 2, 3);
             this.tlpBot.Controls.Add(this.cmbColorBot, 4, 1);
             this.tlpBot.Controls.Add(this.pbxEditSize, 1, 3);
+            this.tlpBot.Controls.Add(this.label1, 4, 2);
+            this.tlpBot.Controls.Add(this.txtBarcode, 4, 3);
             this.tlpBot.Location = new System.Drawing.Point(26, 494);
             this.tlpBot.Name = "tlpBot";
             this.tlpBot.RowCount = 4;
@@ -368,6 +373,38 @@
             this.pbxEditSize.TabStop = false;
             this.pbxEditSize.Click += new System.EventHandler(this.pbxEditSize_Click);
             // 
+            // label1
+            // 
+            this.label1.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(765, 111);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(84, 22);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Mã vạch";
+            // 
+            // txtBarcode
+            // 
+            this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtBarcode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtBarcode.Font = new System.Drawing.Font("Roboto", 12F);
+            this.txtBarcode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtBarcode.HintForeColor = System.Drawing.Color.Empty;
+            this.txtBarcode.HintText = "";
+            this.txtBarcode.isPassword = false;
+            this.txtBarcode.LineFocusedColor = System.Drawing.Color.Blue;
+            this.txtBarcode.LineIdleColor = System.Drawing.Color.Gray;
+            this.txtBarcode.LineMouseHoverColor = System.Drawing.Color.Blue;
+            this.txtBarcode.LineThickness = 4;
+            this.txtBarcode.Location = new System.Drawing.Point(767, 152);
+            this.txtBarcode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.Size = new System.Drawing.Size(289, 36);
+            this.txtBarcode.TabIndex = 35;
+            this.txtBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            // 
             // tlpRight
             // 
             this.tlpRight.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -418,7 +455,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.tlpRight.SetColumnSpan(this.txtName, 2);
             this.txtName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtName.HintForeColor = System.Drawing.Color.Empty;
             this.txtName.HintText = "";
@@ -461,7 +498,7 @@
             this.txtPrice.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtPrice.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPrice.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtPrice.HintForeColor = System.Drawing.Color.Empty;
             this.txtPrice.HintText = "";
@@ -572,7 +609,7 @@
             this.txtQuantity.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.txtQuantity.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtQuantity.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtQuantity.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtQuantity.HintForeColor = System.Drawing.Color.Empty;
             this.txtQuantity.HintText = "";
@@ -621,7 +658,8 @@
             // 
             // tlpFilter
             // 
-            this.tlpFilter.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.tlpFilter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpFilter.ColumnCount = 4;
             this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 15.01502F));
             this.tlpFilter.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.32833F));
@@ -631,11 +669,11 @@
             this.tlpFilter.Controls.Add(this.cmbPrice, 2, 0);
             this.tlpFilter.Controls.Add(this.cmbColorTop, 1, 0);
             this.tlpFilter.Controls.Add(this.lblFilter, 0, 0);
-            this.tlpFilter.Location = new System.Drawing.Point(501, 10);
+            this.tlpFilter.Location = new System.Drawing.Point(453, 10);
             this.tlpFilter.Name = "tlpFilter";
             this.tlpFilter.RowCount = 1;
             this.tlpFilter.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlpFilter.Size = new System.Drawing.Size(672, 62);
+            this.tlpFilter.Size = new System.Drawing.Size(720, 62);
             this.tlpFilter.TabIndex = 28;
             // 
             // cmbBrandTop
@@ -644,9 +682,9 @@
             this.cmbBrandTop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbBrandTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBrandTop.FormattingEnabled = true;
-            this.cmbBrandTop.Location = new System.Drawing.Point(103, 11);
+            this.cmbBrandTop.Location = new System.Drawing.Point(111, 11);
             this.cmbBrandTop.Name = "cmbBrandTop";
-            this.cmbBrandTop.Size = new System.Drawing.Size(184, 39);
+            this.cmbBrandTop.Size = new System.Drawing.Size(197, 39);
             this.cmbBrandTop.TabIndex = 28;
             this.cmbBrandTop.SelectionChangeCommitted += new System.EventHandler(this.cmbBrandTop_SelectionChangeCommitted);
             // 
@@ -656,9 +694,9 @@
             this.cmbPrice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPrice.FormattingEnabled = true;
-            this.cmbPrice.Location = new System.Drawing.Point(483, 11);
+            this.cmbPrice.Location = new System.Drawing.Point(517, 11);
             this.cmbPrice.Name = "cmbPrice";
-            this.cmbPrice.Size = new System.Drawing.Size(186, 39);
+            this.cmbPrice.Size = new System.Drawing.Size(200, 39);
             this.cmbPrice.TabIndex = 27;
             // 
             // cmbColorTop
@@ -667,9 +705,9 @@
             this.cmbColorTop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbColorTop.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbColorTop.FormattingEnabled = true;
-            this.cmbColorTop.Location = new System.Drawing.Point(293, 11);
+            this.cmbColorTop.Location = new System.Drawing.Point(314, 11);
             this.cmbColorTop.Name = "cmbColorTop";
-            this.cmbColorTop.Size = new System.Drawing.Size(184, 39);
+            this.cmbColorTop.Size = new System.Drawing.Size(197, 39);
             this.cmbColorTop.TabIndex = 26;
             this.cmbColorTop.SelectionChangeCommitted += new System.EventHandler(this.cmbColorTop_SelectionChangeCommitted);
             // 
@@ -678,7 +716,7 @@
             this.lblFilter.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblFilter.AutoSize = true;
             this.lblFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFilter.Location = new System.Drawing.Point(26, 18);
+            this.lblFilter.Location = new System.Drawing.Point(30, 18);
             this.lblFilter.Name = "lblFilter";
             this.lblFilter.Size = new System.Drawing.Size(47, 25);
             this.lblFilter.TabIndex = 25;
@@ -1075,7 +1113,7 @@
             this.btnQrCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnQrCode.BackColor = System.Drawing.Color.White;
             this.btnQrCode.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQrCode.BackgroundImage")));
-            this.btnQrCode.ButtonText = "Xuất Qr";
+            this.btnQrCode.ButtonText = "Xuất Mã";
             this.btnQrCode.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnQrCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnQrCode.ForeColor = System.Drawing.Color.SeaGreen;
@@ -1084,7 +1122,7 @@
             this.btnQrCode.IdleFillColor = System.Drawing.Color.White;
             this.btnQrCode.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnQrCode.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnQrCode.Location = new System.Drawing.Point(1327, 11);
+            this.btnQrCode.Location = new System.Drawing.Point(1207, 4);
             this.btnQrCode.Margin = new System.Windows.Forms.Padding(5);
             this.btnQrCode.Name = "btnQrCode";
             this.btnQrCode.Size = new System.Drawing.Size(165, 61);
@@ -1092,12 +1130,40 @@
             this.btnQrCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnQrCode.Click += new System.EventHandler(this.btnQrCode_Click);
             // 
+            // bunifuThinButton21
+            // 
+            this.bunifuThinButton21.ActiveBorderThickness = 1;
+            this.bunifuThinButton21.ActiveCornerRadius = 20;
+            this.bunifuThinButton21.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.bunifuThinButton21.ActiveForecolor = System.Drawing.Color.White;
+            this.bunifuThinButton21.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.bunifuThinButton21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.bunifuThinButton21.BackColor = System.Drawing.Color.White;
+            this.bunifuThinButton21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton21.BackgroundImage")));
+            this.bunifuThinButton21.ButtonText = "Xuất Excel";
+            this.bunifuThinButton21.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.bunifuThinButton21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.bunifuThinButton21.ForeColor = System.Drawing.Color.SeaGreen;
+            this.bunifuThinButton21.IdleBorderThickness = 1;
+            this.bunifuThinButton21.IdleCornerRadius = 20;
+            this.bunifuThinButton21.IdleFillColor = System.Drawing.Color.White;
+            this.bunifuThinButton21.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.bunifuThinButton21.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.bunifuThinButton21.Location = new System.Drawing.Point(1387, 4);
+            this.bunifuThinButton21.Margin = new System.Windows.Forms.Padding(5);
+            this.bunifuThinButton21.Name = "bunifuThinButton21";
+            this.bunifuThinButton21.Size = new System.Drawing.Size(165, 61);
+            this.bunifuThinButton21.TabIndex = 31;
+            this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bunifuThinButton21.Click += new System.EventHandler(this.bunifuThinButton21_Click);
+            // 
             // FrmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1564, 755);
+            this.Controls.Add(this.bunifuThinButton21);
             this.Controls.Add(this.btnQrCode);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.label11);
@@ -1201,5 +1267,8 @@
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
         private System.Windows.Forms.DataGridViewLinkColumn Column13;
         private Bunifu.Framework.UI.BunifuThinButton2 btnQrCode;
+        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton21;
+        private System.Windows.Forms.Label label1;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtBarcode;
     }
 }
