@@ -95,12 +95,18 @@ namespace GUI_PresentationLayer.View
                 btnAdd.Cursor = Cursors.No;
                 var row = dgridEmployee.Rows[e.RowIndex];
                 var employee = _iEmployeeServices.GetEmployeeById(row.Cells[0].Value.ToString());
-                using (FileStream fileStream = new FileStream(employee.EmployeeImage, FileMode.Open))
+                if (File.Exists(employee.EmployeeImage))
                 {
-                    pbxProduct.Image = new Bitmap(fileStream);
-                    pbxProduct.Tag = fileStream.Name;
+                    using (FileStream fileStream = new FileStream(employee.EmployeeImage, FileMode.Open))
+                    {
+                        pbxProduct.Image = new Bitmap(fileStream);
+                        pbxProduct.Tag = fileStream.Name;
+                    }
                 }
-
+                else
+                {
+                    pbxProduct.Image = null;
+                }
                 txtName.Text = row.Cells[1].Value.ToString();
                 txtEmail.Text = row.Cells[2].Value.ToString();
                 txtPhone.Text = row.Cells[3].Value.ToString();
@@ -127,11 +133,12 @@ namespace GUI_PresentationLayer.View
                 dgridEmployee.Rows.Add(x.EmployeeId, x.FullName, x.Email, x.Phone, x.Gender ? "Nam" : "Nữ",
                     x.Address, x.DateOfBirth.ToShortDateString(), x.RoleId, "Xoá");
             }
-            dgrid_Disabled.Rows.Clear();
+
+            dgrid_Disable.Rows.Clear();
             var dis = _iEmployeeServices.GetEmployees();
             foreach (var d in dis.Where(c => c.RoleId == "R2"))
             {
-                dgridEmployee.Rows.Add(d.EmployeeId, d.FullName, d.Email, d.Phone, d.Gender ? "Nam" : "Nữ",
+                dgrid_Disable.Rows.Add(d.EmployeeId, d.FullName, d.Email, d.Phone, d.Gender ? "Nam" : "Nữ",
                     d.Address, d.DateOfBirth.ToShortDateString(), d.RoleId);
             }
 
@@ -152,7 +159,7 @@ namespace GUI_PresentationLayer.View
                 }
             }
         }
-
+        
         private void pbxRoles_Click(object sender, EventArgs e)
         {
             FrmProperties properties = new FrmProperties(FrmProperties.Properties.Role);
