@@ -8,9 +8,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using AForge.Video.DirectShow;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
 using DAL_DataAccessLayer.Entities;
+using ZXing;
 
 namespace GUI_PresentationLayer.View
 {
@@ -24,10 +26,19 @@ namespace GUI_PresentationLayer.View
         private iCustomerServices _iCustomerServices = new CustomerServices();
         private iInvoiceServices _iInvoiceServices = new InvoiceServices();
         private iEmployeeServices _iEmployeeServices = new EmployeeServices();
+        private FilterInfoCollection _filterInfo;
+        private VideoCaptureDevice _videoCaptureDevice;
+
         public FrmSales(FrmMain frmMain)
         {
             InitializeComponent();
             _frmMain = frmMain;
+            _filterInfo = new FilterInfoCollection(FilterCategory.VideoInputDevice);
+            foreach (FilterInfo x in _filterInfo)
+            {
+                cmbCamera.Items.Add(x.Name);
+                cmbCamera.SelectedIndex = 0;
+            }
         }
 
         private string ValidateSale()
@@ -36,26 +47,32 @@ namespace GUI_PresentationLayer.View
             {
                 return "Vui lòng nhập số điện thoại!";
             }
+
             if (txtAddress.Text == "")
             {
                 return "Vui lòng nhập địa chỉ!";
             }
+
             if (txtName.Text == "")
             {
                 return "Vui lòng nhập tên khách hàng!";
             }
+
             if (rbtnShip.Checked && txtShipCost.Text == "")
             {
                 return "Vui lòng nhập giá ship!";
             }
+
             if (cmbShipper.SelectedIndex != -1)
             {
                 return "Vui lòng chọn shipper!";
             }
+
             if (txtCost.Text == "")
             {
                 return "Vui lòng nhập tiền khách trả!";
             }
+
             return null;
         }
 
@@ -69,9 +86,13 @@ namespace GUI_PresentationLayer.View
             {
                 using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
                 {
-                    dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName, x.inventory.Amount, string.Format("{0:0,0}", x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Thêm");
+                    dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName,
+                        x.inventory.Amount, string.Format("{0:0,0}", x.productDetail.UnitPrice), x.product.Description,
+                        x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId,
+                        x.productDetail.SizeId, x.productDetail.CategoryId, "Thêm");
                 }
             }
+
             cmbColor.DataSource = _iColorServices.GetColors();
             cmbColor.DisplayMember = "ColorName";
             cmbColor.ValueMember = "ColorId";
@@ -117,13 +138,16 @@ namespace GUI_PresentationLayer.View
                         {
                             x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
                             x.Cells[4].Value = int.Parse(x.Cells[4].Value.ToString()) + result.productDetail.UnitPrice;
-                            x.Cells[5].Value = int.Parse(x.Cells[3].Value.ToString()) * int.Parse(x.Cells[4].Value.ToString());
+                            x.Cells[5].Value = int.Parse(x.Cells[3].Value.ToString()) *
+                                               int.Parse(x.Cells[4].Value.ToString());
                             return;
                         }
                     }
+
                     using (FileStream fileStream = new FileStream(result.product.ProductImage, FileMode.Open))
                     {
-                        dgridOrder.Rows.Add(result.product.ProductId, new Bitmap(fileStream), result.product.ProductName,
+                        dgridOrder.Rows.Add(result.product.ProductId, new Bitmap(fileStream),
+                            result.product.ProductName,
                             "1", result.productDetail.UnitPrice, result.productDetail.UnitPrice, "Xóa");
                     }
                 }
@@ -178,9 +202,12 @@ namespace GUI_PresentationLayer.View
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc muốn thêm vào hóa đơn chờ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show("Bạn có chắc muốn thêm vào hóa đơn chờ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                DialogResult.Yes)
             {
-                var invoiceId = !_iInvoiceServices.GetInvoices().Any() ? "IV1" : "IV" + _iInvoiceServices.GetInvoices().Max(c => int.Parse(c.InvoiceId.Replace("IV", "")) + 1);
+                var invoiceId = !_iInvoiceServices.GetInvoices().Any()
+                    ? "IV1"
+                    : "IV" + _iInvoiceServices.GetInvoices().Max(c => int.Parse(c.InvoiceId.Replace("IV", "")) + 1);
                 var invoice = new Invoice()
                 {
                     InvoiceId = invoiceId,
@@ -202,6 +229,7 @@ namespace GUI_PresentationLayer.View
                     };
                     invoiceDetails.Add(result);
                 }
+
                 MessageBox.Show(_iInvoiceServices.AddInvoice(invoice, invoiceDetails));
             }
         }
@@ -213,6 +241,94 @@ namespace GUI_PresentationLayer.View
                 var customer = _iCustomerServices.GetCustomerById(cmbPhone.SelectedValue.ToString());
                 txtName.Text = customer.CustomerName;
                 txtAddress.Text = customer.Address;
+            }
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnQr_Click(object sender, EventArgs e)
+        {
+            if (btnQr.ButtonText == "Quét mã")
+            {
+                btnQr.ButtonText = "Thêm thủ công";
+                dgridProduct.Visible = false;
+                pnlQr.Visible = true;
+            }
+            else
+            {
+                btnQr.ButtonText = "Quét mã";
+                dgridProduct.Visible = true;
+                pnlQr.Visible = false;
+            }
+        }
+
+        private void btnQr2_Click(object sender, EventArgs e)
+        {
+            if (btnQr2.ButtonText == "Quét mã")
+            {
+                btnQr2.ButtonText = "Dừng quét";
+                _videoCaptureDevice = new VideoCaptureDevice(_filterInfo[cmbCamera.SelectedIndex].MonikerString);
+                _videoCaptureDevice.NewFrame += (o, args) => pbxQr.Image = (Bitmap)args.Frame.Clone();
+                _videoCaptureDevice.Start();
+                timer1.Start();
+            }
+            else
+            {
+                if (_videoCaptureDevice != null && _videoCaptureDevice.IsRunning)
+                    _videoCaptureDevice.Stop();
+                pbxQr.Image = null;
+                btnQr2.ButtonText = "Quét mã";
+            }
+        }
+
+        private void FrmSales_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (_videoCaptureDevice != null && _videoCaptureDevice.IsRunning)
+                _videoCaptureDevice.Stop();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            if (pbxQr.Image != null)
+            {
+                BarcodeReader barcodeReader = new BarcodeReader();
+                Result result = barcodeReader.Decode((Bitmap) pbxQr.Image);
+                if (result != null)
+                {
+                    var product = _iProductServices.GetViewProducts()
+                        .FirstOrDefault(c => c.product.ProductId == result.ToString());
+                    if (product != null)
+                    {
+                        foreach (DataGridViewRow x in dgridOrder.Rows)
+                        {
+                            if (x.Cells[2].Value.ToString() == product.product.ProductName)
+                            {
+                                x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
+                                x.Cells[4].Value = int.Parse(x.Cells[4].Value.ToString()) +
+                                                   product.productDetail.UnitPrice;
+                                x.Cells[5].Value = int.Parse(x.Cells[3].Value.ToString()) *
+                                                   int.Parse(x.Cells[4].Value.ToString());
+                                return;
+                            }
+                        }
+
+                        using (FileStream fileStream = new FileStream(product.product.ProductImage, FileMode.Open))
+                        {
+                            dgridOrder.Rows.Add(product.product.ProductId, new Bitmap(fileStream),
+                                product.product.ProductName,
+                                "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "Xóa");
+                        }
+
+                        timer1.Stop();
+                        if (_videoCaptureDevice.IsRunning)
+                            _videoCaptureDevice.Stop();
+                        btnQr2.ButtonText = "Quét mã";
+                        pbxQr.Image = null;
+                    }
+                }
             }
         }
     }

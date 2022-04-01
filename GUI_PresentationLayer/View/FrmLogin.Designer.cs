@@ -427,6 +427,7 @@
             // 
             // tmrScan
             // 
+            this.tmrScan.Interval = 1000;
             this.tmrScan.Tick += new System.EventHandler(this.tmrScan_Tick);
             // 
             // FrmLogin

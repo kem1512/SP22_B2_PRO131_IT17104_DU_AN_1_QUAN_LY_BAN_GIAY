@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video.DirectShow;
+using BUS_BussinessLayer.BUS_Services;
+using BUS_BussinessLayer.iBUS_Services;
 using ZXing;
 
 namespace GUI_PresentationLayer.View
@@ -16,6 +18,7 @@ namespace GUI_PresentationLayer.View
     {
         FilterInfoCollection _filterInfo;
         VideoCaptureDevice _videoCaptureDevice;
+        private iEmployeeServices _iEmployeeServices = new EmployeeServices();
         public FrmLogin()
         {
             InitializeComponent();
@@ -47,6 +50,7 @@ namespace GUI_PresentationLayer.View
             _videoCaptureDevice = new VideoCaptureDevice(_filterInfo[cmbCamera.SelectedIndex].MonikerString);
             _videoCaptureDevice.NewFrame += (o, args) => pbxCamera.Image = (Bitmap) args.Frame.Clone();
             _videoCaptureDevice.Start();
+            tmrScan.Start();
         }
 
         private void FrmLogin_FormClosing(object sender, FormClosingEventArgs e)
@@ -63,7 +67,8 @@ namespace GUI_PresentationLayer.View
                 Result result = barcodeReader.Decode((Bitmap) pbxCamera.Image);
                 if (result != null)
                 {
-                    MessageBox.Show(result.ToString());
+                    FrmMain frmMain = new FrmMain();
+                    frmMain.Show();
                     tmrScan.Stop();
                     if(_videoCaptureDevice.IsRunning)
                         _videoCaptureDevice.Stop();

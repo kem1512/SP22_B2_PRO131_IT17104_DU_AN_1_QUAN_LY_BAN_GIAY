@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
 using DAL_DataAccessLayer.Entities;
+using ZXing;
+using ZXing.QrCode;
 
 namespace GUI_PresentationLayer.View
 {
@@ -157,6 +159,12 @@ namespace GUI_PresentationLayer.View
         {
             FrmProperties properties = new FrmProperties(FrmProperties.Properties.Role);
             properties.ShowDialog();
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            BarcodeWriter barcodeWriter = new BarcodeWriter() { Format = BarcodeFormat.QR_CODE};
+            pbxProduct.Image = barcodeWriter.Write("123");
         }
     }
 }
