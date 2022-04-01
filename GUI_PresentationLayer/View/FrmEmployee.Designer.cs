@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmployee));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtEmail = new Bunifu.Framework.UI.BunifuMaterialTextbox();
@@ -78,6 +80,16 @@
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgrid_Disabled = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.dgrid_Disable = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).BeginInit();
             this.tlpFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
@@ -90,6 +102,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgridEmployee)).BeginInit();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disable)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEmail
@@ -137,9 +150,9 @@
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(3, 291);
+            this.lblName.Location = new System.Drawing.Point(3, 289);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(96, 22);
+            this.lblName.Size = new System.Drawing.Size(99, 24);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Họ và tên";
             // 
@@ -148,9 +161,9 @@
             this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(3, 378);
+            this.lblEmail.Location = new System.Drawing.Point(3, 376);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(59, 22);
+            this.lblEmail.Size = new System.Drawing.Size(62, 24);
             this.lblEmail.TabIndex = 3;
             this.lblEmail.Text = "Email";
             // 
@@ -160,9 +173,9 @@
             this.lblPassword.AutoSize = true;
             this.tlpLeft.SetColumnSpan(this.lblPassword, 2);
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(3, 465);
+            this.lblPassword.Location = new System.Drawing.Point(3, 463);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(191, 22);
+            this.lblPassword.Size = new System.Drawing.Size(201, 24);
             this.lblPassword.TabIndex = 7;
             this.lblPassword.Text = "Mật khẩu đăng nhập";
             // 
@@ -395,7 +408,7 @@
             this.rbtnMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnMale.Location = new System.Drawing.Point(21, 33);
             this.rbtnMale.Name = "rbtnMale";
-            this.rbtnMale.Size = new System.Drawing.Size(68, 26);
+            this.rbtnMale.Size = new System.Drawing.Size(71, 28);
             this.rbtnMale.TabIndex = 23;
             this.rbtnMale.TabStop = true;
             this.rbtnMale.Text = "Nam";
@@ -406,9 +419,9 @@
             this.lblGender.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.Location = new System.Drawing.Point(3, 138);
+            this.lblGender.Location = new System.Drawing.Point(3, 137);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(85, 22);
+            this.lblGender.Size = new System.Drawing.Size(87, 24);
             this.lblGender.TabIndex = 21;
             this.lblGender.Text = "Giới tính";
             // 
@@ -419,7 +432,7 @@
             this.rbtnFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnFemale.Location = new System.Drawing.Point(129, 35);
             this.rbtnFemale.Name = "rbtnFemale";
-            this.rbtnFemale.Size = new System.Drawing.Size(54, 26);
+            this.rbtnFemale.Size = new System.Drawing.Size(56, 28);
             this.rbtnFemale.TabIndex = 24;
             this.rbtnFemale.TabStop = true;
             this.rbtnFemale.Text = "Nữ";
@@ -483,9 +496,9 @@
             this.lblAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(3, 24);
+            this.lblAddress.Location = new System.Drawing.Point(3, 22);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(72, 22);
+            this.lblAddress.Size = new System.Drawing.Size(74, 24);
             this.lblAddress.TabIndex = 11;
             this.lblAddress.Text = "Địa chỉ";
             // 
@@ -495,9 +508,9 @@
             this.lblPhone.AutoSize = true;
             this.tlpBot.SetColumnSpan(this.lblPhone, 2);
             this.lblPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhone.Location = new System.Drawing.Point(331, 24);
+            this.lblPhone.Location = new System.Drawing.Point(331, 22);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(128, 22);
+            this.lblPhone.Size = new System.Drawing.Size(134, 24);
             this.lblPhone.TabIndex = 14;
             this.lblPhone.Text = "Số điện thoại";
             // 
@@ -506,9 +519,9 @@
             this.lblDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(668, 12);
+            this.lblDate.Location = new System.Drawing.Point(668, 11);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(99, 22);
+            this.lblDate.Size = new System.Drawing.Size(103, 24);
             this.lblDate.TabIndex = 17;
             this.lblDate.Text = "Ngày sinh";
             // 
@@ -537,9 +550,9 @@
             this.lblRoles.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblRoles.AutoSize = true;
             this.lblRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoles.Location = new System.Drawing.Point(331, 138);
+            this.lblRoles.Location = new System.Drawing.Point(331, 137);
             this.lblRoles.Name = "lblRoles";
-            this.lblRoles.Size = new System.Drawing.Size(69, 22);
+            this.lblRoles.Size = new System.Drawing.Size(70, 24);
             this.lblRoles.TabIndex = 20;
             this.lblRoles.Text = "Vai trò";
             // 
@@ -737,6 +750,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.White;
+            this.tabPage2.Controls.Add(this.dgrid_Disable);
             this.tabPage2.Controls.Add(this.dgrid_Disabled);
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
@@ -747,19 +761,19 @@
             // 
             // dgrid_Disabled
             // 
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgrid_Disabled.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Disabled.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgrid_Disabled.BackgroundColor = System.Drawing.Color.White;
             this.dgrid_Disabled.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgrid_Disabled.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrid_Disabled.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Disabled.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgrid_Disabled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrid_Disabled.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgrid_Disabled.DoubleBuffered = true;
@@ -773,6 +787,113 @@
             this.dgrid_Disabled.RowTemplate.Height = 24;
             this.dgrid_Disabled.Size = new System.Drawing.Size(974, 349);
             this.dgrid_Disabled.TabIndex = 0;
+            // 
+            // dgrid_Disable
+            // 
+            this.dgrid_Disable.AllowUserToAddRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Disable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgrid_Disable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgrid_Disable.BackgroundColor = System.Drawing.Color.White;
+            this.dgrid_Disable.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgrid_Disable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Disable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgrid_Disable.ColumnHeadersHeight = 54;
+            this.dgrid_Disable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2,
+            this.dataGridViewTextBoxColumn3,
+            this.dataGridViewTextBoxColumn4,
+            this.dataGridViewTextBoxColumn5,
+            this.dataGridViewTextBoxColumn6,
+            this.dataGridViewTextBoxColumn7,
+            this.dataGridViewTextBoxColumn8,
+            this.dataGridViewLinkColumn1});
+            this.dgrid_Disable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrid_Disable.DoubleBuffered = true;
+            this.dgrid_Disable.EnableHeadersVisualStyles = false;
+            this.dgrid_Disable.HeaderBgColor = System.Drawing.Color.SeaGreen;
+            this.dgrid_Disable.HeaderForeColor = System.Drawing.Color.White;
+            this.dgrid_Disable.Location = new System.Drawing.Point(3, 3);
+            this.dgrid_Disable.Name = "dgrid_Disable";
+            this.dgrid_Disable.ReadOnly = true;
+            this.dgrid_Disable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgrid_Disable.RowHeadersWidth = 51;
+            this.dgrid_Disable.RowTemplate.Height = 70;
+            this.dgrid_Disable.Size = new System.Drawing.Size(974, 349);
+            this.dgrid_Disable.TabIndex = 1;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã NV";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.HeaderText = "Họ tên";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Email";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.HeaderText = "SĐT";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.HeaderText = "Giới tính";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            this.dataGridViewTextBoxColumn6.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn7
+            // 
+            this.dataGridViewTextBoxColumn7.HeaderText = "Ngày sinh";
+            this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
+            this.dataGridViewTextBoxColumn7.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn8
+            // 
+            this.dataGridViewTextBoxColumn8.HeaderText = "Vai trò";
+            this.dataGridViewTextBoxColumn8.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
+            this.dataGridViewTextBoxColumn8.ReadOnly = true;
+            this.dataGridViewTextBoxColumn8.Visible = false;
+            // 
+            // dataGridViewLinkColumn1
+            // 
+            this.dataGridViewLinkColumn1.HeaderText = "";
+            this.dataGridViewLinkColumn1.MinimumWidth = 6;
+            this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
+            this.dataGridViewLinkColumn1.ReadOnly = true;
             // 
             // FrmEmployee
             // 
@@ -804,6 +925,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgridEmployee)).EndInit();
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disable)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -855,5 +977,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Disable;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
     }
 }
