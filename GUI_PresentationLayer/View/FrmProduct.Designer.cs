@@ -103,6 +103,7 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.Column13 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.btnQrCode = new Bunifu.Framework.UI.BunifuThinButton2();
             this.tlpBot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditMat)).BeginInit();
@@ -396,6 +397,7 @@
             this.tlpRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5.41892F));
             this.tlpRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20.74672F));
             this.tlpRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 12.85058F));
+            this.tlpRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpRight.Size = new System.Drawing.Size(350, 644);
             this.tlpRight.TabIndex = 2;
             // 
@@ -1063,12 +1065,40 @@
             this.Column13.Name = "Column13";
             this.Column13.ReadOnly = true;
             // 
+            // btnQrCode
+            // 
+            this.btnQrCode.ActiveBorderThickness = 1;
+            this.btnQrCode.ActiveCornerRadius = 20;
+            this.btnQrCode.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnQrCode.ActiveForecolor = System.Drawing.Color.White;
+            this.btnQrCode.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnQrCode.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQrCode.BackColor = System.Drawing.Color.White;
+            this.btnQrCode.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQrCode.BackgroundImage")));
+            this.btnQrCode.ButtonText = "Xuất Qr";
+            this.btnQrCode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQrCode.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQrCode.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnQrCode.IdleBorderThickness = 1;
+            this.btnQrCode.IdleCornerRadius = 20;
+            this.btnQrCode.IdleFillColor = System.Drawing.Color.White;
+            this.btnQrCode.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnQrCode.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnQrCode.Location = new System.Drawing.Point(1327, 11);
+            this.btnQrCode.Margin = new System.Windows.Forms.Padding(5);
+            this.btnQrCode.Name = "btnQrCode";
+            this.btnQrCode.Size = new System.Drawing.Size(165, 61);
+            this.btnQrCode.TabIndex = 30;
+            this.btnQrCode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnQrCode.Click += new System.EventHandler(this.btnQrCode_Click);
+            // 
             // FrmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1564, 755);
+            this.Controls.Add(this.btnQrCode);
             this.Controls.Add(this.tabMain);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.tlpFilter);
@@ -1170,5 +1200,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
         private System.Windows.Forms.DataGridViewLinkColumn Column13;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnQrCode;
     }
 }

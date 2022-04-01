@@ -5,13 +5,20 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BUS_BussinessLayer.Utilities;
+using PdfSharp.Drawing;
+using PdfSharp.Pdf;
+using Syncfusion.Pdf.Graphics;
+using ZXing.Common;
 
 namespace GUI_PresentationLayer.View
 {
@@ -435,6 +442,50 @@ namespace GUI_PresentationLayer.View
                     }
                 }
             }
+        }
+
+        private void btnQrCode_Click(object sender, EventArgs e)
+        {
+            PrintDocument printDocument = new PrintDocument();
+            printDocument.PrintPage += (o, args) =>
+            {
+                for (int i = 0; i < dgridProduct.Rows.Count; i++)
+                {
+                    EncodingOptions encodingOptions = new EncodingOptions() { Width = 500, Height = 500 };
+                    var result = GenerateBarcode.CreateQrCode(dgridProduct.Rows[i].Cells[0].Value.ToString(), encodingOptions);
+                    args.Graphics.DrawImage(result, new Point(250, i * 500));
+                }
+                // foreach (DataGridViewRow x in dgridProduct.Rows)
+                // {
+                //     EncodingOptions encodingOptions = new EncodingOptions() { Width = 500, Height = 500 };
+                //     var result = GenerateBarcode.CreateQrCode(x.Cells[0].Value.ToString(), encodingOptions);
+                //     args.Graphics.DrawImage(result, new Point(250, i * 500));
+                //     i++;
+                // }
+            };
+            PrintDialog printDialog = new PrintDialog();
+            printDialog.Document = printDocument;
+            
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
+            // SaveFileDialog saveFileDialog = new SaveFileDialog();
+            // if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            // {
+            //     // PdfDocument pdfDocument = new PdfDocument();
+            //     // foreach (DataGridViewRow x in dgridProduct.Rows)
+            //     // {
+            //     //     EncodingOptions encodingOptions = new EncodingOptions() { Width = 500, Height = 500 };
+            //     //     var result = GenerateBarcode.CreateQrCode(x.Cells[0].Value.ToString(), encodingOptions);
+            //     //     PdfPage pdfPage = pdfDocument.AddPage();
+            //     //     XGraphics xGraphics = XGraphics.FromPdfPage(pdfPage);
+            //     //     XImage xImage = XBitmapImage.CreateBitmap(result.Width, result.Height);
+            //     //     xGraphics.DrawImage(xImage, 0, 0, 500, 500);
+            //     // }
+            //     // pdfDocument.Save(saveFileDialog.FileName);
+            //     //Create a new PDF document
+            // }
         }
     }
 }
