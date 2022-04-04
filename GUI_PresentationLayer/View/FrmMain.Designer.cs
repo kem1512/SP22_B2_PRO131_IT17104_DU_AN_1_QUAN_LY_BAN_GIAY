@@ -91,8 +91,8 @@
             this.pbxLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.pbxLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.pbxLogout.ForeColor = System.Drawing.Color.White;
-            this.pbxLogout.IconChar = FontAwesome.Sharp.IconChar.Pager;
-            this.pbxLogout.IconColor = System.Drawing.Color.White;
+            this.pbxLogout.IconChar = FontAwesome.Sharp.IconChar.ChevronCircleRight;
+            this.pbxLogout.IconColor = System.Drawing.Color.Red;
             this.pbxLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.pbxLogout.IconSize = 75;
             this.pbxLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -262,7 +262,7 @@
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.Location = new System.Drawing.Point(65, 200);
+            this.lblName.Location = new System.Drawing.Point(59, 210);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(120, 29);
             this.lblName.TabIndex = 7;
@@ -277,10 +277,10 @@
             this.pbxEmployee.IconChar = FontAwesome.Sharp.IconChar.Neos;
             this.pbxEmployee.IconColor = System.Drawing.Color.Red;
             this.pbxEmployee.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.pbxEmployee.IconSize = 173;
+            this.pbxEmployee.IconSize = 195;
             this.pbxEmployee.Location = new System.Drawing.Point(27, 12);
             this.pbxEmployee.Name = "pbxEmployee";
-            this.pbxEmployee.Size = new System.Drawing.Size(195, 173);
+            this.pbxEmployee.Size = new System.Drawing.Size(195, 195);
             this.pbxEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxEmployee.TabIndex = 6;
             this.pbxEmployee.TabStop = false;

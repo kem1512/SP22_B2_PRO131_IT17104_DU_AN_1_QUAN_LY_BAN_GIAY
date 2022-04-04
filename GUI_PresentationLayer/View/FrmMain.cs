@@ -42,7 +42,7 @@ namespace GUI_PresentationLayer.View
             invoiceIcon.OnSelected += (sender, args) =>
             {
                 var invoice = _iInvoiceServices.GetInvoiceById(invoiceIcon.Id);
-                _frmSales.invoidId = invoice.InvoiceId;
+                _frmSales.InvoidId = invoice.InvoiceId;
                 _frmSales.GetInfoFromInvoice(invoice.InvoiceId);
             };
         }
@@ -145,7 +145,6 @@ namespace GUI_PresentationLayer.View
             if (!pnlLeftBar.ClientRectangle.Contains(pnlLeftBar.PointToClient(Cursor.Position)))
             {
                 fpnlInvoice.Visible = false;
-                _frmSales.invoidId = null;
             }
         }
 
@@ -196,6 +195,9 @@ namespace GUI_PresentationLayer.View
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
+            gp.AddEllipse(0, 0, pbxEmployee.Width - 3, pbxEmployee.Height - 3);
+            pbxEmployee.Region = new Region(gp);
             if (Email != null)
             {
                 // Tìm nhân viên

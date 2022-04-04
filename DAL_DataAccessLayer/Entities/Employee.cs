@@ -28,6 +28,7 @@ namespace DAL_DataAccessLayer.Entities
         public string Address { get; set; }
         public string EmployeeImage { get; set; }
         public System.DateTime DateOfBirth { get; set; }
+        public bool Status { get; set; }
         public string RoleId { get; set; }
     
         public virtual Roles Roles { get; set; }

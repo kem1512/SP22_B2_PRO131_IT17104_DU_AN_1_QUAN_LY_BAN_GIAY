@@ -64,10 +64,10 @@
             this.txtPrice = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.lblNote = new System.Windows.Forms.Label();
             this.txtNote = new System.Windows.Forms.TextBox();
-            this.btnAdd = new Bunifu.Framework.UI.BunifuThinButton2();
             this.btnEdit = new Bunifu.Framework.UI.BunifuThinButton2();
             this.pbxProduct = new System.Windows.Forms.PictureBox();
             this.txtQuantity = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.btnAdd = new Bunifu.Framework.UI.BunifuThinButton2();
             this.pbxSearch = new System.Windows.Forms.PictureBox();
             this.txtSearch = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.tlpFilter = new System.Windows.Forms.TableLayoutPanel();
@@ -432,10 +432,10 @@
             this.tlpRight.Controls.Add(this.txtPrice, 1, 4);
             this.tlpRight.Controls.Add(this.lblNote, 0, 5);
             this.tlpRight.Controls.Add(this.txtNote, 0, 6);
-            this.tlpRight.Controls.Add(this.btnAdd, 0, 7);
             this.tlpRight.Controls.Add(this.btnEdit, 1, 7);
             this.tlpRight.Controls.Add(this.pbxProduct, 0, 0);
             this.tlpRight.Controls.Add(this.txtQuantity, 0, 4);
+            this.tlpRight.Controls.Add(this.btnAdd, 0, 7);
             this.tlpRight.Location = new System.Drawing.Point(1202, 82);
             this.tlpRight.Name = "tlpRight";
             this.tlpRight.RowCount = 8;
@@ -550,33 +550,6 @@
             this.txtNote.Size = new System.Drawing.Size(344, 127);
             this.txtNote.TabIndex = 8;
             // 
-            // btnAdd
-            // 
-            this.btnAdd.ActiveBorderThickness = 1;
-            this.btnAdd.ActiveCornerRadius = 20;
-            this.btnAdd.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.btnAdd.ActiveForecolor = System.Drawing.Color.White;
-            this.btnAdd.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnAdd.BackColor = System.Drawing.Color.White;
-            this.btnAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.BackgroundImage")));
-            this.btnAdd.ButtonText = "Thêm";
-            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnAdd.IdleBorderThickness = 1;
-            this.btnAdd.IdleCornerRadius = 20;
-            this.btnAdd.IdleFillColor = System.Drawing.Color.White;
-            this.btnAdd.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.btnAdd.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnAdd.Location = new System.Drawing.Point(5, 569);
-            this.btnAdd.Margin = new System.Windows.Forms.Padding(5);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(165, 61);
-            this.btnAdd.TabIndex = 9;
-            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // btnEdit
             // 
             this.btnEdit.ActiveBorderThickness = 1;
@@ -638,6 +611,33 @@
             this.txtQuantity.TabIndex = 12;
             this.txtQuantity.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             this.txtQuantity.OnValueChanged += new System.EventHandler(this.txtQuantity_OnValueChanged);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.ActiveBorderThickness = 1;
+            this.btnAdd.ActiveCornerRadius = 20;
+            this.btnAdd.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnAdd.ActiveForecolor = System.Drawing.Color.White;
+            this.btnAdd.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnAdd.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnAdd.BackColor = System.Drawing.Color.White;
+            this.btnAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAdd.BackgroundImage")));
+            this.btnAdd.ButtonText = "Thêm";
+            this.btnAdd.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnAdd.IdleBorderThickness = 1;
+            this.btnAdd.IdleCornerRadius = 20;
+            this.btnAdd.IdleFillColor = System.Drawing.Color.White;
+            this.btnAdd.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnAdd.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnAdd.Location = new System.Drawing.Point(5, 569);
+            this.btnAdd.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(165, 61);
+            this.btnAdd.TabIndex = 13;
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // pbxSearch
             // 
@@ -1234,7 +1234,6 @@
         private FontAwesome.Sharp.IconPictureBox pbxEditMat;
         private FontAwesome.Sharp.IconPictureBox pbxEditSize;
         private FontAwesome.Sharp.IconPictureBox pbxEditColor;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
         private Bunifu.Framework.UI.BunifuThinButton2 btnEdit;
         private System.Windows.Forms.PictureBox pbxSearch;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtSearch;
@@ -1285,5 +1284,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewLinkColumn Column5;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
     }
 }

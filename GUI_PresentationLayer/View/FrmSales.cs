@@ -31,7 +31,7 @@ namespace GUI_PresentationLayer.View
         private iEmployeeServices _iEmployeeServices = new EmployeeServices();
         private FilterInfoCollection _filterInfo;
         private VideoCaptureDevice _videoCaptureDevice;
-        public string invoidId { get; set; }
+        public string InvoidId { get; set; }
 
         public FrmSales(FrmMain frmMain)
         {
@@ -313,7 +313,7 @@ namespace GUI_PresentationLayer.View
                             InvoiceId = invoiceId,
                             DateCreate = DateTime.Now,
                             CustomerId = cmbPhone.SelectedValue.ToString(),
-                            EmployeeId = _iEmployeeServices.GetEmployees().First().EmployeeId,
+                            EmployeeId = _iEmployeeServices.GetEmployees().First(c => c.Email == _frmMain.Email).EmployeeId,
                             InvoiceStatus = false,
                             ShipperId = cmbShipper.Enabled ? cmbShipper.SelectedValue.ToString() : null,
                             ShipCost = txtShipCost.Text != "" ? float.Parse(txtShipCost.Text) : 0,
@@ -358,10 +358,18 @@ namespace GUI_PresentationLayer.View
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("Bạn có chắc muốn hoàn thành!", "Thông báo", MessageBoxButtons.YesNo) ==
-                DialogResult.Yes)
+            if (InvoidId != null)
             {
-                MessageBox.Show(_iInvoiceServices.CompleteInvoice(invoidId));
+                if (MessageBox.Show($"Bạn có chắc muốn hoàn thành hóa đơn {InvoidId}?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                {
+                    MessageBox.Show(_iInvoiceServices.CompleteInvoice(InvoidId));
+                    InvoidId = null;
+                }
+            }
+            else
+            {
+                MessageBox.Show("Chưa có hóa đơn nào được chọn!");
             }
         }
 
@@ -477,44 +485,52 @@ namespace GUI_PresentationLayer.View
 
         private void lblCancel_Click(object sender, EventArgs e)
         {
-            Form form = new Form();
-
-            Label label = new Label();
-            label.Dock = DockStyle.Top;
-            label.AutoSize = false;
-            label.TextAlign = ContentAlignment.MiddleCenter;
-            label.Text = "Lý do hủy";
-            label.Font = new Font("Arial", 10);
-
-            TextBox textBox = new TextBox();
-            textBox.Dock = DockStyle.Top;
-            textBox.Font = new Font("Arial", 18);
-            textBox.Multiline = true;
-            textBox.Size =  new System.Drawing.Size(0, 150);
-
-            Button button = new Button();
-            button.Dock = DockStyle.Top;
-            button.Size = new System.Drawing.Size(0, 80);
-            button.Text = "Xác nhận";
-            button.Click += (o, args) =>
+            if (InvoidId != null)
             {
-                if (MessageBox.Show("Bạn có chắc muốn xóa?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                {
-                    MessageBox.Show(_iInvoiceServices.CancelInvoice(invoidId, textBox.Text));
-                    _frmMain.LoadData();
-                }
-                else
-                {
-                    return;
-                }
-                form.Close();
-            };
+                Form form = new Form();
 
-            form.StartPosition = FormStartPosition.CenterParent;
-            form.Controls.Add(button);
-            form.Controls.Add(textBox);
-            form.Controls.Add(label);
-            form.ShowDialog();
+                Label label = new Label();
+                label.Dock = DockStyle.Top;
+                label.AutoSize = false;
+                label.TextAlign = ContentAlignment.MiddleCenter;
+                label.Text = "Lý do hủy";
+                label.Font = new Font("Arial", 10);
+
+                TextBox textBox = new TextBox();
+                textBox.Dock = DockStyle.Top;
+                textBox.Font = new Font("Arial", 18);
+                textBox.Multiline = true;
+                textBox.Size = new System.Drawing.Size(0, 150);
+
+                Button button = new Button();
+                button.Dock = DockStyle.Top;
+                button.Size = new System.Drawing.Size(0, 80);
+                button.Text = "Xác nhận";
+                button.Click += (o, args) =>
+                {
+                    if (MessageBox.Show($"Bạn có chắc muốn xóa hóa đơn {InvoidId}?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        MessageBox.Show(_iInvoiceServices.CancelInvoice(InvoidId, textBox.Text));
+                        _frmMain.LoadData();
+                    }
+                    else
+                    {
+                        return;
+                    }
+                    form.Close();
+                };
+
+                form.StartPosition = FormStartPosition.CenterParent;
+                form.Controls.Add(button);
+                form.Controls.Add(textBox);
+                form.Controls.Add(label);
+                form.ShowDialog();
+                InvoidId = null;
+            }
+            else
+            {
+                MessageBox.Show("Không có hóa đơn nào được chọn!");
+            }
         }
 
         private void cmbPhone_TextChanged(object sender, EventArgs e)

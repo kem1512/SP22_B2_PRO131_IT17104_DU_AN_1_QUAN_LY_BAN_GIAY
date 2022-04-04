@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
+using BUS_BussinessLayer.Utilities;
 using DAL_DataAccessLayer.Entities;
 
 namespace GUI_PresentationLayer.View
@@ -74,9 +75,12 @@ namespace GUI_PresentationLayer.View
                             Address = txtAddress.Text,
                             DateOfBirth = DateTime.Parse(dgdtpcStaff.Value.ToShortDateString()),
                             Gender = rbtnMale.Checked ? true : false,
-                            EmployeeImage = pbxProduct.Tag.ToString(),
+                            EmployeeImage = pbxEmployee.Tag.ToString(),
+                            RoleId = cmbRoles.SelectedValue.ToString(),
+                            Status = true,
                             Pass = txtPassword.Text
                         }));
+                        LoadData();
                     }
                 }
                 else
@@ -99,13 +103,13 @@ namespace GUI_PresentationLayer.View
                 {
                     using (FileStream fileStream = new FileStream(employee.EmployeeImage, FileMode.Open))
                     {
-                        pbxProduct.Image = new Bitmap(fileStream);
-                        pbxProduct.Tag = fileStream.Name;
+                        pbxEmployee.Image = new Bitmap(fileStream);
+                        pbxEmployee.Tag = fileStream.Name;
                     }
                 }
                 else
                 {
-                    pbxProduct.Image = Properties.Resources.failed;
+                    pbxEmployee.Image = Properties.Resources.failed;
                 }
                 txtName.Text = row.Cells[1].Value.ToString();
                 txtEmail.Text = row.Cells[2].Value.ToString();
@@ -128,18 +132,17 @@ namespace GUI_PresentationLayer.View
         {
             dgridEmployee.Rows.Clear();
             var result = _iEmployeeServices.GetEmployees();
-            foreach (var x in result.Where(c => c.RoleId != "R2"))
+            foreach (var x in result.Where(c => c.Status))
             {
                 dgridEmployee.Rows.Add(x.EmployeeId, x.FullName, x.Email, x.Phone, x.Gender ? "Nam" : "Nữ",
                     x.Address, x.DateOfBirth.ToShortDateString(), x.RoleId, "Xoá");
             }
 
             dgrid_Disable.Rows.Clear();
-            var dis = _iEmployeeServices.GetEmployees();
-            foreach (var d in dis.Where(c => c.RoleId == "R2"))
+            foreach (var d in result.Where(c => !c.Status))
             {
                 dgrid_Disable.Rows.Add(d.EmployeeId, d.FullName, d.Email, d.Phone, d.Gender ? "Nam" : "Nữ",
-                    d.Address, d.DateOfBirth.ToShortDateString(), d.RoleId);
+                    d.Address, d.DateOfBirth.ToShortDateString(), d.RoleId, "Phục hồi", "Xóa");
             }
 
             cmbRoles.DataSource = _iRoleServices.GetRoles();
@@ -151,10 +154,10 @@ namespace GUI_PresentationLayer.View
         {
             if (e.ColumnIndex == 8)
             {
-                if (MessageBox.Show("Bạn có chắc chắn muốn xoá không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     MessageBox.Show(
-                        _iEmployeeServices.RemoveEmployee(dgridEmployee.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                        _iEmployeeServices.DisableEmployee(dgridEmployee.Rows[e.RowIndex].Cells[0].Value.ToString()));
                     LoadData();
                 }
             }
@@ -168,9 +171,7 @@ namespace GUI_PresentationLayer.View
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            if (btnAdd.Cursor == Cursors.Hand)
-            {
-                if (ValidateEmployee() is null)
+            if (ValidateEmployee() is null)
                 {
                     var employee = _iEmployeeServices.GetEmployeeById(dgridEmployee.Rows[dgridEmployee.CurrentRow.Index].Cells[0].Value.ToString());
                     if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -184,24 +185,67 @@ namespace GUI_PresentationLayer.View
                             Address = txtAddress.Text,
                             DateOfBirth = DateTime.Parse(dgdtpcStaff.Value.ToShortDateString()),
                             Gender = rbtnMale.Checked ? true : false,
-                            EmployeeImage = pbxProduct.Tag.ToString(),
+                            EmployeeImage = pbxEmployee.Tag.ToString(),
+                            RoleId = cmbRoles.SelectedValue.ToString(),
                             Pass = txtPassword.Text
                         }));
+                        LoadData();
                     }
                 }
                 else
                 {
                     MessageBox.Show(ValidateEmployee());
                 }
-
-            }
         }
 
         private void btnQr_Click(object sender, EventArgs e)
         {
             if (dgridEmployee.CurrentRow != null)
             {
-                
+                var row = dgridEmployee.Rows[dgridEmployee.CurrentRow.Index];
+                if (MessageBox.Show(
+                        $"Bạn có chắc muốn gửi lại mã QR cho nhân viên {row.Cells[1].Value}",
+                        "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    var em = _iEmployeeServices.GetEmployeeById(row.Cells[0].Value.ToString());
+                    var image = GenerateBarcode.CreateQRCode(em.Email, em.Pass);
+                    SendSMS.SendMail("haidang15122002@gmail.com", "Gửi lại qr cho em yêu", "Qr nè", image);
+                }
+            }
+        }
+
+        private void dgrid_Disable_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 8)
+            {
+                if (MessageBox.Show("Bạn có chắc chắn muốn phục hồi không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    MessageBox.Show(
+                        _iEmployeeServices.RecoveryEmployee(dgrid_Disable.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    LoadData();
+                }
+            }
+            if (e.ColumnIndex == 9)
+            {
+                if (MessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    MessageBox.Show(
+                        _iEmployeeServices.RemoveEmployee(dgrid_Disable.Rows[e.RowIndex].Cells[0].Value.ToString()));
+                    LoadData();
+                }
+            }
+        }
+
+        private void pbxEmployee_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                using (FileStream fileStream = new FileStream(openFileDialog.FileName, FileMode.Open))
+                {
+                    pbxEmployee.Image = new Bitmap(fileStream);
+                    pbxEmployee.Tag = fileStream.Name;
+                }
             }
         }
     }

@@ -27,7 +27,7 @@ namespace BUS_BussinessLayer.Utilities
 
         public static Bitmap CreateQRCode(string email, string password)
         {
-            BarcodeWriter barcodeWriter = new BarcodeWriter() { Format = BarcodeFormat.QR_CODE, Options = new EncodingOptions() { PureBarcode = true } };
+            BarcodeWriter barcodeWriter = new BarcodeWriter() { Format = BarcodeFormat.QR_CODE, Options = new EncodingOptions() { PureBarcode = true, Width = 500, Height = 500} };
             return barcodeWriter.Write($"{email}:{password}");
         }
     }

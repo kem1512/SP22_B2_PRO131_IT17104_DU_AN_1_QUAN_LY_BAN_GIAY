@@ -19,6 +19,7 @@ namespace BUS_BussinessLayer.BUS_Services
         {
             _iDAL_Product = new DAL_Product();
         }
+
         public string AddProduct(Product product, ProductDetail productDetail, Inventory inventory)
         {
             return _iDAL_Product.AddProduct(product, productDetail, inventory);

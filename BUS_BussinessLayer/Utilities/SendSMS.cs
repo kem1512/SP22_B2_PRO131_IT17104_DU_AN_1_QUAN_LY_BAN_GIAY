@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Net;
@@ -18,35 +19,37 @@ namespace BUS_BussinessLayer.Utilities
             try
             {
                 MailMessage mail = new MailMessage();
-                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
                 mail.From = new MailAddress("kem15122002@gmail.com");
                 mail.To.Add(email);
-                mail.Subject = "Test send email";
-                mail.Body = "Nếu chú nhận được email này và có kèm file báo cáo thì chức năng gửi mail đã thành công";
-                // if (bitmap == null)
-                // {
-                //     MessageBox.Show("Bạn cần đính kèm tệp trước khi gửi");
-                //     //MailMessage mail = new MailMessage();
-                //     openFileDialog1.ShowDialog();
-                //     //System.Net.Mail.Attachment attachment;
-                //     attachment = new System.Net.Mail.Attachment(openFileDialog1.FileName);
-                //     mail.Attachments.Add(attachment);
-                //     txt_Attach.Text = Convert.ToString(openFileDialog1.FileName);
-                // }
-                var image = GenerateBarcode.CreateQRCode("123", "12");
-                ImageConverter imageConverter = new ImageConverter();
-                byte[] result = (byte[])imageConverter.ConvertTo(image, typeof(byte[]));
-                MemoryStream memoryStream = new MemoryStream(result);
-                SmtpServer.Port = 587;
-                SmtpServer.Credentials = new System.Net.NetworkCredential("nbui04953@gmail.com", "16012002t");
-                SmtpServer.EnableSsl = true;
-                SmtpServer.Send(mail);
+                mail.Subject = subject;
+                mail.Body = body;
+                var stream = new MemoryStream();
+                bitmap.Save(stream, ImageFormat.Jpeg);
+                stream.Position = 0;
+                mail.Attachments.Add(new Attachment(stream, "image.jpg"));
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new System.Net.NetworkCredential("kem15122002@gmail.com", "badao12345");
+                smtpClient.EnableSsl = true;
+                smtpClient.Send(mail);
                 MessageBox.Show("Đã gửi");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        static Stream ToStream(this Bitmap ms)
+        {
+            var stream = new MemoryStream();
+            ms.Save(stream, ImageFormat.Bmp);
+            return stream;
+        }
+        static Attachment ToAttachment(Bitmap bmp)
+        {
+            const string contentType = "image.jpg";
+            return new Attachment(bmp.ToStream(), contentType);
         }
     }
 }

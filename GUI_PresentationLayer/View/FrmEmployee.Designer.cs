@@ -35,8 +35,11 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtEmail = new Bunifu.Framework.UI.BunifuMaterialTextbox();
-            this.pbxProduct = new FontAwesome.Sharp.IconPictureBox();
+            this.pbxEmployee = new FontAwesome.Sharp.IconPictureBox();
             this.lblName = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
@@ -88,10 +91,11 @@
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dgrid_Disabled = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.btnQr = new Bunifu.Framework.UI.BunifuThinButton2();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).BeginInit();
             this.tlpFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
             this.tlpLeft.SuspendLayout();
@@ -129,23 +133,24 @@
             this.txtEmail.TabIndex = 5;
             this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
-            // pbxProduct
+            // pbxEmployee
             // 
-            this.pbxProduct.BackColor = System.Drawing.Color.White;
-            this.pbxProduct.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.tlpLeft.SetColumnSpan(this.pbxProduct, 2);
-            this.pbxProduct.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pbxProduct.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pbxProduct.IconChar = FontAwesome.Sharp.IconChar.None;
-            this.pbxProduct.IconColor = System.Drawing.SystemColors.ControlText;
-            this.pbxProduct.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.pbxProduct.IconSize = 264;
-            this.pbxProduct.Location = new System.Drawing.Point(3, 3);
-            this.pbxProduct.Name = "pbxProduct";
-            this.pbxProduct.Size = new System.Drawing.Size(344, 264);
-            this.pbxProduct.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxProduct.TabIndex = 0;
-            this.pbxProduct.TabStop = false;
+            this.pbxEmployee.BackColor = System.Drawing.Color.White;
+            this.pbxEmployee.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tlpLeft.SetColumnSpan(this.pbxEmployee, 2);
+            this.pbxEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pbxEmployee.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pbxEmployee.IconChar = FontAwesome.Sharp.IconChar.None;
+            this.pbxEmployee.IconColor = System.Drawing.SystemColors.ControlText;
+            this.pbxEmployee.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.pbxEmployee.IconSize = 264;
+            this.pbxEmployee.Location = new System.Drawing.Point(3, 3);
+            this.pbxEmployee.Name = "pbxEmployee";
+            this.pbxEmployee.Size = new System.Drawing.Size(344, 264);
+            this.pbxEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxEmployee.TabIndex = 0;
+            this.pbxEmployee.TabStop = false;
+            this.pbxEmployee.Click += new System.EventHandler(this.pbxEmployee_Click);
             // 
             // lblName
             // 
@@ -282,7 +287,7 @@
             this.tlpLeft.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.00001F));
             this.tlpLeft.Controls.Add(this.btnEdit, 0, 7);
             this.tlpLeft.Controls.Add(this.txtEmail, 0, 4);
-            this.tlpLeft.Controls.Add(this.pbxProduct, 0, 0);
+            this.tlpLeft.Controls.Add(this.pbxEmployee, 0, 0);
             this.tlpLeft.Controls.Add(this.lblName, 0, 1);
             this.tlpLeft.Controls.Add(this.lblEmail, 0, 3);
             this.tlpLeft.Controls.Add(this.lblPassword, 0, 5);
@@ -587,13 +592,13 @@
             // 
             // cmbRoles
             // 
-            this.cmbRoles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbRoles.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.cmbRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRoles.FormattingEnabled = true;
-            this.cmbRoles.Location = new System.Drawing.Point(410, 133);
+            this.cmbRoles.Location = new System.Drawing.Point(410, 131);
             this.cmbRoles.Name = "cmbRoles";
-            this.cmbRoles.Size = new System.Drawing.Size(252, 33);
+            this.cmbRoles.Size = new System.Drawing.Size(247, 37);
             this.cmbRoles.TabIndex = 31;
             // 
             // pbxRoles
@@ -643,13 +648,14 @@
             // dgridEmployee
             // 
             this.dgridEmployee.AllowUserToAddRows = false;
+            this.dgridEmployee.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.dgridEmployee.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgridEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgridEmployee.BackgroundColor = System.Drawing.Color.White;
             this.dgridEmployee.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgridEmployee.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
@@ -668,6 +674,14 @@
             this.Column7,
             this.Column8,
             this.Column9});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgridEmployee.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgridEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgridEmployee.DoubleBuffered = true;
             this.dgridEmployee.EnableHeadersVisualStyles = false;
@@ -694,6 +708,7 @@
             // 
             // Column2
             // 
+            this.Column2.FillWeight = 104.1889F;
             this.Column2.HeaderText = "Họ tên";
             this.Column2.MinimumWidth = 6;
             this.Column2.Name = "Column2";
@@ -701,6 +716,7 @@
             // 
             // Column3
             // 
+            this.Column3.FillWeight = 104.1889F;
             this.Column3.HeaderText = "Email";
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
@@ -708,6 +724,7 @@
             // 
             // Column4
             // 
+            this.Column4.FillWeight = 104.1889F;
             this.Column4.HeaderText = "SĐT";
             this.Column4.MinimumWidth = 6;
             this.Column4.Name = "Column4";
@@ -715,6 +732,7 @@
             // 
             // Column5
             // 
+            this.Column5.FillWeight = 104.1889F;
             this.Column5.HeaderText = "Giới tính";
             this.Column5.MinimumWidth = 6;
             this.Column5.Name = "Column5";
@@ -722,6 +740,7 @@
             // 
             // Column6
             // 
+            this.Column6.FillWeight = 104.1889F;
             this.Column6.HeaderText = "Địa chỉ";
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
@@ -729,6 +748,7 @@
             // 
             // Column7
             // 
+            this.Column7.FillWeight = 104.1889F;
             this.Column7.HeaderText = "Ngày sinh";
             this.Column7.MinimumWidth = 6;
             this.Column7.Name = "Column7";
@@ -744,6 +764,7 @@
             // 
             // Column9
             // 
+            this.Column9.FillWeight = 74.86631F;
             this.Column9.HeaderText = "";
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
@@ -764,20 +785,20 @@
             // dgrid_Disable
             // 
             this.dgrid_Disable.AllowUserToAddRows = false;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgrid_Disable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Disable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgrid_Disable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrid_Disable.BackgroundColor = System.Drawing.Color.White;
             this.dgrid_Disable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgrid_Disable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrid_Disable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Disable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgrid_Disable.ColumnHeadersHeight = 54;
             this.dgrid_Disable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -788,7 +809,16 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
+            this.Column10,
             this.dataGridViewLinkColumn1});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgrid_Disable.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgrid_Disable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgrid_Disable.DoubleBuffered = true;
             this.dgrid_Disable.EnableHeadersVisualStyles = false;
@@ -799,9 +829,12 @@
             this.dgrid_Disable.ReadOnly = true;
             this.dgrid_Disable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Disable.RowHeadersWidth = 51;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgrid_Disable.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgrid_Disable.RowTemplate.Height = 70;
             this.dgrid_Disable.Size = new System.Drawing.Size(974, 349);
             this.dgrid_Disable.TabIndex = 1;
+            this.dgrid_Disable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_Disable_CellContentClick);
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -813,6 +846,7 @@
             // 
             // dataGridViewTextBoxColumn2
             // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 104.4757F;
             this.dataGridViewTextBoxColumn2.HeaderText = "Họ tên";
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
@@ -820,6 +854,7 @@
             // 
             // dataGridViewTextBoxColumn3
             // 
+            this.dataGridViewTextBoxColumn3.FillWeight = 104.4757F;
             this.dataGridViewTextBoxColumn3.HeaderText = "Email";
             this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
@@ -827,6 +862,7 @@
             // 
             // dataGridViewTextBoxColumn4
             // 
+            this.dataGridViewTextBoxColumn4.FillWeight = 104.4757F;
             this.dataGridViewTextBoxColumn4.HeaderText = "SĐT";
             this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
@@ -834,6 +870,7 @@
             // 
             // dataGridViewTextBoxColumn5
             // 
+            this.dataGridViewTextBoxColumn5.FillWeight = 104.4757F;
             this.dataGridViewTextBoxColumn5.HeaderText = "Giới tính";
             this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
@@ -841,6 +878,7 @@
             // 
             // dataGridViewTextBoxColumn6
             // 
+            this.dataGridViewTextBoxColumn6.FillWeight = 104.4757F;
             this.dataGridViewTextBoxColumn6.HeaderText = "Địa chỉ";
             this.dataGridViewTextBoxColumn6.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
@@ -848,6 +886,7 @@
             // 
             // dataGridViewTextBoxColumn7
             // 
+            this.dataGridViewTextBoxColumn7.FillWeight = 104.4757F;
             this.dataGridViewTextBoxColumn7.HeaderText = "Ngày sinh";
             this.dataGridViewTextBoxColumn7.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
@@ -861,8 +900,17 @@
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
             this.dataGridViewTextBoxColumn8.Visible = false;
             // 
+            // Column10
+            // 
+            this.Column10.FillWeight = 85.56149F;
+            this.Column10.HeaderText = "";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
             // dataGridViewLinkColumn1
             // 
+            this.dataGridViewLinkColumn1.FillWeight = 87.58441F;
             this.dataGridViewLinkColumn1.HeaderText = "";
             this.dataGridViewLinkColumn1.MinimumWidth = 6;
             this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
@@ -870,19 +918,19 @@
             // 
             // dgrid_Disabled
             // 
-            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgrid_Disabled.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Disabled.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgrid_Disabled.BackgroundColor = System.Drawing.Color.White;
             this.dgrid_Disabled.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgrid_Disabled.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrid_Disabled.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Disabled.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgrid_Disabled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrid_Disabled.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgrid_Disabled.DoubleBuffered = true;
@@ -904,7 +952,7 @@
             this.btnQr.ActiveFillColor = System.Drawing.Color.SeaGreen;
             this.btnQr.ActiveForecolor = System.Drawing.Color.White;
             this.btnQr.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.btnQr.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnQr.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnQr.BackColor = System.Drawing.Color.White;
             this.btnQr.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQr.BackgroundImage")));
             this.btnQr.ButtonText = "Gửi QR";
@@ -939,7 +987,7 @@
             this.Controls.Add(this.tlpBot);
             this.Name = "FrmEmployee";
             this.Text = "FrmEmployee";
-            ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).EndInit();
             this.tlpFilter.ResumeLayout(false);
             this.tlpFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).EndInit();
@@ -964,7 +1012,7 @@
 
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtEmail;
         private System.Windows.Forms.TableLayoutPanel tlpLeft;
-        private FontAwesome.Sharp.IconPictureBox pbxProduct;
+        private FontAwesome.Sharp.IconPictureBox pbxEmployee;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblPassword;
@@ -998,6 +1046,8 @@
         private System.Windows.Forms.ComboBox cmbRoles;
         private FontAwesome.Sharp.IconPictureBox pbxRoles;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Disabled;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Disable;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnQr;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
@@ -1007,7 +1057,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
-        private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Disable;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -1016,7 +1065,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
+        private System.Windows.Forms.DataGridViewLinkColumn Column10;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnQr;
     }
 }

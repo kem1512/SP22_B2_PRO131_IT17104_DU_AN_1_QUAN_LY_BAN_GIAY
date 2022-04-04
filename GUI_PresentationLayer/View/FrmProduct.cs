@@ -91,6 +91,10 @@ namespace GUI_PresentationLayer.View
             {
                 return "Mã vạch không được bỏ trống";
             }
+            if (_iProductServices.GetProducts().Any(c => c.ProductName == txtName.Text))
+            {
+                return "Tên sản phẩm đã tồn tại!";
+            }
             return null;
         }
 

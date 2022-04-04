@@ -18,7 +18,7 @@ namespace DAL_DataAccessLayer.DAL_Services
             var directoryInfo = Directory.GetParent(Directory.GetCurrentDirectory())?.Parent;
             if (directoryInfo != null)
             {
-                var path = directoryInfo.FullName + @"\Images\Product\Employee\";
+                var path = directoryInfo.FullName + @"\Images\Employee\";
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -68,7 +68,6 @@ namespace DAL_DataAccessLayer.DAL_Services
                         em.Gender = employee.Gender;
                         em.Phone = employee.Phone;
                         em.RoleId = employee.RoleId;
-                        em.EmployeeImage = employee.EmployeeImage;
                         _db.SaveChanges();
                         var image = GetFullPath() + employee.EmployeeId + Path.GetExtension(employee.EmployeeImage);
 
@@ -102,6 +101,14 @@ namespace DAL_DataAccessLayer.DAL_Services
                     var em = _db.Employee.FirstOrDefault(c => c.EmployeeId == id);
                     if (em != null)
                     {
+                        foreach (var x in _db.Invoice.Where(c => c.EmployeeId == em.EmployeeId))
+                        {
+                            foreach (var y in _db.InvoiceDetail.Where(c => c.InvoiceId == x.InvoiceId))
+                            {
+                                x.InvoiceDetail.Remove(y);
+                            }
+                            _db.Invoice.Remove(x);
+                        }
                         _db.Employee.Remove(em);
                         _db.SaveChanges();
                         return "Xoá thành công";
@@ -128,6 +135,36 @@ namespace DAL_DataAccessLayer.DAL_Services
             using (_db = new QuanLyBanGiayEntities())
             {
                 return _db.Employee.ToList();
+            }
+        }
+
+        public string DisableEmployee(string id)
+        {
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                var employee = _db.Employee.FirstOrDefault(c => c.EmployeeId == id);
+                if (id != null && employee != null)
+                {
+                    employee.Status = false;
+                    _db.SaveChanges();
+                    return "Xóa thành công!";
+                }
+                return "Xóa thất bại!";
+            }
+        }
+
+        public string RecoveryEmployee(string id)
+        {
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                var employee = _db.Employee.FirstOrDefault(c => c.EmployeeId == id);
+                if (id != null && employee != null)
+                {
+                    employee.Status = true;
+                    _db.SaveChanges();
+                    return "Phục hồi thành công!";
+                }
+                return "Phục hồi thất bại!";
             }
         }
     }

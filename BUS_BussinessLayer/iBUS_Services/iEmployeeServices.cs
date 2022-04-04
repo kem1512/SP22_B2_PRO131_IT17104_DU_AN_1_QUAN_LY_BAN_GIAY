@@ -14,5 +14,9 @@ namespace BUS_BussinessLayer.iBUS_Services
         string RemoveEmployee(string id);
         Employee GetEmployeeById(string id);
         List<Employee> GetEmployees();
+
+        string DisableEmployee(string id);
+
+        string RecoveryEmployee(string id);
     }
 }

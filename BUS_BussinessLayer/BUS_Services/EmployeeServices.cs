@@ -43,5 +43,15 @@ namespace BUS_BussinessLayer.BUS_Services
         {
             return _iDAL_Employee.GetEmployees();
         }
+
+        public string DisableEmployee(string id)
+        {
+            return _iDAL_Employee.DisableEmployee(id);
+        }
+
+        public string RecoveryEmployee(string id)
+        {
+            return _iDAL_Employee.RecoveryEmployee(id);
+        }
     }
 }

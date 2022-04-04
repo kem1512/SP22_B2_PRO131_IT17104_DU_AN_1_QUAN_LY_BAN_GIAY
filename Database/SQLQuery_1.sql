@@ -1,7 +1,6 @@
 CREATE DATABASE QuanLyBanGiay
 GO
 
-
 USE QuanLyBanGiay
 GO
 
@@ -80,7 +79,8 @@ CREATE TABLE Employee
     Gender BIT NOT NULL,
     Address NVARCHAR(250) NOT NULL,
     EmployeeImage VARCHAR(250) NOT NULL,
-    DateOfBirth DATETIME NOT NULL,
+    DateOfBirth DATE NOT NULL,
+    Status BIT NOT NULL,
     RoleId VARCHAR(9) FOREIGN KEY REFERENCES Roles(RoleId)
 )
 
@@ -134,7 +134,7 @@ INSERT INTO Roles VALUES('R3', 'Shipper')
 INSERT INTO Shipper VALUES('SP1', N'Hải Đăng', '0357503628', 'R3', 0)
 INSERT INTO Shipper VALUES('SP2', N'Trần Nam', '0123456789', 'R3', 0)
 INSERT INTO Customer VALUES('CT1', 'Vivi', '03575121','Hà Nội',0,1)
-INSERT INTO Employee VALUES('EM1', N'Hải Đăng', '123','123','123',0,'123','123','2002/01/01','R1')
+INSERT INTO Employee VALUES('EM1', N'Hải Đăng', '123','123','123',0,'123','123','2002/01/01',0,'R1')
 INSERT INTO Color VALUES('CL1',N'Đỏ')
 INSERT INTO Color VALUES('CL2',N'Vàng')
 INSERT INTO Size VALUES('S1','38')
