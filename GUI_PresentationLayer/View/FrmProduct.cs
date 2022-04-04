@@ -103,8 +103,8 @@ namespace GUI_PresentationLayer.View
         private void LoadData()
         {
             dgridProduct.Rows.Clear();
-            var result = _iProductServices.GetViewProducts();
-            foreach (var x in result.Where(c => c.product.Status))
+            var products = _iProductServices.GetViewProducts();
+            foreach (var x in products.Where(c => c.product.Status))
             {
                 if (File.Exists(x.product.ProductImage))
                 {
@@ -120,7 +120,7 @@ namespace GUI_PresentationLayer.View
             }
 
             dgridProductDeleted.Rows.Clear();
-            foreach (var x in result.Where(c => c.product.Status == false))
+            foreach (var x in products.Where(c => c.product.Status == false))
             {
                 using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
                 {
@@ -182,43 +182,40 @@ namespace GUI_PresentationLayer.View
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (btnAdd.Cursor == Cursors.Hand)
+            if (ValidateForm() is null)
             {
-                if (ValidateForm() is null)
+                var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
+                if (MessageBox.Show("Bạn có chắc muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
                 {
-                    var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
-                    if (MessageBox.Show("Bạn có chắc muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo) ==
-                        DialogResult.Yes)
+                    MessageBox.Show(_iProductServices.AddProduct(new Product()
                     {
-                        MessageBox.Show(_iProductServices.AddProduct(new Product()
-                        {
-                            ProductId = productId,
-                            ProductName = txtName.Text,
-                            ProductImage = pbxProduct.Tag.ToString(),
-                            Description = txtNote.Text,
-                            Status = true,
-                            Barcode = txtBarcode.SelectedItem.ToString()
-                        }, new ProductDetail()
-                        {
-                            ProductId = productId,
-                            BrandId = cmbBrandBot.SelectedValue.ToString(),
-                            ColorId = cmbColorBot.SelectedValue.ToString(),
-                            MaterialId = cmbMat.SelectedValue.ToString(),
-                            SizeId = cmbSize.SelectedValue.ToString(),
-                            CategoryId = cmbCat.SelectedValue.ToString(),
-                            UnitPrice = float.Parse(txtPrice.Text),
-                        }, new Inventory()
-                        {
-                            ProductId = productId,
-                            Amount = int.Parse(txtQuantity.Text)
-                        }));
-                        LoadData();
-                    }
+                        ProductId = productId,
+                        ProductName = txtName.Text,
+                        ProductImage = pbxProduct.Tag.ToString(),
+                        Description = txtNote.Text,
+                        Status = true,
+                        Barcode = txtBarcode.SelectedItem.ToString()
+                    }, new ProductDetail()
+                    {
+                        ProductId = productId,
+                        BrandId = cmbBrandBot.SelectedValue.ToString(),
+                        ColorId = cmbColorBot.SelectedValue.ToString(),
+                        MaterialId = cmbMat.SelectedValue.ToString(),
+                        SizeId = cmbSize.SelectedValue.ToString(),
+                        CategoryId = cmbCat.SelectedValue.ToString(),
+                        UnitPrice = float.Parse(txtPrice.Text),
+                    }, new Inventory()
+                    {
+                        ProductId = productId,
+                        Amount = int.Parse(txtQuantity.Text)
+                    }));
+                    LoadData();
                 }
-                else
-                {
-                    MessageBox.Show(ValidateForm());
-                }
+            }
+            else
+            {
+                MessageBox.Show(ValidateForm());
             }
         }
 
@@ -270,7 +267,6 @@ namespace GUI_PresentationLayer.View
                     pbxProduct.Tag = product.ProductImage;
                 }
                 txtName.Text = row.Cells[2].Value.ToString();
-                txtNote.Text = row.Cells[2].Value.ToString();
                 txtQuantity.Text = row.Cells[3].Value.ToString();
                 txtPrice.Text = row.Cells[4].Value.ToString();
                 txtNote.Text = row.Cells[5].Value.ToString();
@@ -481,49 +477,17 @@ namespace GUI_PresentationLayer.View
 
         private void btnQrCode_Click(object sender, EventArgs e)
         {
-            // PrintDocument printDocument = new PrintDocument();
-            // printDocument.PrintPage += (o, args) =>
-            // {
-            //     for (int i = 0; i < dgridProduct.Rows.Count; i++)
-            //     {
-            //         EncodingOptions encodingOptions = new EncodingOptions() { Width = 700, Height = 450};
-            //         var result = GenerateBarcode.CreateQrCode(_iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString()).Barcode, encodingOptions);
-            //         args.Graphics.DrawImage(result, new Point(250, i * 500));
-            //     }
-            // };
-            // PrintDialog printDialog = new PrintDialog();
-            // printDialog.Document = printDocument;
-            //
-            // if (printDialog.ShowDialog() == DialogResult.OK)
-            // {
-            //     printDocument.Print();
-            // }
             SaveFileDialog saveFileDialog = new SaveFileDialog();
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 PdfDocument pdfDocument = new PdfDocument();
                 foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    // // Tìm sản phẩm
                     var result = _iProductServices.GetProductById(x.Cells[0].Value.ToString());
-                    // // Tạo mã
-                    var image = GenerateBarcode.CreateQrCode(result.Barcode);
-                    // // Tạo page
+                    var image = GenerateBarcode.CreateBarcode(result.Barcode);
                     pdfDocument.PageSettings.SetMargins(0);
-                    // PdfPage pdfPage = pdfDocument.Pages.Add();
-                    // // Tạo thông tin sản phẩm
-                    // RectangleF rectangleF = new RectangleF(new PointF(0, 0), new SizeF(pdfDocument.PageSettings.Width, 100));
-                    // // Tạo font
-                    PdfFont pdfFontContent = new PdfCjkStandardFont(PdfCjkFontFamily.MonotypeHeiMedium, 18, PdfFontStyle.Regular);
-                    // PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center);
                     PdfBitmap pdfBitmap = new PdfBitmap(image);
-                    // PdfGraphics pdfGraphics = pdfPage.Graphics;
-                    // pdfGraphics.DrawString($"{result.ProductId} : {result.ProductName}", pdfFontContent , new PdfPen(Color.Black), rectangleF, pdfStringFormat);
-                    // // In mã vạch
-                    // pdfGraphics.DrawImage(pdfBitmap, (pdfPage.Size.Width - 150) / 2, rectangleF.Y + (pdfPage.Size.Width - 150) / 2, 150, 80);
-                    // //In mã vạch
                     PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\FontBarcode.ttf", 18);
-                    // pdfGraphics.DrawString(result.Barcode, pdfFont, new PdfPen(Color.Black), new PointF(8, 110));
                     PdfPage pdfPage = pdfDocument.Pages.Add();
                     PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center);
                     RectangleF rectangleF = new RectangleF(new PointF(0, 30), new SizeF(pdfDocument.PageSettings.Width, 80));
@@ -559,11 +523,6 @@ namespace GUI_PresentationLayer.View
             txtBarcode.Items.Clear();
             txtBarcode.Items.Add(stringBuilder);
             txtBarcode.SelectedItem = stringBuilder;
-        }
-
-        private void tlpBot_Paint(object sender, PaintEventArgs e)
-        {
-
         }
     }
 }

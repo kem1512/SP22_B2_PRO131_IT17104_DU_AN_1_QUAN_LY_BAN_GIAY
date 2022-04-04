@@ -22,7 +22,9 @@ namespace GUI_PresentationLayer.View
         private Panel leftBorderBtn = new Panel();
         private Form currentChildForm;
         private iInvoiceServices _iInvoiceServices = new InvoiceServices();
+        private iEmployeeServices _iEmployeeServices = new EmployeeServices();
         private bool isMinimized = false;
+        public string Email { get; set; }
         public FrmMain()
         {
             InitializeComponent();
@@ -32,7 +34,7 @@ namespace GUI_PresentationLayer.View
             LoadData();
         }
 
-        private void AddItem(string id)
+        private void AddInvoice(string id)
         {
             InvoiceIcon invoiceIcon = new InvoiceIcon();
             invoiceIcon.Id = id;
@@ -57,10 +59,11 @@ namespace GUI_PresentationLayer.View
         public void LoadData()
         {
             fpnlInvoice.Controls.Clear();
-            var result = _iInvoiceServices.GetInvoices().Where(c => c.InvoiceStatus == false && c.Description == null).ToList();
-            foreach (var x in result)
+            // Load hóa đơn
+            var invoice = _iInvoiceServices.GetInvoices().Where(c => c.InvoiceStatus == false && c.Description == null).ToList();
+            foreach (var x in invoice)
             {
-                AddItem(x.InvoiceId);
+                AddInvoice(x.InvoiceId);
             }
         }
 
@@ -189,6 +192,36 @@ namespace GUI_PresentationLayer.View
                 pnlMain.Dock = DockStyle.Fill;
                 isMinimized = false;
             }
+        }
+
+        private void FrmMain_Load(object sender, EventArgs e)
+        {
+            if (Email != null)
+            {
+                // Tìm nhân viên
+                var employee = _iEmployeeServices.GetEmployees().FirstOrDefault(c => c.Email == Email);
+                if (employee != null)
+                {
+                    if (File.Exists(employee.EmployeeImage))
+                    {
+                        using (FileStream fileStream = new FileStream(employee.EmployeeImage, FileMode.Open))
+                        {
+                            pbxEmployee.Image = new Bitmap(fileStream);
+                            lblName.Text = employee.FullName;
+                        }
+                    }
+                    else
+                    {
+                        pbxEmployee.Image = Properties.Resources.failed;
+                        lblName.Text = employee.FullName;
+                    }
+                }
+            }
+        }
+
+        private void pbxLogout_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

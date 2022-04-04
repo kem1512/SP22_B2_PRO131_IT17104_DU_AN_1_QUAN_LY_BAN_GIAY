@@ -79,6 +79,18 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabProduct = new System.Windows.Forms.TabPage();
             this.dgridProduct = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tabDeleted = new System.Windows.Forms.TabPage();
             this.dgridProductDeleted = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,18 +108,6 @@
             this.Column13 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.btnQrCode = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tlpBot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditMat)).BeginInit();
@@ -164,7 +164,6 @@
             this.tlpBot.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpBot.Size = new System.Drawing.Size(1147, 199);
             this.tlpBot.TabIndex = 1;
-            this.tlpBot.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpBot_Paint);
             // 
             // cmbSize
             // 
@@ -835,6 +834,106 @@
             this.dgridProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridProduct_CellClick);
             this.dgridProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridProduct_CellContentClick);
             // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Mã sản phẩm";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 40F;
+            this.Column1.HeaderText = "Ảnh";
+            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Tên sản phẩm";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.FillWeight = 30F;
+            this.Column4.HeaderText = "Kho";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 60F;
+            this.Column3.HeaderText = "Đơn giá";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Ghi chú";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Visible = false;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Thương hiệu";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Chất liệu";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Visible = false;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Màu sắc";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Visible = false;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Kích thước";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Loại giày";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Visible = false;
+            // 
+            // Column5
+            // 
+            this.Column5.FillWeight = 20F;
+            this.Column5.HeaderText = "";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // tabDeleted
             // 
             this.tabDeleted.BackColor = System.Drawing.Color.White;
@@ -1070,106 +1169,6 @@
             this.bunifuThinButton21.TabIndex = 31;
             this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuThinButton21.Click += new System.EventHandler(this.bunifuThinButton21_Click);
-            // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Mã sản phẩm";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.FillWeight = 40F;
-            this.Column1.HeaderText = "Ảnh";
-            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Tên sản phẩm";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.FillWeight = 30F;
-            this.Column4.HeaderText = "Kho";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.FillWeight = 60F;
-            this.Column3.HeaderText = "Đơn giá";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Ghi chú";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Visible = false;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Thương hiệu";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Visible = false;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Chất liệu";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Visible = false;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Màu sắc";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Visible = false;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Kích thước";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Visible = false;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Loại giày";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Visible = false;
-            // 
-            // Column5
-            // 
-            this.Column5.FillWeight = 20F;
-            this.Column5.HeaderText = "";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // FrmProduct
             // 

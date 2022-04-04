@@ -30,6 +30,7 @@
         {
             this.pnlTopBar = new System.Windows.Forms.Panel();
             this.pnlLeftBar = new System.Windows.Forms.Panel();
+            this.pbxLogout = new FontAwesome.Sharp.IconButton();
             this.btnCustomer = new FontAwesome.Sharp.IconButton();
             this.btnOrder = new FontAwesome.Sharp.IconButton();
             this.btnThongKe = new FontAwesome.Sharp.IconButton();
@@ -37,6 +38,8 @@
             this.btnProduct = new FontAwesome.Sharp.IconButton();
             this.btnHome = new FontAwesome.Sharp.IconButton();
             this.pnlLogo = new System.Windows.Forms.Panel();
+            this.lblName = new System.Windows.Forms.Label();
+            this.pbxEmployee = new FontAwesome.Sharp.IconPictureBox();
             this.pnlBottomBar = new System.Windows.Forms.Panel();
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.btnMaximize = new FontAwesome.Sharp.IconButton();
@@ -46,6 +49,8 @@
             this.pnlMain = new System.Windows.Forms.Panel();
             this.fpnlInvoice = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlLeftBar.SuspendLayout();
+            this.pnlLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).BeginInit();
             this.pnlBottomBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHomeMain)).BeginInit();
             this.SuspendLayout();
@@ -63,6 +68,7 @@
             // 
             this.pnlLeftBar.AutoScroll = true;
             this.pnlLeftBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.pnlLeftBar.Controls.Add(this.pbxLogout);
             this.pnlLeftBar.Controls.Add(this.btnCustomer);
             this.pnlLeftBar.Controls.Add(this.btnOrder);
             this.pnlLeftBar.Controls.Add(this.btnThongKe);
@@ -77,6 +83,29 @@
             this.pnlLeftBar.Size = new System.Drawing.Size(272, 678);
             this.pnlLeftBar.TabIndex = 8;
             // 
+            // pbxLogout
+            // 
+            this.pbxLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.pbxLogout.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pbxLogout.FlatAppearance.BorderSize = 0;
+            this.pbxLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.pbxLogout.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.pbxLogout.ForeColor = System.Drawing.Color.White;
+            this.pbxLogout.IconChar = FontAwesome.Sharp.IconChar.Pager;
+            this.pbxLogout.IconColor = System.Drawing.Color.White;
+            this.pbxLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.pbxLogout.IconSize = 75;
+            this.pbxLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.pbxLogout.Location = new System.Drawing.Point(0, 770);
+            this.pbxLogout.Name = "pbxLogout";
+            this.pbxLogout.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.pbxLogout.Size = new System.Drawing.Size(251, 85);
+            this.pbxLogout.TabIndex = 9;
+            this.pbxLogout.Text = "Đăng xuất";
+            this.pbxLogout.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.pbxLogout.UseVisualStyleBackColor = false;
+            this.pbxLogout.Click += new System.EventHandler(this.pbxLogout_Click);
+            // 
             // btnCustomer
             // 
             this.btnCustomer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
@@ -90,10 +119,10 @@
             this.btnCustomer.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCustomer.IconSize = 75;
             this.btnCustomer.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCustomer.Location = new System.Drawing.Point(0, 545);
+            this.btnCustomer.Location = new System.Drawing.Point(0, 685);
             this.btnCustomer.Name = "btnCustomer";
             this.btnCustomer.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnCustomer.Size = new System.Drawing.Size(272, 85);
+            this.btnCustomer.Size = new System.Drawing.Size(251, 85);
             this.btnCustomer.TabIndex = 8;
             this.btnCustomer.Text = "Khách hàng";
             this.btnCustomer.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -113,10 +142,10 @@
             this.btnOrder.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnOrder.IconSize = 75;
             this.btnOrder.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOrder.Location = new System.Drawing.Point(0, 460);
+            this.btnOrder.Location = new System.Drawing.Point(0, 600);
             this.btnOrder.Name = "btnOrder";
             this.btnOrder.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnOrder.Size = new System.Drawing.Size(272, 85);
+            this.btnOrder.Size = new System.Drawing.Size(251, 85);
             this.btnOrder.TabIndex = 7;
             this.btnOrder.Text = "Hóa đơn";
             this.btnOrder.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -136,10 +165,10 @@
             this.btnThongKe.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnThongKe.IconSize = 75;
             this.btnThongKe.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThongKe.Location = new System.Drawing.Point(0, 375);
+            this.btnThongKe.Location = new System.Drawing.Point(0, 515);
             this.btnThongKe.Name = "btnThongKe";
             this.btnThongKe.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnThongKe.Size = new System.Drawing.Size(272, 85);
+            this.btnThongKe.Size = new System.Drawing.Size(251, 85);
             this.btnThongKe.TabIndex = 6;
             this.btnThongKe.Text = "Thống kê";
             this.btnThongKe.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -159,10 +188,10 @@
             this.btnStaff.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnStaff.IconSize = 75;
             this.btnStaff.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStaff.Location = new System.Drawing.Point(0, 290);
+            this.btnStaff.Location = new System.Drawing.Point(0, 430);
             this.btnStaff.Name = "btnStaff";
             this.btnStaff.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnStaff.Size = new System.Drawing.Size(272, 85);
+            this.btnStaff.Size = new System.Drawing.Size(251, 85);
             this.btnStaff.TabIndex = 5;
             this.btnStaff.Text = "Nhân viên";
             this.btnStaff.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -182,10 +211,10 @@
             this.btnProduct.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnProduct.IconSize = 75;
             this.btnProduct.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProduct.Location = new System.Drawing.Point(0, 205);
+            this.btnProduct.Location = new System.Drawing.Point(0, 345);
             this.btnProduct.Name = "btnProduct";
             this.btnProduct.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnProduct.Size = new System.Drawing.Size(272, 85);
+            this.btnProduct.Size = new System.Drawing.Size(251, 85);
             this.btnProduct.TabIndex = 4;
             this.btnProduct.Text = "Sản phẩm";
             this.btnProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -205,10 +234,10 @@
             this.btnHome.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnHome.IconSize = 75;
             this.btnHome.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHome.Location = new System.Drawing.Point(0, 120);
+            this.btnHome.Location = new System.Drawing.Point(0, 260);
             this.btnHome.Name = "btnHome";
             this.btnHome.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnHome.Size = new System.Drawing.Size(272, 85);
+            this.btnHome.Size = new System.Drawing.Size(251, 85);
             this.btnHome.TabIndex = 3;
             this.btnHome.Text = "Trang chủ";
             this.btnHome.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -218,11 +247,43 @@
             // pnlLogo
             // 
             this.pnlLogo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.pnlLogo.Controls.Add(this.lblName);
+            this.pnlLogo.Controls.Add(this.pbxEmployee);
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(272, 120);
+            this.pnlLogo.Size = new System.Drawing.Size(251, 260);
             this.pnlLogo.TabIndex = 2;
+            // 
+            // lblName
+            // 
+            this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblName.ForeColor = System.Drawing.Color.White;
+            this.lblName.Location = new System.Drawing.Point(65, 200);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(120, 29);
+            this.lblName.TabIndex = 7;
+            this.lblName.Text = "Hải Đăng";
+            // 
+            // pbxEmployee
+            // 
+            this.pbxEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pbxEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.pbxEmployee.ForeColor = System.Drawing.Color.Red;
+            this.pbxEmployee.IconChar = FontAwesome.Sharp.IconChar.Neos;
+            this.pbxEmployee.IconColor = System.Drawing.Color.Red;
+            this.pbxEmployee.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.pbxEmployee.IconSize = 173;
+            this.pbxEmployee.Location = new System.Drawing.Point(27, 12);
+            this.pbxEmployee.Name = "pbxEmployee";
+            this.pbxEmployee.Size = new System.Drawing.Size(195, 173);
+            this.pbxEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxEmployee.TabIndex = 6;
+            this.pbxEmployee.TabStop = false;
             // 
             // pnlBottomBar
             // 
@@ -362,8 +423,12 @@
             this.Name = "FrmMain";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Load += new System.EventHandler(this.FrmMain_Load);
             this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.pnlLeftBar.ResumeLayout(false);
+            this.pnlLogo.ResumeLayout(false);
+            this.pnlLogo.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).EndInit();
             this.pnlBottomBar.ResumeLayout(false);
             this.pnlBottomBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHomeMain)).EndInit();
@@ -390,6 +455,9 @@
         private FontAwesome.Sharp.IconPictureBox btnHomeMain;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.FlowLayoutPanel fpnlInvoice;
+        private FontAwesome.Sharp.IconPictureBox pbxEmployee;
+        private System.Windows.Forms.Label lblName;
+        private FontAwesome.Sharp.IconButton pbxLogout;
     }
 }
 

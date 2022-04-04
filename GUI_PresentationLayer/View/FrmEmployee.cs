@@ -196,5 +196,13 @@ namespace GUI_PresentationLayer.View
 
             }
         }
+
+        private void btnQr_Click(object sender, EventArgs e)
+        {
+            if (dgridEmployee.CurrentRow != null)
+            {
+                
+            }
+        }
     }
 }

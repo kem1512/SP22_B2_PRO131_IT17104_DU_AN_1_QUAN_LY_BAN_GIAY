@@ -80,6 +80,7 @@
     <Compile Include="Utilities\ConvertMoney.cs" />
     <Compile Include="Utilities\GenerateBarcode.cs" />
     <Compile Include="Utilities\GenerateExcel.cs" />
+    <Compile Include="Utilities\SendSMS.cs" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">

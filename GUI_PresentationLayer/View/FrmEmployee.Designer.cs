@@ -90,6 +90,7 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dgrid_Disabled = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.btnQr = new Bunifu.Framework.UI.BunifuThinButton2();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).BeginInit();
             this.tlpFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
@@ -896,12 +897,40 @@
             this.dgrid_Disabled.Size = new System.Drawing.Size(974, 349);
             this.dgrid_Disabled.TabIndex = 0;
             // 
+            // btnQr
+            // 
+            this.btnQr.ActiveBorderThickness = 1;
+            this.btnQr.ActiveCornerRadius = 20;
+            this.btnQr.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnQr.ActiveForecolor = System.Drawing.Color.White;
+            this.btnQr.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnQr.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.btnQr.BackColor = System.Drawing.Color.White;
+            this.btnQr.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQr.BackgroundImage")));
+            this.btnQr.ButtonText = "Gửi QR";
+            this.btnQr.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQr.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQr.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnQr.IdleBorderThickness = 1;
+            this.btnQr.IdleCornerRadius = 20;
+            this.btnQr.IdleFillColor = System.Drawing.Color.White;
+            this.btnQr.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnQr.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnQr.Location = new System.Drawing.Point(1043, 7);
+            this.btnQr.Margin = new System.Windows.Forms.Padding(5);
+            this.btnQr.Name = "btnQr";
+            this.btnQr.Size = new System.Drawing.Size(161, 62);
+            this.btnQr.TabIndex = 36;
+            this.btnQr.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnQr.Click += new System.EventHandler(this.btnQr_Click);
+            // 
             // FrmEmployee
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1405, 755);
+            this.Controls.Add(this.btnQr);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.tlpFilter);
             this.Controls.Add(this.pbxSearch);
@@ -988,5 +1017,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnQr;
     }
 }

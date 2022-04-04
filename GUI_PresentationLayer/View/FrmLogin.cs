@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video.DirectShow;
@@ -67,8 +68,15 @@ namespace GUI_PresentationLayer.View
                 Result result = barcodeReader.Decode((Bitmap) pbxCamera.Image);
                 if (result != null)
                 {
-                    FrmMain frmMain = new FrmMain();
-                    frmMain.Show();
+                    var em = _iEmployeeServices.GetEmployees().FirstOrDefault(c => c.Email == txtEmail.Text && c.Pass == txtPassword.Text);
+                    if (em != null)
+                    {
+                        FrmMain frmMain = new FrmMain();
+                        frmMain.Email = em.Email;
+                        Hide();
+                        frmMain.Closed += (o, args) => Show();
+                        frmMain.Show();
+                    }
                     tmrScan.Stop();
                     if(_videoCaptureDevice.IsRunning)
                         _videoCaptureDevice.Stop();
@@ -78,10 +86,34 @@ namespace GUI_PresentationLayer.View
 
         private void btnLogin2_Click(object sender, EventArgs e)
         {
-            FrmMain frmMain = new FrmMain();
-            Hide();
-            frmMain.Closed += (o, args) => Close();
-            frmMain.Show();
+            if (txtEmail.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập email!");
+            }else if (txtPassword.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu!");
+            }else if(!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            {
+                MessageBox.Show("Định dạng email không đúng!");
+            }
+            else
+            {
+                var result = _iEmployeeServices.GetEmployees().FirstOrDefault(c => c.Email == txtEmail.Text && c.Pass == txtPassword.Text);
+                if (result != null)
+                {
+                    if (cbxRemember.Checked)
+                    {
+                        Properties.Settings.Default.Email = txtEmail.Text;
+                        Properties.Settings.Default.Passsword = txtPassword.Text;
+                        Properties.Settings.Default.Save();
+                    }
+                    FrmMain frmMain = new FrmMain();
+                    frmMain.Email = result.Email;
+                    Hide();
+                    frmMain.Closed += (o, args) => Show();
+                    frmMain.Show();
+                }
+            }
         }
     }
 }

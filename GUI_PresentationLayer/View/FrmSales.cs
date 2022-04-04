@@ -436,7 +436,7 @@ namespace GUI_PresentationLayer.View
                         {
                             dgridOrder.Rows.Add(product.product.ProductId, new Bitmap(fileStream),
                                 product.product.ProductName,
-                                "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "Xóa");
+                                "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice,"+", "-", "Xóa");
                         }
                         lblTotalPrice.Text = TotalPrice();
                         btnQr2.ButtonText = "Quét mã";
