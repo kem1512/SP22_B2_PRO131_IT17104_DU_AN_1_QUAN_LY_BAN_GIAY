@@ -59,6 +59,7 @@
     <Compile Include="DAL_Services\DAL_Role.cs" />
     <Compile Include="DAL_Services\DAL_Shipper.cs" />
     <Compile Include="DAL_Services\DAL_Size.cs" />
+    <Compile Include="DAL_Services\DAL_User.cs" />
     <Compile Include="Entities\Brand.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
@@ -127,6 +128,7 @@
     <Compile Include="iDAL_Services\iDAL_Roles.cs" />
     <Compile Include="iDAL_Services\iDAL_Shipper.cs" />
     <Compile Include="iDAL_Services\iDAL_Size.cs" />
+    <Compile Include="iDAL_Services\iDAL_User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

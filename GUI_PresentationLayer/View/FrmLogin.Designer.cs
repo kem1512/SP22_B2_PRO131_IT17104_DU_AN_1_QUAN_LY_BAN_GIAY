@@ -79,9 +79,10 @@
             this.bunifuGradientPanel1.GradientTopLeft = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(193)))), ((int)(((byte)(149)))));
             this.bunifuGradientPanel1.GradientTopRight = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(193)))), ((int)(((byte)(149)))));
             this.bunifuGradientPanel1.Location = new System.Drawing.Point(0, 0);
+            this.bunifuGradientPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.bunifuGradientPanel1.Name = "bunifuGradientPanel1";
             this.bunifuGradientPanel1.Quality = 10;
-            this.bunifuGradientPanel1.Size = new System.Drawing.Size(491, 638);
+            this.bunifuGradientPanel1.Size = new System.Drawing.Size(393, 510);
             this.bunifuGradientPanel1.TabIndex = 2;
             // 
             // btnLogin1
@@ -103,10 +104,10 @@
             this.btnLogin1.IdleFillColor = System.Drawing.Color.Transparent;
             this.btnLogin1.IdleForecolor = System.Drawing.Color.White;
             this.btnLogin1.IdleLineColor = System.Drawing.Color.White;
-            this.btnLogin1.Location = new System.Drawing.Point(42, 414);
-            this.btnLogin1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.btnLogin1.Location = new System.Drawing.Point(34, 331);
+            this.btnLogin1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnLogin1.Name = "btnLogin1";
-            this.btnLogin1.Size = new System.Drawing.Size(191, 67);
+            this.btnLogin1.Size = new System.Drawing.Size(153, 54);
             this.btnLogin1.TabIndex = 6;
             this.btnLogin1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLogin1.Click += new System.EventHandler(this.btnLogin_Click);
@@ -131,10 +132,10 @@
             this.btnQr1.IdleFillColor = System.Drawing.Color.Transparent;
             this.btnQr1.IdleForecolor = System.Drawing.Color.White;
             this.btnQr1.IdleLineColor = System.Drawing.Color.White;
-            this.btnQr1.Location = new System.Drawing.Point(243, 414);
-            this.btnQr1.Margin = new System.Windows.Forms.Padding(5, 6, 5, 6);
+            this.btnQr1.Location = new System.Drawing.Point(194, 331);
+            this.btnQr1.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnQr1.Name = "btnQr1";
-            this.btnQr1.Size = new System.Drawing.Size(203, 67);
+            this.btnQr1.Size = new System.Drawing.Size(162, 54);
             this.btnQr1.TabIndex = 7;
             this.btnQr1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnQr1.Click += new System.EventHandler(this.btnQr_Click);
@@ -147,9 +148,10 @@
             this.lblWelcome.BackColor = System.Drawing.Color.Transparent;
             this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWelcome.ForeColor = System.Drawing.Color.White;
-            this.lblWelcome.Location = new System.Drawing.Point(161, 307);
+            this.lblWelcome.Location = new System.Drawing.Point(129, 246);
+            this.lblWelcome.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(174, 50);
+            this.lblWelcome.Size = new System.Drawing.Size(142, 41);
             this.lblWelcome.TabIndex = 5;
             this.lblWelcome.Text = "Welcome";
             // 
@@ -161,10 +163,11 @@
             this.pbxLogo.IconChar = FontAwesome.Sharp.IconChar.Drupal;
             this.pbxLogo.IconColor = System.Drawing.Color.White;
             this.pbxLogo.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.pbxLogo.IconSize = 239;
-            this.pbxLogo.Location = new System.Drawing.Point(124, 52);
+            this.pbxLogo.IconSize = 191;
+            this.pbxLogo.Location = new System.Drawing.Point(99, 42);
+            this.pbxLogo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbxLogo.Name = "pbxLogo";
-            this.pbxLogo.Size = new System.Drawing.Size(258, 239);
+            this.pbxLogo.Size = new System.Drawing.Size(206, 191);
             this.pbxLogo.TabIndex = 4;
             this.pbxLogo.TabStop = false;
             // 
@@ -173,9 +176,10 @@
             this.pnlTop.BackColor = System.Drawing.Color.White;
             this.pnlTop.Controls.Add(this.btnClose);
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTop.Location = new System.Drawing.Point(491, 0);
+            this.pnlTop.Location = new System.Drawing.Point(393, 0);
+            this.pnlTop.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(716, 51);
+            this.pnlTop.Size = new System.Drawing.Size(573, 41);
             this.pnlTop.TabIndex = 3;
             // 
             // btnClose
@@ -187,10 +191,11 @@
             this.btnClose.IconChar = FontAwesome.Sharp.IconChar.Times;
             this.btnClose.IconColor = System.Drawing.Color.Red;
             this.btnClose.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnClose.IconSize = 42;
-            this.btnClose.Location = new System.Drawing.Point(665, 7);
+            this.btnClose.IconSize = 34;
+            this.btnClose.Location = new System.Drawing.Point(532, 6);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(44, 42);
+            this.btnClose.Size = new System.Drawing.Size(35, 34);
             this.btnClose.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.btnClose.TabIndex = 0;
             this.btnClose.TabStop = false;
@@ -208,9 +213,10 @@
             this.tabPageLogin.Controls.Add(this.lblForgot);
             this.tabPageLogin.Controls.Add(this.lblLogin);
             this.tabPageLogin.Location = new System.Drawing.Point(4, 44);
+            this.tabPageLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageLogin.Name = "tabPageLogin";
-            this.tabPageLogin.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLogin.Size = new System.Drawing.Size(708, 539);
+            this.tabPageLogin.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageLogin.Size = new System.Drawing.Size(565, 421);
             this.tabPageLogin.TabIndex = 0;
             // 
             // txtEmail
@@ -227,10 +233,10 @@
             this.txtEmail.LineIdleColor = System.Drawing.Color.Gray;
             this.txtEmail.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtEmail.LineThickness = 5;
-            this.txtEmail.Location = new System.Drawing.Point(196, 132);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtEmail.Location = new System.Drawing.Point(157, 106);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(376, 48);
+            this.txtEmail.Size = new System.Drawing.Size(301, 37);
             this.txtEmail.TabIndex = 1;
             this.txtEmail.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
@@ -241,10 +247,11 @@
             this.pbxEmail.IconChar = FontAwesome.Sharp.IconChar.UserAlt;
             this.pbxEmail.IconColor = System.Drawing.SystemColors.ControlText;
             this.pbxEmail.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.pbxEmail.IconSize = 42;
-            this.pbxEmail.Location = new System.Drawing.Point(128, 139);
+            this.pbxEmail.IconSize = 34;
+            this.pbxEmail.Location = new System.Drawing.Point(102, 111);
+            this.pbxEmail.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbxEmail.Name = "pbxEmail";
-            this.pbxEmail.Size = new System.Drawing.Size(42, 52);
+            this.pbxEmail.Size = new System.Drawing.Size(34, 42);
             this.pbxEmail.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxEmail.TabIndex = 3;
             this.pbxEmail.TabStop = false;
@@ -263,10 +270,10 @@
             this.txtPassword.LineIdleColor = System.Drawing.Color.Gray;
             this.txtPassword.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtPassword.LineThickness = 5;
-            this.txtPassword.Location = new System.Drawing.Point(196, 215);
-            this.txtPassword.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtPassword.Location = new System.Drawing.Point(157, 172);
+            this.txtPassword.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(376, 48);
+            this.txtPassword.Size = new System.Drawing.Size(301, 37);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
@@ -277,10 +284,11 @@
             this.pbxPassword.IconChar = FontAwesome.Sharp.IconChar.Lock;
             this.pbxPassword.IconColor = System.Drawing.SystemColors.ControlText;
             this.pbxPassword.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.pbxPassword.IconSize = 42;
-            this.pbxPassword.Location = new System.Drawing.Point(128, 225);
+            this.pbxPassword.IconSize = 34;
+            this.pbxPassword.Location = new System.Drawing.Point(102, 180);
+            this.pbxPassword.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbxPassword.Name = "pbxPassword";
-            this.pbxPassword.Size = new System.Drawing.Size(42, 52);
+            this.pbxPassword.Size = new System.Drawing.Size(34, 42);
             this.pbxPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxPassword.TabIndex = 2;
             this.pbxPassword.TabStop = false;
@@ -304,10 +312,10 @@
             this.btnLogin2.IdleFillColor = System.Drawing.Color.White;
             this.btnLogin2.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnLogin2.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnLogin2.Location = new System.Drawing.Point(128, 363);
-            this.btnLogin2.Margin = new System.Windows.Forms.Padding(5);
+            this.btnLogin2.Location = new System.Drawing.Point(102, 290);
+            this.btnLogin2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogin2.Name = "btnLogin2";
-            this.btnLogin2.Size = new System.Drawing.Size(455, 86);
+            this.btnLogin2.Size = new System.Drawing.Size(364, 69);
             this.btnLogin2.TabIndex = 17;
             this.btnLogin2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnLogin2.Click += new System.EventHandler(this.btnLogin2_Click);
@@ -317,9 +325,10 @@
             this.cbxRemember.AutoSize = true;
             this.cbxRemember.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbxRemember.ForeColor = System.Drawing.Color.Black;
-            this.cbxRemember.Location = new System.Drawing.Point(143, 301);
+            this.cbxRemember.Location = new System.Drawing.Point(114, 241);
+            this.cbxRemember.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cbxRemember.Name = "cbxRemember";
-            this.cbxRemember.Size = new System.Drawing.Size(154, 29);
+            this.cbxRemember.Size = new System.Drawing.Size(126, 24);
             this.cbxRemember.TabIndex = 16;
             this.cbxRemember.Text = "Nhớ tài khoản";
             this.cbxRemember.UseVisualStyleBackColor = true;
@@ -330,9 +339,10 @@
             this.lblForgot.AutoSize = true;
             this.lblForgot.Font = new System.Drawing.Font("Segoe UI", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblForgot.ForeColor = System.Drawing.Color.Black;
-            this.lblForgot.Location = new System.Drawing.Point(403, 298);
+            this.lblForgot.Location = new System.Drawing.Point(322, 238);
+            this.lblForgot.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblForgot.Name = "lblForgot";
-            this.lblForgot.Size = new System.Drawing.Size(171, 30);
+            this.lblForgot.Size = new System.Drawing.Size(142, 25);
             this.lblForgot.TabIndex = 15;
             this.lblForgot.Text = "Quên mật khẩu?";
             // 
@@ -344,9 +354,10 @@
             this.lblLogin.BackColor = System.Drawing.Color.Transparent;
             this.lblLogin.Font = new System.Drawing.Font("Segoe UI", 25.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(58)))), ((int)(((byte)(182)))), ((int)(((byte)(148)))));
-            this.lblLogin.Location = new System.Drawing.Point(251, 41);
+            this.lblLogin.Location = new System.Drawing.Point(201, 33);
+            this.lblLogin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(247, 59);
+            this.lblLogin.Size = new System.Drawing.Size(201, 47);
             this.lblLogin.TabIndex = 10;
             this.lblLogin.Text = "Đăng nhập";
             // 
@@ -357,10 +368,11 @@
             this.tabctrlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabctrlMain.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabctrlMain.ItemSize = new System.Drawing.Size(356, 40);
-            this.tabctrlMain.Location = new System.Drawing.Point(491, 51);
+            this.tabctrlMain.Location = new System.Drawing.Point(393, 41);
+            this.tabctrlMain.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabctrlMain.Name = "tabctrlMain";
             this.tabctrlMain.SelectedIndex = 0;
-            this.tabctrlMain.Size = new System.Drawing.Size(716, 587);
+            this.tabctrlMain.Size = new System.Drawing.Size(573, 469);
             this.tabctrlMain.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabctrlMain.TabIndex = 4;
             // 
@@ -371,9 +383,10 @@
             this.tabPageQr.Controls.Add(this.cmbCamera);
             this.tabPageQr.Controls.Add(this.btnQr2);
             this.tabPageQr.Location = new System.Drawing.Point(4, 44);
+            this.tabPageQr.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPageQr.Name = "tabPageQr";
-            this.tabPageQr.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageQr.Size = new System.Drawing.Size(708, 539);
+            this.tabPageQr.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPageQr.Size = new System.Drawing.Size(565, 421);
             this.tabPageQr.TabIndex = 1;
             // 
             // pbxCamera
@@ -381,9 +394,10 @@
             this.pbxCamera.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbxCamera.Location = new System.Drawing.Point(115, 72);
+            this.pbxCamera.Location = new System.Drawing.Point(92, 58);
+            this.pbxCamera.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.pbxCamera.Name = "pbxCamera";
-            this.pbxCamera.Size = new System.Drawing.Size(493, 314);
+            this.pbxCamera.Size = new System.Drawing.Size(394, 250);
             this.pbxCamera.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxCamera.TabIndex = 0;
             this.pbxCamera.TabStop = false;
@@ -393,9 +407,10 @@
             this.cmbCamera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbCamera.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbCamera.FormattingEnabled = true;
-            this.cmbCamera.Location = new System.Drawing.Point(115, 17);
+            this.cmbCamera.Location = new System.Drawing.Point(92, 14);
+            this.cmbCamera.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.cmbCamera.Name = "cmbCamera";
-            this.cmbCamera.Size = new System.Drawing.Size(493, 39);
+            this.cmbCamera.Size = new System.Drawing.Size(395, 34);
             this.cmbCamera.TabIndex = 19;
             // 
             // btnQr2
@@ -417,10 +432,10 @@
             this.btnQr2.IdleFillColor = System.Drawing.Color.White;
             this.btnQr2.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnQr2.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.Location = new System.Drawing.Point(115, 407);
-            this.btnQr2.Margin = new System.Windows.Forms.Padding(5);
+            this.btnQr2.Location = new System.Drawing.Point(92, 326);
+            this.btnQr2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnQr2.Name = "btnQr2";
-            this.btnQr2.Size = new System.Drawing.Size(493, 86);
+            this.btnQr2.Size = new System.Drawing.Size(394, 69);
             this.btnQr2.TabIndex = 18;
             this.btnQr2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnQr2.Click += new System.EventHandler(this.btnQr2_Click);
@@ -432,13 +447,14 @@
             // 
             // FrmLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(1207, 638);
+            this.ClientSize = new System.Drawing.Size(966, 510);
             this.Controls.Add(this.tabctrlMain);
             this.Controls.Add(this.pnlTop);
             this.Controls.Add(this.bunifuGradientPanel1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmLogin";
