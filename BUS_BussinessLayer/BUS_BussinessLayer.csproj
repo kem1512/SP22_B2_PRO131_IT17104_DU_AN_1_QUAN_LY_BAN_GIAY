@@ -63,6 +63,7 @@
     <Compile Include="BUS_Services\RoleServices.cs" />
     <Compile Include="BUS_Services\ShipperServices.cs" />
     <Compile Include="BUS_Services\SizeServies.cs" />
+    <Compile Include="BUS_Services\UserService.cs" />
     <Compile Include="iBUS_Services\iBrandServices.cs" />
     <Compile Include="iBUS_Services\iCategoryServices.cs" />
     <Compile Include="iBUS_Services\iColorServices.cs" />

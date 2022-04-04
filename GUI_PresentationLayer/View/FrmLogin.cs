@@ -78,10 +78,74 @@ namespace GUI_PresentationLayer.View
 
         private void btnLogin2_Click(object sender, EventArgs e)
         {
-            FrmMain frmMain = new FrmMain();
-            Hide();
-            frmMain.Closed += (o, args) => Close();
-            frmMain.Show();
+            
+            if (string.IsNullOrEmpty(txtEmail.Text))
+            {
+                MessageBox.Show("Vui lòng nhập email !!!");
+            }
+            else if (string.IsNullOrEmpty(txtPassword.Text))
+            {
+                MessageBox.Show("Vui lòng nhập mật khẩu !!!");
+
+            }
+            else if (!txtEmail.Text.Contains("@gmail") || !txtEmail.Text.Contains('.'))
+            {
+                MessageBox.Show("Vui lòng nhập đúng định dạng!!");
+            }
+            else
+            {
+                var result = UserService.CheckLogin(txtEmail.Text, txtPassword.Text) ? true : false;
+                if (result)
+                {
+                    this.Hide();
+                    FrmMain frm = new FrmMain();
+                    frm.Show();
+                    LoadText();
+                }
+                else
+                {
+                    MessageBox.Show("Đăng nhập thất bại");
+                }
+            }
+        }
+
+        void LoadText()
+        {
+            txtEmail.Text = "Nhập email";
+            txtPassword.Text = "Nhập mật khẩu";
+        }
+
+        void ChangeText()
+        {
+            txtEmail.Enter += (sender, args) =>
+            {
+                if (txtEmail.Text == "Nhập email")
+                {
+                    txtEmail.Text = "";
+                }
+            };
+            txtEmail.Leave += (sender, args) =>
+            {
+                if (txtEmail.Text == "")
+                {
+                    txtEmail.Text = "Nhập email";
+                }
+            };
+
+            txtPassword.Enter += (sender, args) =>
+            {
+                if (txtPassword.Text == "Nhập mật khẩu")
+                {
+                    txtPassword.Text = "";
+                }
+            };
+            txtPassword.Leave += (sender, args) =>
+            {
+                if (txtPassword.Text == "")
+                {
+                    txtPassword.Text = "Nhập mật khẩu";
+                }
+            };
         }
     }
 }
