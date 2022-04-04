@@ -52,5 +52,32 @@ namespace BUS_BussinessLayer.BUS_Services
         {
             return _iDalInvoice.GetInvoiceDetail(id);
         }
+
+        public List<ViewInvoice> GetViewInvoices()
+        {
+            // var viewInvoices = from a in _iDalInvoice.GetInvoicesDetail()
+            //     group a by a.InvoiceId
+            //     into b
+            //     join c in _iDalInvoice.GetInvoices() on b.First().InvoiceId equals c.InvoiceId
+            //     select new
+            //     {
+            //         ProductCount = b.Count(),
+            //         TotalPrice = b.Sum(d => d.TotalPrice),
+            //     };
+            List<ViewInvoice> viewInvoices = (from a in _iDalInvoice.GetInvoices()
+                join b in _iDalInvoice.GetInvoicesDetail() on a.InvoiceId equals b.InvoiceId
+                select new ViewInvoice() {Invoice = a, InvoiceDetail = b}).ToList();
+            return viewInvoices;
+        }
+
+        public string CompleteInvoice(string id)
+        {
+            return _iDalInvoice.CompleteInvoice(id);
+        }
+
+        public string CancelInvoice(string id, string reason)
+        {
+            return _iDalInvoice.CancelInvoice(id, reason);
+        }
     }
 }

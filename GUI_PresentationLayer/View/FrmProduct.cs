@@ -10,15 +10,17 @@ using System.Drawing;
 using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.Utilities;
-using PdfSharp.Drawing;
-using PdfSharp.Pdf;
+using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
 using ZXing.Common;
+using Color = System.Drawing.Color;
+using PdfPage = Syncfusion.Pdf.PdfPage;
 
 namespace GUI_PresentationLayer.View
 {
@@ -104,9 +106,16 @@ namespace GUI_PresentationLayer.View
             var result = _iProductServices.GetViewProducts();
             foreach (var x in result.Where(c => c.product.Status))
             {
-                using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
+                if (File.Exists(x.product.ProductImage))
                 {
-                    dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName, x.inventory.Amount, string.Format("{0:0,0}", x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa");
+                    using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
+                    {
+                        dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName, x.inventory.Amount, string.Format("{0:0,0}", x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa");
+                    }
+                }
+                else
+                {
+                    dgridProduct.Rows.Add(x.product.ProductId, Properties.Resources.failed, x.product.ProductName, x.inventory.Amount, string.Format("{0:0,0}", x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa");
                 }
             }
 
@@ -163,6 +172,7 @@ namespace GUI_PresentationLayer.View
 
             btnEdit.Cursor = Cursors.No;
             btnAdd.Cursor = Cursors.Hand;
+            txtBarcode.Items.Clear();
         }
 
         private void FrmProduct_Load(object sender, EventArgs e)
@@ -187,7 +197,7 @@ namespace GUI_PresentationLayer.View
                             ProductImage = pbxProduct.Tag.ToString(),
                             Description = txtNote.Text,
                             Status = true,
-                            Barcode = txtBarcode.Text
+                            Barcode = txtBarcode.SelectedItem.ToString()
                         }, new ProductDetail()
                         {
                             ProductId = productId,
@@ -246,10 +256,18 @@ namespace GUI_PresentationLayer.View
                 btnAdd.Cursor = Cursors.No;
                 var row = dgridProduct.Rows[e.RowIndex];
                 var product = _iProductServices.GetProductById(row.Cells[0].Value.ToString());
-                using (FileStream fileStream = new FileStream(product.ProductImage, FileMode.Open))
+                if (File.Exists(product.ProductImage))
                 {
-                    pbxProduct.Image = new Bitmap(fileStream);
-                    pbxProduct.Tag = fileStream.Name;
+                    using (FileStream fileStream = new FileStream(product.ProductImage, FileMode.Open))
+                    {
+                        pbxProduct.Image = new Bitmap(fileStream);
+                        pbxProduct.Tag = fileStream.Name;
+                    }
+                }
+                else
+                {
+                    pbxProduct.Image = Properties.Resources.failed;
+                    pbxProduct.Tag = product.ProductImage;
                 }
                 txtName.Text = row.Cells[2].Value.ToString();
                 txtNote.Text = row.Cells[2].Value.ToString();
@@ -261,7 +279,10 @@ namespace GUI_PresentationLayer.View
                 cmbColorBot.SelectedValue = row.Cells[8].Value.ToString();
                 cmbSize.SelectedValue = row.Cells[9].Value.ToString();
                 cmbCat.SelectedValue = row.Cells[10].Value.ToString();
-                txtBarcode.Text = product.Barcode;
+
+                txtBarcode.Items.Clear();
+                txtBarcode.Items.Add(product.Barcode);
+                txtBarcode.SelectedItem = product.Barcode;
             }
         }
 
@@ -460,22 +481,59 @@ namespace GUI_PresentationLayer.View
 
         private void btnQrCode_Click(object sender, EventArgs e)
         {
-            PrintDocument printDocument = new PrintDocument();
-            printDocument.PrintPage += (o, args) =>
+            // PrintDocument printDocument = new PrintDocument();
+            // printDocument.PrintPage += (o, args) =>
+            // {
+            //     for (int i = 0; i < dgridProduct.Rows.Count; i++)
+            //     {
+            //         EncodingOptions encodingOptions = new EncodingOptions() { Width = 700, Height = 450};
+            //         var result = GenerateBarcode.CreateQrCode(_iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString()).Barcode, encodingOptions);
+            //         args.Graphics.DrawImage(result, new Point(250, i * 500));
+            //     }
+            // };
+            // PrintDialog printDialog = new PrintDialog();
+            // printDialog.Document = printDocument;
+            //
+            // if (printDialog.ShowDialog() == DialogResult.OK)
+            // {
+            //     printDocument.Print();
+            // }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                for (int i = 0; i < dgridProduct.Rows.Count; i++)
+                PdfDocument pdfDocument = new PdfDocument();
+                foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    EncodingOptions encodingOptions = new EncodingOptions() { Width = 700, Height = 450};
-                    var result = GenerateBarcode.CreateQrCode(_iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString()).Barcode, encodingOptions);
-                    args.Graphics.DrawImage(result, new Point(250, i * 500));
+                    // // Tìm sản phẩm
+                    var result = _iProductServices.GetProductById(x.Cells[0].Value.ToString());
+                    // // Tạo mã
+                    var image = GenerateBarcode.CreateQrCode(result.Barcode);
+                    // // Tạo page
+                    pdfDocument.PageSettings.SetMargins(0);
+                    // PdfPage pdfPage = pdfDocument.Pages.Add();
+                    // // Tạo thông tin sản phẩm
+                    // RectangleF rectangleF = new RectangleF(new PointF(0, 0), new SizeF(pdfDocument.PageSettings.Width, 100));
+                    // // Tạo font
+                    PdfFont pdfFontContent = new PdfCjkStandardFont(PdfCjkFontFamily.MonotypeHeiMedium, 18, PdfFontStyle.Regular);
+                    // PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                    PdfBitmap pdfBitmap = new PdfBitmap(image);
+                    // PdfGraphics pdfGraphics = pdfPage.Graphics;
+                    // pdfGraphics.DrawString($"{result.ProductId} : {result.ProductName}", pdfFontContent , new PdfPen(Color.Black), rectangleF, pdfStringFormat);
+                    // // In mã vạch
+                    // pdfGraphics.DrawImage(pdfBitmap, (pdfPage.Size.Width - 150) / 2, rectangleF.Y + (pdfPage.Size.Width - 150) / 2, 150, 80);
+                    // //In mã vạch
+                    PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\FontBarcode.ttf", 18);
+                    // pdfGraphics.DrawString(result.Barcode, pdfFont, new PdfPen(Color.Black), new PointF(8, 110));
+                    PdfPage pdfPage = pdfDocument.Pages.Add();
+                    PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center);
+                    RectangleF rectangleF = new RectangleF(new PointF(0, 30), new SizeF(pdfDocument.PageSettings.Width, 80));
+                    RectangleF rectangleF2 = new RectangleF(new PointF(0, rectangleF.Y + rectangleF.Height + 28), new SizeF(pdfDocument.PageSettings.Width, 50));
+                    PdfGraphics pdfGraphics = pdfPage.Graphics;
+                    pdfGraphics.DrawString($"{result.ProductId} : {result.ProductName}", pdfFont, new PdfPen(Color.Red), rectangleF, pdfStringFormat);
+                    pdfGraphics.DrawImage(pdfBitmap, (pdfPage.Size.Width - 150) / 2, (rectangleF.Y + rectangleF.Height) / 2, 150, 80);
+                    pdfGraphics.DrawString(result.Barcode, pdfFont, new PdfPen(Color.Black), rectangleF2, pdfStringFormat);
                 }
-            };
-            PrintDialog printDialog = new PrintDialog();
-            printDialog.Document = printDocument;
-            
-            if (printDialog.ShowDialog() == DialogResult.OK)
-            {
-                printDocument.Print();
+                pdfDocument.Save(saveFileDialog.FileName);
             }
         }
 
@@ -486,6 +544,26 @@ namespace GUI_PresentationLayer.View
             {
                 GenerateExcel.ToExcel(dgridProduct, saveFileDialog.FileName);
             }
+        }
+
+        private void pbxRandom_Click(object sender, EventArgs e)
+        {
+            const string valid = "0123456789";
+            StringBuilder stringBuilder = new StringBuilder();
+            Random random = new Random();
+            int a = 13;
+            while (0 < a--)
+            {
+                stringBuilder.Append(valid[random.Next(valid.Length)]);
+            }
+            txtBarcode.Items.Clear();
+            txtBarcode.Items.Add(stringBuilder);
+            txtBarcode.SelectedItem = stringBuilder;
+        }
+
+        private void tlpBot_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

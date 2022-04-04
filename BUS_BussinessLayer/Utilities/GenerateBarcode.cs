@@ -12,11 +12,17 @@ namespace BUS_BussinessLayer.Utilities
 {
     public static class GenerateBarcode
     {
-        public static Bitmap CreateQrCode(string id, EncodingOptions options)
+        public static Bitmap CreateQrCode(string id)
         {
-            BarcodeWriter barcodeWriter = new BarcodeWriter() { Format = BarcodeFormat.CODE_128, Renderer = new BitmapRenderer(){ TextFont = new Font("Major Mono Display", 16)}};
-            barcodeWriter.Options = options;
+            BarcodeWriter barcodeWriter = new BarcodeWriter() { Format = BarcodeFormat.CODE_128, Options = new EncodingOptions(){ PureBarcode = true }};
             return barcodeWriter.Write(id);
+        }
+
+        public static string DecodeBarcode(Bitmap bitmap)
+        {
+            BarcodeReader barcodeReader = new BarcodeReader();
+            Result result = barcodeReader.Decode(bitmap);
+            return result.ToString();
         }
     }
 }

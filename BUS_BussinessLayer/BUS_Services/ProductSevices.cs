@@ -63,6 +63,11 @@ namespace BUS_BussinessLayer.BUS_Services
             return lstViewProducts;
         }
 
+        public string ReduceProduct(string id)
+        {
+            throw new NotImplementedException();
+        }
+
         public List<ProductDetail> GetProductDetails()
         {
             return _iDAL_Product.GetProductDetail();

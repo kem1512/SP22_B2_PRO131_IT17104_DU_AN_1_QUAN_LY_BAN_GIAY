@@ -18,5 +18,11 @@ namespace BUS_BussinessLayer.iBUS_Services
         Invoice GetInvoiceById(string id);
 
         InvoiceDetail GetInvoiceDetail(string id);
+
+        List<ViewInvoice> GetViewInvoices();
+
+        string CompleteInvoice(string id);
+
+        string CancelInvoice(string id, string reason);
     }
 }

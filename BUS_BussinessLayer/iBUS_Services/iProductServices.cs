@@ -21,5 +21,7 @@ namespace BUS_BussinessLayer.iBUS_Services
         string DisableProduct(string id);
 
         List<ViewProduct> GetViewProducts();
+
+        string ReduceProduct(string id);
     }
 }

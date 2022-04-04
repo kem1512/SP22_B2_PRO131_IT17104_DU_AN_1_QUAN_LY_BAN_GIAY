@@ -238,5 +238,28 @@ namespace DAL_DataAccessLayer.DAL_Services
                 return e.ToString();
             }
         }
+
+        public string ReduceProduct(string id)
+        {
+            try
+            {
+                using (_db = new QuanLyBanGiayEntities())
+                {
+                    var product = _db.Product.FirstOrDefault(c => c.ProductId == id);
+                    var inventory = product != null ? _db.Inventory.FirstOrDefault(c => c.ProductId == product.ProductId) : null;
+                    if (id != null && product != null && inventory != null)
+                    {
+                        inventory.Amount = inventory.Amount--;
+                        _db.SaveChanges();
+                        return "Sản phẩm đã được chuyển vào thùng rác!";
+                    }
+                    return "Xóa thất bại!";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
     }
 }

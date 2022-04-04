@@ -19,5 +19,7 @@ namespace DAL_DataAccessLayer.iDAL_Services
         Product GetProductByName(string name);
         Product GetProductById(string id);
         string DisableProduct(string id);
+
+        string ReduceProduct(string id);
     }
 }

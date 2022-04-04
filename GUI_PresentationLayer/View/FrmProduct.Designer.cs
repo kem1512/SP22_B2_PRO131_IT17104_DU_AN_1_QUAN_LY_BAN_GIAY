@@ -54,7 +54,8 @@
             this.cmbColorBot = new System.Windows.Forms.ComboBox();
             this.pbxEditSize = new FontAwesome.Sharp.IconPictureBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtBarcode = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.pbxRandom = new FontAwesome.Sharp.IconPictureBox();
+            this.txtBarcode = new System.Windows.Forms.ComboBox();
             this.tlpRight = new System.Windows.Forms.TableLayoutPanel();
             this.lblName = new System.Windows.Forms.Label();
             this.txtName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
@@ -78,18 +79,6 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabProduct = new System.Windows.Forms.TabPage();
             this.dgridProduct = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tabDeleted = new System.Windows.Forms.TabPage();
             this.dgridProductDeleted = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -107,12 +96,25 @@
             this.Column13 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.btnQrCode = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tlpBot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditMat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditColor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditCat)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxRandom)).BeginInit();
             this.tlpRight.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
@@ -151,6 +153,7 @@
             this.tlpBot.Controls.Add(this.cmbColorBot, 4, 1);
             this.tlpBot.Controls.Add(this.pbxEditSize, 1, 3);
             this.tlpBot.Controls.Add(this.label1, 4, 2);
+            this.tlpBot.Controls.Add(this.pbxRandom, 5, 3);
             this.tlpBot.Controls.Add(this.txtBarcode, 4, 3);
             this.tlpBot.Location = new System.Drawing.Point(26, 494);
             this.tlpBot.Name = "tlpBot";
@@ -161,6 +164,7 @@
             this.tlpBot.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlpBot.Size = new System.Drawing.Size(1147, 199);
             this.tlpBot.TabIndex = 1;
+            this.tlpBot.Paint += new System.Windows.Forms.PaintEventHandler(this.tlpBot_Paint);
             // 
             // cmbSize
             // 
@@ -384,26 +388,36 @@
             this.label1.TabIndex = 34;
             this.label1.Text = "Mã vạch";
             // 
+            // pbxRandom
+            // 
+            this.pbxRandom.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.pbxRandom.BackColor = System.Drawing.Color.White;
+            this.pbxRandom.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxRandom.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pbxRandom.IconChar = FontAwesome.Sharp.IconChar.Random;
+            this.pbxRandom.IconColor = System.Drawing.SystemColors.ControlText;
+            this.pbxRandom.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.pbxRandom.Location = new System.Drawing.Point(1081, 157);
+            this.pbxRandom.Margin = new System.Windows.Forms.Padding(20, 3, 3, 3);
+            this.pbxRandom.Name = "pbxRandom";
+            this.pbxRandom.Size = new System.Drawing.Size(32, 32);
+            this.pbxRandom.TabIndex = 36;
+            this.pbxRandom.TabStop = false;
+            this.pbxRandom.Click += new System.EventHandler(this.pbxRandom_Click);
+            // 
             // txtBarcode
             // 
-            this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.txtBarcode.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtBarcode.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtBarcode.Font = new System.Drawing.Font("Roboto", 12F);
-            this.txtBarcode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.txtBarcode.HintForeColor = System.Drawing.Color.Empty;
-            this.txtBarcode.HintText = "";
-            this.txtBarcode.isPassword = false;
-            this.txtBarcode.LineFocusedColor = System.Drawing.Color.Blue;
-            this.txtBarcode.LineIdleColor = System.Drawing.Color.Gray;
-            this.txtBarcode.LineMouseHoverColor = System.Drawing.Color.Blue;
-            this.txtBarcode.LineThickness = 4;
-            this.txtBarcode.Location = new System.Drawing.Point(767, 152);
-            this.txtBarcode.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.txtBarcode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.txtBarcode.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBarcode.FormattingEnabled = true;
+            this.txtBarcode.IntegralHeight = false;
+            this.txtBarcode.Location = new System.Drawing.Point(765, 150);
             this.txtBarcode.Name = "txtBarcode";
-            this.txtBarcode.Size = new System.Drawing.Size(289, 36);
-            this.txtBarcode.TabIndex = 35;
-            this.txtBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtBarcode.Size = new System.Drawing.Size(293, 39);
+            this.txtBarcode.TabIndex = 37;
             // 
             // tlpRight
             // 
@@ -821,106 +835,6 @@
             this.dgridProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridProduct_CellClick);
             this.dgridProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridProduct_CellContentClick);
             // 
-            // Column6
-            // 
-            this.Column6.HeaderText = "Mã sản phẩm";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.FillWeight = 40F;
-            this.Column1.HeaderText = "Ảnh";
-            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Tên sản phẩm";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.FillWeight = 30F;
-            this.Column4.HeaderText = "Kho";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.FillWeight = 60F;
-            this.Column3.HeaderText = "Đơn giá";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Ghi chú";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Visible = false;
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Thương hiệu";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Visible = false;
-            // 
-            // Column8
-            // 
-            this.Column8.HeaderText = "Chất liệu";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Visible = false;
-            // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Màu sắc";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Visible = false;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Kích thước";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Visible = false;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Loại giày";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Visible = false;
-            // 
-            // Column5
-            // 
-            this.Column5.FillWeight = 20F;
-            this.Column5.HeaderText = "";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
             // tabDeleted
             // 
             this.tabDeleted.BackColor = System.Drawing.Color.White;
@@ -1157,6 +1071,106 @@
             this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuThinButton21.Click += new System.EventHandler(this.bunifuThinButton21_Click);
             // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Mã sản phẩm";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            this.Column6.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 40F;
+            this.Column1.HeaderText = "Ảnh";
+            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Tên sản phẩm";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.FillWeight = 30F;
+            this.Column4.HeaderText = "Kho";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 60F;
+            this.Column3.HeaderText = "Đơn giá";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Ghi chú";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            this.Column12.Visible = false;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Thương hiệu";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            this.Column7.Visible = false;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Chất liệu";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            this.Column8.Visible = false;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Màu sắc";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            this.Column9.Visible = false;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Kích thước";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            this.Column10.Visible = false;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Loại giày";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            this.Column11.Visible = false;
+            // 
+            // Column5
+            // 
+            this.Column5.FillWeight = 20F;
+            this.Column5.HeaderText = "";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
             // FrmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1183,6 +1197,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditColor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditCat)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxRandom)).EndInit();
             this.tlpRight.ResumeLayout(false);
             this.tlpRight.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxProduct)).EndInit();
@@ -1240,18 +1255,6 @@
         private System.Windows.Forms.PictureBox pbxProduct;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgridProduct;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtQuantity;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewImageColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
-        private System.Windows.Forms.DataGridViewLinkColumn Column5;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgridProductDeleted;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
@@ -1269,6 +1272,19 @@
         private Bunifu.Framework.UI.BunifuThinButton2 btnQrCode;
         private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton21;
         private System.Windows.Forms.Label label1;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox txtBarcode;
+        private FontAwesome.Sharp.IconPictureBox pbxRandom;
+        private System.Windows.Forms.ComboBox txtBarcode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewImageColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewLinkColumn Column5;
     }
 }

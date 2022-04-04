@@ -22,6 +22,7 @@ namespace GUI_PresentationLayer.View
         private Panel leftBorderBtn = new Panel();
         private Form currentChildForm;
         private iInvoiceServices _iInvoiceServices = new InvoiceServices();
+        private bool isMinimized = false;
         public FrmMain()
         {
             InitializeComponent();
@@ -40,21 +41,30 @@ namespace GUI_PresentationLayer.View
             {
                 var invoice = _iInvoiceServices.GetInvoiceById(invoiceIcon.Id);
                 _frmSales.invoidId = invoice.InvoiceId;
-                _frmSales.AddInvoiceFromMain(invoice.InvoiceId);
+                _frmSales.GetInfoFromInvoice(invoice.InvoiceId);
             };
+        }
+
+        public void FilterInvoice(string status)
+        {
+            foreach (var x in pnlMain.Controls)
+            {
+                InvoiceIcon invoice = (InvoiceIcon) x;
+                invoice.Visible = invoice.Tag.Equals(status);
+            }
         }
 
         public void LoadData()
         {
             fpnlInvoice.Controls.Clear();
-            var result = _iInvoiceServices.GetInvoices().Where(c => c.InvoiceStatus == false).ToList();
+            var result = _iInvoiceServices.GetInvoices().Where(c => c.InvoiceStatus == false && c.Description == null).ToList();
             foreach (var x in result)
             {
                 AddItem(x.InvoiceId);
             }
         }
 
-        public void HackerMan()
+        public void VisibleInvoice()
         {
             if (fpnlInvoice.Visible == false)
             {
@@ -132,6 +142,7 @@ namespace GUI_PresentationLayer.View
             if (!pnlLeftBar.ClientRectangle.Contains(pnlLeftBar.PointToClient(Cursor.Position)))
             {
                 fpnlInvoice.Visible = false;
+                _frmSales.invoidId = null;
             }
         }
 
@@ -160,13 +171,24 @@ namespace GUI_PresentationLayer.View
 
         private void btnMinimize_Click(object sender, EventArgs e)
         {
-            WindowState = FormWindowState.Minimized;
+            pnlMain.Dock = DockStyle.None;
+            this.WindowState = FormWindowState.Minimized;
+            isMinimized = true;
         }
 
         private void btnDetail_Click(object sender, EventArgs e)
         {
             ActiveteButton(sender, Color.Red);
             OpenChildForm(new FrmCustomer());
+        }
+
+        private void FrmMain_Resize(object sender, EventArgs e)
+        {
+            if (isMinimized)
+            {
+                pnlMain.Dock = DockStyle.Fill;
+                isMinimized = false;
+            }
         }
     }
 }

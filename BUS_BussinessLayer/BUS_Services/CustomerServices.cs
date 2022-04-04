@@ -52,5 +52,10 @@ namespace BUS_BussinessLayer.BUS_Services
         {
             return _iDalCustomer.RecoveryCustomer(id);
         }
+
+        public string IncreasePurchase(string id)
+        {
+            return _iDalCustomer.IncreasePurchase(id);
+        }
     }
 }

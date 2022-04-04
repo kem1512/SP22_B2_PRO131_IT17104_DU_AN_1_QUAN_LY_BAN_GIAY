@@ -362,6 +362,7 @@
             this.Name = "FrmMain";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
+            this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.pnlLeftBar.ResumeLayout(false);
             this.pnlBottomBar.ResumeLayout(false);
             this.pnlBottomBar.PerformLayout();

@@ -9,25 +9,43 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
+using BUS_BussinessLayer.Utilities;
 
 namespace GUI_PresentationLayer.View
 {
     public partial class FrmInvoice : Form
     {
         private iInvoiceServices _iInvoiceServices = new InvoiceServices();
+        private iCustomerServices _iCustomerServices = new CustomerServices();
+        private iEmployeeServices _iEmployeeServices = new EmployeeServices();
         public FrmInvoice()
         {
             InitializeComponent();
             LoadData();
+            cmbFilter.SelectedIndex = 0;
         }
 
         private void LoadData()
         {
             dgridInvoice.Rows.Clear();
-            foreach (var x in _iInvoiceServices.GetInvoices())
+            var result = from a in _iInvoiceServices.GetViewInvoices()
+                group a by a.Invoice.InvoiceId
+                into b
+                select new
+                {
+                    b.First().Invoice.InvoiceId,
+                    b.First().Invoice.DateCreate,
+                    _iCustomerServices.GetCustomerById(b.First().Invoice.CustomerId).CustomerName,
+                    _iEmployeeServices.GetEmployeeById(b.First().Invoice.EmployeeId).FullName,
+                    b.First().Invoice.Description,
+                    b.First().Invoice.InvoiceStatus,
+                    TotalPrice = b.Sum(c => c.InvoiceDetail.TotalPrice),
+                    ProductCount = b.Count(c => c.Invoice.InvoiceId == c.InvoiceDetail.InvoiceId)
+                };
+            foreach (var x in result)
             {
-                dgridInvoice.Rows.Add(x.InvoiceId, x.DateCreate, x.CustomerId, x.EmployeeId, x.Description,
-                    x.InvoiceStatus);
+                dgridInvoice.Rows.Add(x.InvoiceId, x.DateCreate, x.CustomerName, x.FullName, x.ProductCount, ConvertMoney.ConvertToVND(x.TotalPrice), x.Description,
+                    x.InvoiceStatus ? "Đã hoàn thành" : !x.InvoiceStatus && x.Description != null ? "Đã hủy" : "Chưa hoàn thành");
             }
         }
 
@@ -40,7 +58,7 @@ namespace GUI_PresentationLayer.View
                 dgidInvoiceDetail.Rows.Clear();
                 foreach (var x in result)
                 {
-                    dgidInvoiceDetail.Rows.Add(x.ProductId, x.Price, x.Quantity, x.TotalPrice);
+                    dgidInvoiceDetail.Rows.Add(x.ProductId, ConvertMoney.ConvertToVND(x.Price), x.Quantity, ConvertMoney.ConvertToVND(x.TotalPrice));
                 }
             }
         }
@@ -48,6 +66,52 @@ namespace GUI_PresentationLayer.View
         private void bunifuThinButton22_Click(object sender, EventArgs e)
         {
             bunifuThinButton22.Enabled = false;
+        }
+
+        private void dgdtpcDateBegin_onValueChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow x in dgridInvoice.Rows)
+            {
+                x.Visible = DateTime.Parse(x.Cells[1].Value.ToString()).Date <= dgdtpcDateEnd.Value.Date && DateTime.Parse(x.Cells[1].Value.ToString()).Date >= dgdtpcDateBegin.Value.Date;
+            }
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbFilter.SelectedIndex == 0)
+            {
+                LoadData();
+            }
+
+            switch (cmbFilter.SelectedIndex)
+            {
+                case 0:
+                    LoadData();
+                    break;
+                case 1:
+                    foreach (DataGridViewRow x in dgridInvoice.Rows)
+                    {
+                        x.Visible = x.Cells[7].Value.ToString().Equals("Chưa hoàn thành");
+                    }
+                    break;
+                case 2:
+                    foreach (DataGridViewRow x in dgridInvoice.Rows)
+                    {
+                        x.Visible = x.Cells[7].Value.ToString().Equals("Đã hoàn thành");
+                    }
+                    break;
+                case 3:
+                    foreach (DataGridViewRow x in dgridInvoice.Rows)
+                    {
+                        x.Visible = x.Cells[7].Value.ToString().Equals("Đã hủy");
+                    }
+                    break;
+            }
         }
     }
 }

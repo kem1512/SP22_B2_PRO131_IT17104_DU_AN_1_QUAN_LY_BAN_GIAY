@@ -5,12 +5,15 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Media;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video.DirectShow;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
+using BUS_BussinessLayer.Utilities;
 using DAL_DataAccessLayer.Entities;
 using ZXing;
 
@@ -74,6 +77,16 @@ namespace GUI_PresentationLayer.View
                 return "Vui lòng nhập tiền khách trả!";
             }
 
+            if (dgridOrder.Rows.Count <= 0)
+            {
+                return "Chưa chọn sản phẩm!";
+            }
+
+            if (float.Parse(txtCost.Text) < float.Parse(lblTotalPrice.Text))
+            {
+                return "Khách chưa trả đủ tiền!";
+            }
+
             return null;
         }
 
@@ -84,7 +97,7 @@ namespace GUI_PresentationLayer.View
             {
                 totalPrice += float.Parse(x.Cells[3].Value.ToString()) * float.Parse(x.Cells[4].Value.ToString());
             }
-            return string.Format("{0:0,0}", totalPrice);
+            return ConvertMoney.ConvertToVND(totalPrice);
         }
 
         private void LoadData()
@@ -96,7 +109,7 @@ namespace GUI_PresentationLayer.View
                 using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
                 {
                     dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName,
-                        x.inventory.Amount, string.Format("{0:0,0}", x.productDetail.UnitPrice), x.product.Description,
+                        x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description,
                         x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId,
                         x.productDetail.SizeId, x.productDetail.CategoryId, "Thêm");
                 }
@@ -121,14 +134,16 @@ namespace GUI_PresentationLayer.View
             cmbPhone.DisplayMember = "Phone";
             cmbPhone.ValueMember = "CustomerId";
             cmbPhone.SelectedIndex = -1;
+
+            btnCancel.Tag = "";
         }
 
         private void btnViewOrder_Click(object sender, EventArgs e)
         {
-            _frmMain.HackerMan();
+            _frmMain.VisibleInvoice();
         }
 
-        public void AddInvoiceFromMain(string id)
+        public void GetInfoFromInvoice(string id)
         {
             var invoice = _iInvoiceServices.GetInvoices().FirstOrDefault(c => c.InvoiceId == id);
             var invoiceDetail = _iInvoiceServices.GetInvoicesDetail().Where(c => invoice != null && c.InvoiceId == invoice.InvoiceId).ToList();
@@ -141,7 +156,7 @@ namespace GUI_PresentationLayer.View
                 if (invoice.ShipperId != null)
                 {
                     rbtnShip.Checked = true;
-                    txtShipCost.Text = string.Format("{0:0,0}", invoice.ShipCost);
+                    txtShipCost.Text = ConvertMoney.ConvertToVND((double)invoice.ShipCost);
                     cmbShipper.SelectedValue = invoice.ShipperId;
                 }
                 else
@@ -150,17 +165,17 @@ namespace GUI_PresentationLayer.View
                 }
 
                 dgridOrder.Rows.Clear();
-                var i = 0;
+                var totalPrice = 0;
                 foreach (var x in invoiceDetail)
                 {
                     using (FileStream fileStream = new FileStream(_iProductServices.GetProductById(x.ProductId).ProductImage, FileMode.Open))
                     {
-                        dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream), _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, string.Format("{0:0,0}", x.Price), string.Format("{0:0,0}", x.TotalPrice),"Thêm");
+                        dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream), _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "Thêm");
                     }
-                    i += int.Parse(x.TotalPrice.ToString());
+                    totalPrice += int.Parse(x.TotalPrice.ToString());
                 }
-                lblTotalPrice.Text = string.Format("{0:0,0}", i);
-                txtCost.Text = string.Format("{0:0,0}", invoice.GuestPayments);
+                lblTotalPrice.Text = ConvertMoney.ConvertToVND(totalPrice);
+                txtCost.Text = ConvertMoney.ConvertToVND((double)invoice.GuestPayments);
                 btnCancel.Tag = invoice.InvoiceId;
             }
         }
@@ -183,8 +198,8 @@ namespace GUI_PresentationLayer.View
                         if (x.Cells[2].Value.ToString() == result.product.ProductName)
                         {
                             x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
-                            x.Cells[4].Value = string.Format("{0:0,0}", result.productDetail.UnitPrice);
-                            x.Cells[5].Value = string.Format("{0:0,0}", float.Parse(x.Cells[3].Value.ToString()) * float.Parse(x.Cells[4].Value.ToString()));
+                            x.Cells[4].Value = ConvertMoney.ConvertToVND(result.productDetail.UnitPrice);
+                            x.Cells[5].Value = ConvertMoney.ConvertToVND(double.Parse(x.Cells[3].Value.ToString()) * double.Parse(x.Cells[4].Value.ToString()));
                             lblTotalPrice.Text = TotalPrice();
                             return;
                         }
@@ -194,7 +209,7 @@ namespace GUI_PresentationLayer.View
                     {
                         dgridOrder.Rows.Add(result.product.ProductId, new Bitmap(fileStream),
                             result.product.ProductName,
-                            "1", string.Format("{0:0,0}", result.productDetail.UnitPrice), string.Format("{0:0,0}", result.productDetail.UnitPrice), "Xóa");
+                            "1", ConvertMoney.ConvertToVND(result.productDetail.UnitPrice), ConvertMoney.ConvertToVND(result.productDetail.UnitPrice), "+", "-", "Xóa");
                         lblTotalPrice.Text = TotalPrice();
                     }
                 }
@@ -204,6 +219,29 @@ namespace GUI_PresentationLayer.View
         private void dgridOrder_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 6)
+            {
+                var row = dgridOrder.Rows[e.RowIndex];
+                var quantity = int.Parse(row.Cells[3].Value.ToString()) + 1;
+                row.Cells[3].Value = quantity;
+                row.Cells[5].Value = ConvertMoney.ConvertToVND(double.Parse(row.Cells[3].Value.ToString()) * double.Parse(row.Cells[4].Value.ToString()));
+                lblTotalPrice.Text = TotalPrice();
+            }
+            if (e.ColumnIndex == 7)
+            {
+                var row = dgridOrder.Rows[e.RowIndex];
+                if (int.Parse(row.Cells[3].Value.ToString()) != 0)
+                {
+                    var quantity = int.Parse(row.Cells[3].Value.ToString()) - 1;
+                    row.Cells[3].Value = quantity;
+                    row.Cells[5].Value = ConvertMoney.ConvertToVND(double.Parse(row.Cells[3].Value.ToString()) * double.Parse(row.Cells[4].Value.ToString()));
+                    lblTotalPrice.Text = TotalPrice();
+                }
+                else
+                {
+                    dgridOrder.Rows.Remove(dgridOrder.Rows[e.RowIndex]);
+                }
+            }
+            if (e.ColumnIndex == 8)
             {
                 if (MessageBox.Show("Bạn có chắc muốn xóa?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
@@ -256,48 +294,49 @@ namespace GUI_PresentationLayer.View
             }
         }
 
-        private void cmbPrice_SelectionChangeCommitted(object sender, EventArgs e)
+        private void cmbInvoice_SelectionChangeCommitted(object sender, EventArgs e)
         {
-
+            _frmMain.FilterInvoice(cmbInvoice.SelectedItem.ToString());
         }
 
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             if (ValidateSale() is null)
             {
-                if (MessageBox.Show("Bạn có chắc muốn thêm vào hóa đơn chờ?", "Thông báo", MessageBoxButtons.YesNo) ==
-                    DialogResult.Yes)
+                if (MessageBox.Show("Bạn có chắc muốn thêm vào hóa đơn chờ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    var invoiceId = !_iInvoiceServices.GetInvoices().Any()
-                        ? "IV1"
-                        : "IV" + _iInvoiceServices.GetInvoices().Max(c => int.Parse(c.InvoiceId.Replace("IV", "")) + 1);
-                    var invoice = new Invoice()
-                    {
-                        InvoiceId = invoiceId,
-                        DateCreate = DateTime.Now,
-                        CustomerId = cmbPhone.SelectedValue.ToString(),
-                        EmployeeId = _iEmployeeServices.GetEmployees().First().EmployeeId,
-                        InvoiceStatus = false,
-                        ShipperId = cmbShipper.Enabled ? cmbShipper.SelectedValue.ToString() : null,
-                        ShipCost = txtShipCost.Text != "" ? float.Parse(txtShipCost.Text) : 0,
-                        GuestPayments = float.Parse(txtCost.Text)
-                    };
-                    List<InvoiceDetail> invoiceDetails = new List<InvoiceDetail>();
-                    foreach (DataGridViewRow x in dgridOrder.Rows)
-                    {
-                        var result = new InvoiceDetail()
+                        var invoiceId = !_iInvoiceServices.GetInvoices().Any()
+                            ? "IV1"
+                            : "IV" + _iInvoiceServices.GetInvoices().Max(c => int.Parse(c.InvoiceId.Replace("IV", "")) + 1);
+                        var invoice = new Invoice()
                         {
                             InvoiceId = invoiceId,
-                            ProductId = x.Cells[0].Value.ToString(),
-                            Quantity = int.Parse(x.Cells[3].Value.ToString()),
-                            Price = float.Parse(x.Cells[4].Value.ToString()),
-                            TotalPrice = float.Parse(x.Cells[5].Value.ToString())
+                            DateCreate = DateTime.Now,
+                            CustomerId = cmbPhone.SelectedValue.ToString(),
+                            EmployeeId = _iEmployeeServices.GetEmployees().First().EmployeeId,
+                            InvoiceStatus = false,
+                            ShipperId = cmbShipper.Enabled ? cmbShipper.SelectedValue.ToString() : null,
+                            ShipCost = txtShipCost.Text != "" ? float.Parse(txtShipCost.Text) : 0,
+                            GuestPayments = float.Parse(txtCost.Text)
                         };
-                        invoiceDetails.Add(result);
-                    }
-                    MessageBox.Show(_iInvoiceServices.AddInvoice(invoice, invoiceDetails));
+                        List<InvoiceDetail> invoiceDetails = new List<InvoiceDetail>();
+                        foreach (DataGridViewRow x in dgridOrder.Rows)
+                        {
+                            var result = new InvoiceDetail()
+                            {
+                                InvoiceId = invoiceId,
+                                ProductId = x.Cells[0].Value.ToString(),
+                                Quantity = int.Parse(x.Cells[3].Value.ToString()),
+                                Price = float.Parse(x.Cells[4].Value.ToString()),
+                                TotalPrice = float.Parse(x.Cells[5].Value.ToString())
+                            };
+                            invoiceDetails.Add(result);
+                        }
+                        MessageBox.Show(_iInvoiceServices.AddInvoice(invoice, invoiceDetails));
                 }
                 _frmMain.LoadData();
+                _iCustomerServices.IncreasePurchase(cmbPhone.SelectedValue.ToString());
+                
             }
             else
             {
@@ -312,12 +351,18 @@ namespace GUI_PresentationLayer.View
                 var customer = _iCustomerServices.GetCustomerById(cmbPhone.SelectedValue.ToString());
                 txtName.Text = customer.CustomerName;
                 txtAddress.Text = customer.Address;
+                txtName.Enabled = false;
+                txtAddress.Enabled = false;
             }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-
+            if (MessageBox.Show("Bạn có chắc muốn hoàn thành!", "Thông báo", MessageBoxButtons.YesNo) ==
+                DialogResult.Yes)
+            {
+                MessageBox.Show(_iInvoiceServices.CompleteInvoice(invoidId));
+            }
         }
 
         private void btnQr_Click(object sender, EventArgs e)
@@ -366,7 +411,7 @@ namespace GUI_PresentationLayer.View
             if (pbxQr.Image != null)
             {
                 BarcodeReader barcodeReader = new BarcodeReader();
-                Result result = barcodeReader.Decode((Bitmap) pbxQr.Image);
+                Result result = barcodeReader.Decode((Bitmap)pbxQr.Image);
                 if (result != null)
                 {
                     var product = _iProductServices.GetViewProducts()
@@ -394,9 +439,6 @@ namespace GUI_PresentationLayer.View
                                 "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "Xóa");
                         }
                         lblTotalPrice.Text = TotalPrice();
-                        timer1.Stop();
-                        if (_videoCaptureDevice.IsRunning)
-                            _videoCaptureDevice.Stop();
                         btnQr2.ButtonText = "Quét mã";
                         pbxQr.Image = null;
                     }
@@ -424,20 +466,89 @@ namespace GUI_PresentationLayer.View
 
         private void txtCost_OnValueChanged(object sender, EventArgs e)
         {
-            // txtCost.Text = string.Format("{0:0,0}", float.Parse(txtCost.Text));
             if (txtCost.Text != "" && lblTotalPrice.Text != "0 VNĐ")
             {
                 if (float.Parse(txtCost.Text) > float.Parse(lblTotalPrice.Text))
                 {
-                    lblMoneyLeft.Text = string.Format("{0:0,0}", float.Parse(txtCost.Text) - float.Parse(lblTotalPrice.Text));
+                    lblMoneyLeft.Text = ConvertMoney.ConvertToVND(float.Parse(txtCost.Text) - float.Parse(lblTotalPrice.Text));
                 }
             }
         }
 
         private void lblCancel_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(_iInvoiceServices.RemoveInvoice(btnCancel.Tag.ToString()));
-            _frmMain.LoadData();
+            Form form = new Form();
+
+            Label label = new Label();
+            label.Dock = DockStyle.Top;
+            label.AutoSize = false;
+            label.TextAlign = ContentAlignment.MiddleCenter;
+            label.Text = "Lý do hủy";
+            label.Font = new Font("Arial", 10);
+
+            TextBox textBox = new TextBox();
+            textBox.Dock = DockStyle.Top;
+            textBox.Font = new Font("Arial", 18);
+            textBox.Multiline = true;
+            textBox.Size =  new System.Drawing.Size(0, 150);
+
+            Button button = new Button();
+            button.Dock = DockStyle.Top;
+            button.Size = new System.Drawing.Size(0, 80);
+            button.Text = "Xác nhận";
+            button.Click += (o, args) =>
+            {
+                if (MessageBox.Show("Bạn có chắc muốn xóa?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    MessageBox.Show(_iInvoiceServices.CancelInvoice(invoidId, textBox.Text));
+                    _frmMain.LoadData();
+                }
+                else
+                {
+                    return;
+                }
+                form.Close();
+            };
+
+            form.StartPosition = FormStartPosition.CenterParent;
+            form.Controls.Add(button);
+            form.Controls.Add(textBox);
+            form.Controls.Add(label);
+            form.ShowDialog();
+        }
+
+        private void cmbPhone_TextChanged(object sender, EventArgs e)
+        {
+            // if (cmbPhone.SelectedValue != null)
+            // {
+            //     txtAddress.Enabled = false;
+            //     txtName.Enabled = false;
+            // }
+            // else
+            // {
+            //     txtAddress.Enabled = true;
+            //     txtName.Enabled = true;
+            // }
+        }
+
+        private void cmbBrand_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+        }
+
+        private void cmbBrand_MouseDown(object sender, MouseEventArgs e)
+        {
+            var combobox = sender as ComboBox;
+            if (e.Button == MouseButtons.Right)
+            {
+                if (combobox != null) combobox.SelectedIndex = -1;
+                foreach (DataGridViewRow x in dgridProduct.Rows)
+                {
+                    if (x.Visible == false)
+                    {
+                        x.Visible = true;
+                    }
+                }
+            }
         }
     }
 }

@@ -22,5 +22,7 @@ namespace BUS_BussinessLayer.iBUS_Services
         string DisableCustomer(string id);
 
         string RecoveryCustomer(string id);
+
+        string IncreasePurchase(string id);
     }
 }

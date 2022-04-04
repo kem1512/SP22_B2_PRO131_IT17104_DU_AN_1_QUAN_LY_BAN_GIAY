@@ -105,7 +105,7 @@ namespace GUI_PresentationLayer.View
                 }
                 else
                 {
-                    pbxProduct.Image = null;
+                    pbxProduct.Image = Properties.Resources.failed;
                 }
                 txtName.Text = row.Cells[1].Value.ToString();
                 txtEmail.Text = row.Cells[2].Value.ToString();

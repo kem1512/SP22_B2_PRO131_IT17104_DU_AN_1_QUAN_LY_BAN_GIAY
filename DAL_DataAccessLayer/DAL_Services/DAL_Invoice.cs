@@ -22,6 +22,15 @@ namespace DAL_DataAccessLayer.DAL_Services
                         _db.Invoice.Add(invoice);
                         foreach (var x in invoiceDetail)
                         {
+                            var inventory = _db.Inventory.FirstOrDefault(c => c.ProductId == x.ProductId);
+                            if (inventory != null)
+                            {
+                                if (inventory.Amount < x.Quantity)
+                                {
+                                    return $"Sản phẩm {x.ProductId} không đủ hàng!";
+                                }
+                                inventory.Amount = inventory.Amount - x.Quantity;
+                            }
                             _db.InvoiceDetail.Add(x);
                         }
                         _db.SaveChanges();
@@ -81,11 +90,16 @@ namespace DAL_DataAccessLayer.DAL_Services
                     var invoice = _db.Invoice.FirstOrDefault(c => c.InvoiceId == id);
                     if (id != null && invoice != null)
                     {
-                        _db.Invoice.Remove(invoice);
                         foreach (var x in _db.InvoiceDetail.Where(c => c.InvoiceId == invoice.InvoiceId))
                         {
+                            var inventory = _db.Inventory.FirstOrDefault(c => c.ProductId == x.ProductId);
+                            if (inventory != null)
+                            {
+                                inventory.Amount += x.Quantity;
+                            }
                             _db.InvoiceDetail.Remove(x);
                         }
+                        _db.Invoice.Remove(invoice);
                         _db.SaveChanges();
                         return "Xóa thành công!";
                     }
@@ -127,6 +141,51 @@ namespace DAL_DataAccessLayer.DAL_Services
             using (_db = new QuanLyBanGiayEntities())
             {
                 return _db.InvoiceDetail.FirstOrDefault(c => c.InvoiceId == id);
+            }
+        }
+
+        public string CompleteInvoice(string id)
+        {
+            try
+            {
+                using (_db = new QuanLyBanGiayEntities())
+                {
+                    var invoice = _db.Invoice.FirstOrDefault(c => c.InvoiceId == id);
+                    if (id != null && invoice != null)
+                    {
+                        invoice.InvoiceStatus = true;
+                        _db.SaveChanges();
+                        return "Hoàn thành đơn hàng thành công!";
+                    }
+                    return "Thất bại!";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
+            }
+        }
+
+        public string CancelInvoice(string id, string reason)
+        {
+            try
+            {
+                using (_db = new QuanLyBanGiayEntities())
+                {
+                    var invoice = _db.Invoice.FirstOrDefault(c => c.InvoiceId == id);
+                    if (invoice != null)
+                    {
+                        invoice.Description = reason;
+                        invoice.InvoiceStatus = false;
+                        _db.SaveChanges();
+                        return "Hủy thành công!";
+                    }
+                    return "Hủy thất bại!";
+                }
+            }
+            catch (Exception e)
+            {
+                return e.ToString();
             }
         }
     }

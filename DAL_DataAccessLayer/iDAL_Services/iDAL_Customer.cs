@@ -22,5 +22,7 @@ namespace DAL_DataAccessLayer.iDAL_Services
         string DisableCustomer(string id);
 
         string RecoveryCustomer(string id);
+
+        string IncreasePurchase(string id);
     }
 }

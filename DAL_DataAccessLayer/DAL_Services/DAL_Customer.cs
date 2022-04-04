@@ -109,5 +109,20 @@ namespace DAL_DataAccessLayer.DAL_Services
                 return "Phục hồi thất bại!";
             }
         }
+
+        public string IncreasePurchase(string id)
+        {
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                var customer = _db.Customer.FirstOrDefault(c => c.CustomerId == id);
+                if (id != null && customer != null)
+                {
+                    customer.ShoppingCount++;
+                    _db.SaveChanges();
+                    return "Phục hồi thành công!";
+                }
+                return "Phục hồi thất bại!";
+            }
+        }
     }
 }
