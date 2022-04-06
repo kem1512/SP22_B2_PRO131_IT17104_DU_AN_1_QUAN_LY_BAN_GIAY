@@ -6,6 +6,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.BUS_Services;
@@ -54,40 +55,51 @@ namespace GUI_PresentationLayer.View
             {
                 return "Vui lòng chọn vai trò";
             }
+            if ((DateTime.Now.Year - dgdtpcStaff.Value.Year) < 18)
+            {
+                return "Chưa đủ 18 tuổi!";
+            }
+            if (_iEmployeeServices.GetEmployees().Any(c => c.Email == txtEmail.Text))
+            {
+                return "Nhân viên đã tồn tại!";
+            }
             return null;
         }
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            if (btnAdd.Cursor == Cursors.Hand)
+            if (ValidateEmployee() is null)
             {
-                if (ValidateEmployee() is null)
+                var employeeId = !_iEmployeeServices.GetEmployees().Any() ? "NV1" : "NV" + _iEmployeeServices.GetEmployees().Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
+                if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    var employeeId = !_iEmployeeServices.GetEmployees().Any() ? "NV1" : "NV" + _iEmployeeServices.GetEmployees().Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
-                    if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    var em = new Employee()
                     {
-                        MessageBox.Show(_iEmployeeServices.AddEmployee(new Employee()
-                        {
-                            EmployeeId = employeeId,
-                            FullName = txtName.Text,
-                            Email = txtEmail.Text,
-                            Phone = txtPhone.Text,
-                            Address = txtAddress.Text,
-                            DateOfBirth = DateTime.Parse(dgdtpcStaff.Value.ToShortDateString()),
-                            Gender = rbtnMale.Checked ? true : false,
-                            EmployeeImage = pbxEmployee.Tag.ToString(),
-                            RoleId = cmbRoles.SelectedValue.ToString(),
-                            Status = true,
-                            Pass = txtPassword.Text
-                        }));
-                        LoadData();
+                        EmployeeId = employeeId,
+                        FullName = txtName.Text,
+                        Email = txtEmail.Text,
+                        Phone = txtPhone.Text,
+                        Address = txtAddress.Text,
+                        DateOfBirth = DateTime.Parse(dgdtpcStaff.Value.ToShortDateString()),
+                        Gender = rbtnMale.Checked ? true : false,
+                        EmployeeImage = pbxEmployee.Tag.ToString(),
+                        RoleId = cmbRoles.SelectedValue.ToString(),
+                        Status = true,
+                        Pass = txtPassword.Text
+                    };
+                    MessageBox.Show(_iEmployeeServices.AddEmployee(em));
+                    LoadData();
+                    if (MessageBox.Show("Bạn có muốn gửi mã QR đến cho nhân viên?", "Thông báo",
+                            MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        SendSMS.SendMail(em.Email, "Tiêu đế", "123", GenerateBarcode.CreateQRCode(em.Email, em.Pass));
+                        MessageBox.Show("Gửi thành công!");
                     }
                 }
-                else
-                {
-                    MessageBox.Show(ValidateEmployee());
-                }
-
+            }
+            else
+            {
+                MessageBox.Show(ValidateEmployee());
             }
         }
 
@@ -95,8 +107,6 @@ namespace GUI_PresentationLayer.View
         {
             if (e.RowIndex != -1)
             {
-                btnEdit.Cursor = Cursors.Hand;
-                btnAdd.Cursor = Cursors.No;
                 var row = dgridEmployee.Rows[e.RowIndex];
                 var employee = _iEmployeeServices.GetEmployeeById(row.Cells[0].Value.ToString());
                 if (File.Exists(employee.EmployeeImage))
@@ -172,30 +182,30 @@ namespace GUI_PresentationLayer.View
         private void btnEdit_Click(object sender, EventArgs e)
         {
             if (ValidateEmployee() is null)
+            {
+                var employee = _iEmployeeServices.GetEmployeeById(dgridEmployee.Rows[dgridEmployee.CurrentRow.Index].Cells[0].Value.ToString());
+                if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    var employee = _iEmployeeServices.GetEmployeeById(dgridEmployee.Rows[dgridEmployee.CurrentRow.Index].Cells[0].Value.ToString());
-                    if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    MessageBox.Show(_iEmployeeServices.UpdateEmployee(new Employee()
                     {
-                        MessageBox.Show(_iEmployeeServices.UpdateEmployee(new Employee()
-                        {
-                            EmployeeId = employee.EmployeeId,
-                            FullName = txtName.Text,
-                            Email = txtEmail.Text,
-                            Phone = txtPhone.Text,
-                            Address = txtAddress.Text,
-                            DateOfBirth = DateTime.Parse(dgdtpcStaff.Value.ToShortDateString()),
-                            Gender = rbtnMale.Checked ? true : false,
-                            EmployeeImage = pbxEmployee.Tag.ToString(),
-                            RoleId = cmbRoles.SelectedValue.ToString(),
-                            Pass = txtPassword.Text
-                        }));
-                        LoadData();
-                    }
+                        EmployeeId = employee.EmployeeId,
+                        FullName = txtName.Text,
+                        Email = txtEmail.Text,
+                        Phone = txtPhone.Text,
+                        Address = txtAddress.Text,
+                        DateOfBirth = DateTime.Parse(dgdtpcStaff.Value.ToShortDateString()),
+                        Gender = rbtnMale.Checked ? true : false,
+                        EmployeeImage = pbxEmployee.Tag.ToString(),
+                        RoleId = cmbRoles.SelectedValue.ToString(),
+                        Pass = txtPassword.Text
+                    }));
+                    LoadData();
                 }
-                else
-                {
-                    MessageBox.Show(ValidateEmployee());
-                }
+            }
+            else
+            {
+                MessageBox.Show(ValidateEmployee());
+            }
         }
 
         private void btnQr_Click(object sender, EventArgs e)
@@ -209,7 +219,7 @@ namespace GUI_PresentationLayer.View
                 {
                     var em = _iEmployeeServices.GetEmployeeById(row.Cells[0].Value.ToString());
                     var image = GenerateBarcode.CreateQRCode(em.Email, em.Pass);
-                    SendSMS.SendMail("haidang15122002@gmail.com", "Gửi lại qr cho em yêu", "Qr nè", image);
+                    SendSMS.SendMail(em.Email, "Gửi lại  mã QR", "Nè", image);
                 }
             }
         }

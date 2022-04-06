@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Media;
@@ -156,7 +157,8 @@ namespace GUI_PresentationLayer.View
                 if (invoice.ShipperId != null)
                 {
                     rbtnShip.Checked = true;
-                    txtShipCost.Text = ConvertMoney.ConvertToVND((double)invoice.ShipCost);
+                    if (invoice.ShipCost != null)
+                        txtShipCost.Text = ConvertMoney.ConvertToVND((double) invoice.ShipCost);
                     cmbShipper.SelectedValue = invoice.ShipperId;
                 }
                 else
@@ -172,10 +174,11 @@ namespace GUI_PresentationLayer.View
                     {
                         dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream), _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "Thêm");
                     }
-                    totalPrice += int.Parse(x.TotalPrice.ToString());
+                    totalPrice += int.Parse(x.TotalPrice.ToString(CultureInfo.InvariantCulture));
                 }
                 lblTotalPrice.Text = ConvertMoney.ConvertToVND(totalPrice);
-                txtCost.Text = ConvertMoney.ConvertToVND((double)invoice.GuestPayments);
+                if (invoice.GuestPayments != null)
+                    txtCost.Text = ConvertMoney.ConvertToVND((double) invoice.GuestPayments);
                 btnCancel.Tag = invoice.InvoiceId;
             }
         }
@@ -189,30 +192,31 @@ namespace GUI_PresentationLayer.View
         {
             if (e.ColumnIndex == 11)
             {
-                var result = _iProductServices.GetViewProducts().FirstOrDefault(c =>
-                    c.product.ProductId == dgridProduct.Rows[e.RowIndex].Cells[0].Value.ToString());
-                if (result != null)
-                {
-                    foreach (DataGridViewRow x in dgridOrder.Rows)
-                    {
-                        if (x.Cells[2].Value.ToString() == result.product.ProductName)
-                        {
-                            x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
-                            x.Cells[4].Value = ConvertMoney.ConvertToVND(result.productDetail.UnitPrice);
-                            x.Cells[5].Value = ConvertMoney.ConvertToVND(double.Parse(x.Cells[3].Value.ToString()) * double.Parse(x.Cells[4].Value.ToString()));
-                            lblTotalPrice.Text = TotalPrice();
-                            return;
-                        }
-                    }
-
-                    using (FileStream fileStream = new FileStream(result.product.ProductImage, FileMode.Open))
-                    {
-                        dgridOrder.Rows.Add(result.product.ProductId, new Bitmap(fileStream),
-                            result.product.ProductName,
-                            "1", ConvertMoney.ConvertToVND(result.productDetail.UnitPrice), ConvertMoney.ConvertToVND(result.productDetail.UnitPrice), "+", "-", "Xóa");
-                        lblTotalPrice.Text = TotalPrice();
-                    }
-                }
+                // var result = _iProductServices.GetViewProducts().FirstOrDefault(c =>
+                //     c.product.ProductId == dgridProduct.Rows[e.RowIndex].Cells[0].Value.ToString());
+                // if (result != null)
+                // {
+                //     foreach (DataGridViewRow x in dgridOrder.Rows)
+                //     {
+                //         if (x.Cells[2].Value.ToString() == result.product.ProductName)
+                //         {
+                //             x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
+                //             x.Cells[4].Value = ConvertMoney.ConvertToVND(result.productDetail.UnitPrice);
+                //             x.Cells[5].Value = ConvertMoney.ConvertToVND(double.Parse(x.Cells[3].Value.ToString()) * double.Parse(x.Cells[4].Value.ToString()));
+                //             lblTotalPrice.Text = TotalPrice();
+                //             return;
+                //         }
+                //     }
+                //
+                //     using (FileStream fileStream = new FileStream(result.product.ProductImage, FileMode.Open))
+                //     {
+                //         dgridOrder.Rows.Add(result.product.ProductId, new Bitmap(fileStream),
+                //             result.product.ProductName,
+                //             "1", ConvertMoney.ConvertToVND(result.productDetail.UnitPrice), ConvertMoney.ConvertToVND(result.productDetail.UnitPrice), "+", "-", "Xóa");
+                //         lblTotalPrice.Text = TotalPrice();
+                //     }
+                // }
+                AddProductToInvoice(dgridProduct.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
         }
 
@@ -404,6 +408,7 @@ namespace GUI_PresentationLayer.View
                 if (_videoCaptureDevice != null && _videoCaptureDevice.IsRunning)
                     _videoCaptureDevice.Stop();
                 pbxQr.Image = null;
+                timer1.Stop();
                 btnQr2.ButtonText = "Quét mã";
             }
         }
@@ -414,6 +419,32 @@ namespace GUI_PresentationLayer.View
                 _videoCaptureDevice.Stop();
         }
 
+        private void AddProductToInvoice(string id)
+        {
+            var product = _iProductServices.GetViewProducts()
+                .FirstOrDefault(c => c.product.ProductId == id);
+            foreach (DataGridViewRow x in dgridOrder.Rows)
+            {
+                if (x.Cells[2].Value.ToString() == product.product.ProductName)
+                {
+                    x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
+                    x.Cells[4].Value = int.Parse(x.Cells[4].Value.ToString()) +
+                                       product.productDetail.UnitPrice;
+                    x.Cells[5].Value = int.Parse(x.Cells[3].Value.ToString()) *
+                                       int.Parse(x.Cells[4].Value.ToString());
+                    lblTotalPrice.Text = TotalPrice();
+                    return;
+                }
+            }
+
+            using (FileStream fileStream = new FileStream(product.product.ProductImage, FileMode.Open))
+            {
+                dgridOrder.Rows.Add(product.product.ProductId, new Bitmap(fileStream),
+                    product.product.ProductName,
+                    "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "+", "-", "Xóa");
+            }
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             if (pbxQr.Image != null)
@@ -422,30 +453,11 @@ namespace GUI_PresentationLayer.View
                 Result result = barcodeReader.Decode((Bitmap)pbxQr.Image);
                 if (result != null)
                 {
-                    var product = _iProductServices.GetViewProducts()
-                        .FirstOrDefault(c => c.product.Barcode == result.ToString());
+                    var product = _iProductServices.GetProducts()
+                        .FirstOrDefault(c => c.Barcode == result.ToString());
                     if (product != null)
                     {
-                        foreach (DataGridViewRow x in dgridOrder.Rows)
-                        {
-                            if (x.Cells[2].Value.ToString() == product.product.ProductName)
-                            {
-                                x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
-                                x.Cells[4].Value = int.Parse(x.Cells[4].Value.ToString()) +
-                                                   product.productDetail.UnitPrice;
-                                x.Cells[5].Value = int.Parse(x.Cells[3].Value.ToString()) *
-                                                   int.Parse(x.Cells[4].Value.ToString());
-                                lblTotalPrice.Text = TotalPrice();
-                                return;
-                            }
-                        }
-
-                        using (FileStream fileStream = new FileStream(product.product.ProductImage, FileMode.Open))
-                        {
-                            dgridOrder.Rows.Add(product.product.ProductId, new Bitmap(fileStream),
-                                product.product.ProductName,
-                                "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice,"+", "-", "Xóa");
-                        }
+                        AddProductToInvoice(product.ProductId);
                         lblTotalPrice.Text = TotalPrice();
                         btnQr2.ButtonText = "Quét mã";
                         pbxQr.Image = null;

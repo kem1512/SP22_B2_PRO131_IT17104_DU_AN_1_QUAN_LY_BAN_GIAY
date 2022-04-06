@@ -65,7 +65,7 @@ namespace GUI_PresentationLayer.View
 
         private void bunifuThinButton22_Click(object sender, EventArgs e)
         {
-            bunifuThinButton22.Enabled = false;
+            
         }
 
         private void dgdtpcDateBegin_onValueChanged(object sender, EventArgs e)

@@ -28,17 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.pnlTurnover = new System.Windows.Forms.Panel();
             this.dgdtpcDateBegin = new Bunifu.Framework.UI.BunifuDatepicker();
             this.lblDateBegin = new System.Windows.Forms.Label();
             this.dgdtpcDateEnd = new Bunifu.Framework.UI.BunifuDatepicker();
             this.lblDateEnd = new System.Windows.Forms.Label();
             this.lblTurnover = new System.Windows.Forms.Label();
-            this.dgridTurnover = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.sctnBot = new System.Windows.Forms.SplitContainer();
             this.pnlBrand = new System.Windows.Forms.Panel();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
@@ -46,8 +47,8 @@
             this.pnlCancel = new System.Windows.Forms.Panel();
             this.lblCancel = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.pnlTurnover.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridTurnover)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.sctnBot)).BeginInit();
             this.sctnBot.Panel1.SuspendLayout();
             this.sctnBot.Panel2.SuspendLayout();
@@ -73,12 +74,29 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.chart1);
             this.panel2.Controls.Add(this.pnlTurnover);
-            this.panel2.Controls.Add(this.dgridTurnover);
             this.panel2.Location = new System.Drawing.Point(12, 121);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1315, 311);
             this.panel2.TabIndex = 2;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(0, 84);
+            this.chart1.Name = "chart1";
+            series1.ChartArea = "ChartArea1";
+            series1.Legend = "Legend1";
+            series1.Name = "Series1";
+            this.chart1.Series.Add(series1);
+            this.chart1.Size = new System.Drawing.Size(1313, 225);
+            this.chart1.TabIndex = 5;
+            this.chart1.Text = "chart1";
             // 
             // pnlTurnover
             // 
@@ -156,35 +174,6 @@
             this.lblTurnover.TabIndex = 0;
             this.lblTurnover.Text = "Doanh thu";
             this.lblTurnover.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // dgridTurnover
-            // 
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgridTurnover.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgridTurnover.BackgroundColor = System.Drawing.SystemColors.ControlDark;
-            this.dgridTurnover.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dgridTurnover.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgridTurnover.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
-            this.dgridTurnover.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgridTurnover.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgridTurnover.DoubleBuffered = true;
-            this.dgridTurnover.EnableHeadersVisualStyles = false;
-            this.dgridTurnover.HeaderBgColor = System.Drawing.Color.SeaGreen;
-            this.dgridTurnover.HeaderForeColor = System.Drawing.Color.SeaGreen;
-            this.dgridTurnover.Location = new System.Drawing.Point(0, 0);
-            this.dgridTurnover.Name = "dgridTurnover";
-            this.dgridTurnover.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            this.dgridTurnover.RowHeadersWidth = 51;
-            this.dgridTurnover.RowTemplate.Height = 24;
-            this.dgridTurnover.Size = new System.Drawing.Size(1313, 309);
-            this.dgridTurnover.TabIndex = 1;
             // 
             // sctnBot
             // 
@@ -275,9 +264,9 @@
             this.Name = "FrmStatistics";
             this.Text = "FrmStatistics";
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.pnlTurnover.ResumeLayout(false);
             this.pnlTurnover.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridTurnover)).EndInit();
             this.sctnBot.Panel1.ResumeLayout(false);
             this.sctnBot.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sctnBot)).EndInit();
@@ -296,7 +285,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblTurnover;
         private System.Windows.Forms.Label lblDateEnd;
-        private Bunifu.Framework.UI.BunifuCustomDataGrid dgridTurnover;
         private System.Windows.Forms.SplitContainer sctnBot;
         private System.Windows.Forms.Panel pnlBrand;
         private System.Windows.Forms.Label lblBrand;
@@ -307,5 +295,6 @@
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcDateEnd;
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcDateBegin;
         private System.Windows.Forms.Label lblDateBegin;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
     }
 }

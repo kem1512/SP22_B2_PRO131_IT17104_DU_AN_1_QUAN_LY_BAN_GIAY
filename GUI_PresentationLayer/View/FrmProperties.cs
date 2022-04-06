@@ -165,6 +165,9 @@ namespace GUI_PresentationLayer.View
                 if (txtName.Text == "")
                 {
                     MessageBox.Show("Tên không được bỏ trống!");
+                }else if (_iCategoryServices.GetCategories().Any(c => c.CategoryName == txtName.Text))
+                {
+                    MessageBox.Show("Thể loại đã tồn tại!");
                 }
                 else
                 {
@@ -188,6 +191,10 @@ namespace GUI_PresentationLayer.View
                 {
                     MessageBox.Show("Tên không được bỏ trống!");
                 }
+                else if (_iBrandServices.GetBrands().Any(c => c.BrandName == txtName.Text))
+                {
+                    MessageBox.Show("Nhãn hiệu đã tồn tại!");
+                }
                 else
                 {
                     // tìm id lớn nhất và cộng thêm 1
@@ -209,6 +216,10 @@ namespace GUI_PresentationLayer.View
                 if (txtName.Text == "")
                 {
                     MessageBox.Show("Tên không được bỏ trống!");
+                }
+                else if (_iMaterialServices.GetMaterials().Any(c => c.MaterialName == txtName.Text))
+                {
+                    MessageBox.Show("Chất liệu đã tồn tại!");
                 }
                 else
                 {
@@ -232,6 +243,10 @@ namespace GUI_PresentationLayer.View
                 {
                     MessageBox.Show("Tên không được bỏ trống!");
                 }
+                else if (_iSizeServices.GetSizes().Any(c => c.SizeName == txtName.Text))
+                {
+                    MessageBox.Show("Kích thước đã tồn tại!");
+                }
                 else
                 {
                     // tìm id lớn nhất và cộng thêm 1
@@ -253,6 +268,10 @@ namespace GUI_PresentationLayer.View
                 if (txtName.Text == "")
                 {
                     MessageBox.Show("Tên không được bỏ trống!");
+                }
+                else if (_iColorServices.GetColors().Any(c => c.ColorName == txtName.Text))
+                {
+                    MessageBox.Show("Màu đã tồn tại!");
                 }
                 else
                 {
@@ -277,6 +296,10 @@ namespace GUI_PresentationLayer.View
                 if (txtName.Text == "")
                 {
                     MessageBox.Show("Tên không được bỏ trống!");
+                }
+                else if (_iRoleServices.GetRoles().Any(c => c.RoleName == txtName.Text))
+                {
+                    MessageBox.Show("Vai trò đã tồn tại!");
                 }
                 else
                 {
@@ -424,7 +447,7 @@ namespace GUI_PresentationLayer.View
                                 RoleId = role.RoleId,
                                 RoleName = txtName.Text
                             }));
-                            LoadColors();
+                            LoadRoles();
                         }
                     }
                 }
