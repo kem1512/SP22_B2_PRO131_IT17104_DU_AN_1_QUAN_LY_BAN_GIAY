@@ -41,7 +41,7 @@ namespace DAL_DataAccessLayer.DAL_Services
                             File.Delete(image);
                         }
                         if (product.ProductImage != null) File.Copy(product.ProductImage, image);
-                        product.ProductImage = image;
+                        // product.ProductImage = image;
                         _db.SaveChanges();
                         return "Thêm thành công!";
                     }
@@ -98,7 +98,7 @@ namespace DAL_DataAccessLayer.DAL_Services
                             File.Delete(pr.ProductImage);
                             if (product.ProductImage != null) File.Copy(product.ProductImage, image);
                             // Sửa lại đường dẫn ảnh
-                            pr.ProductImage = image;
+                            //pr.ProductImage = image;
                         }
                         return "Sửa thành công!";
                     }

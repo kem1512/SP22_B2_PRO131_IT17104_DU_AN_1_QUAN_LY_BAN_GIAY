@@ -107,12 +107,22 @@ namespace GUI_PresentationLayer.View
             var result = _iProductServices.GetViewProducts();
             foreach (var x in result.Where(c => c.product.Status))
             {
-                using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
+                if (File.Exists(x.product.ProductImage))
                 {
-                    dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName,
-                        x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description,
-                        x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId,
-                        x.productDetail.SizeId, x.productDetail.CategoryId, "Thêm");
+                    using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
+                    {
+                        dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName,
+                            x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description,
+                            x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId,
+                            x.productDetail.SizeId, x.productDetail.CategoryId, "Thêm");
+                    }
+                }
+                else
+                {
+                    dgridProduct.Rows.Add(x.product.ProductId,Properties.Resources.failed, x.product.ProductName,
+                            x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description,
+                            x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId,
+                            x.productDetail.SizeId, x.productDetail.CategoryId, "Thêm");
                 }
             }
 
@@ -168,12 +178,22 @@ namespace GUI_PresentationLayer.View
 
                 dgridOrder.Rows.Clear();
                 var totalPrice = 0;
+                
                 foreach (var x in invoiceDetail)
                 {
-                    using (FileStream fileStream = new FileStream(_iProductServices.GetProductById(x.ProductId).ProductImage, FileMode.Open))
+                    var img = _iProductServices.GetProductById(x.ProductId).ProductImage;
+                    if (File.Exists(img))
                     {
-                        dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream), _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "Thêm");
+                        using (FileStream fileStream = new FileStream(_iProductServices.GetProductById(x.ProductId).ProductImage, FileMode.Open))
+                        {
+                            dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream), _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "Thêm");
+                        }
                     }
+                    else
+                    {
+                        dgridOrder.Rows.Add(x.ProductId, Properties.Resources.failed, _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "Thêm");
+                    }
+                    
                     totalPrice += int.Parse(x.TotalPrice.ToString(CultureInfo.InvariantCulture));
                 }
                 lblTotalPrice.Text = ConvertMoney.ConvertToVND(totalPrice);
@@ -437,12 +457,24 @@ namespace GUI_PresentationLayer.View
                 }
             }
 
-            using (FileStream fileStream = new FileStream(product.product.ProductImage, FileMode.Open))
+            if (File.Exists(product.product.ProductImage))
             {
-                dgridOrder.Rows.Add(product.product.ProductId, new Bitmap(fileStream),
-                    product.product.ProductName,
-                    "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "+", "-", "Xóa");
+                using (FileStream fileStream = new FileStream(product.product.ProductImage, FileMode.Open))
+                {
+                    dgridOrder.Rows.Add(product.product.ProductId, new Bitmap(fileStream),
+                        product.product.ProductName,
+                        "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "+", "-", "Xóa");
+                }
             }
+            else
+            {
+
+                    dgridOrder.Rows.Add(product.product.ProductId, Properties.Resources.failed,
+                        product.product.ProductName,
+                        "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "+", "-", "Xóa");
+                
+            }
+            
         }
 
         private void timer1_Tick(object sender, EventArgs e)

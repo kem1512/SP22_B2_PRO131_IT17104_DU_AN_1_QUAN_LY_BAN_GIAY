@@ -19,7 +19,7 @@ namespace BUS_BussinessLayer.iBUS_Services
         Product GetProductByName(string name);
         Product GetProductById(string id);
         string DisableProduct(string id);
-
+        List<ProductDetail> GetProductDetail();
         List<ViewProduct> GetViewProducts();
 
         string ReduceProduct(string id);
