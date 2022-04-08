@@ -40,7 +40,6 @@
             this.btnHome = new FontAwesome.Sharp.IconButton();
             this.pnlLogo = new System.Windows.Forms.Panel();
             this.lblName = new System.Windows.Forms.Label();
-            this.pbxEmployee = new FontAwesome.Sharp.IconPictureBox();
             this.pnlBottomBar = new System.Windows.Forms.Panel();
             this.btnMinimize = new FontAwesome.Sharp.IconButton();
             this.btnMaximize = new FontAwesome.Sharp.IconButton();
@@ -49,11 +48,12 @@
             this.btnHomeMain = new FontAwesome.Sharp.IconPictureBox();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.fpnlInvoice = new System.Windows.Forms.FlowLayoutPanel();
+            this.pbxEmployee = new System.Windows.Forms.PictureBox();
             this.pnlLeftBar.SuspendLayout();
             this.pnlLogo.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).BeginInit();
             this.pnlBottomBar.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHomeMain)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlTopBar
@@ -293,24 +293,6 @@
             this.lblName.Text = "Name";
             this.lblName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // pbxEmployee
-            // 
-            this.pbxEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbxEmployee.BackColor = System.Drawing.Color.Transparent;
-            this.pbxEmployee.ForeColor = System.Drawing.Color.Red;
-            this.pbxEmployee.IconChar = FontAwesome.Sharp.IconChar.Neos;
-            this.pbxEmployee.IconColor = System.Drawing.Color.Red;
-            this.pbxEmployee.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.pbxEmployee.IconSize = 194;
-            this.pbxEmployee.Location = new System.Drawing.Point(27, 12);
-            this.pbxEmployee.Name = "pbxEmployee";
-            this.pbxEmployee.Size = new System.Drawing.Size(194, 194);
-            this.pbxEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbxEmployee.TabIndex = 6;
-            this.pbxEmployee.TabStop = false;
-            this.pbxEmployee.DoubleClick += new System.EventHandler(this.pbxEmployee_DoubleClick);
-            // 
             // pnlBottomBar
             // 
             this.pnlBottomBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(150)))), ((int)(((byte)(136)))));
@@ -435,6 +417,15 @@
             this.fpnlInvoice.Visible = false;
             this.fpnlInvoice.MouseLeave += new System.EventHandler(this.panel1_MouseLeave);
             // 
+            // pbxEmployee
+            // 
+            this.pbxEmployee.Location = new System.Drawing.Point(33, 12);
+            this.pbxEmployee.Name = "pbxEmployee";
+            this.pbxEmployee.Size = new System.Drawing.Size(194, 195);
+            this.pbxEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbxEmployee.TabIndex = 8;
+            this.pbxEmployee.TabStop = false;
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -454,10 +445,10 @@
             this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.pnlLeftBar.ResumeLayout(false);
             this.pnlLogo.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).EndInit();
             this.pnlBottomBar.ResumeLayout(false);
             this.pnlBottomBar.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.btnHomeMain)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -481,10 +472,10 @@
         private FontAwesome.Sharp.IconPictureBox btnHomeMain;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.FlowLayoutPanel fpnlInvoice;
-        private FontAwesome.Sharp.IconPictureBox pbxEmployee;
         private System.Windows.Forms.Label lblName;
         private FontAwesome.Sharp.IconButton pbxLogout;
         private FontAwesome.Sharp.IconButton btnReport;
+        private System.Windows.Forms.PictureBox pbxEmployee;
     }
 }
 

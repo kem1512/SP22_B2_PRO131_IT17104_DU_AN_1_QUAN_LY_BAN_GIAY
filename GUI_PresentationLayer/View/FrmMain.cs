@@ -213,7 +213,7 @@ namespace GUI_PresentationLayer.View
         private void FrmMain_Load(object sender, EventArgs e)
         {
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
-            gp.AddEllipse(0, 0, pbxEmployee.Width - 6, pbxEmployee.Height - 6);
+            gp.AddEllipse(0, 0, pbxEmployee.Width - 3, pbxEmployee.Height - 3);
             pbxEmployee.Region = new Region(gp);
             if (Email != null)
             {

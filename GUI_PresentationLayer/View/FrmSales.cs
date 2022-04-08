@@ -398,11 +398,14 @@ namespace GUI_PresentationLayer.View
                     }
                     InvoidId = null;
                     LoadData();
+                    _frmMain.LoadData();
                 }
             }
             else
             {
                 btnConfirm_Click(sender, e);
+                LoadData();
+                _frmMain.LoadData();
             }
         }
 

@@ -257,5 +257,14 @@ namespace GUI_PresentationLayer.View
                 }
             }
         }
+
+        private void bunifuThinButton21_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                GenerateDoucument.ToExcel(dgridEmployee, openFileDialog.FileName);
+            }
+        }
     }
 }
