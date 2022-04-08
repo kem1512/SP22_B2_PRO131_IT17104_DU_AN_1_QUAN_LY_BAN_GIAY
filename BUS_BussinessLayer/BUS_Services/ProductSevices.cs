@@ -30,6 +30,11 @@ namespace BUS_BussinessLayer.BUS_Services
             return _iDAL_Product.DisableProduct(id);
         }
 
+        public List<ProductDetail> GetProductDetail()
+        {
+            return _iDAL_Product.GetProductDetail();
+        }
+
         public string DeleteProduct(string id)
         {
             return _iDAL_Product.DeleteProduct(id);

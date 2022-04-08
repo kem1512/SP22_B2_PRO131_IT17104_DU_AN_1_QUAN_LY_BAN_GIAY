@@ -28,12 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.dgrid_Revenue = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.pnlTurnover = new System.Windows.Forms.Panel();
             this.dgdtpcDateBegin = new Bunifu.Framework.UI.BunifuDatepicker();
             this.lblDateBegin = new System.Windows.Forms.Label();
@@ -41,22 +44,40 @@
             this.lblDateEnd = new System.Windows.Forms.Label();
             this.lblTurnover = new System.Windows.Forms.Label();
             this.sctnBot = new System.Windows.Forms.SplitContainer();
+<<<<<<< HEAD
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+=======
+            this.dgrid_Brand = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+>>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             this.pnlBrand = new System.Windows.Forms.Panel();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.lblBrand = new System.Windows.Forms.Label();
             this.pnlCancel = new System.Windows.Forms.Panel();
             this.lblCancel = new System.Windows.Forms.Label();
+            this.dgrid_Cancel = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Revenue)).BeginInit();
             this.pnlTurnover.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sctnBot)).BeginInit();
             this.sctnBot.Panel1.SuspendLayout();
             this.sctnBot.Panel2.SuspendLayout();
             this.sctnBot.SuspendLayout();
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Brand)).BeginInit();
+>>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             this.pnlBrand.SuspendLayout();
             this.pnlCancel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Cancel)).BeginInit();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -76,29 +97,44 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel2.Controls.Add(this.chart1);
+            this.panel2.Controls.Add(this.dgrid_Revenue);
             this.panel2.Controls.Add(this.pnlTurnover);
             this.panel2.Location = new System.Drawing.Point(12, 121);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1315, 311);
             this.panel2.TabIndex = 2;
             // 
-            // chart1
+            // dgrid_Revenue
             // 
-            chartArea1.Name = "ChartArea1";
-            this.chart1.ChartAreas.Add(chartArea1);
-            this.chart1.Dock = System.Windows.Forms.DockStyle.Fill;
-            legend1.Name = "Legend1";
-            this.chart1.Legends.Add(legend1);
-            this.chart1.Location = new System.Drawing.Point(0, 84);
-            this.chart1.Name = "chart1";
-            series1.ChartArea = "ChartArea1";
-            series1.Legend = "Legend1";
-            series1.Name = "Series1";
-            this.chart1.Series.Add(series1);
-            this.chart1.Size = new System.Drawing.Size(1313, 225);
-            this.chart1.TabIndex = 5;
-            this.chart1.Text = "chart1";
+            this.dgrid_Revenue.AllowUserToAddRows = false;
+            this.dgrid_Revenue.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Revenue.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgrid_Revenue.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgrid_Revenue.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgrid_Revenue.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Revenue.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            this.dgrid_Revenue.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgrid_Revenue.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrid_Revenue.DoubleBuffered = true;
+            this.dgrid_Revenue.EnableHeadersVisualStyles = false;
+            this.dgrid_Revenue.HeaderBgColor = System.Drawing.Color.SeaGreen;
+            this.dgrid_Revenue.HeaderForeColor = System.Drawing.Color.SeaGreen;
+            this.dgrid_Revenue.Location = new System.Drawing.Point(0, 84);
+            this.dgrid_Revenue.Name = "dgrid_Revenue";
+            this.dgrid_Revenue.ReadOnly = true;
+            this.dgrid_Revenue.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgrid_Revenue.RowHeadersWidth = 51;
+            this.dgrid_Revenue.RowTemplate.Height = 24;
+            this.dgrid_Revenue.Size = new System.Drawing.Size(1313, 225);
+            this.dgrid_Revenue.TabIndex = 5;
             // 
             // pnlTurnover
             // 
@@ -187,17 +223,23 @@
             // 
             // sctnBot.Panel1
             // 
+<<<<<<< HEAD
             this.sctnBot.Panel1.Controls.Add(this.dataGridView1);
+=======
+            this.sctnBot.Panel1.Controls.Add(this.dgrid_Brand);
+>>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             this.sctnBot.Panel1.Controls.Add(this.pnlBrand);
             // 
             // sctnBot.Panel2
             // 
+            this.sctnBot.Panel2.Controls.Add(this.dgrid_Cancel);
             this.sctnBot.Panel2.Controls.Add(this.pnlCancel);
             this.sctnBot.Size = new System.Drawing.Size(1313, 318);
             this.sctnBot.SplitterDistance = 672;
             this.sctnBot.SplitterWidth = 10;
             this.sctnBot.TabIndex = 3;
             // 
+<<<<<<< HEAD
             // dataGridView1
             // 
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -208,6 +250,68 @@
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(670, 256);
             this.dataGridView1.TabIndex = 1;
+=======
+            // dgrid_Brand
+            // 
+            this.dgrid_Brand.AllowUserToAddRows = false;
+            this.dgrid_Brand.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Brand.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
+            this.dgrid_Brand.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgrid_Brand.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgrid_Brand.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgrid_Brand.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Brand.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            this.dgrid_Brand.ColumnHeadersHeight = 50;
+            this.dgrid_Brand.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
+            this.dgrid_Brand.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrid_Brand.DoubleBuffered = true;
+            this.dgrid_Brand.EnableHeadersVisualStyles = false;
+            this.dgrid_Brand.HeaderBgColor = System.Drawing.Color.SeaGreen;
+            this.dgrid_Brand.HeaderForeColor = System.Drawing.Color.White;
+            this.dgrid_Brand.Location = new System.Drawing.Point(0, 60);
+            this.dgrid_Brand.Name = "dgrid_Brand";
+            this.dgrid_Brand.ReadOnly = true;
+            this.dgrid_Brand.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgrid_Brand.RowHeadersWidth = 51;
+            this.dgrid_Brand.RowTemplate.Height = 24;
+            this.dgrid_Brand.Size = new System.Drawing.Size(670, 256);
+            this.dgrid_Brand.TabIndex = 1;
+            // 
+            // Column1
+            // 
+            this.Column1.FillWeight = 108.3779F;
+            this.Column1.HeaderText = "Mã hoá đơn";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 108.3779F;
+            this.Column2.HeaderText = "Tên sản phẩm";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 74.86631F;
+            this.Column3.HeaderText = "Số lượng";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+>>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             // 
             // pnlBrand
             // 
@@ -231,6 +335,7 @@
             this.cmbFilter.Name = "cmbFilter";
             this.cmbFilter.Size = new System.Drawing.Size(215, 39);
             this.cmbFilter.TabIndex = 2;
+            this.cmbFilter.SelectionChangeCommitted += new System.EventHandler(this.cmbFilter_SelectionChangeCommitted);
             // 
             // lblBrand
             // 
@@ -266,6 +371,81 @@
             this.lblCancel.TabIndex = 1;
             this.lblCancel.Text = "Đơn hàng bị hủy";
             // 
+            // dgrid_Cancel
+            // 
+            this.dgrid_Cancel.AllowUserToAddRows = false;
+            this.dgrid_Cancel.AllowUserToDeleteRows = false;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Cancel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
+            this.dgrid_Cancel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgrid_Cancel.BackgroundColor = System.Drawing.Color.Gainsboro;
+            this.dgrid_Cancel.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgrid_Cancel.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Cancel.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            this.dgrid_Cancel.ColumnHeadersHeight = 50;
+            this.dgrid_Cancel.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column4,
+            this.Column5,
+            this.Column6,
+            this.Column7,
+            this.Column8});
+            this.dgrid_Cancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgrid_Cancel.DoubleBuffered = true;
+            this.dgrid_Cancel.EnableHeadersVisualStyles = false;
+            this.dgrid_Cancel.HeaderBgColor = System.Drawing.Color.SeaGreen;
+            this.dgrid_Cancel.HeaderForeColor = System.Drawing.Color.White;
+            this.dgrid_Cancel.Location = new System.Drawing.Point(0, 60);
+            this.dgrid_Cancel.Name = "dgrid_Cancel";
+            this.dgrid_Cancel.ReadOnly = true;
+            this.dgrid_Cancel.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dgrid_Cancel.RowHeadersWidth = 51;
+            this.dgrid_Cancel.RowTemplate.Height = 24;
+            this.dgrid_Cancel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgrid_Cancel.Size = new System.Drawing.Size(629, 256);
+            this.dgrid_Cancel.TabIndex = 2;
+            // 
+            // Column4
+            // 
+            this.Column4.HeaderText = "Mã hoá đơn";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Tên khách hàng";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.HeaderText = "Số điện thoại";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.HeaderText = "Lí do huỷ";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.HeaderText = "Giá trị hoá đơn";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
             // FrmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -278,18 +458,23 @@
             this.Name = "FrmStatistics";
             this.Text = "FrmStatistics";
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Revenue)).EndInit();
             this.pnlTurnover.ResumeLayout(false);
             this.pnlTurnover.PerformLayout();
             this.sctnBot.Panel1.ResumeLayout(false);
             this.sctnBot.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sctnBot)).EndInit();
             this.sctnBot.ResumeLayout(false);
+<<<<<<< HEAD
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+=======
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Brand)).EndInit();
+>>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             this.pnlBrand.ResumeLayout(false);
             this.pnlBrand.PerformLayout();
             this.pnlCancel.ResumeLayout(false);
             this.pnlCancel.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Cancel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -310,7 +495,21 @@
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcDateEnd;
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcDateBegin;
         private System.Windows.Forms.Label lblDateBegin;
+<<<<<<< HEAD
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private System.Windows.Forms.DataGridView dataGridView1;
+=======
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Revenue;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Brand;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Cancel;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+>>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
     }
 }

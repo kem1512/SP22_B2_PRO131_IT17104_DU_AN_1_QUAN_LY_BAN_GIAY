@@ -114,7 +114,7 @@ namespace GUI_PresentationLayer.View
                 {
                     using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
                     {
-                        dgridProduct.Rows.Add(x.product.ProductId,new Bitmap(fileStream), x.product.ProductName,
+                        dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName,
                             x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description,
                             x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId,
                             x.productDetail.SizeId, x.productDetail.CategoryId, "Thêm");
@@ -181,6 +181,7 @@ namespace GUI_PresentationLayer.View
 
                 dgridOrder.Rows.Clear();
                 var totalPrice = 0;
+                
                 foreach (var x in invoiceDetail)
                 {
                     var result = _iProductServices.GetProductById(x.ProductId).ProductImage;
@@ -188,13 +189,19 @@ namespace GUI_PresentationLayer.View
                     {
                         using (FileStream fileStream = new FileStream(result, FileMode.Open))
                         {
-                            dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream), _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "+", "-", "Xóa");
+                            dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream),
+                                _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity,
+                                ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "+", "-",
+                                "Xóa");
+                            var img = _iProductServices.GetProductById(x.ProductId).ProductImage;
                         }
                     }
                     else
                     {
                         dgridOrder.Rows.Add(x.ProductId, Properties.Resources.failed, _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "+", "-", "Xóa");
+                        dgridOrder.Rows.Add(x.ProductId, Properties.Resources.failed, _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "Thêm");
                     }
+                    
                     totalPrice += int.Parse(x.TotalPrice.ToString(CultureInfo.InvariantCulture));
                 }
                 lblTotalPrice.Text = ConvertMoney.ConvertToVND(totalPrice);
@@ -463,7 +470,8 @@ namespace GUI_PresentationLayer.View
                     {
                         x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
                         x.Cells[4].Value = ConvertMoney.ConvertToVND(product.productDetail.UnitPrice);
-                        x.Cells[5].Value = ConvertMoney.ConvertToVND(float.Parse(x.Cells[3].Value.ToString()) * float.Parse(x.Cells[4].Value.ToString()));
+                        x.Cells[5].Value = ConvertMoney.ConvertToVND(float.Parse(x.Cells[3].Value.ToString()) *
+                                                                     float.Parse(x.Cells[4].Value.ToString()));
                         lblTotalPrice.Text = TotalPrice();
                         return;
                     }
@@ -474,12 +482,16 @@ namespace GUI_PresentationLayer.View
                     using (FileStream fileStream = new FileStream(product.product.ProductImage, FileMode.Open))
                     {
 
-                        dgridOrder.Rows.Add(product.product.ProductId,new Bitmap(fileStream), product.product.ProductName, "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "+", "-", "Xóa");
+                        dgridOrder.Rows.Add(product.product.ProductId, new Bitmap(fileStream),
+                            product.product.ProductName, "1", product.productDetail.UnitPrice,
+                            product.productDetail.UnitPrice, "+", "-", "Xóa");
                     }
                 }
                 else
                 {
-                    dgridOrder.Rows.Add(product.product.ProductId, Properties.Resources.failed, product.product.ProductName, "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "+", "-", "Xóa");
+                    dgridOrder.Rows.Add(product.product.ProductId, Properties.Resources.failed,
+                        product.product.ProductName, "1", product.productDetail.UnitPrice,
+                        product.productDetail.UnitPrice, "+", "-", "Xóa");
                 }
                 lblTotalPrice.Text = TotalPrice();
             }
