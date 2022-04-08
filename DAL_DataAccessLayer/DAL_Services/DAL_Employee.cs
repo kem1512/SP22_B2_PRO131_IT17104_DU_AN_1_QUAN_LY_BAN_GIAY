@@ -68,18 +68,22 @@ namespace DAL_DataAccessLayer.DAL_Services
                         em.Gender = employee.Gender;
                         em.Phone = employee.Phone;
                         em.RoleId = employee.RoleId;
-                        _db.SaveChanges();
                         var image = GetFullPath() + employee.EmployeeId + Path.GetExtension(employee.EmployeeImage);
 
                         //Tìm ảnh cũ
                         if (em.EmployeeImage != employee.EmployeeImage)
                         {
+                            if (File.Exists(image))
+                            {
+                                File.Delete(image);
+                            }
                             // Xóa ảnh cũ và copy ảnh mới
                             File.Delete(em.EmployeeImage);
                             if (employee.EmployeeImage != null) File.Copy(employee.EmployeeImage, image);
                             // Sửa lại đường dẫn ảnh
                             em.EmployeeImage = image;
                         }
+                        _db.SaveChanges();
                         return "Sửa thành công";
                     }
 

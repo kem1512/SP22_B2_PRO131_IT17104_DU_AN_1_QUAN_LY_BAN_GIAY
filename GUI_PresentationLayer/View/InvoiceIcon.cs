@@ -24,6 +24,12 @@ namespace GUI_PresentationLayer.View
             set => lblId.Text = value;
         }
 
+        public string Status
+        {
+            get => lblId.Tag.ToString();
+            set => lblId.Tag = value;
+        }
+
         private void iconPictureBox1_Click(object sender, EventArgs e)
         {
             OnSelected?.Invoke(this, e);

@@ -29,7 +29,7 @@ namespace BUS_BussinessLayer.Utilities
                 stream.Position = 0;
                 mail.Attachments.Add(new Attachment(stream, "image.jpg"));
                 smtpClient.Port = 587;
-                smtpClient.Credentials = new System.Net.NetworkCredential("kem15122002@gmail.com", "badao12345");
+                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "badao12345");
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mail);
                 MessageBox.Show("Đã gửi");

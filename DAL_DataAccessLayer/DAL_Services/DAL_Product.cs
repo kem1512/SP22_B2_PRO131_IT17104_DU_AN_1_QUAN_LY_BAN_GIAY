@@ -87,19 +87,23 @@ namespace DAL_DataAccessLayer.DAL_Services
 
                         // Gán lại số lượng
                         iv.Amount = inventory.Amount;
-                        _db.SaveChanges();
 
                         // Tìm đường dẫn của thư mục hiện tại
                         var image = GetFullPath() + product.ProductId + Path.GetExtension(product.ProductImage);
 
                         if (product.ProductImage != pr.ProductImage)
                         {
+                            if (File.Exists(image))
+                            {
+                                File.Delete(image);
+                            }
                             // Xóa ảnh cũ và copy ảnh mới
                             File.Delete(pr.ProductImage);
                             if (product.ProductImage != null) File.Copy(product.ProductImage, image);
                             // Sửa lại đường dẫn ảnh
                             pr.ProductImage = image;
                         }
+                        _db.SaveChanges();
                         return "Sửa thành công!";
                     }
                 }

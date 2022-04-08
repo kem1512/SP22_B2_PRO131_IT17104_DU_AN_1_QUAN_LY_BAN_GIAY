@@ -38,10 +38,13 @@ namespace GUI_PresentationLayer.View
         {
             InvoiceIcon invoiceIcon = new InvoiceIcon();
             invoiceIcon.Id = id;
+            var invoice = _iInvoiceServices.GetInvoiceById(id);
             fpnlInvoice.Controls.Add(invoiceIcon);
+            invoiceIcon.Status = invoice.InvoiceStatus ? "Đã hoàn thành" :
+                !invoice.InvoiceStatus && invoice.Description != null ? "Đã hủy" :
+                !invoice.InvoiceStatus && invoice.ShipperId != null ? "Đang giao hàng" : "Chưa hoàn thành";
             invoiceIcon.OnSelected += (sender, args) =>
             {
-                var invoice = _iInvoiceServices.GetInvoiceById(invoiceIcon.Id);
                 _frmSales.InvoidId = invoice.InvoiceId;
                 _frmSales.GetInfoFromInvoice(invoice.InvoiceId);
             };
@@ -49,10 +52,21 @@ namespace GUI_PresentationLayer.View
 
         public void FilterInvoice(string status)
         {
-            foreach (var x in pnlMain.Controls)
+            if (status == "Tất cả")
             {
-                InvoiceIcon invoice = (InvoiceIcon) x;
-                invoice.Visible = invoice.Tag.Equals(status);
+                foreach (InvoiceIcon x in fpnlInvoice.Controls)
+                {
+                    if (!x.Visible)
+                    {
+                        x.Visible = true;
+                    }
+                }
+            }else if (status == "Đang giao hàng")
+            {
+                foreach (InvoiceIcon x in fpnlInvoice.Controls)
+                {
+                    x.Visible = x.Status.Equals(status);
+                }
             }
         }
 
@@ -92,6 +106,9 @@ namespace GUI_PresentationLayer.View
                 leftBorderBtn.Location = new Point(0, currentBtn.Location.Y);
                 leftBorderBtn.Visible = true;
                 leftBorderBtn.BringToFront();
+
+                btnHomeMain.IconChar = currentBtn.IconChar;
+                lblTitleChild.Text = currentBtn.Text;
             }
         }
 
@@ -196,7 +213,7 @@ namespace GUI_PresentationLayer.View
         private void FrmMain_Load(object sender, EventArgs e)
         {
             System.Drawing.Drawing2D.GraphicsPath gp = new System.Drawing.Drawing2D.GraphicsPath();
-            gp.AddEllipse(0, 0, pbxEmployee.Width - 3, pbxEmployee.Height - 3);
+            gp.AddEllipse(0, 0, pbxEmployee.Width - 6, pbxEmployee.Height - 6);
             pbxEmployee.Region = new Region(gp);
             if (Email != null)
             {
@@ -223,7 +240,21 @@ namespace GUI_PresentationLayer.View
 
         private void pbxLogout_Click(object sender, EventArgs e)
         {
-            Close();
+            if(MessageBox.Show("Bạn có chắc muốn đăng xuất không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            ActiveteButton(sender, Color.Crimson);
+            OpenChildForm(new FrmReport());
+        }
+
+        private void pbxEmployee_DoubleClick(object sender, EventArgs e)
+        {
+            OpenChildForm(new FrmProfile(Email));
         }
     }
 }

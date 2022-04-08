@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
+using BUS_BussinessLayer.Models;
 using BUS_BussinessLayer.Utilities;
+using DAL_DataAccessLayer.Entities;
 
 namespace GUI_PresentationLayer.View
 {
@@ -40,12 +42,13 @@ namespace GUI_PresentationLayer.View
                     b.First().Invoice.Description,
                     b.First().Invoice.InvoiceStatus,
                     TotalPrice = b.Sum(c => c.InvoiceDetail.TotalPrice),
-                    ProductCount = b.Count(c => c.Invoice.InvoiceId == c.InvoiceDetail.InvoiceId)
+                    ProductCount = b.Count(c => c.Invoice.InvoiceId == c.InvoiceDetail.InvoiceId),
+                    b.First().Invoice.ShipperId
                 };
             foreach (var x in result)
             {
                 dgridInvoice.Rows.Add(x.InvoiceId, x.DateCreate, x.CustomerName, x.FullName, x.ProductCount, ConvertMoney.ConvertToVND(x.TotalPrice), x.Description,
-                    x.InvoiceStatus ? "Đã hoàn thành" : !x.InvoiceStatus && x.Description != null ? "Đã hủy" : "Chưa hoàn thành");
+                    x.InvoiceStatus ? "Đã hoàn thành" : !x.InvoiceStatus && x.Description != null ? "Đã hủy" : !x.InvoiceStatus && x.ShipperId != null ? "Đang giao hàng": "Chưa hoàn thành");
             }
         }
 
@@ -65,7 +68,13 @@ namespace GUI_PresentationLayer.View
 
         private void bunifuThinButton22_Click(object sender, EventArgs e)
         {
-            
+            if (MessageBox.Show(
+                    "Bạn có muốn in hóa đơn số: " + dgridInvoice.Rows[dgridInvoice.CurrentRow.Index].Cells[0].Value,
+                    "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                var invoice = _iInvoiceServices.GetViewInvoices().Where(c => c.Invoice.InvoiceId == dgridInvoice.Rows[dgridInvoice.CurrentRow.Index].Cells[0].Value.ToString()).ToList();
+                GenerateInvoice.PrintInvoice(invoice);
+            }
         }
 
         private void dgdtpcDateBegin_onValueChanged(object sender, EventArgs e)
@@ -109,6 +118,12 @@ namespace GUI_PresentationLayer.View
                     foreach (DataGridViewRow x in dgridInvoice.Rows)
                     {
                         x.Visible = x.Cells[7].Value.ToString().Equals("Đã hủy");
+                    }
+                    break;
+                case 4:
+                    foreach (DataGridViewRow x in dgridInvoice.Rows)
+                    {
+                        x.Visible = x.Cells[7].Value.ToString().Equals("Đang giao hàng");
                     }
                     break;
             }

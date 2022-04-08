@@ -50,6 +50,8 @@
             // 
             this.dgridProperties.AllowUserToAddRows = false;
             this.dgridProperties.AllowUserToDeleteRows = false;
+            this.dgridProperties.AllowUserToResizeColumns = false;
+            this.dgridProperties.AllowUserToResizeRows = false;
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.dgridProperties.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgridProperties.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -178,7 +180,7 @@
             this.txtName.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.tableLayoutPanel1.SetColumnSpan(this.txtName, 2);
             this.txtName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F);
+            this.txtName.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtName.HintForeColor = System.Drawing.Color.Empty;
             this.txtName.HintText = "";
@@ -188,7 +190,7 @@
             this.txtName.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtName.LineThickness = 4;
             this.txtName.Location = new System.Drawing.Point(725, 272);
-            this.txtName.Margin = new System.Windows.Forms.Padding(5);
+            this.txtName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(347, 41);
             this.txtName.TabIndex = 11;
@@ -200,7 +202,7 @@
             this.tableLayoutPanel1.SetColumnSpan(this.txtId, 2);
             this.txtId.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txtId.Enabled = false;
-            this.txtId.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtId.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtId.HintForeColor = System.Drawing.Color.Empty;
             this.txtId.HintText = "";
@@ -210,7 +212,7 @@
             this.txtId.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtId.LineThickness = 4;
             this.txtId.Location = new System.Drawing.Point(725, 155);
-            this.txtId.Margin = new System.Windows.Forms.Padding(5);
+            this.txtId.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtId.Name = "txtId";
             this.txtId.Size = new System.Drawing.Size(347, 41);
             this.txtId.TabIndex = 9;

@@ -41,6 +41,7 @@
             this.lblDateEnd = new System.Windows.Forms.Label();
             this.lblTurnover = new System.Windows.Forms.Label();
             this.sctnBot = new System.Windows.Forms.SplitContainer();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.pnlBrand = new System.Windows.Forms.Panel();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.lblBrand = new System.Windows.Forms.Label();
@@ -53,6 +54,7 @@
             this.sctnBot.Panel1.SuspendLayout();
             this.sctnBot.Panel2.SuspendLayout();
             this.sctnBot.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.pnlBrand.SuspendLayout();
             this.pnlCancel.SuspendLayout();
             this.SuspendLayout();
@@ -185,6 +187,7 @@
             // 
             // sctnBot.Panel1
             // 
+            this.sctnBot.Panel1.Controls.Add(this.dataGridView1);
             this.sctnBot.Panel1.Controls.Add(this.pnlBrand);
             // 
             // sctnBot.Panel2
@@ -194,6 +197,17 @@
             this.sctnBot.SplitterDistance = 672;
             this.sctnBot.SplitterWidth = 10;
             this.sctnBot.TabIndex = 3;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dataGridView1.Location = new System.Drawing.Point(0, 60);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(670, 256);
+            this.dataGridView1.TabIndex = 1;
             // 
             // pnlBrand
             // 
@@ -271,6 +285,7 @@
             this.sctnBot.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sctnBot)).EndInit();
             this.sctnBot.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.pnlBrand.ResumeLayout(false);
             this.pnlBrand.PerformLayout();
             this.pnlCancel.ResumeLayout(false);
@@ -296,5 +311,6 @@
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcDateBegin;
         private System.Windows.Forms.Label lblDateBegin;
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

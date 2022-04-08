@@ -840,7 +840,6 @@
             this.Column6.MinimumWidth = 6;
             this.Column6.Name = "Column6";
             this.Column6.ReadOnly = true;
-            this.Column6.Visible = false;
             // 
             // Column1
             // 
@@ -1272,6 +1271,7 @@
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconPictureBox pbxRandom;
         private System.Windows.Forms.ComboBox txtBarcode;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewImageColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
@@ -1284,6 +1284,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
         private System.Windows.Forms.DataGridViewLinkColumn Column5;
-        private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
     }
 }

@@ -10,10 +10,13 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.Utilities;
-using Syncfusion.Pdf;
-using Syncfusion.Pdf.Graphics;
+using Microsoft.Office.Interop.Excel;
+// using Syncfusion.Pdf;
+// using Syncfusion.Pdf.Graphics;
+// using Syncfusion.Pdf.Tables;
 using Color = System.Drawing.Color;
-using PdfPage = Syncfusion.Pdf.PdfPage;
+using DataTable = System.Data.DataTable;
+// using PdfPage = Syncfusion.Pdf.PdfPage;
 
 namespace GUI_PresentationLayer.View
 {
@@ -84,10 +87,6 @@ namespace GUI_PresentationLayer.View
             {
                 return "Mã vạch không được bỏ trống";
             }
-            if (_iProductServices.GetProducts().Any(c => c.ProductName == txtName.Text))
-            {
-                return "Sản phẩm đã tồn tại!";
-            }
             return null;
         }
 
@@ -119,9 +118,16 @@ namespace GUI_PresentationLayer.View
             dgridProductDeleted.Rows.Clear();
             foreach (var x in products.Where(c => c.product.Status == false))
             {
-                using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
+                if (File.Exists(x.product.ProductImage))
                 {
-                    dgridProductDeleted.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName, x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa", "Phục hồi");
+                    using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
+                    {
+                        dgridProductDeleted.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName, x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa", "Phục hồi");
+                    }
+                }
+                else
+                {
+                    dgridProductDeleted.Rows.Add(x.product.ProductId, Properties.Resources.failed, x.product.ProductName, x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa", "Phục hồi");
                 }
             }
 
@@ -167,8 +173,6 @@ namespace GUI_PresentationLayer.View
             txtQuantity.Text = "";
             pbxProduct.Image = null;
 
-            btnEdit.Cursor = Cursors.No;
-            btnAdd.Cursor = Cursors.Hand;
             txtBarcode.Items.Clear();
         }
 
@@ -181,33 +185,40 @@ namespace GUI_PresentationLayer.View
         {
             if (ValidateForm() is null)
             {
-                var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
-                if (MessageBox.Show("Bạn có chắc muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo) ==
-                    DialogResult.Yes)
+                if (_iProductServices.GetProducts().Any(c => c.ProductName == txtName.Text))
                 {
-                    MessageBox.Show(_iProductServices.AddProduct(new Product()
+                    MessageBox.Show("Đã tồn tại sản phẩm!");
+                }
+                else
+                {
+                    var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
+                    if (MessageBox.Show("Bạn có chắc muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
                     {
-                        ProductId = productId,
-                        ProductName = txtName.Text,
-                        ProductImage = pbxProduct.Tag.ToString(),
-                        Description = txtNote.Text,
-                        Status = true,
-                        Barcode = txtBarcode.SelectedItem.ToString()
-                    }, new ProductDetail()
-                    {
-                        ProductId = productId,
-                        BrandId = cmbBrandBot.SelectedValue.ToString(),
-                        ColorId = cmbColorBot.SelectedValue.ToString(),
-                        MaterialId = cmbMat.SelectedValue.ToString(),
-                        SizeId = cmbSize.SelectedValue.ToString(),
-                        CategoryId = cmbCat.SelectedValue.ToString(),
-                        UnitPrice = float.Parse(txtPrice.Text),
-                    }, new Inventory()
-                    {
-                        ProductId = productId,
-                        Amount = int.Parse(txtQuantity.Text)
-                    }));
-                    LoadData();
+                        MessageBox.Show(_iProductServices.AddProduct(new Product()
+                        {
+                            ProductId = productId,
+                            ProductName = txtName.Text,
+                            ProductImage = pbxProduct.Tag.ToString(),
+                            Description = txtNote.Text,
+                            Status = true,
+                            Barcode = txtBarcode.SelectedItem.ToString()
+                        }, new ProductDetail()
+                        {
+                            ProductId = productId,
+                            BrandId = cmbBrandBot.SelectedValue.ToString(),
+                            ColorId = cmbColorBot.SelectedValue.ToString(),
+                            MaterialId = cmbMat.SelectedValue.ToString(),
+                            SizeId = cmbSize.SelectedValue.ToString(),
+                            CategoryId = cmbCat.SelectedValue.ToString(),
+                            UnitPrice = float.Parse(txtPrice.Text),
+                        }, new Inventory()
+                        {
+                            ProductId = productId,
+                            Amount = int.Parse(txtQuantity.Text)
+                        }));
+                        LoadData();
+                    }
                 }
             }
             else
@@ -469,51 +480,51 @@ namespace GUI_PresentationLayer.View
 
         private void btnQrCode_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                PdfDocument pdfDocument = new PdfDocument();
-                PdfPage pdfPage = pdfDocument.Pages.Add();
-                // set lề là 0
-                pdfDocument.PageSettings.SetMargins(0);
-                var number = 0;
-                for (int i = 0; i < dgridProduct.Rows.Count; i++)
-                {
-                    if ((i + 1) % 4 == 0)
-                    {
-                        pdfPage = pdfDocument.Pages.Add();
-                        number = 0;
-                    }
-                    // tìm sản phẩm trong csdl
-                    var result = _iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString());
-
-                    // tạo mã vạch
-                    var image = GenerateBarcode.CreateBarcode(result.Barcode);
-
-                    // tạo đối tượng để lưu ảnh
-                    PdfBitmap pdfBitmap = new PdfBitmap(image);
-
-                    // set phông chữ
-                    PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\FontBarcode.ttf", 18);
-
-                    // set vị trí của chữ
-                    PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
-
-                    // tạo khung cho sản thông tin sản phẩm
-                    RectangleF rectangleInfo = new RectangleF(new PointF(0, (100 + 40 + 110) * number), new SizeF(pdfPage.Size.Width, 50));
-
-                    RectangleF rectangleBarcode = new RectangleF(new PointF((pdfDocument.PageSettings.Width - 200) / 2 , rectangleInfo.Bottom), new SizeF(200, 100));
-
-                    // tạo khung cho số mã vạch
-                    RectangleF rectangleBarNumber = new RectangleF(new PointF(0, rectangleBarcode.Bottom), new SizeF(pdfDocument.PageSettings.Width, 40));
-                    PdfGraphics pdfGraphics = pdfPage.Graphics;
-                    pdfGraphics.DrawString($"{result.ProductId} : {result.ProductName}", pdfFont, new PdfPen(Color.Red), rectangleInfo, pdfStringFormat);
-                    pdfGraphics.DrawImage(pdfBitmap, rectangleBarcode);
-                    pdfGraphics.DrawString(result.Barcode, pdfFont, new PdfPen(Color.Black), rectangleBarNumber, pdfStringFormat);
-                    number++;
-                }
-                pdfDocument.Save(saveFileDialog.FileName);
-            }
+            // SaveFileDialog saveFileDialog = new SaveFileDialog();
+            // if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            // {
+            //     PdfDocument pdfDocument = new PdfDocument();
+            //     PdfPage pdfPage = pdfDocument.Pages.Add();
+            //     // set lề là 0
+            //     pdfDocument.PageSettings.SetMargins(0);
+            //     var number = 0;
+            //     for (int i = 0; i < dgridProduct.Rows.Count; i++)
+            //     {
+            //         if ((i + 1) % 4 == 0)
+            //         {
+            //             pdfPage = pdfDocument.Pages.Add();
+            //             number = 0;
+            //         }
+            //         // tìm sản phẩm trong csdl
+            //         var result = _iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString());
+            //
+            //         // tạo mã vạch
+            //         var image = GenerateBarcode.CreateBarcode(result.Barcode);
+            //
+            //         // tạo đối tượng để lưu ảnh
+            //         PdfBitmap pdfBitmap = new PdfBitmap(image);
+            //
+            //         // set phông chữ
+            //         PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\FontBarcode.ttf", 18);
+            //
+            //         // set vị trí của chữ
+            //         PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
+            //
+            //         // tạo khung cho sản thông tin sản phẩm
+            //         RectangleF rectangleInfo = new RectangleF(new PointF(0, (100 + 40 + 110) * number), new SizeF(pdfPage.Size.Width, 50));
+            //
+            //         RectangleF rectangleBarcode = new RectangleF(new PointF((pdfDocument.PageSettings.Width - 200) / 2 , rectangleInfo.Bottom), new SizeF(200, 100));
+            //
+            //         // tạo khung cho số mã vạch
+            //         RectangleF rectangleBarNumber = new RectangleF(new PointF(0, rectangleBarcode.Bottom), new SizeF(pdfDocument.PageSettings.Width, 40));
+            //         PdfGraphics pdfGraphics = pdfPage.Graphics;
+            //         pdfGraphics.DrawString($"{result.ProductId} : {result.ProductName}", pdfFont, new PdfPen(Color.Red), rectangleInfo, pdfStringFormat);
+            //         pdfGraphics.DrawImage(pdfBitmap, rectangleBarcode);
+            //         pdfGraphics.DrawString(result.Barcode, pdfFont, new PdfPen(Color.Black), rectangleBarNumber, pdfStringFormat);
+            //         number++;
+            //     }
+            //     pdfDocument.Save(saveFileDialog.FileName);
+            // }
         }
 
         private void bunifuThinButton21_Click(object sender, EventArgs e)

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSales));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -38,7 +39,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSales));
             this.txtSearch = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.tlpRight = new System.Windows.Forms.TableLayoutPanel();
             this.cmbShipper = new System.Windows.Forms.ComboBox();
@@ -53,6 +53,9 @@
             this.rbtnShop = new System.Windows.Forms.RadioButton();
             this.rbtnShip = new System.Windows.Forms.RadioButton();
             this.txtShipCost = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.btnConfirm = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnOk = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnCancel = new Bunifu.Framework.UI.BunifuThinButton2();
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.lblMoneyLeft = new System.Windows.Forms.Label();
             this.txtCost = new Bunifu.Framework.UI.BunifuMaterialTextbox();
@@ -62,7 +65,9 @@
             this.cmbPhone = new System.Windows.Forms.ComboBox();
             this.gbxProduct = new System.Windows.Forms.GroupBox();
             this.pnlQr = new System.Windows.Forms.Panel();
+            this.btnQr2 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.cmbCamera = new System.Windows.Forms.ComboBox();
+            this.pbxQr = new System.Windows.Forms.PictureBox();
             this.dgridProduct = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -96,20 +101,15 @@
             this.btnQr = new Bunifu.Framework.UI.BunifuThinButton2();
             this.pbxSearch = new System.Windows.Forms.PictureBox();
             this.btnViewOrder = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.btnConfirm = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.btnOk = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.btnCancel = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.btnQr2 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.pbxQr = new System.Windows.Forms.PictureBox();
             this.tlpRight.SuspendLayout();
             this.gbxProduct.SuspendLayout();
             this.pnlQr.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxQr)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).BeginInit();
             this.gbxOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgridOrder)).BeginInit();
             this.tlpFilter.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxQr)).BeginInit();
             this.SuspendLayout();
             // 
             // txtSearch
@@ -139,7 +139,7 @@
             this.tlpRight.ColumnCount = 3;
             this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.23457F));
             this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.76543F));
-            this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 142F));
+            this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 148F));
             this.tlpRight.Controls.Add(this.cmbShipper, 1, 5);
             this.tlpRight.Controls.Add(this.txtAddress, 1, 1);
             this.tlpRight.Controls.Add(this.lblAddress, 0, 1);
@@ -187,7 +187,7 @@
             this.cmbShipper.Enabled = false;
             this.cmbShipper.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShipper.FormattingEnabled = true;
-            this.cmbShipper.Location = new System.Drawing.Point(173, 359);
+            this.cmbShipper.Location = new System.Drawing.Point(172, 359);
             this.cmbShipper.Name = "cmbShipper";
             this.cmbShipper.Size = new System.Drawing.Size(272, 39);
             this.cmbShipper.TabIndex = 23;
@@ -207,7 +207,7 @@
             this.txtAddress.LineIdleColor = System.Drawing.Color.Gray;
             this.txtAddress.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtAddress.LineThickness = 4;
-            this.txtAddress.Location = new System.Drawing.Point(173, 83);
+            this.txtAddress.Location = new System.Drawing.Point(172, 83);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(272, 41);
@@ -297,7 +297,7 @@
             this.rbtnShop.AutoSize = true;
             this.rbtnShop.Checked = true;
             this.rbtnShop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnShop.Location = new System.Drawing.Point(169, 229);
+            this.rbtnShop.Location = new System.Drawing.Point(164, 229);
             this.rbtnShop.Name = "rbtnShop";
             this.rbtnShop.Size = new System.Drawing.Size(138, 24);
             this.rbtnShop.TabIndex = 17;
@@ -310,7 +310,7 @@
             this.rbtnShip.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.rbtnShip.AutoSize = true;
             this.rbtnShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnShip.Location = new System.Drawing.Point(318, 229);
+            this.rbtnShip.Location = new System.Drawing.Point(312, 229);
             this.rbtnShip.Name = "rbtnShip";
             this.rbtnShip.Size = new System.Drawing.Size(113, 24);
             this.rbtnShip.TabIndex = 18;
@@ -334,19 +334,99 @@
             this.txtShipCost.LineIdleColor = System.Drawing.Color.Gray;
             this.txtShipCost.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtShipCost.LineThickness = 4;
-            this.txtShipCost.Location = new System.Drawing.Point(173, 290);
+            this.txtShipCost.Location = new System.Drawing.Point(172, 290);
             this.txtShipCost.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtShipCost.Name = "txtShipCost";
             this.txtShipCost.Size = new System.Drawing.Size(272, 41);
             this.txtShipCost.TabIndex = 15;
             this.txtShipCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
+            // btnConfirm
+            // 
+            this.btnConfirm.ActiveBorderThickness = 1;
+            this.btnConfirm.ActiveCornerRadius = 20;
+            this.btnConfirm.ActiveFillColor = System.Drawing.Color.LightSeaGreen;
+            this.btnConfirm.ActiveForecolor = System.Drawing.Color.White;
+            this.btnConfirm.ActiveLineColor = System.Drawing.Color.LightSeaGreen;
+            this.btnConfirm.BackColor = System.Drawing.Color.White;
+            this.btnConfirm.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConfirm.BackgroundImage")));
+            this.btnConfirm.ButtonText = "Xác nhận";
+            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfirm.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnConfirm.IdleBorderThickness = 1;
+            this.btnConfirm.IdleCornerRadius = 20;
+            this.btnConfirm.IdleFillColor = System.Drawing.Color.White;
+            this.btnConfirm.IdleForecolor = System.Drawing.Color.LightSeaGreen;
+            this.btnConfirm.IdleLineColor = System.Drawing.Color.LightSeaGreen;
+            this.btnConfirm.Location = new System.Drawing.Point(5, 584);
+            this.btnConfirm.Margin = new System.Windows.Forms.Padding(5);
+            this.btnConfirm.Name = "btnConfirm";
+            this.btnConfirm.Size = new System.Drawing.Size(148, 67);
+            this.btnConfirm.TabIndex = 20;
+            this.btnConfirm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
+            // 
+            // btnOk
+            // 
+            this.btnOk.ActiveBorderThickness = 1;
+            this.btnOk.ActiveCornerRadius = 20;
+            this.btnOk.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnOk.ActiveForecolor = System.Drawing.Color.White;
+            this.btnOk.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnOk.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnOk.BackColor = System.Drawing.Color.White;
+            this.btnOk.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOk.BackgroundImage")));
+            this.btnOk.ButtonText = "Hoàn thành";
+            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOk.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnOk.IdleBorderThickness = 1;
+            this.btnOk.IdleCornerRadius = 20;
+            this.btnOk.IdleFillColor = System.Drawing.Color.White;
+            this.btnOk.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnOk.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnOk.Location = new System.Drawing.Point(163, 584);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(5);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(141, 67);
+            this.btnOk.TabIndex = 21;
+            this.btnOk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.ActiveBorderThickness = 1;
+            this.btnCancel.ActiveCornerRadius = 20;
+            this.btnCancel.ActiveFillColor = System.Drawing.Color.Red;
+            this.btnCancel.ActiveForecolor = System.Drawing.Color.White;
+            this.btnCancel.ActiveLineColor = System.Drawing.Color.Red;
+            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnCancel.BackColor = System.Drawing.Color.White;
+            this.btnCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancel.BackgroundImage")));
+            this.btnCancel.ButtonText = "Hủy";
+            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancel.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnCancel.IdleBorderThickness = 1;
+            this.btnCancel.IdleCornerRadius = 20;
+            this.btnCancel.IdleFillColor = System.Drawing.Color.White;
+            this.btnCancel.IdleForecolor = System.Drawing.Color.Red;
+            this.btnCancel.IdleLineColor = System.Drawing.Color.Red;
+            this.btnCancel.Location = new System.Drawing.Point(333, 584);
+            this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(101, 67);
+            this.btnCancel.TabIndex = 22;
+            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnCancel.Click += new System.EventHandler(this.lblCancel_Click);
+            // 
             // lblTotalPrice
             // 
             this.lblTotalPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblTotalPrice.AutoSize = true;
             this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold);
-            this.lblTotalPrice.Location = new System.Drawing.Point(171, 430);
+            this.lblTotalPrice.Location = new System.Drawing.Point(168, 430);
             this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
             this.lblTotalPrice.Name = "lblTotalPrice";
             this.lblTotalPrice.Size = new System.Drawing.Size(68, 22);
@@ -358,7 +438,7 @@
             this.lblMoneyLeft.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMoneyLeft.AutoSize = true;
             this.lblMoneyLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold);
-            this.lblMoneyLeft.Location = new System.Drawing.Point(171, 540);
+            this.lblMoneyLeft.Location = new System.Drawing.Point(168, 540);
             this.lblMoneyLeft.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
             this.lblMoneyLeft.Name = "lblMoneyLeft";
             this.lblMoneyLeft.Size = new System.Drawing.Size(68, 22);
@@ -379,7 +459,7 @@
             this.txtCost.LineIdleColor = System.Drawing.Color.Gray;
             this.txtCost.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtCost.LineThickness = 4;
-            this.txtCost.Location = new System.Drawing.Point(173, 476);
+            this.txtCost.Location = new System.Drawing.Point(172, 476);
             this.txtCost.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(272, 41);
@@ -424,7 +504,7 @@
             this.txtName.LineIdleColor = System.Drawing.Color.Gray;
             this.txtName.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtName.LineThickness = 4;
-            this.txtName.Location = new System.Drawing.Point(173, 152);
+            this.txtName.Location = new System.Drawing.Point(172, 152);
             this.txtName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(272, 41);
@@ -437,7 +517,7 @@
             this.tlpRight.SetColumnSpan(this.cmbPhone, 2);
             this.cmbPhone.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPhone.FormattingEnabled = true;
-            this.cmbPhone.Location = new System.Drawing.Point(171, 16);
+            this.cmbPhone.Location = new System.Drawing.Point(170, 16);
             this.cmbPhone.Name = "cmbPhone";
             this.cmbPhone.Size = new System.Drawing.Size(276, 36);
             this.cmbPhone.TabIndex = 19;
@@ -473,6 +553,34 @@
             this.pnlQr.TabIndex = 4;
             this.pnlQr.Visible = false;
             // 
+            // btnQr2
+            // 
+            this.btnQr2.ActiveBorderThickness = 1;
+            this.btnQr2.ActiveCornerRadius = 20;
+            this.btnQr2.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.ActiveForecolor = System.Drawing.Color.White;
+            this.btnQr2.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQr2.BackColor = System.Drawing.Color.White;
+            this.btnQr2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQr2.BackgroundImage")));
+            this.btnQr2.ButtonText = "Quét mã";
+            this.btnQr2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQr2.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.IdleBorderThickness = 1;
+            this.btnQr2.IdleCornerRadius = 20;
+            this.btnQr2.IdleFillColor = System.Drawing.Color.White;
+            this.btnQr2.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.Location = new System.Drawing.Point(572, 152);
+            this.btnQr2.Margin = new System.Windows.Forms.Padding(5);
+            this.btnQr2.Name = "btnQr2";
+            this.btnQr2.Size = new System.Drawing.Size(398, 95);
+            this.btnQr2.TabIndex = 27;
+            this.btnQr2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnQr2.Click += new System.EventHandler(this.btnQr2_Click);
+            // 
             // cmbCamera
             // 
             this.cmbCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -484,6 +592,18 @@
             this.cmbCamera.Name = "cmbCamera";
             this.cmbCamera.Size = new System.Drawing.Size(398, 46);
             this.cmbCamera.TabIndex = 1;
+            // 
+            // pbxQr
+            // 
+            this.pbxQr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbxQr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbxQr.Location = new System.Drawing.Point(94, 14);
+            this.pbxQr.Name = "pbxQr";
+            this.pbxQr.Size = new System.Drawing.Size(426, 265);
+            this.pbxQr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxQr.TabIndex = 0;
+            this.pbxQr.TabStop = false;
             // 
             // dgridProduct
             // 
@@ -826,6 +946,9 @@
             this.cmbInvoice.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbInvoice.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbInvoice.FormattingEnabled = true;
+            this.cmbInvoice.Items.AddRange(new object[] {
+            "Tất cả",
+            "Đang giao hàng"});
             this.cmbInvoice.Location = new System.Drawing.Point(450, 11);
             this.cmbInvoice.Name = "cmbInvoice";
             this.cmbInvoice.Size = new System.Drawing.Size(173, 39);
@@ -871,7 +994,7 @@
             // 
             // timer1
             // 
-            this.timer1.Interval = 500;
+            this.timer1.Interval = 1000;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // btnQr
@@ -938,126 +1061,6 @@
             this.btnViewOrder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnViewOrder.Click += new System.EventHandler(this.btnViewOrder_Click);
             // 
-            // btnConfirm
-            // 
-            this.btnConfirm.ActiveBorderThickness = 1;
-            this.btnConfirm.ActiveCornerRadius = 20;
-            this.btnConfirm.ActiveFillColor = System.Drawing.Color.LightSeaGreen;
-            this.btnConfirm.ActiveForecolor = System.Drawing.Color.White;
-            this.btnConfirm.ActiveLineColor = System.Drawing.Color.LightSeaGreen;
-            this.btnConfirm.BackColor = System.Drawing.Color.White;
-            this.btnConfirm.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnConfirm.BackgroundImage")));
-            this.btnConfirm.ButtonText = "Xác nhận";
-            this.btnConfirm.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConfirm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfirm.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnConfirm.IdleBorderThickness = 1;
-            this.btnConfirm.IdleCornerRadius = 20;
-            this.btnConfirm.IdleFillColor = System.Drawing.Color.White;
-            this.btnConfirm.IdleForecolor = System.Drawing.Color.LightSeaGreen;
-            this.btnConfirm.IdleLineColor = System.Drawing.Color.LightSeaGreen;
-            this.btnConfirm.Location = new System.Drawing.Point(5, 584);
-            this.btnConfirm.Margin = new System.Windows.Forms.Padding(5);
-            this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(151, 67);
-            this.btnConfirm.TabIndex = 20;
-            this.btnConfirm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
-            // 
-            // btnOk
-            // 
-            this.btnOk.ActiveBorderThickness = 1;
-            this.btnOk.ActiveCornerRadius = 20;
-            this.btnOk.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.btnOk.ActiveForecolor = System.Drawing.Color.White;
-            this.btnOk.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.btnOk.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnOk.BackColor = System.Drawing.Color.White;
-            this.btnOk.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOk.BackgroundImage")));
-            this.btnOk.ButtonText = "Hoàn thành";
-            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOk.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnOk.IdleBorderThickness = 1;
-            this.btnOk.IdleCornerRadius = 20;
-            this.btnOk.IdleFillColor = System.Drawing.Color.White;
-            this.btnOk.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.btnOk.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnOk.Location = new System.Drawing.Point(166, 584);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(5);
-            this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(144, 67);
-            this.btnOk.TabIndex = 21;
-            this.btnOk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.ActiveBorderThickness = 1;
-            this.btnCancel.ActiveCornerRadius = 20;
-            this.btnCancel.ActiveFillColor = System.Drawing.Color.Red;
-            this.btnCancel.ActiveForecolor = System.Drawing.Color.White;
-            this.btnCancel.ActiveLineColor = System.Drawing.Color.Red;
-            this.btnCancel.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnCancel.BackColor = System.Drawing.Color.White;
-            this.btnCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancel.BackgroundImage")));
-            this.btnCancel.ButtonText = "Hủy";
-            this.btnCancel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancel.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnCancel.IdleBorderThickness = 1;
-            this.btnCancel.IdleCornerRadius = 20;
-            this.btnCancel.IdleFillColor = System.Drawing.Color.White;
-            this.btnCancel.IdleForecolor = System.Drawing.Color.Red;
-            this.btnCancel.IdleLineColor = System.Drawing.Color.Red;
-            this.btnCancel.Location = new System.Drawing.Point(336, 584);
-            this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(101, 67);
-            this.btnCancel.TabIndex = 22;
-            this.btnCancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnCancel.Click += new System.EventHandler(this.lblCancel_Click);
-            // 
-            // btnQr2
-            // 
-            this.btnQr2.ActiveBorderThickness = 1;
-            this.btnQr2.ActiveCornerRadius = 20;
-            this.btnQr2.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.ActiveForecolor = System.Drawing.Color.White;
-            this.btnQr2.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQr2.BackColor = System.Drawing.Color.White;
-            this.btnQr2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQr2.BackgroundImage")));
-            this.btnQr2.ButtonText = "Quét mã";
-            this.btnQr2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQr2.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.IdleBorderThickness = 1;
-            this.btnQr2.IdleCornerRadius = 20;
-            this.btnQr2.IdleFillColor = System.Drawing.Color.White;
-            this.btnQr2.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.Location = new System.Drawing.Point(572, 152);
-            this.btnQr2.Margin = new System.Windows.Forms.Padding(5);
-            this.btnQr2.Name = "btnQr2";
-            this.btnQr2.Size = new System.Drawing.Size(398, 95);
-            this.btnQr2.TabIndex = 27;
-            this.btnQr2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnQr2.Click += new System.EventHandler(this.btnQr2_Click);
-            // 
-            // pbxQr
-            // 
-            this.pbxQr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbxQr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbxQr.Location = new System.Drawing.Point(94, 14);
-            this.pbxQr.Name = "pbxQr";
-            this.pbxQr.Size = new System.Drawing.Size(426, 265);
-            this.pbxQr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxQr.TabIndex = 0;
-            this.pbxQr.TabStop = false;
-            // 
             // FrmSales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -1080,13 +1083,13 @@
             this.tlpRight.PerformLayout();
             this.gbxProduct.ResumeLayout(false);
             this.pnlQr.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxQr)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).EndInit();
             this.gbxOrder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgridOrder)).EndInit();
             this.tlpFilter.ResumeLayout(false);
             this.tlpFilter.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbxQr)).EndInit();
             this.ResumeLayout(false);
 
         }

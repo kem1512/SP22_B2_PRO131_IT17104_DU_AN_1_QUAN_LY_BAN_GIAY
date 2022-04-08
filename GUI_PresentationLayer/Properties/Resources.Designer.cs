@@ -61,21 +61,20 @@ namespace GUI_PresentationLayer.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap failed {
+        internal static System.IO.UnmanagedMemoryStream beep {
             get {
-                object obj = ResourceManager.GetObject("failed", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("beep", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap thank {
+        internal static System.Drawing.Bitmap failed {
             get {
-                object obj = ResourceManager.GetObject("thank", resourceCulture);
+                object obj = ResourceManager.GetObject("failed", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

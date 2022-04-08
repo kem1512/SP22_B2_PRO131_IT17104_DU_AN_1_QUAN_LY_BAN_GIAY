@@ -46,6 +46,14 @@
             this.dgdtpcDateEnd = new Bunifu.Framework.UI.BunifuDatepicker();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgridInvoice = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgidInvoiceDetail = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -55,14 +63,6 @@
             this.btnExcel = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton22 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton23 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
             this.tlpFilter.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -113,7 +113,8 @@
             "Tất cả",
             "Chưa hoàn thành",
             "Đã hoàn thành",
-            "Đã hủy"});
+            "Đã hủy",
+            "Đang giao hàng"});
             this.cmbFilter.Location = new System.Drawing.Point(102, 12);
             this.cmbFilter.Name = "cmbFilter";
             this.cmbFilter.Size = new System.Drawing.Size(246, 37);
@@ -276,6 +277,70 @@
             this.dgridInvoice.TabIndex = 1;
             this.dgridInvoice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridInvoice_CellClick);
             // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Mã hóa đơn";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            this.Column1.Visible = false;
+            // 
+            // Column3
+            // 
+            this.Column3.FillWeight = 97.95009F;
+            this.Column3.HeaderText = "Ngày tạo";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.FillWeight = 97.95009F;
+            this.Column2.HeaderText = "Tên khách hàng";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.FillWeight = 97.95009F;
+            this.Column4.HeaderText = "Tên nhân viên";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.FillWeight = 60F;
+            this.Column11.HeaderText = "Sản phẩm";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.FillWeight = 90F;
+            this.Column12.HeaderText = "Tổng tiền";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.FillWeight = 97.95009F;
+            this.Column6.HeaderText = "Mô tả";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.FillWeight = 97.95009F;
+            this.Column5.HeaderText = "Trạng thái";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
             // splitContainer1
             // 
             this.splitContainer1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -391,7 +456,7 @@
             this.btnExcel.IdleFillColor = System.Drawing.Color.White;
             this.btnExcel.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnExcel.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnExcel.Location = new System.Drawing.Point(315, 33);
+            this.btnExcel.Location = new System.Drawing.Point(304, 33);
             this.btnExcel.Margin = new System.Windows.Forms.Padding(5);
             this.btnExcel.Name = "btnExcel";
             this.btnExcel.Size = new System.Drawing.Size(258, 100);
@@ -449,73 +514,9 @@
             this.bunifuThinButton23.Location = new System.Drawing.Point(38, 159);
             this.bunifuThinButton23.Margin = new System.Windows.Forms.Padding(5);
             this.bunifuThinButton23.Name = "bunifuThinButton23";
-            this.bunifuThinButton23.Size = new System.Drawing.Size(535, 121);
+            this.bunifuThinButton23.Size = new System.Drawing.Size(524, 121);
             this.bunifuThinButton23.TabIndex = 44;
             this.bunifuThinButton23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "Mã hóa đơn";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
-            // 
-            // Column3
-            // 
-            this.Column3.FillWeight = 97.95009F;
-            this.Column3.HeaderText = "Ngày tạo";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.FillWeight = 97.95009F;
-            this.Column2.HeaderText = "Tên khách hàng";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.FillWeight = 97.95009F;
-            this.Column4.HeaderText = "Tên nhân viên";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.FillWeight = 60F;
-            this.Column11.HeaderText = "Sản phẩm";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.FillWeight = 90F;
-            this.Column12.HeaderText = "Tổng tiền";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.FillWeight = 97.95009F;
-            this.Column6.HeaderText = "Mô tả";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.FillWeight = 97.95009F;
-            this.Column5.HeaderText = "Trạng thái";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
             // 
             // FrmInvoice
             // 

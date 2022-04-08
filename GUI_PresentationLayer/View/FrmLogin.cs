@@ -29,6 +29,12 @@ namespace GUI_PresentationLayer.View
                 cmbCamera.Items.Add(x.Name);
                 cmbCamera.SelectedIndex = 0;
             }
+            if (Properties.Settings.Default.Email != string.Empty && Properties.Settings.Default.Passsword != string.Empty)
+            {
+                txtEmail.Text = Properties.Settings.Default.Email;
+                txtPassword.Text = Properties.Settings.Default.Passsword;
+                cbxRemember.Checked = true;
+            }
         }
 
         private void btnQr_Click(object sender, EventArgs e)
@@ -84,7 +90,7 @@ namespace GUI_PresentationLayer.View
                     if (_iEmployeeServices.GetEmployees().Any(c => c.Email == em[0] && c.Pass == em[1]))
                     {
                         FrmMain frmMain = new FrmMain();
-                        frmMain.Email = em.ToString();
+                        frmMain.Email = em[0];
                         Hide();
                         frmMain.Closed += (o, args) => Show();
                         frmMain.Show();
@@ -134,6 +140,11 @@ namespace GUI_PresentationLayer.View
                     MessageBox.Show("Đăng nhập thất bại!");
                 }
             }
+        }
+
+        private void lblForgot_Click(object sender, EventArgs e)
+        {
+            tabForgot.Visible = true;
         }
     }
 }

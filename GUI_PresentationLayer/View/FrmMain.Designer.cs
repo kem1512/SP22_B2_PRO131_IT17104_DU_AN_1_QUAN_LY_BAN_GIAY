@@ -30,6 +30,7 @@
         {
             this.pnlTopBar = new System.Windows.Forms.Panel();
             this.pnlLeftBar = new System.Windows.Forms.Panel();
+            this.btnReport = new FontAwesome.Sharp.IconButton();
             this.pbxLogout = new FontAwesome.Sharp.IconButton();
             this.btnCustomer = new FontAwesome.Sharp.IconButton();
             this.btnOrder = new FontAwesome.Sharp.IconButton();
@@ -68,6 +69,7 @@
             // 
             this.pnlLeftBar.AutoScroll = true;
             this.pnlLeftBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.pnlLeftBar.Controls.Add(this.btnReport);
             this.pnlLeftBar.Controls.Add(this.pbxLogout);
             this.pnlLeftBar.Controls.Add(this.btnCustomer);
             this.pnlLeftBar.Controls.Add(this.btnOrder);
@@ -83,6 +85,29 @@
             this.pnlLeftBar.Size = new System.Drawing.Size(272, 678);
             this.pnlLeftBar.TabIndex = 8;
             // 
+            // btnReport
+            // 
+            this.btnReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
+            this.btnReport.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnReport.FlatAppearance.BorderSize = 0;
+            this.btnReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.ForeColor = System.Drawing.Color.White;
+            this.btnReport.IconChar = FontAwesome.Sharp.IconChar.UserEdit;
+            this.btnReport.IconColor = System.Drawing.Color.White;
+            this.btnReport.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnReport.IconSize = 75;
+            this.btnReport.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReport.Location = new System.Drawing.Point(0, 770);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnReport.Size = new System.Drawing.Size(251, 85);
+            this.btnReport.TabIndex = 11;
+            this.btnReport.Text = "Báo cáo";
+            this.btnReport.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReport.UseVisualStyleBackColor = false;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
+            // 
             // pbxLogout
             // 
             this.pbxLogout.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(76)))));
@@ -96,7 +121,7 @@
             this.pbxLogout.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.pbxLogout.IconSize = 75;
             this.pbxLogout.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.pbxLogout.Location = new System.Drawing.Point(0, 770);
+            this.pbxLogout.Location = new System.Drawing.Point(0, 855);
             this.pbxLogout.Name = "pbxLogout";
             this.pbxLogout.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.pbxLogout.Size = new System.Drawing.Size(251, 85);
@@ -259,31 +284,32 @@
             // 
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblName.ForeColor = System.Drawing.Color.White;
-            this.lblName.Location = new System.Drawing.Point(59, 210);
+            this.lblName.Location = new System.Drawing.Point(0, 210);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(120, 29);
+            this.lblName.Size = new System.Drawing.Size(251, 29);
             this.lblName.TabIndex = 7;
-            this.lblName.Text = "Hải Đăng";
+            this.lblName.Text = "Name";
+            this.lblName.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // pbxEmployee
             // 
             this.pbxEmployee.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.pbxEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(39)))), ((int)(((byte)(58)))));
+            this.pbxEmployee.BackColor = System.Drawing.Color.Transparent;
             this.pbxEmployee.ForeColor = System.Drawing.Color.Red;
             this.pbxEmployee.IconChar = FontAwesome.Sharp.IconChar.Neos;
             this.pbxEmployee.IconColor = System.Drawing.Color.Red;
             this.pbxEmployee.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.pbxEmployee.IconSize = 195;
+            this.pbxEmployee.IconSize = 194;
             this.pbxEmployee.Location = new System.Drawing.Point(27, 12);
             this.pbxEmployee.Name = "pbxEmployee";
-            this.pbxEmployee.Size = new System.Drawing.Size(195, 195);
+            this.pbxEmployee.Size = new System.Drawing.Size(194, 194);
             this.pbxEmployee.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pbxEmployee.TabIndex = 6;
             this.pbxEmployee.TabStop = false;
+            this.pbxEmployee.DoubleClick += new System.EventHandler(this.pbxEmployee_DoubleClick);
             // 
             // pnlBottomBar
             // 
@@ -323,6 +349,7 @@
             // 
             this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMaximize.BackColor = System.Drawing.Color.Transparent;
+            this.btnMaximize.Enabled = false;
             this.btnMaximize.FlatAppearance.BorderSize = 0;
             this.btnMaximize.FlatAppearance.MouseDownBackColor = System.Drawing.Color.BlueViolet;
             this.btnMaximize.FlatAppearance.MouseOverBackColor = System.Drawing.Color.BlueViolet;
@@ -427,7 +454,6 @@
             this.Resize += new System.EventHandler(this.FrmMain_Resize);
             this.pnlLeftBar.ResumeLayout(false);
             this.pnlLogo.ResumeLayout(false);
-            this.pnlLogo.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).EndInit();
             this.pnlBottomBar.ResumeLayout(false);
             this.pnlBottomBar.PerformLayout();
@@ -458,6 +484,7 @@
         private FontAwesome.Sharp.IconPictureBox pbxEmployee;
         private System.Windows.Forms.Label lblName;
         private FontAwesome.Sharp.IconButton pbxLogout;
+        private FontAwesome.Sharp.IconButton btnReport;
     }
 }
 

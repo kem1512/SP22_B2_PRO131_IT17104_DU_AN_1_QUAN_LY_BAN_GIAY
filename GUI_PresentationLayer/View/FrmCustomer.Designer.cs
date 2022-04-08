@@ -118,7 +118,7 @@
             this.tabDisable.Location = new System.Drawing.Point(4, 34);
             this.tabDisable.Name = "tabDisable";
             this.tabDisable.Padding = new System.Windows.Forms.Padding(3);
-            this.tabDisable.Size = new System.Drawing.Size(1102, 492);
+            this.tabDisable.Size = new System.Drawing.Size(1102, 453);
             this.tabDisable.TabIndex = 1;
             this.tabDisable.Text = "Đã xóa";
             // 
@@ -159,7 +159,7 @@
             this.dgridDisable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgridDisable.RowHeadersWidth = 51;
             this.dgridDisable.RowTemplate.Height = 70;
-            this.dgridDisable.Size = new System.Drawing.Size(1096, 486);
+            this.dgridDisable.Size = new System.Drawing.Size(1096, 447);
             this.dgridDisable.TabIndex = 1;
             this.dgridDisable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridDisable_CellContentClick);
             // 
@@ -239,7 +239,7 @@
             this.dgrid_Disabled.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Disabled.RowHeadersWidth = 51;
             this.dgrid_Disabled.RowTemplate.Height = 24;
-            this.dgrid_Disabled.Size = new System.Drawing.Size(1096, 486);
+            this.dgrid_Disabled.Size = new System.Drawing.Size(1096, 447);
             this.dgrid_Disabled.TabIndex = 0;
             // 
             // tabControl1
@@ -465,7 +465,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpLeft.SetColumnSpan(this.txtPhone, 2);
             this.txtPhone.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPhone.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtPhone.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtPhone.HintForeColor = System.Drawing.Color.Empty;
             this.txtPhone.HintText = "";
@@ -509,7 +509,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpLeft.SetColumnSpan(this.txtName, 2);
             this.txtName.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtName.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtName.HintForeColor = System.Drawing.Color.Empty;
             this.txtName.HintText = "";
@@ -609,7 +609,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tlpLeft.SetColumnSpan(this.txtAddress, 2);
             this.txtAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.txtAddress.Font = new System.Drawing.Font("Roboto", 12F);
             this.txtAddress.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtAddress.HintForeColor = System.Drawing.Color.Empty;
             this.txtAddress.HintText = "";

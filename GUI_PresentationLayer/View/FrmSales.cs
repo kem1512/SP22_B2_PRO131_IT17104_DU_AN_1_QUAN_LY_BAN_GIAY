@@ -9,9 +9,11 @@ using System.Linq;
 using System.Media;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video.DirectShow;
+using Bunifu.Framework.UI;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
 using BUS_BussinessLayer.Utilities;
@@ -32,6 +34,7 @@ namespace GUI_PresentationLayer.View
         private iEmployeeServices _iEmployeeServices = new EmployeeServices();
         private FilterInfoCollection _filterInfo;
         private VideoCaptureDevice _videoCaptureDevice;
+        private SoundPlayer _soundPlayer = new SoundPlayer(Properties.Resources.beep);
         public string InvoidId { get; set; }
 
         public FrmSales(FrmMain frmMain)
@@ -68,7 +71,7 @@ namespace GUI_PresentationLayer.View
                 return "Vui lòng nhập giá ship!";
             }
 
-            if (rbtnShip.Checked && cmbShipper.SelectedIndex != -1)
+            if (rbtnShip.Checked && cmbShipper.SelectedIndex == -1)
             {
                 return "Vui lòng chọn shipper!";
             }
@@ -98,18 +101,28 @@ namespace GUI_PresentationLayer.View
             {
                 totalPrice += float.Parse(x.Cells[3].Value.ToString()) * float.Parse(x.Cells[4].Value.ToString());
             }
-            return ConvertMoney.ConvertToVND(totalPrice);
+            return rbtnShip.Checked ? ConvertMoney.ConvertToVND(totalPrice + float.Parse(txtShipCost.Text)) : ConvertMoney.ConvertToVND(totalPrice);
         }
 
         private void LoadData()
         {
             dgridProduct.Rows.Clear();
             var result = _iProductServices.GetViewProducts();
-            foreach (var x in result.Where(c => c.product.Status))
+            foreach (var x in result.Where(c => c.product.Status && c.inventory.Amount > 0))
             {
-                using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
+                if (File.Exists(x.product.ProductImage))
                 {
-                    dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName,
+                    using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
+                    {
+                        dgridProduct.Rows.Add(x.product.ProductId,new Bitmap(fileStream), x.product.ProductName,
+                            x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description,
+                            x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId,
+                            x.productDetail.SizeId, x.productDetail.CategoryId, "Thêm");
+                    }
+                }
+                else
+                {
+                    dgridProduct.Rows.Add(x.product.ProductId, Properties.Resources.failed, x.product.ProductName,
                         x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description,
                         x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId,
                         x.productDetail.SizeId, x.productDetail.CategoryId, "Thêm");
@@ -170,9 +183,17 @@ namespace GUI_PresentationLayer.View
                 var totalPrice = 0;
                 foreach (var x in invoiceDetail)
                 {
-                    using (FileStream fileStream = new FileStream(_iProductServices.GetProductById(x.ProductId).ProductImage, FileMode.Open))
+                    var result = _iProductServices.GetProductById(x.ProductId).ProductImage;
+                    if (File.Exists(result))
                     {
-                        dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream), _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "Thêm");
+                        using (FileStream fileStream = new FileStream(result, FileMode.Open))
+                        {
+                            dgridOrder.Rows.Add(x.ProductId, new Bitmap(fileStream), _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "+", "-", "Xóa");
+                        }
+                    }
+                    else
+                    {
+                        dgridOrder.Rows.Add(x.ProductId, Properties.Resources.failed, _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "+", "-", "Xóa");
                     }
                     totalPrice += int.Parse(x.TotalPrice.ToString(CultureInfo.InvariantCulture));
                 }
@@ -192,30 +213,6 @@ namespace GUI_PresentationLayer.View
         {
             if (e.ColumnIndex == 11)
             {
-                // var result = _iProductServices.GetViewProducts().FirstOrDefault(c =>
-                //     c.product.ProductId == dgridProduct.Rows[e.RowIndex].Cells[0].Value.ToString());
-                // if (result != null)
-                // {
-                //     foreach (DataGridViewRow x in dgridOrder.Rows)
-                //     {
-                //         if (x.Cells[2].Value.ToString() == result.product.ProductName)
-                //         {
-                //             x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
-                //             x.Cells[4].Value = ConvertMoney.ConvertToVND(result.productDetail.UnitPrice);
-                //             x.Cells[5].Value = ConvertMoney.ConvertToVND(double.Parse(x.Cells[3].Value.ToString()) * double.Parse(x.Cells[4].Value.ToString()));
-                //             lblTotalPrice.Text = TotalPrice();
-                //             return;
-                //         }
-                //     }
-                //
-                //     using (FileStream fileStream = new FileStream(result.product.ProductImage, FileMode.Open))
-                //     {
-                //         dgridOrder.Rows.Add(result.product.ProductId, new Bitmap(fileStream),
-                //             result.product.ProductName,
-                //             "1", ConvertMoney.ConvertToVND(result.productDetail.UnitPrice), ConvertMoney.ConvertToVND(result.productDetail.UnitPrice), "+", "-", "Xóa");
-                //         lblTotalPrice.Text = TotalPrice();
-                //     }
-                // }
                 AddProductToInvoice(dgridProduct.Rows[e.RowIndex].Cells[0].Value.ToString());
             }
         }
@@ -307,40 +304,65 @@ namespace GUI_PresentationLayer.View
         {
             if (ValidateSale() is null)
             {
-                if (MessageBox.Show("Bạn có chắc muốn thêm vào hóa đơn chờ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (InvoidId == null)
                 {
-                        var invoiceId = !_iInvoiceServices.GetInvoices().Any()
-                            ? "IV1"
-                            : "IV" + _iInvoiceServices.GetInvoices().Max(c => int.Parse(c.InvoiceId.Replace("IV", "")) + 1);
-                        var invoice = new Invoice()
+                    if (_frmMain.Email != null)
+                    {
+                        if (MessageBox.Show("Bạn có chắc muốn tạo hóa đơn?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            InvoiceId = invoiceId,
-                            DateCreate = DateTime.Now,
-                            CustomerId = cmbPhone.SelectedValue.ToString(),
-                            EmployeeId = _iEmployeeServices.GetEmployees().First(c => c.Email == _frmMain.Email).EmployeeId,
-                            InvoiceStatus = false,
-                            ShipperId = cmbShipper.Enabled ? cmbShipper.SelectedValue.ToString() : null,
-                            ShipCost = txtShipCost.Text != "" ? float.Parse(txtShipCost.Text) : 0,
-                            GuestPayments = float.Parse(txtCost.Text)
-                        };
-                        List<InvoiceDetail> invoiceDetails = new List<InvoiceDetail>();
-                        foreach (DataGridViewRow x in dgridOrder.Rows)
-                        {
-                            var result = new InvoiceDetail()
+                            var button = sender as BunifuThinButton2;
+                            var invoiceId = !_iInvoiceServices.GetInvoices().Any()
+                                    ? "IV1"
+                                    : "IV" + _iInvoiceServices.GetInvoices().Max(c => int.Parse(c.InvoiceId.Replace("IV", "")) + 1);
+                            var invoice = new Invoice()
                             {
                                 InvoiceId = invoiceId,
-                                ProductId = x.Cells[0].Value.ToString(),
-                                Quantity = int.Parse(x.Cells[3].Value.ToString()),
-                                Price = float.Parse(x.Cells[4].Value.ToString()),
-                                TotalPrice = float.Parse(x.Cells[5].Value.ToString())
+                                DateCreate = DateTime.Now,
+                                CustomerId = cmbPhone.SelectedValue.ToString(),
+                                EmployeeId = _iEmployeeServices.GetEmployees().First(c => c.Email == _frmMain.Email).EmployeeId,
+                                InvoiceStatus = button.ButtonText == "Xác nhận" ? false : true,
+                                ShipperId = cmbShipper.Enabled ? cmbShipper.SelectedValue.ToString() : null,
+                                ShipCost = txtShipCost.Text != "" ? float.Parse(txtShipCost.Text) : 0,
+                                GuestPayments = float.Parse(txtCost.Text)
                             };
-                            invoiceDetails.Add(result);
+                            List<InvoiceDetail> invoiceDetails = new List<InvoiceDetail>();
+                            foreach (DataGridViewRow x in dgridOrder.Rows)
+                            {
+                                var result = new InvoiceDetail()
+                                {
+                                    InvoiceId = invoiceId,
+                                    ProductId = x.Cells[0].Value.ToString(),
+                                    Quantity = int.Parse(x.Cells[3].Value.ToString()),
+                                    Price = float.Parse(x.Cells[4].Value.ToString()),
+                                    TotalPrice = float.Parse(x.Cells[5].Value.ToString())
+                                };
+                                invoiceDetails.Add(result);
+                            }
+                            MessageBox.Show(_iInvoiceServices.AddInvoice(invoice, invoiceDetails));
+                            if (invoice.InvoiceStatus)
+                            {
+                                if (MessageBox.Show("Bạn có muốn in hóa đơn không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                                    DialogResult.Yes)
+                                {
+                                    var result = _iInvoiceServices.GetViewInvoices().Where(c => c.Invoice.InvoiceId == invoice.InvoiceId).ToList();
+                                    GenerateInvoice.PrintInvoice(result);
+                                }
+                            }
                         }
-                        MessageBox.Show(_iInvoiceServices.AddInvoice(invoice, invoiceDetails));
+                        _iCustomerServices.IncreasePurchase(cmbPhone.SelectedValue.ToString());
+                        LoadData();
+                    }
+                    else
+                    {
+                        MessageBox.Show("Không tồn tại nhân viên!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Không thể sửa đơn hàng!");
                 }
                 _frmMain.LoadData();
-                _iCustomerServices.IncreasePurchase(cmbPhone.SelectedValue.ToString());
-                
+
             }
             else
             {
@@ -367,13 +389,20 @@ namespace GUI_PresentationLayer.View
                 if (MessageBox.Show($"Bạn có chắc muốn hoàn thành hóa đơn {InvoidId}?", "Thông báo", MessageBoxButtons.YesNo) ==
                     DialogResult.Yes)
                 {
+                    var result = _iInvoiceServices.GetViewInvoices().Where(c => c.Invoice.InvoiceId.Equals(InvoidId)).ToList();
                     MessageBox.Show(_iInvoiceServices.CompleteInvoice(InvoidId));
+                    if (MessageBox.Show("Bạn có muốn in hóa đơn không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
+                    {
+                        GenerateInvoice.PrintInvoice(result);
+                    }
                     InvoidId = null;
+                    LoadData();
                 }
             }
             else
             {
-                MessageBox.Show("Chưa có hóa đơn nào được chọn!");
+                btnConfirm_Click(sender, e);
             }
         }
 
@@ -395,7 +424,7 @@ namespace GUI_PresentationLayer.View
 
         private void btnQr2_Click(object sender, EventArgs e)
         {
-            if (btnQr2.ButtonText == "Quét mã")
+            if (btnQr2.ButtonText.Equals("Quét mã"))
             {
                 btnQr2.ButtonText = "Dừng quét";
                 _videoCaptureDevice = new VideoCaptureDevice(_filterInfo[cmbCamera.SelectedIndex].MonikerString);
@@ -423,25 +452,33 @@ namespace GUI_PresentationLayer.View
         {
             var product = _iProductServices.GetViewProducts()
                 .FirstOrDefault(c => c.product.ProductId == id);
-            foreach (DataGridViewRow x in dgridOrder.Rows)
+            if (product != null)
             {
-                if (x.Cells[2].Value.ToString() == product.product.ProductName)
+                foreach (DataGridViewRow x in dgridOrder.Rows)
                 {
-                    x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
-                    x.Cells[4].Value = int.Parse(x.Cells[4].Value.ToString()) +
-                                       product.productDetail.UnitPrice;
-                    x.Cells[5].Value = int.Parse(x.Cells[3].Value.ToString()) *
-                                       int.Parse(x.Cells[4].Value.ToString());
-                    lblTotalPrice.Text = TotalPrice();
-                    return;
+                    if (x.Cells[2].Value.ToString() == product.product.ProductName)
+                    {
+                        x.Cells[3].Value = int.Parse(x.Cells[3].Value.ToString()) + 1;
+                        x.Cells[4].Value = ConvertMoney.ConvertToVND(product.productDetail.UnitPrice);
+                        x.Cells[5].Value = ConvertMoney.ConvertToVND(float.Parse(x.Cells[3].Value.ToString()) * float.Parse(x.Cells[4].Value.ToString()));
+                        lblTotalPrice.Text = TotalPrice();
+                        return;
+                    }
                 }
-            }
 
-            using (FileStream fileStream = new FileStream(product.product.ProductImage, FileMode.Open))
-            {
-                dgridOrder.Rows.Add(product.product.ProductId, new Bitmap(fileStream),
-                    product.product.ProductName,
-                    "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "+", "-", "Xóa");
+                if (File.Exists(product.product.ProductImage))
+                {
+                    using (FileStream fileStream = new FileStream(product.product.ProductImage, FileMode.Open))
+                    {
+
+                        dgridOrder.Rows.Add(product.product.ProductId,new Bitmap(fileStream), product.product.ProductName, "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "+", "-", "Xóa");
+                    }
+                }
+                else
+                {
+                    dgridOrder.Rows.Add(product.product.ProductId, Properties.Resources.failed, product.product.ProductName, "1", product.productDetail.UnitPrice, product.productDetail.UnitPrice, "+", "-", "Xóa");
+                }
+                lblTotalPrice.Text = TotalPrice();
             }
         }
 
@@ -457,6 +494,7 @@ namespace GUI_PresentationLayer.View
                         .FirstOrDefault(c => c.Barcode == result.ToString());
                     if (product != null)
                     {
+                        _soundPlayer.Play();
                         AddProductToInvoice(product.ProductId);
                         lblTotalPrice.Text = TotalPrice();
                         btnQr2.ButtonText = "Quét mã";
@@ -486,12 +524,19 @@ namespace GUI_PresentationLayer.View
 
         private void txtCost_OnValueChanged(object sender, EventArgs e)
         {
-            if (txtCost.Text != "" && lblTotalPrice.Text != "0 VNĐ")
+            if (Regex.IsMatch(txtCost.Text, "^[0-9]+$"))
             {
-                if (float.Parse(txtCost.Text) > float.Parse(lblTotalPrice.Text))
+                if (txtCost.Text != "" && lblTotalPrice.Text != "0 VNĐ")
                 {
-                    lblMoneyLeft.Text = ConvertMoney.ConvertToVND(float.Parse(txtCost.Text) - float.Parse(lblTotalPrice.Text));
+                    if (float.Parse(txtCost.Text) > float.Parse(lblTotalPrice.Text))
+                    {
+                        lblMoneyLeft.Text = ConvertMoney.ConvertToVND(float.Parse(txtCost.Text) - float.Parse(lblTotalPrice.Text));
+                    }
                 }
+            }
+            else
+            {
+                txtCost.Text = "";
             }
         }
 
@@ -538,6 +583,8 @@ namespace GUI_PresentationLayer.View
                 form.Controls.Add(label);
                 form.ShowDialog();
                 InvoidId = null;
+
+                LoadData();
             }
             else
             {
