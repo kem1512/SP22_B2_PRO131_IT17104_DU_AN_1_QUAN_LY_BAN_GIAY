@@ -25,6 +25,10 @@ namespace GUI_PresentationLayer.View
         {
             InitializeComponent();
             loadBrand();
+            dgdtpcDateBegin.Value = DateTime.Now.AddMonths(-1);
+            dgdtpcDateEnd.Value = DateTime.Now;
+            load_Statistics(dgdtpcDateBegin.Value,dgdtpcDateEnd.Value);
+            load_Cancel();
         }
 
         void load_BrandSelled(string brand)
@@ -80,6 +84,7 @@ namespace GUI_PresentationLayer.View
 
         void load_Statistics(DateTime from, DateTime to)
         {
+            dgrid_Revenue.Rows.Clear();
             var lst = (from CTHD in _iInvoiceServices.GetInvoicesDetail()
                 join HD in _iInvoiceServices.GetInvoices() on CTHD.InvoiceId equals HD.InvoiceId
                 join NV in _iEmployeeServices.GetEmployees() on HD.EmployeeId equals NV.EmployeeId
@@ -119,6 +124,19 @@ namespace GUI_PresentationLayer.View
             {
                 load_BrandSelled(cmbFilter.SelectedValue.ToString());
             }
+        }
+
+        private void dgdtpcDateEnd_onValueChanged(object sender, EventArgs e)
+        {
+            load_Statistics(dgdtpcDateBegin.Value,dgdtpcDateEnd.Value);
+            if (dgdtpcDateEnd.Value<dgdtpcDateBegin.Value)
+            {
+                dgdtpcDateEnd.Value=DateTime.Now;
+            }
+        }
+        private void dgdtpcDateBegin_onValueChanged(object sender, EventArgs e)
+        {
+            load_Statistics(dgdtpcDateBegin.Value, dgdtpcDateEnd.Value);
         }
     }
 }

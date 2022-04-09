@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -279,6 +280,48 @@ namespace GUI_PresentationLayer.View
                 {
                     x.Visible = x.Cells[1].Value.ToString().Contains(txtSearch.Text);
                 }
+            }
+        }
+
+        void Send(string email,string filename)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress("kem15122002@gmail.com");
+                mail.To.Add(email);
+                mail.Subject = "THÔNG BÁO";
+                System.Net.Mail.Attachment attachment;
+                attachment = new System.Net.Mail.Attachment(filename);
+                mail.Attachments.Add(attachment);
+                SmtpServer.Port = 587;
+                SmtpServer.Credentials = new System.Net.NetworkCredential("kem15122002@gmail.com", "badao12345");
+                SmtpServer.EnableSsl = true;
+                SmtpServer.Send(mail);
+                MessageBox.Show("Gửi thông báo thành công","Thông báo");
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        private void bunifuThinButton23_Click(object sender, EventArgs e)
+        {
+            var lstE = _iEmployeeServices.GetEmployees().Where(c => c.Status).Select(c => c.Email).ToList();
+            string att = null;
+            if (att==null)
+            {
+                OpenFileDialog op = new OpenFileDialog();
+                if (op.ShowDialog()==DialogResult.OK)
+                {
+                    att = op.FileName;
+                }
+            }
+            foreach (var em in lstE)
+            {
+                Send(em,att);
             }
         }
     }
