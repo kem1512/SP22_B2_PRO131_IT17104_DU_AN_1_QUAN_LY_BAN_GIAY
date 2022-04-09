@@ -171,5 +171,20 @@ namespace DAL_DataAccessLayer.DAL_Services
                 return "Phục hồi thất bại!";
             }
         }
+
+        public string ChangePassword(string email, string pass)
+        {
+            using (_db = new QuanLyBanGiayEntities())
+            {
+                var employee = _db.Employee.FirstOrDefault(c => c.Email == email);
+                if (email != null && employee != null)
+                {
+                    employee.Pass = pass;
+                    _db.SaveChanges();
+                    return "Phục hồi thành công!";
+                }
+                return "Phục hồi thất bại!";
+            }
+        }
     }
 }

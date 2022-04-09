@@ -11,10 +11,13 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.Utilities;
 using Microsoft.Office.Interop.Excel;
+using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
 // using Syncfusion.Pdf;
 // using Syncfusion.Pdf.Graphics;
 // using Syncfusion.Pdf.Tables;
 using Color = System.Drawing.Color;
+using DataGridViewCell = System.Windows.Forms.DataGridViewCell;
 using DataTable = System.Data.DataTable;
 // using PdfPage = Syncfusion.Pdf.PdfPage;
 
@@ -106,12 +109,12 @@ namespace GUI_PresentationLayer.View
                 {
                     using (FileStream fileStream = new FileStream(x.product.ProductImage, FileMode.Open))
                     {
-                        dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName, x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa");
+                        dgridProduct.Rows.Add(x.product.ProductId, new Bitmap(fileStream), x.product.ProductName, x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa", x.inventory.Amount <= 0 ? "Đã hết hàng" : x.inventory.Amount < 10 ? "Sắp hết hàng" : "Còn hàng");
                     }
                 }
                 else
                 {
-                    dgridProduct.Rows.Add(x.product.ProductId, Properties.Resources.failed, x.product.ProductName, x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa");
+                    dgridProduct.Rows.Add(x.product.ProductId, Properties.Resources.failed, x.product.ProductName, x.inventory.Amount, ConvertMoney.ConvertToVND(x.productDetail.UnitPrice), x.product.Description, x.productDetail.BrandId, x.productDetail.MaterialId, x.productDetail.ColorId, x.productDetail.SizeId, x.productDetail.CategoryId, "Xóa", x.inventory.Amount <= 0 ? "Đã hết hàng" : x.inventory.Amount < 10 ? "Sắp hết hàng" : "Còn hàng");
                 }
             }
 
@@ -399,16 +402,13 @@ namespace GUI_PresentationLayer.View
 
         private void txtSearch_OnValueChanged(object sender, EventArgs e)
         {
-            if (tabProduct.Visible)
+            foreach (DataGridViewRow x in dgridProduct.Rows)
             {
-                foreach (DataGridViewRow x in dgridProduct.Rows)
+                if (cmbBrandTop.SelectedIndex != -1 && cmbColorTop.SelectedIndex != -1 && cmbStatus.SelectedIndex != -1)
                 {
-                    x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
+                    if(x.Visible) x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
                 }
-            }
-            else
-            {
-                foreach (DataGridViewRow x in dgridProductDeleted.Rows)
+                else
                 {
                     x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
                 }
@@ -419,32 +419,22 @@ namespace GUI_PresentationLayer.View
         {
             if (cmbBrandTop.SelectedIndex != -1)
             {
-                if (tabProduct.Visible)
+                foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    foreach (DataGridViewRow x in dgridProduct.Rows)
+                    if (cmbColorTop.SelectedIndex != -1 && cmbStatus.SelectedIndex != -1)
                     {
-                        if (cmbColorTop.SelectedIndex != -1)
-                        {
-                            x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
-                        }
-                        else
-                        {
-                            x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
-                        }
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
                     }
-                }
-                else
-                {
-                    foreach (DataGridViewRow x in dgridProductDeleted.Rows)
+                    else if (cmbColorTop.SelectedIndex != -1 && cmbStatus.SelectedIndex == -1)
                     {
-                        if (cmbColorTop.SelectedIndex != -1)
-                        {
-                            x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
-                        }
-                        else
-                        {
-                            x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
-                        }
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                    }else if (cmbStatus.SelectedIndex != -1 && cmbColorTop.SelectedIndex == -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                    else
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
                     }
                 }
             }
@@ -452,25 +442,23 @@ namespace GUI_PresentationLayer.View
 
         private void cmbColorTop_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cmbBrandTop.SelectedIndex != -1)
+            if (cmbColorTop.SelectedIndex != -1)
             {
-                if (tabProduct.Visible)
+                foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    foreach (DataGridViewRow x in dgridProduct.Rows)
+                    if (cmbBrandTop.SelectedIndex != -1 && cmbStatus.SelectedIndex != -1)
                     {
-                        if (cmbBrandTop.SelectedIndex != -1)
-                        {
-                            x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
-                        }
-                        else
-                        {
-                            x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
-                        }
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
                     }
-                }
-                else
-                {
-                    foreach (DataGridViewRow x in dgridProductDeleted.Rows)
+                    else if (cmbBrandTop.SelectedIndex != -1 && cmbStatus.SelectedIndex == -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                    }
+                    else if (cmbStatus.SelectedIndex != -1 && cmbBrandTop.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                    else
                     {
                         x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
                     }
@@ -480,51 +468,51 @@ namespace GUI_PresentationLayer.View
 
         private void btnQrCode_Click(object sender, EventArgs e)
         {
-            // SaveFileDialog saveFileDialog = new SaveFileDialog();
-            // if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            // {
-            //     PdfDocument pdfDocument = new PdfDocument();
-            //     PdfPage pdfPage = pdfDocument.Pages.Add();
-            //     // set lề là 0
-            //     pdfDocument.PageSettings.SetMargins(0);
-            //     var number = 0;
-            //     for (int i = 0; i < dgridProduct.Rows.Count; i++)
-            //     {
-            //         if ((i + 1) % 4 == 0)
-            //         {
-            //             pdfPage = pdfDocument.Pages.Add();
-            //             number = 0;
-            //         }
-            //         // tìm sản phẩm trong csdl
-            //         var result = _iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString());
-            //
-            //         // tạo mã vạch
-            //         var image = GenerateBarcode.CreateBarcode(result.Barcode);
-            //
-            //         // tạo đối tượng để lưu ảnh
-            //         PdfBitmap pdfBitmap = new PdfBitmap(image);
-            //
-            //         // set phông chữ
-            //         PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\FontBarcode.ttf", 18);
-            //
-            //         // set vị trí của chữ
-            //         PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
-            //
-            //         // tạo khung cho sản thông tin sản phẩm
-            //         RectangleF rectangleInfo = new RectangleF(new PointF(0, (100 + 40 + 110) * number), new SizeF(pdfPage.Size.Width, 50));
-            //
-            //         RectangleF rectangleBarcode = new RectangleF(new PointF((pdfDocument.PageSettings.Width - 200) / 2 , rectangleInfo.Bottom), new SizeF(200, 100));
-            //
-            //         // tạo khung cho số mã vạch
-            //         RectangleF rectangleBarNumber = new RectangleF(new PointF(0, rectangleBarcode.Bottom), new SizeF(pdfDocument.PageSettings.Width, 40));
-            //         PdfGraphics pdfGraphics = pdfPage.Graphics;
-            //         pdfGraphics.DrawString($"{result.ProductId} : {result.ProductName}", pdfFont, new PdfPen(Color.Red), rectangleInfo, pdfStringFormat);
-            //         pdfGraphics.DrawImage(pdfBitmap, rectangleBarcode);
-            //         pdfGraphics.DrawString(result.Barcode, pdfFont, new PdfPen(Color.Black), rectangleBarNumber, pdfStringFormat);
-            //         number++;
-            //     }
-            //     pdfDocument.Save(saveFileDialog.FileName);
-            // }
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                PdfDocument pdfDocument = new PdfDocument();
+                PdfPage pdfPage = pdfDocument.Pages.Add();
+                // set lề là 0
+                pdfDocument.PageSettings.SetMargins(0);
+                var number = 0;
+                for (int i = 0; i < dgridProduct.Rows.Count; i++)
+                {
+                    if ((i + 1) % 4 == 0)
+                    {
+                        pdfPage = pdfDocument.Pages.Add();
+                        number = 0;
+                    }
+                    // tìm sản phẩm trong csdl
+                    var result = _iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString());
+            
+                    // tạo mã vạch
+                    var image = GenerateCode.CreateBarcode(result.Barcode);
+            
+                    // tạo đối tượng để lưu ảnh
+                    PdfBitmap pdfBitmap = new PdfBitmap(image);
+            
+                    // set phông chữ
+                    PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\FontBarcode.ttf", 18);
+            
+                    // set vị trí của chữ
+                    PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
+            
+                    // tạo khung cho sản thông tin sản phẩm
+                    RectangleF rectangleInfo = new RectangleF(new PointF(0, (100 + 40 + 110) * number), new SizeF(pdfPage.Size.Width, 50));
+            
+                    RectangleF rectangleBarcode = new RectangleF(new PointF((pdfDocument.PageSettings.Width - 200) / 2 , rectangleInfo.Bottom), new SizeF(200, 100));
+            
+                    // tạo khung cho số mã vạch
+                    RectangleF rectangleBarNumber = new RectangleF(new PointF(0, rectangleBarcode.Bottom), new SizeF(pdfDocument.PageSettings.Width, 40));
+                    PdfGraphics pdfGraphics = pdfPage.Graphics;
+                    pdfGraphics.DrawString($"{result.ProductId} : {result.ProductName}", pdfFont, new PdfPen(Color.Red), rectangleInfo, pdfStringFormat);
+                    pdfGraphics.DrawImage(pdfBitmap, rectangleBarcode);
+                    pdfGraphics.DrawString(result.Barcode, pdfFont, new PdfPen(Color.Black), rectangleBarNumber, pdfStringFormat);
+                    number++;
+                }
+                pdfDocument.Save(saveFileDialog.FileName);
+            }
         }
 
         private void bunifuThinButton21_Click(object sender, EventArgs e)
@@ -549,6 +537,123 @@ namespace GUI_PresentationLayer.View
             txtBarcode.Items.Clear();
             txtBarcode.Items.Add(stringBuilder);
             txtBarcode.SelectedItem = stringBuilder;
+        }
+
+        private void cmbPrice_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void cmbPrice_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cmbStatus.SelectedIndex != -1)
+            {
+                foreach (DataGridViewRow x in dgridProduct.Rows)
+                {
+                    if (cmbBrandTop.SelectedIndex != -1 && cmbColorTop.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                    else if (cmbBrandTop.SelectedIndex != -1 && cmbColorTop.SelectedIndex == -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                    else if (cmbColorTop.SelectedIndex != -1 && cmbBrandTop.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                    else
+                    {
+                        x.Visible = x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                }
+            }
+        }
+
+        private void cmbBrandTop_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmbStatus_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                foreach (DataGridViewRow x in dgridProduct.Rows)
+                {
+                    if (cmbColorTop.SelectedIndex != -1 && cmbBrandTop.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
+                    }
+                    else if (cmbColorTop.SelectedIndex != -1 && cmbBrandTop.SelectedIndex == -1)
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                    }
+                    else if (cmbBrandTop.SelectedIndex != -1 && cmbColorTop.SelectedIndex == -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedItem.ToString());
+                    }
+                    else
+                    {
+                        if (!x.Visible) x.Visible = true;
+                    }
+                }
+                cmbStatus.SelectedIndex = -1;
+            }
+        }
+
+        private void cmbBrandTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                foreach (DataGridViewRow x in dgridProduct.Rows)
+                {
+                    if (cmbColorTop.SelectedIndex != -1 && cmbStatus.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                    else if (cmbColorTop.SelectedIndex != -1 && cmbStatus.SelectedIndex == -1)
+                    {
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                    }
+                    else if (cmbStatus.SelectedIndex != -1 && cmbColorTop.SelectedIndex == -1)
+                    {
+                        x.Visible = x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                    else
+                    {
+                        if (!x.Visible) x.Visible = true;
+                    }
+                }
+                cmbBrandTop.SelectedIndex = -1;
+            }
+        }
+
+        private void cmbColorTop_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                foreach (DataGridViewRow x in dgridProduct.Rows)
+                {
+                    if (cmbBrandTop.SelectedIndex != -1 && cmbStatus.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                    else if (cmbBrandTop.SelectedIndex != -1 && cmbStatus.SelectedIndex == -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString());
+                    }
+                    else if (cmbStatus.SelectedIndex != -1 && cmbColorTop.SelectedIndex == -1)
+                    {
+                        x.Visible = x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
+                    }
+                    else
+                    {
+                        if (!x.Visible) x.Visible = true;
+                    }
+                }
+                cmbColorTop.SelectedIndex = -1;
+            }
         }
     }
 }

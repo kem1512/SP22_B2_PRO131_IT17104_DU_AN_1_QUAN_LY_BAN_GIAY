@@ -53,6 +53,15 @@
     <Reference Include="Microsoft.VisualBasic" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Syncfusion.Compression.Base, Version=20.1460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Compression.Base.20.1.0.47\lib\net46\Syncfusion.Compression.Base.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Licensing, Version=20.1460.0.47, Culture=neutral, PublicKeyToken=632609b4d040f6b4, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Licensing.20.1.0.47\lib\net46\Syncfusion.Licensing.dll</HintPath>
+    </Reference>
+    <Reference Include="Syncfusion.Pdf.Base, Version=20.1460.0.47, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89, processorArchitecture=MSIL">
+      <HintPath>..\packages\Syncfusion.Pdf.WinForms.20.1.0.47\lib\net46\Syncfusion.Pdf.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Management" />
@@ -88,12 +97,6 @@
     </Compile>
     <Compile Include="View\FrmCustomer.Designer.cs">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\FrmForget.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\FrmForget.Designer.cs">
-      <DependentUpon>FrmForget.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FrmProfile.cs">
       <SubType>Form</SubType>
@@ -168,9 +171,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FrmCustomer.resx">
       <DependentUpon>FrmCustomer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\FrmForget.resx">
-      <DependentUpon>FrmForget.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FrmProfile.resx">
       <DependentUpon>FrmProfile.cs</DependentUpon>

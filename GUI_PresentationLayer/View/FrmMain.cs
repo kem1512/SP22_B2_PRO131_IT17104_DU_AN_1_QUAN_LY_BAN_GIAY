@@ -249,7 +249,7 @@ namespace GUI_PresentationLayer.View
         private void btnReport_Click(object sender, EventArgs e)
         {
             ActiveteButton(sender, Color.Crimson);
-            OpenChildForm(new FrmReport());
+            OpenChildForm(new FrmReport(Email));
         }
 
         private void pbxEmployee_DoubleClick(object sender, EventArgs e)

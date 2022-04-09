@@ -18,5 +18,7 @@ namespace DAL_DataAccessLayer.iDAL_Services
         string DisableEmployee(string id);
 
         string RecoveryEmployee(string id);
+
+        string ChangePassword(string email, string pass);
     }
 }

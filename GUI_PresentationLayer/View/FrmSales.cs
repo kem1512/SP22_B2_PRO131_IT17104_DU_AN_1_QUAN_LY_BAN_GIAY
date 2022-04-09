@@ -260,9 +260,19 @@ namespace GUI_PresentationLayer.View
 
         private void txtSearch_OnValueChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow x in dgridOrder.Rows)
+            if (cmbBrand.SelectedIndex != -1 || cmbColor.SelectedIndex != -1 || cmbInvoice.SelectedIndex != -1)
             {
-                x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
+                foreach (DataGridViewRow x in dgridOrder.Rows)
+                {
+                    if (x.Visible) x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow x in dgridOrder.Rows)
+                {
+                    x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
+                }
             }
         }
 
@@ -566,7 +576,8 @@ namespace GUI_PresentationLayer.View
                 label.AutoSize = false;
                 label.TextAlign = ContentAlignment.MiddleCenter;
                 label.Text = "Lý do hủy";
-                label.Font = new Font("Arial", 10);
+                label.Height = 40;
+                label.Font = new Font("Arial", 12);
 
                 TextBox textBox = new TextBox();
                 textBox.Dock = DockStyle.Top;
@@ -580,18 +591,27 @@ namespace GUI_PresentationLayer.View
                 button.Text = "Xác nhận";
                 button.Click += (o, args) =>
                 {
-                    if (MessageBox.Show($"Bạn có chắc muốn xóa hóa đơn {InvoidId}?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (textBox.Text != "")
                     {
-                        MessageBox.Show(_iInvoiceServices.CancelInvoice(InvoidId, textBox.Text));
-                        _frmMain.LoadData();
+                        if (MessageBox.Show($"Bạn có chắc muốn xóa hóa đơn {InvoidId}?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            MessageBox.Show(_iInvoiceServices.CancelInvoice(InvoidId, textBox.Text));
+                            _frmMain.LoadData();
+                        }
+                        else
+                        {
+                            return;
+                        }
+                        form.Close();
                     }
                     else
                     {
-                        return;
+                        MessageBox.Show("Bạn chưa nhập lí do!");
                     }
-                    form.Close();
                 };
 
+                form.Height = 340;
+                form.MaximizeBox = false;
                 form.StartPosition = FormStartPosition.CenterParent;
                 form.Controls.Add(button);
                 form.Controls.Add(textBox);
@@ -623,21 +643,44 @@ namespace GUI_PresentationLayer.View
 
         private void cmbBrand_MouseDoubleClick(object sender, MouseEventArgs e)
         {
+
         }
 
         private void cmbBrand_MouseDown(object sender, MouseEventArgs e)
         {
-            var combobox = sender as ComboBox;
             if (e.Button == MouseButtons.Right)
             {
-                if (combobox != null) combobox.SelectedIndex = -1;
                 foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    if (x.Visible == false)
+                    if (cmbColor.SelectedIndex != -1)
                     {
-                        x.Visible = true;
+                        x.Visible = x.Cells[8].Value.ToString().Equals(cmbColor.SelectedValue.ToString());
+                    }
+                    else
+                    {
+                        if (!x.Visible) x.Visible = true;
                     }
                 }
+                cmbBrand.SelectedIndex = -1;
+            }
+        }
+
+        private void cmbColor_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Right)
+            {
+                foreach (DataGridViewRow x in dgridProduct.Rows)
+                {
+                    if (cmbBrand.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrand.SelectedValue.ToString());
+                    }
+                    else
+                    {
+                        if (!x.Visible) x.Visible = true;
+                    }
+                }
+                cmbColor.SelectedIndex = -1;
             }
         }
     }

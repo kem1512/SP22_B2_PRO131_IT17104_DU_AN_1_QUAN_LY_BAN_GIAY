@@ -11,6 +11,8 @@ using System.Windows.Forms;
 using AForge.Video.DirectShow;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
+using BUS_BussinessLayer.Utilities;
+using DAL_DataAccessLayer.Entities;
 using ZXing;
 
 namespace GUI_PresentationLayer.View
@@ -20,6 +22,7 @@ namespace GUI_PresentationLayer.View
         FilterInfoCollection _filterInfo;
         VideoCaptureDevice _videoCaptureDevice;
         private iEmployeeServices _iEmployeeServices = new EmployeeServices();
+        private string code = null;
         public FrmLogin()
         {
             InitializeComponent();
@@ -145,6 +148,74 @@ namespace GUI_PresentationLayer.View
         private void lblForgot_Click(object sender, EventArgs e)
         {
             tabForgot.Visible = true;
+        }
+
+        private int countCode = 4;
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            if (txtEmailForgot.Text != "")
+            {
+                var em = _iEmployeeServices.GetEmployees().FirstOrDefault(c => c.Email == txtEmailForgot.Text);
+                if (txtCode.Text != "")
+                {
+                    if (txtCode.Text == code)
+                    {
+                        if (txtPass.Text == txtRePass.Text)
+                        {
+                            if (em != null)
+                            {
+                                MessageBox.Show(_iEmployeeServices.ChangePassword(em.Email, txtPass.Text));
+                                txtEmailForgot.Text = "";
+                                txtCode.Text = "";
+                                txtPass.Text = "";
+                                txtRePass.Text = "";
+                                code = null;
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nhân viên không tồn tại!");
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Mật khẩu không giống nhau!");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Sai mã xác nhận, bạn còn {countCode} lần nhập!");
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Bạn chưa nhập mã xác nhận!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa nhập email");
+            }
+        }
+
+        private void pbxSend_Click(object sender, EventArgs e)
+        {
+            if (!_iEmployeeServices.GetEmployees().Any(c => c.Email == txtEmailForgot.Text))
+            {
+                MessageBox.Show("Không tồn tại email!");
+            }
+            else if (txtEmailForgot.Text != "")
+            {
+                if (MessageBox.Show("Bạn có chắc muốn gửi mã?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                {
+                    code = SendSMS.SendCode(txtEmailForgot.Text);
+                    MessageBox.Show("Gửi thành công!");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Bạn chưa nhập email");
+            }
         }
     }
 }

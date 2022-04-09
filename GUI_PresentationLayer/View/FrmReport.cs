@@ -18,10 +18,14 @@ namespace GUI_PresentationLayer.View
         private iInvoiceServices _iInvoiceServices = new InvoiceServices();
         private iCustomerServices _iCustomerServices = new CustomerServices();
         private iEmployeeServices _iEmployeeServices = new EmployeeServices();
-        public FrmReport()
+        public FrmReport(string email)
         {
             InitializeComponent();
+            this.Email = email;
+
         }
+
+        public string Email { get; set; }
 
         private void LoadData()
         {
@@ -75,6 +79,14 @@ namespace GUI_PresentationLayer.View
             lblShip.Text = ship.ToString();
             lblCancel.Text = cancel.ToString();
             lblTotalPrice.Text = ConvertMoney.ConvertToVND(total) + " VNĐ";
+        }
+
+        private void btnReport_Click(object sender, EventArgs e)
+        {
+            if (Email != null)
+            {
+                SendSMS.SendMail(Email, "Báo cáo hôm nay", "Số đơn bán được");
+            }
         }
     }
 }

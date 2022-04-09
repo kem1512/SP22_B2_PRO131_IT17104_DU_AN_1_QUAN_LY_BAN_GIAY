@@ -52,15 +52,15 @@
             this.cmbCamera = new System.Windows.Forms.ComboBox();
             this.btnQr2 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.tabForgot = new System.Windows.Forms.TabPage();
-            this.iconPictureBox5 = new FontAwesome.Sharp.IconPictureBox();
-            this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.bunifuMaterialTextbox4 = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.pbxSend = new FontAwesome.Sharp.IconPictureBox();
+            this.btnOk = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.txtRePass = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.iconPictureBox4 = new FontAwesome.Sharp.IconPictureBox();
-            this.bunifuMaterialTextbox3 = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.txtPass = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.iconPictureBox3 = new FontAwesome.Sharp.IconPictureBox();
-            this.bunifuMaterialTextbox2 = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.txtCode = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.iconPictureBox2 = new FontAwesome.Sharp.IconPictureBox();
-            this.bunifuMaterialTextbox1 = new Bunifu.Framework.UI.BunifuMaterialTextbox();
+            this.txtEmailForgot = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.iconPictureBox1 = new FontAwesome.Sharp.IconPictureBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tmrScan = new System.Windows.Forms.Timer(this.components);
@@ -75,7 +75,7 @@
             this.tabPageQr.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxCamera)).BeginInit();
             this.tabForgot.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxSend)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).BeginInit();
@@ -463,15 +463,15 @@
             // tabForgot
             // 
             this.tabForgot.BackColor = System.Drawing.Color.White;
-            this.tabForgot.Controls.Add(this.iconPictureBox5);
-            this.tabForgot.Controls.Add(this.bunifuThinButton21);
-            this.tabForgot.Controls.Add(this.bunifuMaterialTextbox4);
+            this.tabForgot.Controls.Add(this.pbxSend);
+            this.tabForgot.Controls.Add(this.btnOk);
+            this.tabForgot.Controls.Add(this.txtRePass);
             this.tabForgot.Controls.Add(this.iconPictureBox4);
-            this.tabForgot.Controls.Add(this.bunifuMaterialTextbox3);
+            this.tabForgot.Controls.Add(this.txtPass);
             this.tabForgot.Controls.Add(this.iconPictureBox3);
-            this.tabForgot.Controls.Add(this.bunifuMaterialTextbox2);
+            this.tabForgot.Controls.Add(this.txtCode);
             this.tabForgot.Controls.Add(this.iconPictureBox2);
-            this.tabForgot.Controls.Add(this.bunifuMaterialTextbox1);
+            this.tabForgot.Controls.Add(this.txtEmailForgot);
             this.tabForgot.Controls.Add(this.iconPictureBox1);
             this.tabForgot.Controls.Add(this.label1);
             this.tabForgot.Location = new System.Drawing.Point(4, 44);
@@ -480,66 +480,69 @@
             this.tabForgot.Size = new System.Drawing.Size(709, 539);
             this.tabForgot.TabIndex = 2;
             // 
-            // iconPictureBox5
+            // pbxSend
             // 
-            this.iconPictureBox5.BackColor = System.Drawing.Color.White;
-            this.iconPictureBox5.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox5.IconChar = FontAwesome.Sharp.IconChar.PaperPlane;
-            this.iconPictureBox5.IconColor = System.Drawing.SystemColors.ControlText;
-            this.iconPictureBox5.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconPictureBox5.IconSize = 40;
-            this.iconPictureBox5.Location = new System.Drawing.Point(594, 168);
-            this.iconPictureBox5.Name = "iconPictureBox5";
-            this.iconPictureBox5.Size = new System.Drawing.Size(46, 40);
-            this.iconPictureBox5.TabIndex = 21;
-            this.iconPictureBox5.TabStop = false;
+            this.pbxSend.BackColor = System.Drawing.Color.White;
+            this.pbxSend.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.pbxSend.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pbxSend.IconChar = FontAwesome.Sharp.IconChar.PaperPlane;
+            this.pbxSend.IconColor = System.Drawing.SystemColors.ControlText;
+            this.pbxSend.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.pbxSend.IconSize = 40;
+            this.pbxSend.Location = new System.Drawing.Point(594, 168);
+            this.pbxSend.Name = "pbxSend";
+            this.pbxSend.Size = new System.Drawing.Size(46, 40);
+            this.pbxSend.TabIndex = 21;
+            this.pbxSend.TabStop = false;
+            this.pbxSend.Click += new System.EventHandler(this.pbxSend_Click);
             // 
-            // bunifuThinButton21
+            // btnOk
             // 
-            this.bunifuThinButton21.ActiveBorderThickness = 1;
-            this.bunifuThinButton21.ActiveCornerRadius = 20;
-            this.bunifuThinButton21.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.ActiveForecolor = System.Drawing.Color.White;
-            this.bunifuThinButton21.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.bunifuThinButton21.BackColor = System.Drawing.Color.White;
-            this.bunifuThinButton21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton21.BackgroundImage")));
-            this.bunifuThinButton21.ButtonText = "Đăng nhập";
-            this.bunifuThinButton21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton21.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuThinButton21.ForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.IdleBorderThickness = 1;
-            this.bunifuThinButton21.IdleCornerRadius = 20;
-            this.bunifuThinButton21.IdleFillColor = System.Drawing.Color.White;
-            this.bunifuThinButton21.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.Location = new System.Drawing.Point(200, 425);
-            this.bunifuThinButton21.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuThinButton21.Name = "bunifuThinButton21";
-            this.bunifuThinButton21.Size = new System.Drawing.Size(391, 86);
-            this.bunifuThinButton21.TabIndex = 20;
-            this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnOk.ActiveBorderThickness = 1;
+            this.btnOk.ActiveCornerRadius = 20;
+            this.btnOk.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnOk.ActiveForecolor = System.Drawing.Color.White;
+            this.btnOk.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnOk.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnOk.BackColor = System.Drawing.Color.White;
+            this.btnOk.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnOk.BackgroundImage")));
+            this.btnOk.ButtonText = "Đổi mật khẩu";
+            this.btnOk.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnOk.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOk.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnOk.IdleBorderThickness = 1;
+            this.btnOk.IdleCornerRadius = 20;
+            this.btnOk.IdleFillColor = System.Drawing.Color.White;
+            this.btnOk.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnOk.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnOk.Location = new System.Drawing.Point(200, 425);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(5);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(391, 86);
+            this.btnOk.TabIndex = 20;
+            this.btnOk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // bunifuMaterialTextbox4
+            // txtRePass
             // 
-            this.bunifuMaterialTextbox4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtRePass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuMaterialTextbox4.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.bunifuMaterialTextbox4.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuMaterialTextbox4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.bunifuMaterialTextbox4.HintForeColor = System.Drawing.Color.Empty;
-            this.bunifuMaterialTextbox4.HintText = "";
-            this.bunifuMaterialTextbox4.isPassword = false;
-            this.bunifuMaterialTextbox4.LineFocusedColor = System.Drawing.Color.Blue;
-            this.bunifuMaterialTextbox4.LineIdleColor = System.Drawing.Color.Gray;
-            this.bunifuMaterialTextbox4.LineMouseHoverColor = System.Drawing.Color.Blue;
-            this.bunifuMaterialTextbox4.LineThickness = 4;
-            this.bunifuMaterialTextbox4.Location = new System.Drawing.Point(200, 356);
-            this.bunifuMaterialTextbox4.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.bunifuMaterialTextbox4.Name = "bunifuMaterialTextbox4";
-            this.bunifuMaterialTextbox4.Size = new System.Drawing.Size(386, 40);
-            this.bunifuMaterialTextbox4.TabIndex = 19;
-            this.bunifuMaterialTextbox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtRePass.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRePass.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtRePass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtRePass.HintForeColor = System.Drawing.Color.Empty;
+            this.txtRePass.HintText = "";
+            this.txtRePass.isPassword = false;
+            this.txtRePass.LineFocusedColor = System.Drawing.Color.Blue;
+            this.txtRePass.LineIdleColor = System.Drawing.Color.Gray;
+            this.txtRePass.LineMouseHoverColor = System.Drawing.Color.Blue;
+            this.txtRePass.LineThickness = 4;
+            this.txtRePass.Location = new System.Drawing.Point(200, 356);
+            this.txtRePass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtRePass.Name = "txtRePass";
+            this.txtRePass.Size = new System.Drawing.Size(386, 40);
+            this.txtRePass.TabIndex = 19;
+            this.txtRePass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // iconPictureBox4
             // 
@@ -557,26 +560,26 @@
             this.iconPictureBox4.TabIndex = 18;
             this.iconPictureBox4.TabStop = false;
             // 
-            // bunifuMaterialTextbox3
+            // txtPass
             // 
-            this.bunifuMaterialTextbox3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtPass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuMaterialTextbox3.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.bunifuMaterialTextbox3.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuMaterialTextbox3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.bunifuMaterialTextbox3.HintForeColor = System.Drawing.Color.Empty;
-            this.bunifuMaterialTextbox3.HintText = "";
-            this.bunifuMaterialTextbox3.isPassword = false;
-            this.bunifuMaterialTextbox3.LineFocusedColor = System.Drawing.Color.Blue;
-            this.bunifuMaterialTextbox3.LineIdleColor = System.Drawing.Color.Gray;
-            this.bunifuMaterialTextbox3.LineMouseHoverColor = System.Drawing.Color.Blue;
-            this.bunifuMaterialTextbox3.LineThickness = 4;
-            this.bunifuMaterialTextbox3.Location = new System.Drawing.Point(200, 262);
-            this.bunifuMaterialTextbox3.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.bunifuMaterialTextbox3.Name = "bunifuMaterialTextbox3";
-            this.bunifuMaterialTextbox3.Size = new System.Drawing.Size(386, 40);
-            this.bunifuMaterialTextbox3.TabIndex = 16;
-            this.bunifuMaterialTextbox3.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtPass.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtPass.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtPass.HintForeColor = System.Drawing.Color.Empty;
+            this.txtPass.HintText = "";
+            this.txtPass.isPassword = false;
+            this.txtPass.LineFocusedColor = System.Drawing.Color.Blue;
+            this.txtPass.LineIdleColor = System.Drawing.Color.Gray;
+            this.txtPass.LineMouseHoverColor = System.Drawing.Color.Blue;
+            this.txtPass.LineThickness = 4;
+            this.txtPass.Location = new System.Drawing.Point(200, 262);
+            this.txtPass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtPass.Name = "txtPass";
+            this.txtPass.Size = new System.Drawing.Size(386, 40);
+            this.txtPass.TabIndex = 16;
+            this.txtPass.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // iconPictureBox3
             // 
@@ -594,26 +597,26 @@
             this.iconPictureBox3.TabIndex = 17;
             this.iconPictureBox3.TabStop = false;
             // 
-            // bunifuMaterialTextbox2
+            // txtCode
             // 
-            this.bunifuMaterialTextbox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtCode.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuMaterialTextbox2.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.bunifuMaterialTextbox2.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuMaterialTextbox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.bunifuMaterialTextbox2.HintForeColor = System.Drawing.Color.Empty;
-            this.bunifuMaterialTextbox2.HintText = "";
-            this.bunifuMaterialTextbox2.isPassword = false;
-            this.bunifuMaterialTextbox2.LineFocusedColor = System.Drawing.Color.Blue;
-            this.bunifuMaterialTextbox2.LineIdleColor = System.Drawing.Color.Gray;
-            this.bunifuMaterialTextbox2.LineMouseHoverColor = System.Drawing.Color.Blue;
-            this.bunifuMaterialTextbox2.LineThickness = 4;
-            this.bunifuMaterialTextbox2.Location = new System.Drawing.Point(200, 168);
-            this.bunifuMaterialTextbox2.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.bunifuMaterialTextbox2.Name = "bunifuMaterialTextbox2";
-            this.bunifuMaterialTextbox2.Size = new System.Drawing.Size(386, 40);
-            this.bunifuMaterialTextbox2.TabIndex = 14;
-            this.bunifuMaterialTextbox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtCode.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtCode.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtCode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtCode.HintForeColor = System.Drawing.Color.Empty;
+            this.txtCode.HintText = "";
+            this.txtCode.isPassword = false;
+            this.txtCode.LineFocusedColor = System.Drawing.Color.Blue;
+            this.txtCode.LineIdleColor = System.Drawing.Color.Gray;
+            this.txtCode.LineMouseHoverColor = System.Drawing.Color.Blue;
+            this.txtCode.LineThickness = 4;
+            this.txtCode.Location = new System.Drawing.Point(200, 168);
+            this.txtCode.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(386, 40);
+            this.txtCode.TabIndex = 14;
+            this.txtCode.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // iconPictureBox2
             // 
@@ -631,26 +634,26 @@
             this.iconPictureBox2.TabIndex = 15;
             this.iconPictureBox2.TabStop = false;
             // 
-            // bunifuMaterialTextbox1
+            // txtEmailForgot
             // 
-            this.bunifuMaterialTextbox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.txtEmailForgot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuMaterialTextbox1.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.bunifuMaterialTextbox1.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuMaterialTextbox1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
-            this.bunifuMaterialTextbox1.HintForeColor = System.Drawing.Color.Empty;
-            this.bunifuMaterialTextbox1.HintText = "";
-            this.bunifuMaterialTextbox1.isPassword = false;
-            this.bunifuMaterialTextbox1.LineFocusedColor = System.Drawing.Color.Blue;
-            this.bunifuMaterialTextbox1.LineIdleColor = System.Drawing.Color.Gray;
-            this.bunifuMaterialTextbox1.LineMouseHoverColor = System.Drawing.Color.Blue;
-            this.bunifuMaterialTextbox1.LineThickness = 4;
-            this.bunifuMaterialTextbox1.Location = new System.Drawing.Point(200, 84);
-            this.bunifuMaterialTextbox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-            this.bunifuMaterialTextbox1.Name = "bunifuMaterialTextbox1";
-            this.bunifuMaterialTextbox1.Size = new System.Drawing.Size(386, 40);
-            this.bunifuMaterialTextbox1.TabIndex = 11;
-            this.bunifuMaterialTextbox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtEmailForgot.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtEmailForgot.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmailForgot.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.txtEmailForgot.HintForeColor = System.Drawing.Color.Empty;
+            this.txtEmailForgot.HintText = "";
+            this.txtEmailForgot.isPassword = false;
+            this.txtEmailForgot.LineFocusedColor = System.Drawing.Color.Blue;
+            this.txtEmailForgot.LineIdleColor = System.Drawing.Color.Gray;
+            this.txtEmailForgot.LineMouseHoverColor = System.Drawing.Color.Blue;
+            this.txtEmailForgot.LineThickness = 4;
+            this.txtEmailForgot.Location = new System.Drawing.Point(200, 84);
+            this.txtEmailForgot.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.txtEmailForgot.Name = "txtEmailForgot";
+            this.txtEmailForgot.Size = new System.Drawing.Size(386, 40);
+            this.txtEmailForgot.TabIndex = 11;
+            this.txtEmailForgot.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // iconPictureBox1
             // 
@@ -714,7 +717,7 @@
             this.tabPageQr.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxCamera)).EndInit();
             this.tabForgot.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxSend)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox2)).EndInit();
@@ -748,16 +751,16 @@
         private System.Windows.Forms.PictureBox pbxCamera;
         private System.Windows.Forms.Timer tmrScan;
         private System.Windows.Forms.TabPage tabForgot;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextbox4;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtRePass;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox4;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextbox3;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtPass;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox3;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextbox2;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtCode;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox2;
-        private Bunifu.Framework.UI.BunifuMaterialTextbox bunifuMaterialTextbox1;
+        private Bunifu.Framework.UI.BunifuMaterialTextbox txtEmailForgot;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox1;
         private System.Windows.Forms.Label label1;
-        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton21;
-        private FontAwesome.Sharp.IconPictureBox iconPictureBox5;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnOk;
+        private FontAwesome.Sharp.IconPictureBox pbxSend;
     }
 }

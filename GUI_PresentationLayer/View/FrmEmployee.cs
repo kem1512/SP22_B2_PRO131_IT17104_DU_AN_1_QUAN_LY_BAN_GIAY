@@ -90,7 +90,7 @@ namespace GUI_PresentationLayer.View
                         if (MessageBox.Show("Bạn có muốn gửi mã QR đến cho nhân viên?", "Thông báo",
                                 MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            SendSMS.SendMail(em.Email, "Welcome to Shop", "Chào mừng bạn đến với shop, đây là mật khẩu của bạn", GenerateCode.CreateQRCode(em.Email, em.Pass));
+                            SendSMS.SendMailQr(em.Email, "Welcome to Shop", "Chào mừng bạn đến với shop, đây là mật khẩu của bạn", GenerateCode.CreateQRCode(em.Email, em.Pass));
                             MessageBox.Show("Gửi thành công!");
                         }
                     }
@@ -218,7 +218,7 @@ namespace GUI_PresentationLayer.View
                 {
                     var em = _iEmployeeServices.GetEmployeeById(row.Cells[0].Value.ToString());
                     var image = GenerateCode.CreateQRCode(em.Email, em.Pass);
-                    SendSMS.SendMail(em.Email, "Gửi lại  mã QR", "Nè", image);
+                    SendSMS.SendMailQr(em.Email, "Gửi lại  mã QR", "Nè", image);
                 }
             }
         }
@@ -264,6 +264,21 @@ namespace GUI_PresentationLayer.View
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 GenerateDoucument.ToExcel(dgridEmployee, openFileDialog.FileName);
+            }
+        }
+
+        private void txtSearch_OnValueChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow x in dgridEmployee.Rows)
+            {
+                if (true)
+                {
+
+                }
+                else
+                {
+                    x.Visible = x.Cells[1].Value.ToString().Contains(txtSearch.Text);
+                }
             }
         }
     }

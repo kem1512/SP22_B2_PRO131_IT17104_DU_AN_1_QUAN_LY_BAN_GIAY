@@ -79,9 +79,12 @@ namespace GUI_PresentationLayer.View
 
         private void dgdtpcDateBegin_onValueChanged(object sender, EventArgs e)
         {
-            foreach (DataGridViewRow x in dgridInvoice.Rows)
+            if (dgdtpcDateBegin.Value < dgdtpcDateEnd.Value)
             {
-                x.Visible = DateTime.Parse(x.Cells[1].Value.ToString()).Date <= dgdtpcDateEnd.Value.Date && DateTime.Parse(x.Cells[1].Value.ToString()).Date >= dgdtpcDateBegin.Value.Date;
+                foreach (DataGridViewRow x in dgridInvoice.Rows)
+                {
+                    x.Visible = DateTime.Parse(x.Cells[1].Value.ToString()).Date <= dgdtpcDateEnd.Value.Date && DateTime.Parse(x.Cells[1].Value.ToString()).Date >= dgdtpcDateBegin.Value.Date;
+                }
             }
         }
 
@@ -94,38 +97,38 @@ namespace GUI_PresentationLayer.View
         {
             if (cmbFilter.SelectedIndex == 0)
             {
-                LoadData();
+                foreach (DataGridViewRow x in dgridInvoice.Rows)
+                {
+                    if(!x.Visible) x.Visible = DateTime.Parse(x.Cells[1].Value.ToString()).Date <= dgdtpcDateEnd.Value.Date && DateTime.Parse(x.Cells[1].Value.ToString()).Date >= dgdtpcDateBegin.Value.Date;
+                }
             }
-
-            switch (cmbFilter.SelectedIndex)
+            else
             {
-                case 0:
-                    LoadData();
-                    break;
-                case 1:
-                    foreach (DataGridViewRow x in dgridInvoice.Rows)
+                foreach (DataGridViewRow x in dgridInvoice.Rows)
+                {
+                    if (dgdtpcDateBegin.Value < dgdtpcDateEnd.Value)
                     {
-                        x.Visible = x.Cells[7].Value.ToString().Equals("Chưa hoàn thành");
+                        x.Visible = x.Cells[7].Value.ToString().Equals(cmbFilter.SelectedItem);
                     }
-                    break;
-                case 2:
-                    foreach (DataGridViewRow x in dgridInvoice.Rows)
-                    {
-                        x.Visible = x.Cells[7].Value.ToString().Equals("Đã hoàn thành");
-                    }
-                    break;
-                case 3:
-                    foreach (DataGridViewRow x in dgridInvoice.Rows)
-                    {
-                        x.Visible = x.Cells[7].Value.ToString().Equals("Đã hủy");
-                    }
-                    break;
-                case 4:
-                    foreach (DataGridViewRow x in dgridInvoice.Rows)
-                    {
-                        x.Visible = x.Cells[7].Value.ToString().Equals("Đang giao hàng");
-                    }
-                    break;
+                }
+            }
+        }
+
+        private void txtSearch_OnValueChanged(object sender, EventArgs e)
+        {
+            if (cmbFilter.SelectedIndex != -1 || dgdtpcDateBegin.Value < dgdtpcDateEnd.Value)
+            {
+                foreach (DataGridViewRow x in dgridInvoice.Rows)
+                {
+                    if(x.Visible )x.Visible = x.Cells[0].Value.ToString().Contains(txtSearch.Text);
+                }
+            }
+            else
+            {
+                foreach (DataGridViewRow x in dgridInvoice.Rows)
+                {
+                    if (x.Visible) x.Visible = x.Cells[0].Value.ToString().Contains(txtSearch.Text);
+                }
             }
         }
     }

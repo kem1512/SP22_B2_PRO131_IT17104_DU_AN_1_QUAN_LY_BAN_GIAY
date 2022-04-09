@@ -33,14 +33,18 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.pnlUser = new System.Windows.Forms.Panel();
+            this.lblSale = new System.Windows.Forms.Label();
             this.lblUser = new System.Windows.Forms.Label();
             this.pnlProduct = new System.Windows.Forms.Panel();
+            this.lblShip = new System.Windows.Forms.Label();
             this.lblProduct = new System.Windows.Forms.Label();
             this.pnlStaff = new System.Windows.Forms.Panel();
+            this.lblCancel = new System.Windows.Forms.Label();
             this.lblStaff = new System.Windows.Forms.Label();
             this.pnlOrder = new System.Windows.Forms.Panel();
+            this.lblTotalPrice = new System.Windows.Forms.Label();
             this.lblOrder = new System.Windows.Forms.Label();
-            this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnReport = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton22 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgridInvoice = new Bunifu.Framework.UI.BunifuCustomDataGrid();
@@ -52,10 +56,6 @@
             this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblSale = new System.Windows.Forms.Label();
-            this.lblShip = new System.Windows.Forms.Label();
-            this.lblCancel = new System.Windows.Forms.Label();
-            this.lblTotalPrice = new System.Windows.Forms.Label();
             this.pnlUser.SuspendLayout();
             this.pnlProduct.SuspendLayout();
             this.pnlStaff.SuspendLayout();
@@ -77,6 +77,17 @@
             this.pnlUser.Name = "pnlUser";
             this.pnlUser.Size = new System.Drawing.Size(389, 134);
             this.pnlUser.TabIndex = 1;
+            // 
+            // lblSale
+            // 
+            this.lblSale.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSale.Location = new System.Drawing.Point(0, 76);
+            this.lblSale.Name = "lblSale";
+            this.lblSale.Size = new System.Drawing.Size(389, 58);
+            this.lblSale.TabIndex = 1;
+            this.lblSale.Text = "30 đơn";
+            this.lblSale.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblUser
             // 
@@ -103,6 +114,17 @@
             this.pnlProduct.Name = "pnlProduct";
             this.pnlProduct.Size = new System.Drawing.Size(389, 134);
             this.pnlProduct.TabIndex = 3;
+            // 
+            // lblShip
+            // 
+            this.lblShip.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShip.Location = new System.Drawing.Point(0, 76);
+            this.lblShip.Name = "lblShip";
+            this.lblShip.Size = new System.Drawing.Size(389, 58);
+            this.lblShip.TabIndex = 2;
+            this.lblShip.Text = "30 đơn";
+            this.lblShip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblProduct
             // 
@@ -131,6 +153,17 @@
             this.pnlStaff.Size = new System.Drawing.Size(389, 134);
             this.pnlStaff.TabIndex = 4;
             // 
+            // lblCancel
+            // 
+            this.lblCancel.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCancel.Location = new System.Drawing.Point(0, 76);
+            this.lblCancel.Name = "lblCancel";
+            this.lblCancel.Size = new System.Drawing.Size(389, 58);
+            this.lblCancel.TabIndex = 2;
+            this.lblCancel.Text = "30 đơn";
+            this.lblCancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lblStaff
             // 
             this.lblStaff.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(52)))), ((int)(((byte)(135)))), ((int)(((byte)(85)))));
@@ -158,6 +191,17 @@
             this.pnlOrder.Size = new System.Drawing.Size(389, 134);
             this.pnlOrder.TabIndex = 5;
             // 
+            // lblTotalPrice
+            // 
+            this.lblTotalPrice.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalPrice.Location = new System.Drawing.Point(0, 76);
+            this.lblTotalPrice.Name = "lblTotalPrice";
+            this.lblTotalPrice.Size = new System.Drawing.Size(389, 58);
+            this.lblTotalPrice.TabIndex = 2;
+            this.lblTotalPrice.Text = "30 đơn";
+            this.lblTotalPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // lblOrder
             // 
             this.lblOrder.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(210)))), ((int)(((byte)(51)))), ((int)(((byte)(65)))));
@@ -171,31 +215,32 @@
             this.lblOrder.Text = "Doanh thu trong ngày";
             this.lblOrder.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // bunifuThinButton21
+            // btnReport
             // 
-            this.bunifuThinButton21.ActiveBorderThickness = 1;
-            this.bunifuThinButton21.ActiveCornerRadius = 20;
-            this.bunifuThinButton21.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.ActiveForecolor = System.Drawing.Color.White;
-            this.bunifuThinButton21.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuThinButton21.BackColor = System.Drawing.Color.White;
-            this.bunifuThinButton21.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton21.BackgroundImage")));
-            this.bunifuThinButton21.ButtonText = "Gửi báo cáo";
-            this.bunifuThinButton21.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton21.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuThinButton21.ForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.IdleBorderThickness = 1;
-            this.bunifuThinButton21.IdleCornerRadius = 20;
-            this.bunifuThinButton21.IdleFillColor = System.Drawing.Color.White;
-            this.bunifuThinButton21.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton21.Location = new System.Drawing.Point(1088, 557);
-            this.bunifuThinButton21.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuThinButton21.Name = "bunifuThinButton21";
-            this.bunifuThinButton21.Size = new System.Drawing.Size(225, 79);
-            this.bunifuThinButton21.TabIndex = 7;
-            this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnReport.ActiveBorderThickness = 1;
+            this.btnReport.ActiveCornerRadius = 20;
+            this.btnReport.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnReport.ActiveForecolor = System.Drawing.Color.White;
+            this.btnReport.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnReport.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnReport.BackColor = System.Drawing.Color.White;
+            this.btnReport.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnReport.BackgroundImage")));
+            this.btnReport.ButtonText = "Gửi báo cáo";
+            this.btnReport.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnReport.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReport.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnReport.IdleBorderThickness = 1;
+            this.btnReport.IdleCornerRadius = 20;
+            this.btnReport.IdleFillColor = System.Drawing.Color.White;
+            this.btnReport.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnReport.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnReport.Location = new System.Drawing.Point(1088, 557);
+            this.btnReport.Margin = new System.Windows.Forms.Padding(5);
+            this.btnReport.Name = "btnReport";
+            this.btnReport.Size = new System.Drawing.Size(225, 79);
+            this.btnReport.TabIndex = 7;
+            this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
             // 
             // bunifuThinButton22
             // 
@@ -357,50 +402,6 @@
             this.Column5.Name = "Column5";
             this.Column5.ReadOnly = true;
             // 
-            // lblSale
-            // 
-            this.lblSale.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblSale.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSale.Location = new System.Drawing.Point(0, 76);
-            this.lblSale.Name = "lblSale";
-            this.lblSale.Size = new System.Drawing.Size(389, 58);
-            this.lblSale.TabIndex = 1;
-            this.lblSale.Text = "30 đơn";
-            this.lblSale.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblShip
-            // 
-            this.lblShip.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblShip.Location = new System.Drawing.Point(0, 76);
-            this.lblShip.Name = "lblShip";
-            this.lblShip.Size = new System.Drawing.Size(389, 58);
-            this.lblShip.TabIndex = 2;
-            this.lblShip.Text = "30 đơn";
-            this.lblShip.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblCancel
-            // 
-            this.lblCancel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancel.Location = new System.Drawing.Point(0, 76);
-            this.lblCancel.Name = "lblCancel";
-            this.lblCancel.Size = new System.Drawing.Size(389, 58);
-            this.lblCancel.TabIndex = 2;
-            this.lblCancel.Text = "30 đơn";
-            this.lblCancel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblTotalPrice
-            // 
-            this.lblTotalPrice.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalPrice.Location = new System.Drawing.Point(0, 76);
-            this.lblTotalPrice.Name = "lblTotalPrice";
-            this.lblTotalPrice.Size = new System.Drawing.Size(389, 58);
-            this.lblTotalPrice.TabIndex = 2;
-            this.lblTotalPrice.Text = "30 đơn";
-            this.lblTotalPrice.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
             // FrmReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -410,7 +411,7 @@
             this.Controls.Add(this.dgridInvoice);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.bunifuThinButton22);
-            this.Controls.Add(this.bunifuThinButton21);
+            this.Controls.Add(this.btnReport);
             this.Name = "FrmReport";
             this.Text = "FrmReport";
             this.Load += new System.EventHandler(this.FrmReport_Load);
@@ -434,7 +435,7 @@
         private System.Windows.Forms.Label lblStaff;
         private System.Windows.Forms.Panel pnlOrder;
         private System.Windows.Forms.Label lblOrder;
-        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton21;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnReport;
         private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton22;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgridInvoice;

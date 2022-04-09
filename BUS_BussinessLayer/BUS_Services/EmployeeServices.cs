@@ -53,5 +53,10 @@ namespace BUS_BussinessLayer.BUS_Services
         {
             return _iDAL_Employee.RecoveryEmployee(id);
         }
+
+        public string ChangePassword(string email, string pass)
+        {
+            return _iDAL_Employee.ChangePassword(email, pass);
+        }
     }
 }

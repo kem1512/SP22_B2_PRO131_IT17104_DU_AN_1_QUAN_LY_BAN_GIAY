@@ -44,25 +44,21 @@
             this.lblDateEnd = new System.Windows.Forms.Label();
             this.lblTurnover = new System.Windows.Forms.Label();
             this.sctnBot = new System.Windows.Forms.SplitContainer();
-<<<<<<< HEAD
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-=======
             this.dgrid_Brand = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
->>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             this.pnlBrand = new System.Windows.Forms.Panel();
             this.cmbFilter = new System.Windows.Forms.ComboBox();
             this.lblBrand = new System.Windows.Forms.Label();
-            this.pnlCancel = new System.Windows.Forms.Panel();
-            this.lblCancel = new System.Windows.Forms.Label();
             this.dgrid_Cancel = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pnlCancel = new System.Windows.Forms.Panel();
+            this.lblCancel = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Revenue)).BeginInit();
             this.pnlTurnover.SuspendLayout();
@@ -70,14 +66,10 @@
             this.sctnBot.Panel1.SuspendLayout();
             this.sctnBot.Panel2.SuspendLayout();
             this.sctnBot.SuspendLayout();
-<<<<<<< HEAD
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-=======
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Brand)).BeginInit();
->>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             this.pnlBrand.SuspendLayout();
-            this.pnlCancel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Cancel)).BeginInit();
+            this.pnlCancel.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblTitle
@@ -86,7 +78,7 @@
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(1339, 118);
+            this.lblTitle.Size = new System.Drawing.Size(1466, 118);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "THỐNG KÊ";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -101,7 +93,7 @@
             this.panel2.Controls.Add(this.pnlTurnover);
             this.panel2.Location = new System.Drawing.Point(12, 121);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1315, 311);
+            this.panel2.Size = new System.Drawing.Size(1442, 311);
             this.panel2.TabIndex = 2;
             // 
             // dgrid_Revenue
@@ -115,7 +107,7 @@
             this.dgrid_Revenue.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle2.ForeColor = System.Drawing.Color.SeaGreen;
             dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -133,7 +125,7 @@
             this.dgrid_Revenue.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Revenue.RowHeadersWidth = 51;
             this.dgrid_Revenue.RowTemplate.Height = 24;
-            this.dgrid_Revenue.Size = new System.Drawing.Size(1313, 225);
+            this.dgrid_Revenue.Size = new System.Drawing.Size(1440, 225);
             this.dgrid_Revenue.TabIndex = 5;
             // 
             // pnlTurnover
@@ -147,7 +139,7 @@
             this.pnlTurnover.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTurnover.Location = new System.Drawing.Point(0, 0);
             this.pnlTurnover.Name = "pnlTurnover";
-            this.pnlTurnover.Size = new System.Drawing.Size(1313, 84);
+            this.pnlTurnover.Size = new System.Drawing.Size(1440, 84);
             this.pnlTurnover.TabIndex = 4;
             // 
             // dgdtpcDateBegin
@@ -158,7 +150,7 @@
             this.dgdtpcDateBegin.ForeColor = System.Drawing.Color.White;
             this.dgdtpcDateBegin.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dgdtpcDateBegin.FormatCustom = null;
-            this.dgdtpcDateBegin.Location = new System.Drawing.Point(363, 17);
+            this.dgdtpcDateBegin.Location = new System.Drawing.Point(490, 17);
             this.dgdtpcDateBegin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgdtpcDateBegin.Name = "dgdtpcDateBegin";
             this.dgdtpcDateBegin.Size = new System.Drawing.Size(335, 48);
@@ -170,7 +162,7 @@
             this.lblDateBegin.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDateBegin.AutoSize = true;
             this.lblDateBegin.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateBegin.Location = new System.Drawing.Point(240, 29);
+            this.lblDateBegin.Location = new System.Drawing.Point(367, 29);
             this.lblDateBegin.Name = "lblDateBegin";
             this.lblDateBegin.Size = new System.Drawing.Size(84, 25);
             this.lblDateBegin.TabIndex = 6;
@@ -184,7 +176,7 @@
             this.dgdtpcDateEnd.ForeColor = System.Drawing.Color.White;
             this.dgdtpcDateEnd.Format = System.Windows.Forms.DateTimePickerFormat.Long;
             this.dgdtpcDateEnd.FormatCustom = null;
-            this.dgdtpcDateEnd.Location = new System.Drawing.Point(916, 17);
+            this.dgdtpcDateEnd.Location = new System.Drawing.Point(1043, 17);
             this.dgdtpcDateEnd.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgdtpcDateEnd.Name = "dgdtpcDateEnd";
             this.dgdtpcDateEnd.Size = new System.Drawing.Size(335, 48);
@@ -196,7 +188,7 @@
             this.lblDateEnd.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.lblDateEnd.AutoSize = true;
             this.lblDateEnd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDateEnd.Location = new System.Drawing.Point(793, 29);
+            this.lblDateEnd.Location = new System.Drawing.Point(920, 29);
             this.lblDateEnd.Name = "lblDateEnd";
             this.lblDateEnd.Size = new System.Drawing.Size(96, 25);
             this.lblDateEnd.TabIndex = 2;
@@ -223,34 +215,18 @@
             // 
             // sctnBot.Panel1
             // 
-<<<<<<< HEAD
-            this.sctnBot.Panel1.Controls.Add(this.dataGridView1);
-=======
             this.sctnBot.Panel1.Controls.Add(this.dgrid_Brand);
->>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             this.sctnBot.Panel1.Controls.Add(this.pnlBrand);
             // 
             // sctnBot.Panel2
             // 
             this.sctnBot.Panel2.Controls.Add(this.dgrid_Cancel);
             this.sctnBot.Panel2.Controls.Add(this.pnlCancel);
-            this.sctnBot.Size = new System.Drawing.Size(1313, 318);
-            this.sctnBot.SplitterDistance = 672;
+            this.sctnBot.Size = new System.Drawing.Size(1440, 318);
+            this.sctnBot.SplitterDistance = 736;
             this.sctnBot.SplitterWidth = 10;
             this.sctnBot.TabIndex = 3;
             // 
-<<<<<<< HEAD
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 60);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(670, 256);
-            this.dataGridView1.TabIndex = 1;
-=======
             // dgrid_Brand
             // 
             this.dgrid_Brand.AllowUserToAddRows = false;
@@ -285,7 +261,7 @@
             this.dgrid_Brand.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Brand.RowHeadersWidth = 51;
             this.dgrid_Brand.RowTemplate.Height = 24;
-            this.dgrid_Brand.Size = new System.Drawing.Size(670, 256);
+            this.dgrid_Brand.Size = new System.Drawing.Size(734, 256);
             this.dgrid_Brand.TabIndex = 1;
             // 
             // Column1
@@ -311,7 +287,6 @@
             this.Column3.MinimumWidth = 6;
             this.Column3.Name = "Column3";
             this.Column3.ReadOnly = true;
->>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             // 
             // pnlBrand
             // 
@@ -321,7 +296,7 @@
             this.pnlBrand.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlBrand.Location = new System.Drawing.Point(0, 0);
             this.pnlBrand.Name = "pnlBrand";
-            this.pnlBrand.Size = new System.Drawing.Size(670, 60);
+            this.pnlBrand.Size = new System.Drawing.Size(734, 60);
             this.pnlBrand.TabIndex = 0;
             // 
             // cmbFilter
@@ -331,7 +306,7 @@
             this.cmbFilter.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbFilter.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbFilter.FormattingEnabled = true;
-            this.cmbFilter.Location = new System.Drawing.Point(431, 9);
+            this.cmbFilter.Location = new System.Drawing.Point(495, 9);
             this.cmbFilter.Name = "cmbFilter";
             this.cmbFilter.Size = new System.Drawing.Size(215, 39);
             this.cmbFilter.TabIndex = 2;
@@ -348,28 +323,6 @@
             this.lblBrand.Size = new System.Drawing.Size(256, 25);
             this.lblBrand.TabIndex = 1;
             this.lblBrand.Text = "Số giày bán được theo hãng";
-            // 
-            // pnlCancel
-            // 
-            this.pnlCancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnlCancel.Controls.Add(this.lblCancel);
-            this.pnlCancel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlCancel.Location = new System.Drawing.Point(0, 0);
-            this.pnlCancel.Name = "pnlCancel";
-            this.pnlCancel.Size = new System.Drawing.Size(629, 60);
-            this.pnlCancel.TabIndex = 1;
-            // 
-            // lblCancel
-            // 
-            this.lblCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCancel.AutoSize = true;
-            this.lblCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCancel.Location = new System.Drawing.Point(42, 18);
-            this.lblCancel.Name = "lblCancel";
-            this.lblCancel.Size = new System.Drawing.Size(154, 25);
-            this.lblCancel.TabIndex = 1;
-            this.lblCancel.Text = "Đơn hàng bị hủy";
             // 
             // dgrid_Cancel
             // 
@@ -408,7 +361,7 @@
             this.dgrid_Cancel.RowHeadersWidth = 51;
             this.dgrid_Cancel.RowTemplate.Height = 24;
             this.dgrid_Cancel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrid_Cancel.Size = new System.Drawing.Size(629, 256);
+            this.dgrid_Cancel.Size = new System.Drawing.Size(692, 256);
             this.dgrid_Cancel.TabIndex = 2;
             // 
             // Column4
@@ -446,12 +399,34 @@
             this.Column8.Name = "Column8";
             this.Column8.ReadOnly = true;
             // 
+            // pnlCancel
+            // 
+            this.pnlCancel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlCancel.Controls.Add(this.lblCancel);
+            this.pnlCancel.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlCancel.Location = new System.Drawing.Point(0, 0);
+            this.pnlCancel.Name = "pnlCancel";
+            this.pnlCancel.Size = new System.Drawing.Size(692, 60);
+            this.pnlCancel.TabIndex = 1;
+            // 
+            // lblCancel
+            // 
+            this.lblCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCancel.AutoSize = true;
+            this.lblCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCancel.Location = new System.Drawing.Point(42, 18);
+            this.lblCancel.Name = "lblCancel";
+            this.lblCancel.Size = new System.Drawing.Size(154, 25);
+            this.lblCancel.TabIndex = 1;
+            this.lblCancel.Text = "Đơn hàng bị hủy";
+            // 
             // FrmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1339, 768);
+            this.ClientSize = new System.Drawing.Size(1466, 768);
             this.Controls.Add(this.sctnBot);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.lblTitle);
@@ -465,16 +440,12 @@
             this.sctnBot.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.sctnBot)).EndInit();
             this.sctnBot.ResumeLayout(false);
-<<<<<<< HEAD
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-=======
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Brand)).EndInit();
->>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
             this.pnlBrand.ResumeLayout(false);
             this.pnlBrand.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Cancel)).EndInit();
             this.pnlCancel.ResumeLayout(false);
             this.pnlCancel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgrid_Cancel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -495,10 +466,7 @@
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcDateEnd;
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcDateBegin;
         private System.Windows.Forms.Label lblDateBegin;
-<<<<<<< HEAD
         private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-=======
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Revenue;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Brand;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
@@ -510,6 +478,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
->>>>>>> d7d9808248b8aadddf9fc6188902e4260ea6fc14
     }
 }
