@@ -96,19 +96,19 @@
             this.Column13 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.btnQrCode = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrandId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaterialId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColorId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SizeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpBot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditMat)).BeginInit();
@@ -810,19 +810,19 @@
             this.dgridProduct.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgridProduct.ColumnHeadersHeight = 50;
             this.dgridProduct.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column6,
-            this.Column1,
-            this.Column2,
-            this.Column4,
-            this.Column3,
-            this.Column12,
-            this.Column7,
-            this.Column8,
-            this.Column9,
-            this.Column10,
-            this.Column11,
+            this.ProductId,
+            this.ProductImage,
+            this.ProductName,
+            this.Amount,
+            this.UnitPrice,
+            this.Description,
+            this.BrandId,
+            this.MaterialId,
+            this.ColorId,
+            this.SizeId,
+            this.CategoryId,
             this.Column5,
-            this.Column14});
+            this.Status});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1086,95 +1086,95 @@
             this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuThinButton21.Click += new System.EventHandler(this.bunifuThinButton21_Click);
             // 
-            // Column6
+            // ProductId
             // 
-            this.Column6.HeaderText = "Mã sản phẩm";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            this.Column6.Visible = false;
+            this.ProductId.HeaderText = "Mã sản phẩm";
+            this.ProductId.MinimumWidth = 6;
+            this.ProductId.Name = "ProductId";
+            this.ProductId.ReadOnly = true;
+            this.ProductId.Visible = false;
             // 
-            // Column1
+            // ProductImage
             // 
-            this.Column1.FillWeight = 40F;
-            this.Column1.HeaderText = "Ảnh";
-            this.Column1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.ProductImage.FillWeight = 40F;
+            this.ProductImage.HeaderText = "Ảnh";
+            this.ProductImage.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ProductImage.MinimumWidth = 6;
+            this.ProductImage.Name = "ProductImage";
+            this.ProductImage.ReadOnly = true;
+            this.ProductImage.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductImage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // Column2
+            // ProductName
             // 
-            this.Column2.HeaderText = "Tên sản phẩm";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.ProductName.HeaderText = "Tên sản phẩm";
+            this.ProductName.MinimumWidth = 6;
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
             // 
-            // Column4
+            // Amount
             // 
-            this.Column4.FillWeight = 30F;
-            this.Column4.HeaderText = "Kho";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.Amount.FillWeight = 30F;
+            this.Amount.HeaderText = "Kho";
+            this.Amount.MinimumWidth = 6;
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
             // 
-            // Column3
+            // UnitPrice
             // 
-            this.Column3.FillWeight = 60F;
-            this.Column3.HeaderText = "Đơn giá";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.UnitPrice.FillWeight = 60F;
+            this.UnitPrice.HeaderText = "Đơn giá";
+            this.UnitPrice.MinimumWidth = 6;
+            this.UnitPrice.Name = "UnitPrice";
+            this.UnitPrice.ReadOnly = true;
             // 
-            // Column12
+            // Description
             // 
-            this.Column12.HeaderText = "Ghi chú";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            this.Column12.Visible = false;
+            this.Description.HeaderText = "Ghi chú";
+            this.Description.MinimumWidth = 6;
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            this.Description.Visible = false;
             // 
-            // Column7
+            // BrandId
             // 
-            this.Column7.HeaderText = "Thương hiệu";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            this.Column7.Visible = false;
+            this.BrandId.HeaderText = "Thương hiệu";
+            this.BrandId.MinimumWidth = 6;
+            this.BrandId.Name = "BrandId";
+            this.BrandId.ReadOnly = true;
+            this.BrandId.Visible = false;
             // 
-            // Column8
+            // MaterialId
             // 
-            this.Column8.HeaderText = "Chất liệu";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Visible = false;
+            this.MaterialId.HeaderText = "Chất liệu";
+            this.MaterialId.MinimumWidth = 6;
+            this.MaterialId.Name = "MaterialId";
+            this.MaterialId.ReadOnly = true;
+            this.MaterialId.Visible = false;
             // 
-            // Column9
+            // ColorId
             // 
-            this.Column9.HeaderText = "Màu sắc";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            this.Column9.Visible = false;
+            this.ColorId.HeaderText = "Màu sắc";
+            this.ColorId.MinimumWidth = 6;
+            this.ColorId.Name = "ColorId";
+            this.ColorId.ReadOnly = true;
+            this.ColorId.Visible = false;
             // 
-            // Column10
+            // SizeId
             // 
-            this.Column10.HeaderText = "Kích thước";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            this.Column10.Visible = false;
+            this.SizeId.HeaderText = "Kích thước";
+            this.SizeId.MinimumWidth = 6;
+            this.SizeId.Name = "SizeId";
+            this.SizeId.ReadOnly = true;
+            this.SizeId.Visible = false;
             // 
-            // Column11
+            // CategoryId
             // 
-            this.Column11.HeaderText = "Loại giày";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            this.Column11.Visible = false;
+            this.CategoryId.HeaderText = "Loại giày";
+            this.CategoryId.MinimumWidth = 6;
+            this.CategoryId.Name = "CategoryId";
+            this.CategoryId.ReadOnly = true;
+            this.CategoryId.Visible = false;
             // 
             // Column5
             // 
@@ -1186,13 +1186,13 @@
             this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
-            // Column14
+            // Status
             // 
-            this.Column14.HeaderText = "Trạng thái";
-            this.Column14.MinimumWidth = 6;
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            this.Column14.Visible = false;
+            this.Status.HeaderText = "Trạng thái";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Visible = false;
             // 
             // FrmProduct
             // 
@@ -1297,18 +1297,18 @@
         private FontAwesome.Sharp.IconPictureBox pbxRandom;
         private System.Windows.Forms.ComboBox txtBarcode;
         private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewImageColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductId;
+        private System.Windows.Forms.DataGridViewImageColumn ProductImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ProductName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Amount;
+        private System.Windows.Forms.DataGridViewTextBoxColumn UnitPrice;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Description;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BrandId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaterialId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColorId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SizeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CategoryId;
         private System.Windows.Forms.DataGridViewLinkColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
     }
 }

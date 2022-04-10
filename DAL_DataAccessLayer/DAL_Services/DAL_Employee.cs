@@ -38,7 +38,7 @@ namespace DAL_DataAccessLayer.DAL_Services
                         {
                             File.Delete(image);
                         }
-                        if (employee.EmployeeImage != null) File.Copy(employee.EmployeeImage, image);
+                        if (employee.EmployeeImage != null && File.Exists(employee.EmployeeImage)) File.Copy(employee.EmployeeImage, image);
                         employee.EmployeeImage = image;
                         _db.SaveChanges();
                         return "Thêm thành công";

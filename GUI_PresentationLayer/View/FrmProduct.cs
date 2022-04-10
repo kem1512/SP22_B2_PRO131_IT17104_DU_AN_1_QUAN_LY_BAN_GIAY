@@ -9,6 +9,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BUS_BussinessLayer.Models;
 using BUS_BussinessLayer.Utilities;
 using Microsoft.Office.Interop.Excel;
 using Syncfusion.Pdf;
@@ -466,52 +467,84 @@ namespace GUI_PresentationLayer.View
             }
         }
 
+        private string RandomBarcode()
+        {
+            try
+            {
+                const string valid = "0123456789";
+                StringBuilder stringBuilder = new StringBuilder();
+                Random random = new Random();
+                int a = 13;
+                while (0 < a--)
+                {
+                    stringBuilder.Append(valid[random.Next(valid.Length)]);
+                }
+                return stringBuilder.ToString();
+            }
+            catch (Exception e)
+            {
+                return e.Message;
+            }
+        }
+
         private void btnQrCode_Click(object sender, EventArgs e)
         {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            // SaveFileDialog saveFileDialog = new SaveFileDialog();
+            // if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            // {
+            //     PdfDocument pdfDocument = new PdfDocument();
+            //     PdfPage pdfPage = pdfDocument.Pages.Add();
+            //     // set lề là 0
+            //     pdfDocument.PageSettings.SetMargins(0);
+            //     var number = 0;
+            //     for (int i = 0; i < dgridProduct.Rows.Count; i++)
+            //     {
+            //         if ((i + 1) % 4 == 0)
+            //         {
+            //             pdfPage = pdfDocument.Pages.Add();
+            //             number = 0;
+            //         }
+            //         // tìm sản phẩm trong csdl
+            //         var result = _iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString());
+            //
+            //         // tạo mã vạch
+            //         var image = GenerateCode.CreateBarcode(result.Barcode);
+            //
+            //         // tạo đối tượng để lưu ảnh
+            //         PdfBitmap pdfBitmap = new PdfBitmap(image);
+            //
+            //         // set phông chữ
+            //         PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\FontBarcode.ttf", 18);
+            //
+            //         // set vị trí của chữ
+            //         PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
+            //
+            //         // tạo khung cho sản thông tin sản phẩm
+            //         RectangleF rectangleInfo = new RectangleF(new PointF(0, (100 + 40 + 110) * number), new SizeF(pdfPage.Size.Width, 50));
+            //
+            //         RectangleF rectangleBarcode = new RectangleF(new PointF((pdfDocument.PageSettings.Width - 200) / 2 , rectangleInfo.Bottom), new SizeF(200, 100));
+            //
+            //         // tạo khung cho số mã vạch
+            //         RectangleF rectangleBarNumber = new RectangleF(new PointF(0, rectangleBarcode.Bottom), new SizeF(pdfDocument.PageSettings.Width, 40));
+            //         PdfGraphics pdfGraphics = pdfPage.Graphics;
+            //         pdfGraphics.DrawString($"{result.ProductId} : {result.ProductName}", pdfFont, new PdfPen(Color.Red), rectangleInfo, pdfStringFormat);
+            //         pdfGraphics.DrawImage(pdfBitmap, rectangleBarcode);
+            //         pdfGraphics.DrawString(result.Barcode, pdfFont, new PdfPen(Color.Black), rectangleBarNumber, pdfStringFormat);
+            //         number++;
+            //     }
+            //     pdfDocument.Save(saveFileDialog.FileName);
+            // }
+
+            var result = GenerateExcel.AddMultipleFromExcel<ViewProduct>();
+            if (result != null)
             {
-                PdfDocument pdfDocument = new PdfDocument();
-                PdfPage pdfPage = pdfDocument.Pages.Add();
-                // set lề là 0
-                pdfDocument.PageSettings.SetMargins(0);
-                var number = 0;
-                for (int i = 0; i < dgridProduct.Rows.Count; i++)
+                foreach (var x in result)
                 {
-                    if ((i + 1) % 4 == 0)
-                    {
-                        pdfPage = pdfDocument.Pages.Add();
-                        number = 0;
-                    }
-                    // tìm sản phẩm trong csdl
-                    var result = _iProductServices.GetProductById(dgridProduct.Rows[i].Cells[0].Value.ToString());
-            
-                    // tạo mã vạch
-                    var image = GenerateCode.CreateBarcode(result.Barcode);
-            
-                    // tạo đối tượng để lưu ảnh
-                    PdfBitmap pdfBitmap = new PdfBitmap(image);
-            
-                    // set phông chữ
-                    PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\FontBarcode.ttf", 18);
-            
-                    // set vị trí của chữ
-                    PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);
-            
-                    // tạo khung cho sản thông tin sản phẩm
-                    RectangleF rectangleInfo = new RectangleF(new PointF(0, (100 + 40 + 110) * number), new SizeF(pdfPage.Size.Width, 50));
-            
-                    RectangleF rectangleBarcode = new RectangleF(new PointF((pdfDocument.PageSettings.Width - 200) / 2 , rectangleInfo.Bottom), new SizeF(200, 100));
-            
-                    // tạo khung cho số mã vạch
-                    RectangleF rectangleBarNumber = new RectangleF(new PointF(0, rectangleBarcode.Bottom), new SizeF(pdfDocument.PageSettings.Width, 40));
-                    PdfGraphics pdfGraphics = pdfPage.Graphics;
-                    pdfGraphics.DrawString($"{result.ProductId} : {result.ProductName}", pdfFont, new PdfPen(Color.Red), rectangleInfo, pdfStringFormat);
-                    pdfGraphics.DrawImage(pdfBitmap, rectangleBarcode);
-                    pdfGraphics.DrawString(result.Barcode, pdfFont, new PdfPen(Color.Black), rectangleBarNumber, pdfStringFormat);
-                    number++;
+                    var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
+                    x.product.ProductId = productId;
+                    MessageBox.Show(_iProductServices.AddProduct(x.product, new ProductDetail(){ ProductId  = productId, UnitPrice = 0, BrandId = "BR1", SizeId = "S1", CategoryId = "CT1", ColorId = "CL1", MaterialId = "MT1"}, new Inventory(){ ProductId = productId, Amount = 0}));
                 }
-                pdfDocument.Save(saveFileDialog.FileName);
+                LoadData();
             }
         }
 
@@ -526,17 +559,10 @@ namespace GUI_PresentationLayer.View
 
         private void pbxRandom_Click(object sender, EventArgs e)
         {
-            const string valid = "0123456789";
-            StringBuilder stringBuilder = new StringBuilder();
-            Random random = new Random();
-            int a = 13;
-            while (0 < a--)
-            {
-                stringBuilder.Append(valid[random.Next(valid.Length)]);
-            }
+            var random = RandomBarcode();
             txtBarcode.Items.Clear();
-            txtBarcode.Items.Add(stringBuilder);
-            txtBarcode.SelectedItem = stringBuilder;
+            txtBarcode.Items.Add(random);
+            txtBarcode.SelectedItem = random;
         }
 
         private void cmbPrice_SelectedIndexChanged(object sender, EventArgs e)

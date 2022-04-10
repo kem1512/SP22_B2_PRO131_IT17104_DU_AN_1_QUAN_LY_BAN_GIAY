@@ -25,12 +25,12 @@ namespace BUS_BussinessLayer.Utilities
                 workbook = excel.Workbooks.Add(Type.Missing);
                 worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets["Sheet1"];
                 //đặt tên cho sheet
-                worksheet.Name = "Quản lý học sinh";
+                // worksheet.Name = "Quản lý học sinh";
 
                 // export header trong DataGridView
                 for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 {
-                    worksheet.Cells[1, i + 1] = dataGridView1.Columns[i].HeaderText;
+                    worksheet.Cells[1, i + 1] = dataGridView1.Columns[i].Name;
                 }
                 // export nội dung trong DataGridView
                 for (int i = 0; i < dataGridView1.RowCount; i++)

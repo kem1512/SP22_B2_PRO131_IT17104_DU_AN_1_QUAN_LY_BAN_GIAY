@@ -95,21 +95,24 @@ namespace GUI_PresentationLayer.View
 
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbFilter.SelectedIndex == 0)
+            if (cmbFilter.SelectedIndex == 0 && dgdtpcDateBegin.Value < dgdtpcDateEnd.Value)
             {
                 foreach (DataGridViewRow x in dgridInvoice.Rows)
                 {
                     if(!x.Visible) x.Visible = DateTime.Parse(x.Cells[1].Value.ToString()).Date <= dgdtpcDateEnd.Value.Date && DateTime.Parse(x.Cells[1].Value.ToString()).Date >= dgdtpcDateBegin.Value.Date;
+                }
+            }else if (cmbFilter.SelectedIndex == 0)
+            {
+                foreach (DataGridViewRow x in dgridInvoice.Rows)
+                {
+                    if (!x.Visible) x.Visible = true;
                 }
             }
             else
             {
                 foreach (DataGridViewRow x in dgridInvoice.Rows)
                 {
-                    if (dgdtpcDateBegin.Value < dgdtpcDateEnd.Value)
-                    {
-                        x.Visible = x.Cells[7].Value.ToString().Equals(cmbFilter.SelectedItem);
-                    }
+                    x.Visible = x.Cells[7].Value.ToString().Equals(cmbFilter.SelectedItem);
                 }
             }
         }

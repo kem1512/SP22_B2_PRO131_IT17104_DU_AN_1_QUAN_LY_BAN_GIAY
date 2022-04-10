@@ -1,18 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using BUS_BussinessLayer.BUS_Services;
+using BUS_BussinessLayer.iBUS_Services;
+using BUS_BussinessLayer.Utilities;
+using DAL_DataAccessLayer.Entities;
+using System;
 using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using BUS_BussinessLayer.BUS_Services;
-using BUS_BussinessLayer.iBUS_Services;
-using BUS_BussinessLayer.Utilities;
-using DAL_DataAccessLayer.Entities;
 
 namespace GUI_PresentationLayer.View
 {
@@ -62,7 +57,7 @@ namespace GUI_PresentationLayer.View
         {
             if (ValidateEmployee() is null)
             {
-                if (_iEmployeeServices.GetEmployees().Any(c => c.Email == txtEmail.Text))
+                if (_iEmployeeServices.GetEmployees().Any(c => c.Email == txtEmail.Text || c.Phone == txtPhone.Text))
                 {
                     MessageBox.Show("Nhân viên đã tồn tại!");
                 }
@@ -90,7 +85,7 @@ namespace GUI_PresentationLayer.View
                         if (MessageBox.Show("Bạn có muốn gửi mã QR đến cho nhân viên?", "Thông báo",
                                 MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            SendSMS.SendMailQr(em.Email, "Welcome to Shop", "Chào mừng bạn đến với shop, đây là mật khẩu của bạn", GenerateCode.CreateQRCode(em.Email, em.Pass));
+                            SendSMS.SendMailQr(em.Email, "Welcome to Shop", $"Chào mừng bạn đến với shop, mật khẩu của bạn là: {em.Pass} và mã Qr của bạn", GenerateCode.CreateQRCode(em.Email, em.Pass));
                             MessageBox.Show("Gửi thành công!");
                         }
                     }
@@ -145,7 +140,7 @@ namespace GUI_PresentationLayer.View
             foreach (var x in result.Where(c => c.Status))
             {
                 dgridEmployee.Rows.Add(x.EmployeeId, x.FullName, x.Email, x.Phone, x.Gender ? "Nam" : "Nữ",
-                    x.Address, x.DateOfBirth.ToShortDateString(), x.RoleId, "Xoá");
+                    x.Address, x.DateOfBirth.ToShortDateString(), x.RoleId, "Xoá", x.Pass, x.EmployeeImage);
             }
 
             dgrid_Disable.Rows.Clear();
@@ -260,10 +255,17 @@ namespace GUI_PresentationLayer.View
 
         private void bunifuThinButton21_Click(object sender, EventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
-                GenerateDoucument.ToExcel(dgridEmployee, openFileDialog.FileName);
+                DataGridView dataGridView = dgridEmployee;
+                foreach (DataGridViewRow x in dataGridView.Rows)
+                {
+                    x.Cells[4].Value = x.Cells[4].Value.ToString().Equals("Nam") ? true : false;
+                    x.Cells[6].Value = DateTime.Parse(x.Cells[6].Value.ToString()).ToString("MM/dd/yyyy");
+                }
+                GenerateDoucument.ToExcel(dataGridView, saveFileDialog.FileName);
+                LoadData();
             }
         }
 
@@ -278,6 +280,43 @@ namespace GUI_PresentationLayer.View
                 else
                 {
                     x.Visible = x.Cells[1].Value.ToString().Contains(txtSearch.Text);
+                }
+            }
+        }
+
+        private void btnAddMulti_Click(object sender, EventArgs e)
+        {
+            var result = GenerateExcel.AddMultipleFromExcel<Employee>();
+            if (result != null)
+            {
+                if (MessageBox.Show($"Bạn có chắc muốn thêm {result.Count} nhân viên không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    foreach (var x in result)
+                    {
+                        if (_iEmployeeServices.GetEmployees().Any(c => c.Email == x.Email || c.Phone == x.Phone))
+                        {
+                            MessageBox.Show("Email hoặc số điện thoại đã tồn tại!");
+                        }
+                        else
+                        {
+                            var employeeId = !_iEmployeeServices.GetEmployees().Any() ? "NV1" : "NV" + _iEmployeeServices.GetEmployees().Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
+                            MessageBox.Show(_iEmployeeServices.AddEmployee(new Employee()
+                            {
+                                DateOfBirth = x.DateOfBirth,
+                                Address = x.Address,
+                                Email = x.Email,
+                                EmployeeId = employeeId,
+                                EmployeeImage = x.EmployeeImage,
+                                FullName = x.FullName,
+                                Gender = x.Gender,
+                                Pass = x.Pass,
+                                Phone = x.Phone,
+                                RoleId = x.RoleId,
+                                Status = true
+                            }));
+                        }
+                    }
+                    LoadData();
                 }
             }
         }

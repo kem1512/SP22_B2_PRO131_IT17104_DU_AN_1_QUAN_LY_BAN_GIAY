@@ -29,15 +29,15 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmployee));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.txtEmail = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.pbxEmployee = new FontAwesome.Sharp.IconPictureBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -67,15 +67,17 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.dgridEmployee = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmployeeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gender = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateOfBirth = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.RoleId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column9 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Pass = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EmployeeImage = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.dgrid_Disable = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -91,7 +93,7 @@
             this.dgrid_Disabled = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.btnQr = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.bunifuThinButton22 = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.btnAddMulti = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton23 = new Bunifu.Framework.UI.BunifuThinButton2();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
@@ -587,39 +589,41 @@
             this.dgridEmployee.AllowUserToDeleteRows = false;
             this.dgridEmployee.AllowUserToResizeColumns = false;
             this.dgridEmployee.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.dgridEmployee.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgridEmployee.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgridEmployee.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgridEmployee.BackgroundColor = System.Drawing.Color.White;
             this.dgridEmployee.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgridEmployee.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgridEmployee.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgridEmployee.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgridEmployee.ColumnHeadersHeight = 54;
             this.dgridEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9});
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgridEmployee.DefaultCellStyle = dataGridViewCellStyle12;
+            this.EmployeeId,
+            this.FullName,
+            this.Email,
+            this.Phone,
+            this.Gender,
+            this.Address,
+            this.DateOfBirth,
+            this.RoleId,
+            this.Column9,
+            this.Pass,
+            this.EmployeeImage});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgridEmployee.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgridEmployee.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgridEmployee.DoubleBuffered = true;
             this.dgridEmployee.EnableHeadersVisualStyles = false;
@@ -636,69 +640,69 @@
             this.dgridEmployee.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_Employee_CellClick);
             this.dgridEmployee.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgrid_Employee_CellContentClick);
             // 
-            // Column1
+            // EmployeeId
             // 
-            this.Column1.HeaderText = "Mã NV";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            this.Column1.Visible = false;
+            this.EmployeeId.HeaderText = "Mã NV";
+            this.EmployeeId.MinimumWidth = 6;
+            this.EmployeeId.Name = "EmployeeId";
+            this.EmployeeId.ReadOnly = true;
+            this.EmployeeId.Visible = false;
             // 
-            // Column2
+            // FullName
             // 
-            this.Column2.FillWeight = 104.1889F;
-            this.Column2.HeaderText = "Họ tên";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
+            this.FullName.FillWeight = 104.1889F;
+            this.FullName.HeaderText = "Họ tên";
+            this.FullName.MinimumWidth = 6;
+            this.FullName.Name = "FullName";
+            this.FullName.ReadOnly = true;
             // 
-            // Column3
+            // Email
             // 
-            this.Column3.FillWeight = 104.1889F;
-            this.Column3.HeaderText = "Email";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
+            this.Email.FillWeight = 104.1889F;
+            this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 6;
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
             // 
-            // Column4
+            // Phone
             // 
-            this.Column4.FillWeight = 104.1889F;
-            this.Column4.HeaderText = "SĐT";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
+            this.Phone.FillWeight = 104.1889F;
+            this.Phone.HeaderText = "SĐT";
+            this.Phone.MinimumWidth = 6;
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
             // 
-            // Column5
+            // Gender
             // 
-            this.Column5.FillWeight = 104.1889F;
-            this.Column5.HeaderText = "Giới tính";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
+            this.Gender.FillWeight = 104.1889F;
+            this.Gender.HeaderText = "Giới tính";
+            this.Gender.MinimumWidth = 6;
+            this.Gender.Name = "Gender";
+            this.Gender.ReadOnly = true;
             // 
-            // Column6
+            // Address
             // 
-            this.Column6.FillWeight = 104.1889F;
-            this.Column6.HeaderText = "Địa chỉ";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
+            this.Address.FillWeight = 104.1889F;
+            this.Address.HeaderText = "Địa chỉ";
+            this.Address.MinimumWidth = 6;
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
             // 
-            // Column7
+            // DateOfBirth
             // 
-            this.Column7.FillWeight = 104.1889F;
-            this.Column7.HeaderText = "Ngày sinh";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
+            this.DateOfBirth.FillWeight = 104.1889F;
+            this.DateOfBirth.HeaderText = "Ngày sinh";
+            this.DateOfBirth.MinimumWidth = 6;
+            this.DateOfBirth.Name = "DateOfBirth";
+            this.DateOfBirth.ReadOnly = true;
             // 
-            // Column8
+            // RoleId
             // 
-            this.Column8.HeaderText = "Vai trò";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            this.Column8.Visible = false;
+            this.RoleId.HeaderText = "Vai trò";
+            this.RoleId.MinimumWidth = 6;
+            this.RoleId.Name = "RoleId";
+            this.RoleId.ReadOnly = true;
+            this.RoleId.Visible = false;
             // 
             // Column9
             // 
@@ -707,6 +711,22 @@
             this.Column9.MinimumWidth = 6;
             this.Column9.Name = "Column9";
             this.Column9.ReadOnly = true;
+            // 
+            // Pass
+            // 
+            this.Pass.HeaderText = "Mật khẩu";
+            this.Pass.MinimumWidth = 6;
+            this.Pass.Name = "Pass";
+            this.Pass.ReadOnly = true;
+            this.Pass.Visible = false;
+            // 
+            // EmployeeImage
+            // 
+            this.EmployeeImage.HeaderText = "Ảnh";
+            this.EmployeeImage.MinimumWidth = 6;
+            this.EmployeeImage.Name = "EmployeeImage";
+            this.EmployeeImage.ReadOnly = true;
+            this.EmployeeImage.Visible = false;
             // 
             // tabPage2
             // 
@@ -723,20 +743,20 @@
             // dgrid_Disable
             // 
             this.dgrid_Disable.AllowUserToAddRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            this.dgrid_Disable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgrid_Disable.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgrid_Disable.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrid_Disable.BackgroundColor = System.Drawing.Color.White;
             this.dgrid_Disable.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgrid_Disable.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrid_Disable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Disable.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgrid_Disable.ColumnHeadersHeight = 54;
             this.dgrid_Disable.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -749,14 +769,14 @@
             this.dataGridViewTextBoxColumn8,
             this.Column10,
             this.dataGridViewLinkColumn1});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgrid_Disable.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgrid_Disable.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgrid_Disable.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgrid_Disable.DoubleBuffered = true;
             this.dgrid_Disable.EnableHeadersVisualStyles = false;
@@ -767,8 +787,8 @@
             this.dgrid_Disable.ReadOnly = true;
             this.dgrid_Disable.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Disable.RowHeadersWidth = 51;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dgrid_Disable.RowsDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dgrid_Disable.RowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgrid_Disable.RowTemplate.Height = 70;
             this.dgrid_Disable.Size = new System.Drawing.Size(974, 349);
             this.dgrid_Disable.TabIndex = 1;
@@ -856,19 +876,19 @@
             // 
             // dgrid_Disabled
             // 
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.dgrid_Disabled.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.dgrid_Disabled.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle8;
             this.dgrid_Disabled.BackgroundColor = System.Drawing.Color.White;
             this.dgrid_Disabled.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgrid_Disabled.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.SeaGreen;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgrid_Disabled.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.SeaGreen;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgrid_Disabled.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgrid_Disabled.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgrid_Disabled.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgrid_Disabled.DoubleBuffered = true;
@@ -937,31 +957,32 @@
             this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuThinButton21.Click += new System.EventHandler(this.bunifuThinButton21_Click);
             // 
-            // bunifuThinButton22
+            // btnAddMulti
             // 
-            this.bunifuThinButton22.ActiveBorderThickness = 1;
-            this.bunifuThinButton22.ActiveCornerRadius = 20;
-            this.bunifuThinButton22.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.ActiveForecolor = System.Drawing.Color.White;
-            this.bunifuThinButton22.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuThinButton22.BackColor = System.Drawing.Color.White;
-            this.bunifuThinButton22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton22.BackgroundImage")));
-            this.bunifuThinButton22.ButtonText = "Thêm hàng loạt";
-            this.bunifuThinButton22.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuThinButton22.ForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.IdleBorderThickness = 1;
-            this.bunifuThinButton22.IdleCornerRadius = 20;
-            this.bunifuThinButton22.IdleFillColor = System.Drawing.Color.White;
-            this.bunifuThinButton22.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.Location = new System.Drawing.Point(766, 7);
-            this.bunifuThinButton22.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuThinButton22.Name = "bunifuThinButton22";
-            this.bunifuThinButton22.Size = new System.Drawing.Size(241, 62);
-            this.bunifuThinButton22.TabIndex = 38;
-            this.bunifuThinButton22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnAddMulti.ActiveBorderThickness = 1;
+            this.btnAddMulti.ActiveCornerRadius = 20;
+            this.btnAddMulti.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnAddMulti.ActiveForecolor = System.Drawing.Color.White;
+            this.btnAddMulti.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnAddMulti.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAddMulti.BackColor = System.Drawing.Color.White;
+            this.btnAddMulti.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnAddMulti.BackgroundImage")));
+            this.btnAddMulti.ButtonText = "Thêm hàng loạt";
+            this.btnAddMulti.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnAddMulti.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddMulti.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnAddMulti.IdleBorderThickness = 1;
+            this.btnAddMulti.IdleCornerRadius = 20;
+            this.btnAddMulti.IdleFillColor = System.Drawing.Color.White;
+            this.btnAddMulti.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnAddMulti.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnAddMulti.Location = new System.Drawing.Point(766, 7);
+            this.btnAddMulti.Margin = new System.Windows.Forms.Padding(5);
+            this.btnAddMulti.Name = "btnAddMulti";
+            this.btnAddMulti.Size = new System.Drawing.Size(241, 62);
+            this.btnAddMulti.TabIndex = 38;
+            this.btnAddMulti.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnAddMulti.Click += new System.EventHandler(this.btnAddMulti_Click);
             // 
             // bunifuThinButton23
             // 
@@ -996,7 +1017,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1405, 755);
             this.Controls.Add(this.bunifuThinButton23);
-            this.Controls.Add(this.bunifuThinButton22);
+            this.Controls.Add(this.btnAddMulti);
             this.Controls.Add(this.bunifuThinButton21);
             this.Controls.Add(this.btnQr);
             this.Controls.Add(this.tabControl1);
@@ -1056,15 +1077,6 @@
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Disabled;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Disable;
         private Bunifu.Framework.UI.BunifuThinButton2 btnQr;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
-        private System.Windows.Forms.DataGridViewLinkColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -1080,7 +1092,18 @@
         private System.Windows.Forms.Label lblPassword;
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtOld;
         private Bunifu.Framework.UI.BunifuThinButton2 btnAdd;
-        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton22;
+        private Bunifu.Framework.UI.BunifuThinButton2 btnAddMulti;
         private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton23;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Email;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Gender;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DateOfBirth;
+        private System.Windows.Forms.DataGridViewTextBoxColumn RoleId;
+        private System.Windows.Forms.DataGridViewLinkColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Pass;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeImage;
     }
 }
