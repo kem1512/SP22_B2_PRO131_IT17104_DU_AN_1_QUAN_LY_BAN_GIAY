@@ -605,8 +605,7 @@
             this.dgridEmployee.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgridEmployee.ColumnHeadersHeight = 54;
             this.dgridEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-<<<<<<< HEAD
-            this.EmployeeId,
+                this.EmployeeId,
             this.FullName,
             this.Email,
             this.Phone,
@@ -617,17 +616,6 @@
             this.Column9,
             this.Pass,
             this.EmployeeImage});
-=======
-            this.Column1,
-            this.Column2,
-            this.Column3,
-            this.Column4,
-            this.Column5,
-            this.Column6,
-            this.Column7,
-            this.Column8,
-            this.Column9});
->>>>>>> c2f956d8517ce640407fcc6caef223e13cd14648
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 13.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1021,7 +1009,6 @@
             this.bunifuThinButton23.Size = new System.Drawing.Size(241, 62);
             this.bunifuThinButton23.TabIndex = 39;
             this.bunifuThinButton23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.bunifuThinButton23.Click += new System.EventHandler(this.bunifuThinButton23_Click);
             // 
             // FrmEmployee
             // 

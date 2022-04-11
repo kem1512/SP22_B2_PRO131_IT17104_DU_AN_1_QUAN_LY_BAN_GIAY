@@ -7,13 +7,10 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-<<<<<<< HEAD
-=======
 using System.Net.Mail;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
->>>>>>> c2f956d8517ce640407fcc6caef223e13cd14648
 using System.Windows.Forms;
 
 namespace GUI_PresentationLayer.View
@@ -22,41 +19,50 @@ namespace GUI_PresentationLayer.View
     {
         private iEmployeeServices _iEmployeeServices = new EmployeeServices();
         private iRoleServices _iRoleServices = new RoleServices();
+
         public FrmEmployee()
         {
             InitializeComponent();
             LoadData();
         }
+
         private string ValidateEmployee()
         {
             if (txtName.Text == "")
             {
                 return "Không được để trống tên";
             }
+
             if (txtEmail.Text == "")
             {
                 return "Không được để trống email";
             }
+
             if (txtAddress.Text == "")
             {
                 return "Không được để trống địa chỉ";
             }
+
             if (txtPhone.Text == "")
             {
                 return "Không được để trống số điện thoại";
             }
+
             if (!rbtnFemale.Checked && !rbtnMale.Checked)
             {
                 return "Vui lòng chọn giới tính";
             }
+
             if (cmbRoles.SelectedIndex == -1)
             {
                 return "Vui lòng chọn vai trò";
             }
+
             if ((DateTime.Now.Year - dgdtpcStaff.Value.Year) < 18)
             {
                 return "Chưa đủ 18 tuổi!";
             }
+
             return null;
         }
 
@@ -70,8 +76,12 @@ namespace GUI_PresentationLayer.View
                 }
                 else
                 {
-                    var employeeId = !_iEmployeeServices.GetEmployees().Any() ? "NV1" : "NV" + _iEmployeeServices.GetEmployees().Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
-                    if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    var employeeId = !_iEmployeeServices.GetEmployees().Any()
+                        ? "NV1"
+                        : "NV" + _iEmployeeServices.GetEmployees()
+                            .Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
+                    if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                        DialogResult.Yes)
                     {
                         var em = new Employee()
                         {
@@ -92,7 +102,9 @@ namespace GUI_PresentationLayer.View
                         if (MessageBox.Show("Bạn có muốn gửi mã QR đến cho nhân viên?", "Thông báo",
                                 MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
-                            SendSMS.SendMailQr(em.Email, "Welcome to Shop", $"Chào mừng bạn đến với shop, mật khẩu của bạn là: {em.Pass} và mã Qr của bạn", GenerateCode.CreateQRCode(em.Email, em.Pass));
+                            SendSMS.SendMailQr(em.Email, "Welcome to Shop",
+                                $"Chào mừng bạn đến với shop, mật khẩu của bạn là: {em.Pass} và mã Qr của bạn",
+                                GenerateCode.CreateQRCode(em.Email, em.Pass));
                             MessageBox.Show("Gửi thành công!");
                         }
                     }
@@ -122,6 +134,7 @@ namespace GUI_PresentationLayer.View
                 {
                     pbxEmployee.Image = Properties.Resources.failed;
                 }
+
                 txtName.Text = row.Cells[1].Value.ToString();
                 txtEmail.Text = row.Cells[2].Value.ToString();
                 txtPhone.Text = row.Cells[3].Value.ToString();
@@ -133,6 +146,7 @@ namespace GUI_PresentationLayer.View
                 {
                     rbtnFemale.Checked = true;
                 }
+
                 txtOld.Text = DateTime.Now.Year - employee.DateOfBirth.Year + "";
                 txtAddress.Text = row.Cells[5].Value.ToString();
                 dgdtpcStaff.Value = DateTime.Parse(row.Cells[6].Value.ToString());
@@ -166,7 +180,8 @@ namespace GUI_PresentationLayer.View
         {
             if (e.ColumnIndex == 8)
             {
-                if (MessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
                 {
                     MessageBox.Show(
                         _iEmployeeServices.DisableEmployee(dgridEmployee.Rows[e.RowIndex].Cells[0].Value.ToString()));
@@ -174,7 +189,7 @@ namespace GUI_PresentationLayer.View
                 }
             }
         }
-        
+
         private void pbxRoles_Click(object sender, EventArgs e)
         {
             FrmProperties properties = new FrmProperties(FrmProperties.Properties.Role);
@@ -185,8 +200,10 @@ namespace GUI_PresentationLayer.View
         {
             if (ValidateEmployee() is null)
             {
-                var employee = _iEmployeeServices.GetEmployeeById(dgridEmployee.Rows[dgridEmployee.CurrentRow.Index].Cells[0].Value.ToString());
-                if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                var employee = _iEmployeeServices.GetEmployeeById(dgridEmployee.Rows[dgridEmployee.CurrentRow.Index]
+                    .Cells[0].Value.ToString());
+                if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
                 {
                     MessageBox.Show(_iEmployeeServices.UpdateEmployee(new Employee()
                     {
@@ -229,16 +246,19 @@ namespace GUI_PresentationLayer.View
         {
             if (e.ColumnIndex == 8)
             {
-                if (MessageBox.Show("Bạn có chắc chắn muốn phục hồi không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn có chắc chắn muốn phục hồi không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
                 {
                     MessageBox.Show(
                         _iEmployeeServices.RecoveryEmployee(dgrid_Disable.Rows[e.RowIndex].Cells[0].Value.ToString()));
                     LoadData();
                 }
             }
+
             if (e.ColumnIndex == 9)
             {
-                if (MessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show("Bạn có chắc chắn muốn xoá không?", "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
                 {
                     MessageBox.Show(
                         _iEmployeeServices.RemoveEmployee(dgrid_Disable.Rows[e.RowIndex].Cells[0].Value.ToString()));
@@ -271,6 +291,7 @@ namespace GUI_PresentationLayer.View
                     x.Cells[4].Value = x.Cells[4].Value.ToString().Equals("Nam") ? true : false;
                     x.Cells[6].Value = DateTime.Parse(x.Cells[6].Value.ToString()).ToString("MM/dd/yyyy");
                 }
+
                 GenerateDoucument.ToExcel(dataGridView, saveFileDialog.FileName);
                 LoadData();
             }
@@ -291,13 +312,13 @@ namespace GUI_PresentationLayer.View
             }
         }
 
-<<<<<<< HEAD
         private void btnAddMulti_Click(object sender, EventArgs e)
         {
             var result = GenerateExcel.AddMultipleFromExcel<Employee>();
             if (result != null)
             {
-                if (MessageBox.Show($"Bạn có chắc muốn thêm {result.Count} nhân viên không?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show($"Bạn có chắc muốn thêm {result.Count} nhân viên không?", "Thông báo",
+                        MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     foreach (var x in result)
                     {
@@ -307,7 +328,10 @@ namespace GUI_PresentationLayer.View
                         }
                         else
                         {
-                            var employeeId = !_iEmployeeServices.GetEmployees().Any() ? "NV1" : "NV" + _iEmployeeServices.GetEmployees().Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
+                            var employeeId = !_iEmployeeServices.GetEmployees().Any()
+                                ? "NV1"
+                                : "NV" + _iEmployeeServices.GetEmployees()
+                                    .Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
                             MessageBox.Show(_iEmployeeServices.AddEmployee(new Employee()
                             {
                                 DateOfBirth = x.DateOfBirth,
@@ -324,11 +348,13 @@ namespace GUI_PresentationLayer.View
                             }));
                         }
                     }
+
                     LoadData();
                 }
             }
-=======
-        void Send(string email,string filename)
+        }
+
+        void Send(string email, string filename)
         {
             try
             {
@@ -344,7 +370,7 @@ namespace GUI_PresentationLayer.View
                 SmtpServer.Credentials = new System.Net.NetworkCredential("kem15122002@gmail.com", "badao12345");
                 SmtpServer.EnableSsl = true;
                 SmtpServer.Send(mail);
-                MessageBox.Show("Gửi thông báo thành công","Thông báo");
+                MessageBox.Show("Gửi thông báo thành công", "Thông báo");
             }
             catch (Exception e)
             {
@@ -352,23 +378,25 @@ namespace GUI_PresentationLayer.View
                 throw;
             }
         }
+
         private void bunifuThinButton23_Click(object sender, EventArgs e)
         {
             var lstE = _iEmployeeServices.GetEmployees().Where(c => c.Status).Select(c => c.Email).ToList();
             string att = null;
-            if (att==null)
+            if (att == null)
             {
                 OpenFileDialog op = new OpenFileDialog();
-                if (op.ShowDialog()==DialogResult.OK)
+                if (op.ShowDialog() == DialogResult.OK)
                 {
                     att = op.FileName;
                 }
             }
+
             foreach (var em in lstE)
             {
-                Send(em,att);
+                Send(em, att);
             }
->>>>>>> c2f956d8517ce640407fcc6caef223e13cd14648
         }
     }
 }
+
