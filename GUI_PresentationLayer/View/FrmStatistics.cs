@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,10 +20,15 @@ namespace GUI_PresentationLayer.View
         private iProductServices _iProductServices = new ProductSevices();
         private iBrandServices _iBrandServices = new BrandServices();
         private iCustomerServices _iCustomerServices = new CustomerServices();
+        private iEmployeeServices _iEmployeeServices = new EmployeeServices();
         public FrmStatistics()
         {
             InitializeComponent();
             loadBrand();
+            dgdtpcDateBegin.Value = DateTime.Now.AddMonths(-1);
+            dgdtpcDateEnd.Value = DateTime.Now;
+            load_Statistics(dgdtpcDateBegin.Value,dgdtpcDateEnd.Value);
+            load_Cancel();
         }
 
         void load_BrandSelled(string brand)
@@ -75,6 +81,35 @@ namespace GUI_PresentationLayer.View
                 }
             }
         }
+
+        void load_Statistics(DateTime from, DateTime to)
+        {
+            dgrid_Revenue.Rows.Clear();
+            var lst = (from CTHD in _iInvoiceServices.GetInvoicesDetail()
+                join HD in _iInvoiceServices.GetInvoices() on CTHD.InvoiceId equals HD.InvoiceId
+                join NV in _iEmployeeServices.GetEmployees() on HD.EmployeeId equals NV.EmployeeId
+                orderby HD.DateCreate
+                where HD.InvoiceStatus
+                select new
+                {
+                    HD.InvoiceId,
+                    NV.EmployeeId,
+                    HD.DateCreate,
+                    CTHD.TotalPrice
+                }).ToList();
+            var stt = lst.Where(c => c.DateCreate >= from && c.DateCreate <= to);
+            if (stt.Count()>0)
+            {
+                double total = 0;
+                foreach (var x in stt)
+                {
+                    dgrid_Revenue.Rows.Add(x.EmployeeId, x.InvoiceId, x.DateCreate, x.TotalPrice);
+                    total = stt.Select(c => c.TotalPrice).Sum();
+                }
+
+                dgrid_Revenue.Rows.Add("Tổng", null, null, string.Format(new CultureInfo("vi-VN"), "{0:#,##0.00}", total));
+            }
+        }
         void loadBrand()
         {
             cmbFilter.DataSource = _iBrandServices.GetBrands();
@@ -89,6 +124,19 @@ namespace GUI_PresentationLayer.View
             {
                 load_BrandSelled(cmbFilter.SelectedValue.ToString());
             }
+        }
+
+        private void dgdtpcDateEnd_onValueChanged(object sender, EventArgs e)
+        {
+            load_Statistics(dgdtpcDateBegin.Value,dgdtpcDateEnd.Value);
+            if (dgdtpcDateEnd.Value<dgdtpcDateBegin.Value)
+            {
+                dgdtpcDateEnd.Value=DateTime.Now;
+            }
+        }
+        private void dgdtpcDateBegin_onValueChanged(object sender, EventArgs e)
+        {
+            load_Statistics(dgdtpcDateBegin.Value, dgdtpcDateEnd.Value);
         }
     }
 }
