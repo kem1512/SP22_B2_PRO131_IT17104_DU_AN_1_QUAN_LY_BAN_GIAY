@@ -126,7 +126,7 @@
             this.txtEmail.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtEmail.LineThickness = 4;
             this.txtEmail.Location = new System.Drawing.Point(5, 405);
-            this.txtEmail.Margin = new System.Windows.Forms.Padding(5);
+            this.txtEmail.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(340, 34);
             this.txtEmail.TabIndex = 5;
@@ -156,9 +156,9 @@
             this.lblName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(3, 289);
+            this.lblName.Location = new System.Drawing.Point(3, 291);
             this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(99, 24);
+            this.lblName.Size = new System.Drawing.Size(96, 22);
             this.lblName.TabIndex = 1;
             this.lblName.Text = "Họ và tên";
             // 
@@ -167,9 +167,9 @@
             this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblEmail.AutoSize = true;
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmail.Location = new System.Drawing.Point(3, 376);
+            this.lblEmail.Location = new System.Drawing.Point(3, 378);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(62, 24);
+            this.lblEmail.Size = new System.Drawing.Size(59, 22);
             this.lblEmail.TabIndex = 3;
             this.lblEmail.Text = "Email";
             // 
@@ -266,9 +266,9 @@
             this.lblPassword.AutoSize = true;
             this.tlpLeft.SetColumnSpan(this.lblPassword, 2);
             this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(3, 463);
+            this.lblPassword.Location = new System.Drawing.Point(3, 465);
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(190, 24);
+            this.lblPassword.Size = new System.Drawing.Size(181, 22);
             this.lblPassword.TabIndex = 7;
             this.lblPassword.Text = "Tuổi của nhân viên";
             // 
@@ -290,7 +290,7 @@
             this.txtOld.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtOld.LineThickness = 4;
             this.txtOld.Location = new System.Drawing.Point(5, 492);
-            this.txtOld.Margin = new System.Windows.Forms.Padding(5);
+            this.txtOld.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtOld.Name = "txtOld";
             this.txtOld.Size = new System.Drawing.Size(340, 34);
             this.txtOld.TabIndex = 11;
@@ -313,7 +313,7 @@
             this.txtName.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtName.LineThickness = 4;
             this.txtName.Location = new System.Drawing.Point(5, 318);
-            this.txtName.Margin = new System.Windows.Forms.Padding(5);
+            this.txtName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(340, 34);
             this.txtName.TabIndex = 32;
@@ -354,7 +354,7 @@
             this.rbtnMale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnMale.Location = new System.Drawing.Point(21, 33);
             this.rbtnMale.Name = "rbtnMale";
-            this.rbtnMale.Size = new System.Drawing.Size(71, 28);
+            this.rbtnMale.Size = new System.Drawing.Size(68, 26);
             this.rbtnMale.TabIndex = 23;
             this.rbtnMale.TabStop = true;
             this.rbtnMale.Text = "Nam";
@@ -365,9 +365,9 @@
             this.lblGender.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblGender.AutoSize = true;
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGender.Location = new System.Drawing.Point(3, 137);
+            this.lblGender.Location = new System.Drawing.Point(3, 138);
             this.lblGender.Name = "lblGender";
-            this.lblGender.Size = new System.Drawing.Size(87, 24);
+            this.lblGender.Size = new System.Drawing.Size(85, 22);
             this.lblGender.TabIndex = 21;
             this.lblGender.Text = "Giới tính";
             // 
@@ -378,7 +378,7 @@
             this.rbtnFemale.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.rbtnFemale.Location = new System.Drawing.Point(129, 35);
             this.rbtnFemale.Name = "rbtnFemale";
-            this.rbtnFemale.Size = new System.Drawing.Size(56, 28);
+            this.rbtnFemale.Size = new System.Drawing.Size(54, 26);
             this.rbtnFemale.TabIndex = 24;
             this.rbtnFemale.TabStop = true;
             this.rbtnFemale.Text = "Nữ";
@@ -431,7 +431,7 @@
             this.txtPhone.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtPhone.LineThickness = 4;
             this.txtPhone.Location = new System.Drawing.Point(333, 51);
-            this.txtPhone.Margin = new System.Windows.Forms.Padding(5);
+            this.txtPhone.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(324, 44);
             this.txtPhone.TabIndex = 29;
@@ -442,9 +442,9 @@
             this.lblAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblAddress.AutoSize = true;
             this.lblAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddress.Location = new System.Drawing.Point(3, 22);
+            this.lblAddress.Location = new System.Drawing.Point(3, 24);
             this.lblAddress.Name = "lblAddress";
-            this.lblAddress.Size = new System.Drawing.Size(74, 24);
+            this.lblAddress.Size = new System.Drawing.Size(72, 22);
             this.lblAddress.TabIndex = 11;
             this.lblAddress.Text = "Địa chỉ";
             // 
@@ -454,9 +454,9 @@
             this.lblPhone.AutoSize = true;
             this.tlpBot.SetColumnSpan(this.lblPhone, 2);
             this.lblPhone.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhone.Location = new System.Drawing.Point(331, 22);
+            this.lblPhone.Location = new System.Drawing.Point(331, 24);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(134, 24);
+            this.lblPhone.Size = new System.Drawing.Size(128, 22);
             this.lblPhone.TabIndex = 14;
             this.lblPhone.Text = "Số điện thoại";
             // 
@@ -465,9 +465,9 @@
             this.lblDate.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblDate.AutoSize = true;
             this.lblDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDate.Location = new System.Drawing.Point(668, 11);
+            this.lblDate.Location = new System.Drawing.Point(668, 12);
             this.lblDate.Name = "lblDate";
-            this.lblDate.Size = new System.Drawing.Size(103, 24);
+            this.lblDate.Size = new System.Drawing.Size(99, 22);
             this.lblDate.TabIndex = 17;
             this.lblDate.Text = "Ngày sinh";
             // 
@@ -485,7 +485,7 @@
             this.txtAddress.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtAddress.LineThickness = 4;
             this.txtAddress.Location = new System.Drawing.Point(5, 51);
-            this.txtAddress.Margin = new System.Windows.Forms.Padding(5);
+            this.txtAddress.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(318, 43);
             this.txtAddress.TabIndex = 22;
@@ -496,9 +496,9 @@
             this.lblRoles.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblRoles.AutoSize = true;
             this.lblRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblRoles.Location = new System.Drawing.Point(331, 137);
+            this.lblRoles.Location = new System.Drawing.Point(331, 138);
             this.lblRoles.Name = "lblRoles";
-            this.lblRoles.Size = new System.Drawing.Size(70, 24);
+            this.lblRoles.Size = new System.Drawing.Size(69, 22);
             this.lblRoles.TabIndex = 20;
             this.lblRoles.Text = "Vai trò";
             // 
@@ -535,7 +535,7 @@
             this.cmbRoles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRoles.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbRoles.FormattingEnabled = true;
-            this.cmbRoles.Location = new System.Drawing.Point(410, 130);
+            this.cmbRoles.Location = new System.Drawing.Point(410, 129);
             this.cmbRoles.Name = "cmbRoles";
             this.cmbRoles.Size = new System.Drawing.Size(252, 39);
             this.cmbRoles.TabIndex = 31;
@@ -605,7 +605,7 @@
             this.dgridEmployee.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgridEmployee.ColumnHeadersHeight = 54;
             this.dgridEmployee.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-                this.EmployeeId,
+            this.EmployeeId,
             this.FullName,
             this.Email,
             this.Phone,
