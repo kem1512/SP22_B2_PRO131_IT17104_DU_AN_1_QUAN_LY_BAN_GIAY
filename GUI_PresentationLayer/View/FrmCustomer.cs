@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
+using BUS_BussinessLayer.Utilities;
 using DAL_DataAccessLayer.Entities;
 
 namespace GUI_PresentationLayer.View
@@ -175,6 +176,20 @@ namespace GUI_PresentationLayer.View
                     x.Visible = x.Cells[1].Value.ToString().Contains(txtSearch.Text);
                 }
             }
+        }
+
+        private void btnExcel_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                GenerateDoucument.ToExcel(dgridCustomer, saveFileDialog.FileName);
+            }
+        }
+
+        private void btnAddMulti_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

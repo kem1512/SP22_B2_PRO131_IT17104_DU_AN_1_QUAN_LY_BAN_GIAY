@@ -79,6 +79,19 @@
             this.tabMain = new System.Windows.Forms.TabControl();
             this.tabProduct = new System.Windows.Forms.TabPage();
             this.dgridProduct = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ProductImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BrandId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaterialId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColorId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SizeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CategoryId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabDeleted = new System.Windows.Forms.TabPage();
             this.dgridProductDeleted = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,19 +109,6 @@
             this.Column13 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.btnQrCode = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.ProductId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ProductImage = new System.Windows.Forms.DataGridViewImageColumn();
-            this.ProductName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Amount = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UnitPrice = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BrandId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MaterialId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColorId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SizeId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CategoryId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tlpBot.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditBrand)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEditMat)).BeginInit();
@@ -850,6 +850,114 @@
             this.dgridProduct.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridProduct_CellClick);
             this.dgridProduct.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridProduct_CellContentClick);
             // 
+            // ProductId
+            // 
+            this.ProductId.HeaderText = "Mã sản phẩm";
+            this.ProductId.MinimumWidth = 6;
+            this.ProductId.Name = "ProductId";
+            this.ProductId.ReadOnly = true;
+            this.ProductId.Visible = false;
+            // 
+            // ProductImage
+            // 
+            this.ProductImage.FillWeight = 40F;
+            this.ProductImage.HeaderText = "Ảnh";
+            this.ProductImage.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.ProductImage.MinimumWidth = 6;
+            this.ProductImage.Name = "ProductImage";
+            this.ProductImage.ReadOnly = true;
+            this.ProductImage.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ProductImage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ProductName
+            // 
+            this.ProductName.HeaderText = "Tên sản phẩm";
+            this.ProductName.MinimumWidth = 6;
+            this.ProductName.Name = "ProductName";
+            this.ProductName.ReadOnly = true;
+            // 
+            // Amount
+            // 
+            this.Amount.FillWeight = 30F;
+            this.Amount.HeaderText = "Kho";
+            this.Amount.MinimumWidth = 6;
+            this.Amount.Name = "Amount";
+            this.Amount.ReadOnly = true;
+            // 
+            // UnitPrice
+            // 
+            this.UnitPrice.FillWeight = 60F;
+            this.UnitPrice.HeaderText = "Đơn giá";
+            this.UnitPrice.MinimumWidth = 6;
+            this.UnitPrice.Name = "UnitPrice";
+            this.UnitPrice.ReadOnly = true;
+            // 
+            // Description
+            // 
+            this.Description.HeaderText = "Ghi chú";
+            this.Description.MinimumWidth = 6;
+            this.Description.Name = "Description";
+            this.Description.ReadOnly = true;
+            this.Description.Visible = false;
+            // 
+            // BrandId
+            // 
+            this.BrandId.HeaderText = "Thương hiệu";
+            this.BrandId.MinimumWidth = 6;
+            this.BrandId.Name = "BrandId";
+            this.BrandId.ReadOnly = true;
+            this.BrandId.Visible = false;
+            // 
+            // MaterialId
+            // 
+            this.MaterialId.HeaderText = "Chất liệu";
+            this.MaterialId.MinimumWidth = 6;
+            this.MaterialId.Name = "MaterialId";
+            this.MaterialId.ReadOnly = true;
+            this.MaterialId.Visible = false;
+            // 
+            // ColorId
+            // 
+            this.ColorId.HeaderText = "Màu sắc";
+            this.ColorId.MinimumWidth = 6;
+            this.ColorId.Name = "ColorId";
+            this.ColorId.ReadOnly = true;
+            this.ColorId.Visible = false;
+            // 
+            // SizeId
+            // 
+            this.SizeId.HeaderText = "Kích thước";
+            this.SizeId.MinimumWidth = 6;
+            this.SizeId.Name = "SizeId";
+            this.SizeId.ReadOnly = true;
+            this.SizeId.Visible = false;
+            // 
+            // CategoryId
+            // 
+            this.CategoryId.HeaderText = "Loại giày";
+            this.CategoryId.MinimumWidth = 6;
+            this.CategoryId.Name = "CategoryId";
+            this.CategoryId.ReadOnly = true;
+            this.CategoryId.Visible = false;
+            // 
+            // Column5
+            // 
+            this.Column5.FillWeight = 20F;
+            this.Column5.HeaderText = "";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // Status
+            // 
+            this.Status.HeaderText = "Trạng thái";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Visible = false;
+            // 
             // tabDeleted
             // 
             this.tabDeleted.BackColor = System.Drawing.Color.White;
@@ -1085,114 +1193,6 @@
             this.bunifuThinButton21.TabIndex = 31;
             this.bunifuThinButton21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.bunifuThinButton21.Click += new System.EventHandler(this.bunifuThinButton21_Click);
-            // 
-            // ProductId
-            // 
-            this.ProductId.HeaderText = "Mã sản phẩm";
-            this.ProductId.MinimumWidth = 6;
-            this.ProductId.Name = "ProductId";
-            this.ProductId.ReadOnly = true;
-            this.ProductId.Visible = false;
-            // 
-            // ProductImage
-            // 
-            this.ProductImage.FillWeight = 40F;
-            this.ProductImage.HeaderText = "Ảnh";
-            this.ProductImage.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.ProductImage.MinimumWidth = 6;
-            this.ProductImage.Name = "ProductImage";
-            this.ProductImage.ReadOnly = true;
-            this.ProductImage.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ProductImage.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // ProductName
-            // 
-            this.ProductName.HeaderText = "Tên sản phẩm";
-            this.ProductName.MinimumWidth = 6;
-            this.ProductName.Name = "ProductName";
-            this.ProductName.ReadOnly = true;
-            // 
-            // Amount
-            // 
-            this.Amount.FillWeight = 30F;
-            this.Amount.HeaderText = "Kho";
-            this.Amount.MinimumWidth = 6;
-            this.Amount.Name = "Amount";
-            this.Amount.ReadOnly = true;
-            // 
-            // UnitPrice
-            // 
-            this.UnitPrice.FillWeight = 60F;
-            this.UnitPrice.HeaderText = "Đơn giá";
-            this.UnitPrice.MinimumWidth = 6;
-            this.UnitPrice.Name = "UnitPrice";
-            this.UnitPrice.ReadOnly = true;
-            // 
-            // Description
-            // 
-            this.Description.HeaderText = "Ghi chú";
-            this.Description.MinimumWidth = 6;
-            this.Description.Name = "Description";
-            this.Description.ReadOnly = true;
-            this.Description.Visible = false;
-            // 
-            // BrandId
-            // 
-            this.BrandId.HeaderText = "Thương hiệu";
-            this.BrandId.MinimumWidth = 6;
-            this.BrandId.Name = "BrandId";
-            this.BrandId.ReadOnly = true;
-            this.BrandId.Visible = false;
-            // 
-            // MaterialId
-            // 
-            this.MaterialId.HeaderText = "Chất liệu";
-            this.MaterialId.MinimumWidth = 6;
-            this.MaterialId.Name = "MaterialId";
-            this.MaterialId.ReadOnly = true;
-            this.MaterialId.Visible = false;
-            // 
-            // ColorId
-            // 
-            this.ColorId.HeaderText = "Màu sắc";
-            this.ColorId.MinimumWidth = 6;
-            this.ColorId.Name = "ColorId";
-            this.ColorId.ReadOnly = true;
-            this.ColorId.Visible = false;
-            // 
-            // SizeId
-            // 
-            this.SizeId.HeaderText = "Kích thước";
-            this.SizeId.MinimumWidth = 6;
-            this.SizeId.Name = "SizeId";
-            this.SizeId.ReadOnly = true;
-            this.SizeId.Visible = false;
-            // 
-            // CategoryId
-            // 
-            this.CategoryId.HeaderText = "Loại giày";
-            this.CategoryId.MinimumWidth = 6;
-            this.CategoryId.Name = "CategoryId";
-            this.CategoryId.ReadOnly = true;
-            this.CategoryId.Visible = false;
-            // 
-            // Column5
-            // 
-            this.Column5.FillWeight = 20F;
-            this.Column5.HeaderText = "";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // Status
-            // 
-            this.Status.HeaderText = "Trạng thái";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.Visible = false;
             // 
             // FrmProduct
             // 

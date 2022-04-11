@@ -63,6 +63,29 @@ namespace BUS_BussinessLayer.Utilities
             return "Gửi thất bại!";
         }
 
+        public static void SendMailWithImage(string email, string subject, string body, string path)
+        {
+            try
+            {
+                MailMessage mail = new MailMessage();
+                SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+                mail.From = new MailAddress("kem15122002@gmail.com");
+                mail.To.Add(email);
+                mail.Subject = subject;
+                mail.Body = body;
+                mail.Attachments.Add(new Attachment(path));
+                smtpClient.Port = 587;
+                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "badao12345");
+                smtpClient.EnableSsl = true;
+                smtpClient.Send(mail);
+                MessageBox.Show("Đã gửi");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
         public static string CreatePassword(int length)
         {
             const string valid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";

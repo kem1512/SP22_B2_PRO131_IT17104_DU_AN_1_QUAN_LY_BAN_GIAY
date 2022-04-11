@@ -150,6 +150,9 @@ namespace GUI_PresentationLayer.View
             cmbPhone.SelectedIndex = -1;
 
             btnCancel.Tag = "";
+            dgridProduct.Rows.Clear();
+            txtName.Text = "";
+            txtAddress.Text = "";
         }
 
         private void btnViewOrder_Click(object sender, EventArgs e)
@@ -193,13 +196,11 @@ namespace GUI_PresentationLayer.View
                                 _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity,
                                 ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "+", "-",
                                 "Xóa");
-                            var img = _iProductServices.GetProductById(x.ProductId).ProductImage;
                         }
                     }
                     else
                     {
                         dgridOrder.Rows.Add(x.ProductId, Properties.Resources.failed, _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "+", "-", "Xóa");
-                        dgridOrder.Rows.Add(x.ProductId, Properties.Resources.failed, _iProductServices.GetProductById(x.ProductId).ProductName, x.Quantity, ConvertMoney.ConvertToVND(x.Price), ConvertMoney.ConvertToVND(x.TotalPrice), "Thêm");
                     }
                     
                     totalPrice += int.Parse(x.TotalPrice.ToString(CultureInfo.InvariantCulture));
@@ -365,9 +366,9 @@ namespace GUI_PresentationLayer.View
                                     GenerateInvoice.PrintInvoice(result);
                                 }
                             }
+                            _iCustomerServices.IncreasePurchase(cmbPhone.SelectedValue.ToString());
+                            LoadData();
                         }
-                        _iCustomerServices.IncreasePurchase(cmbPhone.SelectedValue.ToString());
-                        LoadData();
                     }
                     else
                     {
@@ -549,7 +550,7 @@ namespace GUI_PresentationLayer.View
 
         private void txtCost_OnValueChanged(object sender, EventArgs e)
         {
-            if (Regex.IsMatch(txtCost.Text, "^[0-9]+$"))
+            if (Regex.IsMatch(txtCost.Text, "^[0-9.]+$"))
             {
                 if (txtCost.Text != "" && lblTotalPrice.Text != "0 VNĐ")
                 {

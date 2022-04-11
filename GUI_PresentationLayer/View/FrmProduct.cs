@@ -535,16 +535,20 @@ namespace GUI_PresentationLayer.View
             //     pdfDocument.Save(saveFileDialog.FileName);
             // }
 
-            var result = GenerateExcel.AddMultipleFromExcel<ViewProduct>();
+            var result = GenerateExcel.AddMultipleFromExcel<Product>();
             if (result != null)
             {
-                foreach (var x in result)
+                if (MessageBox.Show($"Bạn có chắc muốn thêm {result.Count} sản phẩm?", "Thông báo",
+                        MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
-                    var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
-                    x.product.ProductId = productId;
-                    MessageBox.Show(_iProductServices.AddProduct(x.product, new ProductDetail(){ ProductId  = productId, UnitPrice = 0, BrandId = "BR1", SizeId = "S1", CategoryId = "CT1", ColorId = "CL1", MaterialId = "MT1"}, new Inventory(){ ProductId = productId, Amount = 0}));
+                    foreach (var x in result)
+                    {
+                        var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
+                        x.ProductId = productId;
+                        MessageBox.Show(_iProductServices.AddProduct(x, new ProductDetail() { ProductId = productId, UnitPrice = 0 }, new Inventory() { ProductId = productId, Amount = 0 }));
+                    }
+                    LoadData();
                 }
-                LoadData();
             }
         }
 

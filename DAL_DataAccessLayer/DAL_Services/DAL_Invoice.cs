@@ -177,6 +177,15 @@ namespace DAL_DataAccessLayer.DAL_Services
                     {
                         invoice.Description = reason;
                         invoice.InvoiceStatus = false;
+                        var invoiceDetail = _db.InvoiceDetail.Where(c => c.InvoiceId == id);
+                        foreach (var x in invoiceDetail)
+                        {
+                            var inventory = _db.Inventory.FirstOrDefault(c => c.ProductId == x.ProductId);
+                            if (inventory != null)
+                            {
+                                inventory.Amount += x.Quantity;
+                            }
+                        }
                         _db.SaveChanges();
                         return "Hủy thành công!";
                     }
