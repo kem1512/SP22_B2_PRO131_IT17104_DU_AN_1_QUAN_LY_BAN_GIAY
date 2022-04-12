@@ -89,7 +89,6 @@ CREATE TABLE Shipper
     ShipperId VARCHAR(9) PRIMARY KEY,
     ShipperName NVARCHAR(250) NOT NULL,
     ShipperPhone VARCHAR(12) NOT NULL,
-    RoleId VARCHAR(9) FOREIGN KEY REFERENCES Roles(RoleId),
     ShipperStatus BIT NOT NULL
 )
 
@@ -131,12 +130,12 @@ CREATE TABLE InvoiceDetail
 INSERT INTO Roles VALUES('R1', N'Quản Lý')
 INSERT INTO Roles VALUES('R2', N'Nhân Viên')
 INSERT INTO Roles VALUES('R3', N'Shipper')
-INSERT INTO Shipper VALUES('SP1', N'Hải Đăng', '0357503628', 'R3', 0)
-INSERT INTO Shipper VALUES('SP2', N'Trần Nam', '0123456789', 'R3', 0)
+INSERT INTO Shipper VALUES('SP1', N'Hải Đăng', '0357503628', 0)
+INSERT INTO Shipper VALUES('SP2', N'Trần Nam', '0123456789', 0)
 INSERT INTO Customer VALUES('CT1', 'Vivi', '03575121','Hà Nội',0,1)
-INSERT INTO Employee VALUES('EM1', N'Hải Đăng', '123','123','123',0,'123','123','2002/01/01',1,'R1')
+INSERT INTO Employee VALUES('EM1', N'Hải Đăng', '123@gmail.com','123','123',0,'123','123','2002/01/01',1,'R1')
 INSERT INTO Customer VALUES('CT1', 'Vivi', '03575121',N'Hà Nội',0,1)
-INSERT INTO Employee VALUES('EM1', N'Hải Đăng', '123','123','123',0,'123','123','2002/01/01',0,'R1')
+INSERT INTO Employee VALUES('EM1', N'Hải Đăng', '132@gmail.com','123','123',0,'123','123','2002/01/01',0,'R1')
 INSERT INTO Color VALUES('CL1',N'Đỏ')
 INSERT INTO Color VALUES('CL2',N'Vàng')
 INSERT INTO Size VALUES('S1','38')

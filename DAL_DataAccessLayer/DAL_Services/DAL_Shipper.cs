@@ -42,12 +42,11 @@ namespace DAL_DataAccessLayer.DAL_Services
                 {
                     ship.ShipperName = shipper.ShipperName;
                     ship.ShipperPhone = shipper.ShipperPhone;
-                    ship.RoleId = shipper.RoleId;
                     ship.ShipperStatus = shipper.ShipperStatus;
                     _db.SaveChanges();
-                    return "Thêm thành công!";
+                    return "Sửa thành công!";
                 }
-                return "Thêm thất bại!";
+                return "Sửa thất bại!";
             }
         }
 
@@ -56,13 +55,19 @@ namespace DAL_DataAccessLayer.DAL_Services
             using (_db = new QuanLyBanGiayEntities())
             {
                 var shipper = _db.Shipper.FirstOrDefault(c => c.ShipperId == id);
+                var invoice = _db.Invoice.FirstOrDefault(c => c.ShipperId == shipper.ShipperId);
                 if (id != null && shipper != null)
                 {
+                    foreach (var x in _db.InvoiceDetail.Where(c => c.InvoiceId == invoice.InvoiceId))
+                    {
+                        _db.InvoiceDetail.Remove(x);
+                    }
+                    if (invoice != null) _db.Invoice.Remove(invoice);
                     _db.Shipper.Remove(shipper);
                     _db.SaveChanges();
-                    return "Thêm thành công!";
+                    return "Xóa thành công!";
                 }
-                return "Thêm thất bại!";
+                return "Xóa thất bại!";
             }
         }
 

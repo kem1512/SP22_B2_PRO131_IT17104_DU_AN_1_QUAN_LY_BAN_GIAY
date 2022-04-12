@@ -105,6 +105,7 @@ namespace GUI_PresentationLayer.View
                     tmrScan.Stop();
                     if(_videoCaptureDevice.IsRunning)
                         _videoCaptureDevice.Stop();
+                    pbxCamera.Image = null;
                 }
             }
         }
@@ -147,7 +148,7 @@ namespace GUI_PresentationLayer.View
 
         private void lblForgot_Click(object sender, EventArgs e)
         {
-            tabForgot.Visible = true;
+            tabctrlMain.SelectedIndex = 2;
         }
 
         private int countCode = 4;

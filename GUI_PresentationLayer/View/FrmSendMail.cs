@@ -46,7 +46,7 @@ namespace GUI_PresentationLayer.View
         {
             if (lblAttach.Text != "Đính kèm")
             {
-                if (MessageBox.Show("Bạn có chắc muốn gửi mail?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show($"Bạn có chắc muốn gửi mail cho {listBox1.SelectedItems.Count} nhân viên?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     foreach (var x in listBox1.SelectedItems)
                     {
@@ -56,7 +56,7 @@ namespace GUI_PresentationLayer.View
             }
             else
             {
-                if (MessageBox.Show("Bạn có chắc muốn gửi mail?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (MessageBox.Show($"Bạn có chắc muốn gửi mail cho {listBox1.SelectedItems.Count} nhân viên?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     foreach (var x in listBox1.SelectedItems)
                     {

@@ -129,7 +129,6 @@
           <Property Name="ShipperId" Type="varchar" MaxLength="9" Nullable="false" />
           <Property Name="ShipperName" Type="nvarchar" MaxLength="250" Nullable="false" />
           <Property Name="ShipperPhone" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="RoleId" Type="varchar" MaxLength="9" />
           <Property Name="ShipperStatus" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Size">
@@ -163,7 +162,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Custome__440B1D61">
+        <Association Name="FK__Invoice__Custome__4316F928">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -175,7 +174,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Employe__44FF419A">
+        <Association Name="FK__Invoice__Employe__440B1D61">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -187,7 +186,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Shipper__45F365D3">
+        <Association Name="FK__Invoice__Shipper__44FF419A">
           <End Role="Shipper" Type="Self.Shipper" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -271,18 +270,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shipper__RoleId__3F466844">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-          <End Role="Shipper" Type="Self.Shipper" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="Shipper">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Invoice">
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="1" />
           <End Role="InvoiceDetail" Type="Self.InvoiceDetail" Multiplicity="*" />
@@ -330,15 +317,15 @@
             <End Role="ProductDetail" EntitySet="ProductDetail" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Custome__440B1D61" Association="Self.FK__Invoice__Custome__440B1D61">
+          <AssociationSet Name="FK__Invoice__Custome__4316F928" Association="Self.FK__Invoice__Custome__4316F928">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Employe__44FF419A" Association="Self.FK__Invoice__Employe__44FF419A">
+          <AssociationSet Name="FK__Invoice__Employe__440B1D61" Association="Self.FK__Invoice__Employe__440B1D61">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Shipper__45F365D3" Association="Self.FK__Invoice__Shipper__45F365D3">
+          <AssociationSet Name="FK__Invoice__Shipper__44FF419A" Association="Self.FK__Invoice__Shipper__44FF419A">
             <End Role="Shipper" EntitySet="Shipper" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
@@ -365,10 +352,6 @@
           <AssociationSet Name="FK__ProductDe__SizeI__31EC6D26" Association="Self.FK__ProductDe__SizeI__31EC6D26">
             <End Role="Size" EntitySet="Size" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Shipper__RoleId__3F466844" Association="Self.FK__Shipper__RoleId__3F466844">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Shipper" EntitySet="Shipper" />
           </AssociationSet>
           <AssociationSet Name="FK_Invoice" Association="Self.FK_Invoice">
             <End Role="Invoice" EntitySet="Invoice" />
@@ -418,7 +401,7 @@
           <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ShoppingCount" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Custome__440B1D61" FromRole="Customer" ToRole="Invoice" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Custome__4316F928" FromRole="Customer" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="Employee">
           <Key>
@@ -436,7 +419,7 @@
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <Property Name="RoleId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Roles" Relationship="Self.FK__Employee__RoleId__3C69FB99" FromRole="Employee" ToRole="Roles" />
-          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Employe__44FF419A" FromRole="Employee" ToRole="Invoice" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Employe__440B1D61" FromRole="Employee" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="Inventory">
           <Key>
@@ -459,9 +442,9 @@
           <Property Name="GuestPayments" Type="Double" />
           <Property Name="InvoiceStatus" Type="Boolean" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__Invoice__Custome__440B1D61" FromRole="Invoice" ToRole="Customer" />
-          <NavigationProperty Name="Employee" Relationship="Self.FK__Invoice__Employe__44FF419A" FromRole="Invoice" ToRole="Employee" />
-          <NavigationProperty Name="Shipper" Relationship="Self.FK__Invoice__Shipper__45F365D3" FromRole="Invoice" ToRole="Shipper" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Invoice__Custome__4316F928" FromRole="Invoice" ToRole="Customer" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK__Invoice__Employe__440B1D61" FromRole="Invoice" ToRole="Employee" />
+          <NavigationProperty Name="Shipper" Relationship="Self.FK__Invoice__Shipper__44FF419A" FromRole="Invoice" ToRole="Shipper" />
           <NavigationProperty Name="InvoiceDetail" Relationship="Self.FK_Invoice" FromRole="Invoice" ToRole="InvoiceDetail" />
         </EntityType>
         <EntityType Name="InvoiceDetail">
@@ -524,7 +507,6 @@
           <Property Name="RoleId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="Employee" Relationship="Self.FK__Employee__RoleId__3C69FB99" FromRole="Roles" ToRole="Employee" />
-          <NavigationProperty Name="Shipper" Relationship="Self.FK__Shipper__RoleId__3F466844" FromRole="Roles" ToRole="Shipper" />
         </EntityType>
         <EntityType Name="Shipper">
           <Key>
@@ -533,10 +515,8 @@
           <Property Name="ShipperId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="ShipperName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ShipperPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RoleId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" />
           <Property Name="ShipperStatus" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Shipper__45F365D3" FromRole="Shipper" ToRole="Invoice" />
-          <NavigationProperty Name="Roles" Relationship="Self.FK__Shipper__RoleId__3F466844" FromRole="Shipper" ToRole="Roles" />
+          <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Shipper__44FF419A" FromRole="Shipper" ToRole="Invoice" />
         </EntityType>
         <EntityType Name="Size">
           <Key>
@@ -582,7 +562,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Custome__440B1D61">
+        <Association Name="FK__Invoice__Custome__4316F928">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -606,7 +586,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Employe__44FF419A">
+        <Association Name="FK__Invoice__Employe__440B1D61">
           <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -630,7 +610,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Invoice__Shipper__45F365D3">
+        <Association Name="FK__Invoice__Shipper__44FF419A">
           <End Role="Shipper" Type="Self.Shipper" Multiplicity="0..1" />
           <End Role="Invoice" Type="Self.Invoice" Multiplicity="*" />
           <ReferentialConstraint>
@@ -702,18 +682,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Shipper__RoleId__3F466844">
-          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
-          <End Role="Shipper" Type="Self.Shipper" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="Shipper">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="QuanLyBanGiayEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Brand" EntityType="Self.Brand" />
           <EntitySet Name="Category" EntityType="Self.Category" />
@@ -741,7 +709,7 @@
             <End Role="Color" EntitySet="Color" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Custome__440B1D61" Association="Self.FK__Invoice__Custome__440B1D61">
+          <AssociationSet Name="FK__Invoice__Custome__4316F928" Association="Self.FK__Invoice__Custome__4316F928">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
@@ -749,7 +717,7 @@
             <End Role="Roles" EntitySet="Roles" />
             <End Role="Employee" EntitySet="Employee" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Employe__44FF419A" Association="Self.FK__Invoice__Employe__44FF419A">
+          <AssociationSet Name="FK__Invoice__Employe__440B1D61" Association="Self.FK__Invoice__Employe__440B1D61">
             <End Role="Employee" EntitySet="Employee" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
@@ -757,7 +725,7 @@
             <End Role="ProductDetail" EntitySet="ProductDetail" />
             <End Role="Inventory" EntitySet="Inventory" />
           </AssociationSet>
-          <AssociationSet Name="FK__Invoice__Shipper__45F365D3" Association="Self.FK__Invoice__Shipper__45F365D3">
+          <AssociationSet Name="FK__Invoice__Shipper__44FF419A" Association="Self.FK__Invoice__Shipper__44FF419A">
             <End Role="Shipper" EntitySet="Shipper" />
             <End Role="Invoice" EntitySet="Invoice" />
           </AssociationSet>
@@ -780,10 +748,6 @@
           <AssociationSet Name="FK__ProductDe__SizeI__31EC6D26" Association="Self.FK__ProductDe__SizeI__31EC6D26">
             <End Role="Size" EntitySet="Size" />
             <End Role="ProductDetail" EntitySet="ProductDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Shipper__RoleId__3F466844" Association="Self.FK__Shipper__RoleId__3F466844">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Shipper" EntitySet="Shipper" />
           </AssociationSet>
         </EntityContainer>
       </Schema>
@@ -926,7 +890,6 @@
                 <ScalarProperty Name="ShipperId" ColumnName="ShipperId" />
                 <ScalarProperty Name="ShipperName" ColumnName="ShipperName" />
                 <ScalarProperty Name="ShipperPhone" ColumnName="ShipperPhone" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="ShipperStatus" ColumnName="ShipperStatus" />
               </MappingFragment>
             </EntityTypeMapping>

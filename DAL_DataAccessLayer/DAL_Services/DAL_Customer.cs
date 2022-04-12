@@ -59,12 +59,12 @@ namespace DAL_DataAccessLayer.DAL_Services
                 var invoice = _db.Invoice.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
                 if (id != null && customer != null)
                 {
-                    _db.Customer.Remove(customer);
                     foreach (var x in _db.InvoiceDetail.Where(c => c.InvoiceId == invoice.InvoiceId))
                     {
                         _db.InvoiceDetail.Remove(x);
                     }
                     _db.Invoice.Remove(invoice);
+                    _db.Customer.Remove(customer);
                     _db.SaveChanges();
                     return "Xóa thành công!";
                 }

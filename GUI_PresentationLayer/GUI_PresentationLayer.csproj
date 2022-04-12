@@ -158,6 +158,12 @@
     <Compile Include="View\FrmSendMail.Designer.cs">
       <DependentUpon>FrmSendMail.cs</DependentUpon>
     </Compile>
+    <Compile Include="View\FrmShipper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\FrmShipper.Designer.cs">
+      <DependentUpon>FrmShipper.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FrmStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -208,6 +214,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FrmSendMail.resx">
       <DependentUpon>FrmSendMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\FrmShipper.resx">
+      <DependentUpon>FrmShipper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FrmStatistics.resx">
       <DependentUpon>FrmStatistics.cs</DependentUpon>

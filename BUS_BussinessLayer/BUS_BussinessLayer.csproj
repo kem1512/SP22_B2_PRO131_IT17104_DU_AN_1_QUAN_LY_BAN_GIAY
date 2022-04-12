@@ -159,7 +159,6 @@
     <Compile Include="Utilities\ConvertMoney.cs" />
     <Compile Include="Utilities\GenerateCode.cs" />
     <Compile Include="Utilities\GenerateDoucument.cs" />
-    <Compile Include="Utilities\GenerateExcel.cs" />
     <Compile Include="Utilities\GenerateInvoice.cs" />
     <Compile Include="Utilities\SendSMS.cs" />
   </ItemGroup>

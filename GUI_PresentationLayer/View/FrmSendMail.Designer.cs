@@ -50,7 +50,7 @@
             // 
             // textBox1
             // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(299, 180);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -90,9 +90,9 @@
             this.lblAttach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAttach.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAttach.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.lblAttach.Location = new System.Drawing.Point(290, 99);
+            this.lblAttach.Location = new System.Drawing.Point(299, 99);
             this.lblAttach.Name = "lblAttach";
-            this.lblAttach.Size = new System.Drawing.Size(486, 25);
+            this.lblAttach.Size = new System.Drawing.Size(477, 25);
             this.lblAttach.TabIndex = 4;
             this.lblAttach.TabStop = true;
             this.lblAttach.Text = "Đính kèm";
@@ -115,6 +115,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.ItemHeight = 25;
             this.listBox1.Location = new System.Drawing.Point(6, 99);
+            this.listBox1.MultiColumn = true;
             this.listBox1.Name = "listBox1";
             this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiSimple;
             this.listBox1.Size = new System.Drawing.Size(278, 329);

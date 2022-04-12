@@ -17,13 +17,11 @@ namespace DAL_DataAccessLayer.Entities
         public Roles()
         {
             this.Employee = new HashSet<Employee>();
-            this.Shipper = new HashSet<Shipper>();
         }
     
         public string RoleId { get; set; }
         public string RoleName { get; set; }
     
         public virtual ICollection<Employee> Employee { get; set; }
-        public virtual ICollection<Shipper> Shipper { get; set; }
     }
 }

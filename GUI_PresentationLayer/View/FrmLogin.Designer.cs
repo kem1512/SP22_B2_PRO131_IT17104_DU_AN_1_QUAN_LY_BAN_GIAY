@@ -489,7 +489,7 @@
             this.pbxSend.IconColor = System.Drawing.SystemColors.ControlText;
             this.pbxSend.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.pbxSend.IconSize = 40;
-            this.pbxSend.Location = new System.Drawing.Point(594, 168);
+            this.pbxSend.Location = new System.Drawing.Point(579, 168);
             this.pbxSend.Name = "pbxSend";
             this.pbxSend.Size = new System.Drawing.Size(46, 40);
             this.pbxSend.TabIndex = 21;
@@ -515,7 +515,7 @@
             this.btnOk.IdleFillColor = System.Drawing.Color.White;
             this.btnOk.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnOk.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnOk.Location = new System.Drawing.Point(200, 425);
+            this.btnOk.Location = new System.Drawing.Point(185, 428);
             this.btnOk.Margin = new System.Windows.Forms.Padding(5);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(391, 86);
@@ -537,7 +537,7 @@
             this.txtRePass.LineIdleColor = System.Drawing.Color.Gray;
             this.txtRePass.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtRePass.LineThickness = 4;
-            this.txtRePass.Location = new System.Drawing.Point(200, 356);
+            this.txtRePass.Location = new System.Drawing.Point(185, 356);
             this.txtRePass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtRePass.Name = "txtRePass";
             this.txtRePass.Size = new System.Drawing.Size(386, 40);
@@ -552,7 +552,7 @@
             this.iconPictureBox4.IconColor = System.Drawing.SystemColors.ControlText;
             this.iconPictureBox4.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox4.IconSize = 42;
-            this.iconPictureBox4.Location = new System.Drawing.Point(131, 356);
+            this.iconPictureBox4.Location = new System.Drawing.Point(116, 356);
             this.iconPictureBox4.Margin = new System.Windows.Forms.Padding(2);
             this.iconPictureBox4.Name = "iconPictureBox4";
             this.iconPictureBox4.Size = new System.Drawing.Size(42, 52);
@@ -574,7 +574,7 @@
             this.txtPass.LineIdleColor = System.Drawing.Color.Gray;
             this.txtPass.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtPass.LineThickness = 4;
-            this.txtPass.Location = new System.Drawing.Point(200, 262);
+            this.txtPass.Location = new System.Drawing.Point(185, 262);
             this.txtPass.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtPass.Name = "txtPass";
             this.txtPass.Size = new System.Drawing.Size(386, 40);
@@ -589,7 +589,7 @@
             this.iconPictureBox3.IconColor = System.Drawing.SystemColors.ControlText;
             this.iconPictureBox3.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox3.IconSize = 42;
-            this.iconPictureBox3.Location = new System.Drawing.Point(131, 262);
+            this.iconPictureBox3.Location = new System.Drawing.Point(116, 262);
             this.iconPictureBox3.Margin = new System.Windows.Forms.Padding(2);
             this.iconPictureBox3.Name = "iconPictureBox3";
             this.iconPictureBox3.Size = new System.Drawing.Size(42, 52);
@@ -611,7 +611,7 @@
             this.txtCode.LineIdleColor = System.Drawing.Color.Gray;
             this.txtCode.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtCode.LineThickness = 4;
-            this.txtCode.Location = new System.Drawing.Point(200, 168);
+            this.txtCode.Location = new System.Drawing.Point(185, 168);
             this.txtCode.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtCode.Name = "txtCode";
             this.txtCode.Size = new System.Drawing.Size(386, 40);
@@ -626,7 +626,7 @@
             this.iconPictureBox2.IconColor = System.Drawing.SystemColors.ControlText;
             this.iconPictureBox2.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox2.IconSize = 42;
-            this.iconPictureBox2.Location = new System.Drawing.Point(131, 168);
+            this.iconPictureBox2.Location = new System.Drawing.Point(116, 168);
             this.iconPictureBox2.Margin = new System.Windows.Forms.Padding(2);
             this.iconPictureBox2.Name = "iconPictureBox2";
             this.iconPictureBox2.Size = new System.Drawing.Size(42, 52);
@@ -648,7 +648,7 @@
             this.txtEmailForgot.LineIdleColor = System.Drawing.Color.Gray;
             this.txtEmailForgot.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtEmailForgot.LineThickness = 4;
-            this.txtEmailForgot.Location = new System.Drawing.Point(200, 84);
+            this.txtEmailForgot.Location = new System.Drawing.Point(185, 84);
             this.txtEmailForgot.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.txtEmailForgot.Name = "txtEmailForgot";
             this.txtEmailForgot.Size = new System.Drawing.Size(386, 40);
@@ -663,7 +663,7 @@
             this.iconPictureBox1.IconColor = System.Drawing.SystemColors.ControlText;
             this.iconPictureBox1.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.iconPictureBox1.IconSize = 42;
-            this.iconPictureBox1.Location = new System.Drawing.Point(131, 84);
+            this.iconPictureBox1.Location = new System.Drawing.Point(116, 84);
             this.iconPictureBox1.Margin = new System.Windows.Forms.Padding(2);
             this.iconPictureBox1.Name = "iconPictureBox1";
             this.iconPictureBox1.Size = new System.Drawing.Size(42, 52);

@@ -139,7 +139,7 @@ namespace GUI_PresentationLayer.View
             cmbBrand.ValueMember = "BrandId";
             cmbBrand.SelectedIndex = -1;
 
-            cmbShipper.DataSource = _iShipperServices.GetListShipper();
+            cmbShipper.DataSource = _iShipperServices.GetListShipper().Where(c => !c.ShipperStatus).ToList();
             cmbShipper.DisplayMember = "ShipperName";
             cmbShipper.ValueMember = "ShipperId";
             cmbShipper.SelectedIndex = -1;
@@ -149,8 +149,8 @@ namespace GUI_PresentationLayer.View
             cmbPhone.ValueMember = "CustomerId";
             cmbPhone.SelectedIndex = -1;
 
+            dgridOrder.Rows.Clear();
             btnCancel.Tag = "";
-            dgridProduct.Rows.Clear();
             txtName.Text = "";
             txtAddress.Text = "";
         }
@@ -380,7 +380,7 @@ namespace GUI_PresentationLayer.View
                     MessageBox.Show("Không thể sửa đơn hàng!");
                 }
                 _frmMain.LoadData();
-
+            
             }
             else
             {
@@ -523,7 +523,6 @@ namespace GUI_PresentationLayer.View
                         _soundPlayer.Play();
                         AddProductToInvoice(product.ProductId);
                         lblTotalPrice.Text = TotalPrice();
-                        btnQr2.ButtonText = "Quét mã";
                         pbxQr.Image = null;
                     }
                     else
@@ -682,6 +681,15 @@ namespace GUI_PresentationLayer.View
                     }
                 }
                 cmbColor.SelectedIndex = -1;
+            }
+        }
+
+        private void rbtnShop_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnShop.Checked)
+            {
+                txtShipCost.Text = "";
+                cmbShipper.SelectedIndex = -1;
             }
         }
     }

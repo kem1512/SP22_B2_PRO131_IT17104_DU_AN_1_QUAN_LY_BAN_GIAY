@@ -64,6 +64,10 @@
             this.txtName = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.cmbPhone = new System.Windows.Forms.ComboBox();
             this.gbxProduct = new System.Windows.Forms.GroupBox();
+            this.pnlQr = new System.Windows.Forms.Panel();
+            this.btnQr2 = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.cmbCamera = new System.Windows.Forms.ComboBox();
+            this.pbxQr = new System.Windows.Forms.PictureBox();
             this.dgridProduct = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewImageColumn();
@@ -77,10 +81,6 @@
             this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.pnlQr = new System.Windows.Forms.Panel();
-            this.btnQr2 = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.cmbCamera = new System.Windows.Forms.ComboBox();
-            this.pbxQr = new System.Windows.Forms.PictureBox();
             this.gbxOrder = new System.Windows.Forms.GroupBox();
             this.dgridOrder = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -103,9 +103,9 @@
             this.btnViewOrder = new Bunifu.Framework.UI.BunifuThinButton2();
             this.tlpRight.SuspendLayout();
             this.gbxProduct.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).BeginInit();
             this.pnlQr.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbxQr)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).BeginInit();
             this.gbxOrder.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgridOrder)).BeginInit();
             this.tlpFilter.SuspendLayout();
@@ -139,7 +139,7 @@
             this.tlpRight.ColumnCount = 3;
             this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.23457F));
             this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.76543F));
-            this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 153F));
             this.tlpRight.Controls.Add(this.cmbShipper, 1, 5);
             this.tlpRight.Controls.Add(this.txtAddress, 1, 1);
             this.tlpRight.Controls.Add(this.lblAddress, 0, 1);
@@ -187,7 +187,7 @@
             this.cmbShipper.Enabled = false;
             this.cmbShipper.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShipper.FormattingEnabled = true;
-            this.cmbShipper.Location = new System.Drawing.Point(171, 359);
+            this.cmbShipper.Location = new System.Drawing.Point(171, 360);
             this.cmbShipper.Name = "cmbShipper";
             this.cmbShipper.Size = new System.Drawing.Size(272, 39);
             this.cmbShipper.TabIndex = 23;
@@ -297,20 +297,21 @@
             this.rbtnShop.AutoSize = true;
             this.rbtnShop.Checked = true;
             this.rbtnShop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnShop.Location = new System.Drawing.Point(163, 229);
+            this.rbtnShop.Location = new System.Drawing.Point(161, 229);
             this.rbtnShop.Name = "rbtnShop";
             this.rbtnShop.Size = new System.Drawing.Size(138, 24);
             this.rbtnShop.TabIndex = 17;
             this.rbtnShop.TabStop = true;
             this.rbtnShop.Text = "Tại cửa hàng";
             this.rbtnShop.UseVisualStyleBackColor = true;
+            this.rbtnShop.CheckedChanged += new System.EventHandler(this.rbtnShop_CheckedChanged);
             // 
             // rbtnShip
             // 
             this.rbtnShip.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.rbtnShip.AutoSize = true;
             this.rbtnShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnShip.Location = new System.Drawing.Point(310, 229);
+            this.rbtnShip.Location = new System.Drawing.Point(307, 229);
             this.rbtnShip.Name = "rbtnShip";
             this.rbtnShip.Size = new System.Drawing.Size(113, 24);
             this.rbtnShip.TabIndex = 18;
@@ -362,7 +363,7 @@
             this.btnConfirm.Location = new System.Drawing.Point(5, 584);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(5);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(147, 67);
+            this.btnConfirm.Size = new System.Drawing.Size(146, 67);
             this.btnConfirm.TabIndex = 20;
             this.btnConfirm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -386,10 +387,10 @@
             this.btnOk.IdleFillColor = System.Drawing.Color.White;
             this.btnOk.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnOk.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnOk.Location = new System.Drawing.Point(162, 584);
+            this.btnOk.Location = new System.Drawing.Point(161, 584);
             this.btnOk.Margin = new System.Windows.Forms.Padding(5);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(140, 67);
+            this.btnOk.Size = new System.Drawing.Size(138, 67);
             this.btnOk.TabIndex = 21;
             this.btnOk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -413,7 +414,7 @@
             this.btnCancel.IdleFillColor = System.Drawing.Color.White;
             this.btnCancel.IdleForecolor = System.Drawing.Color.Red;
             this.btnCancel.IdleLineColor = System.Drawing.Color.Red;
-            this.btnCancel.Location = new System.Drawing.Point(332, 584);
+            this.btnCancel.Location = new System.Drawing.Point(330, 584);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(101, 67);
@@ -426,7 +427,7 @@
             this.lblTotalPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblTotalPrice.AutoSize = true;
             this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold);
-            this.lblTotalPrice.Location = new System.Drawing.Point(167, 430);
+            this.lblTotalPrice.Location = new System.Drawing.Point(166, 430);
             this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
             this.lblTotalPrice.Name = "lblTotalPrice";
             this.lblTotalPrice.Size = new System.Drawing.Size(68, 22);
@@ -438,7 +439,7 @@
             this.lblMoneyLeft.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMoneyLeft.AutoSize = true;
             this.lblMoneyLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold);
-            this.lblMoneyLeft.Location = new System.Drawing.Point(167, 540);
+            this.lblMoneyLeft.Location = new System.Drawing.Point(166, 540);
             this.lblMoneyLeft.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
             this.lblMoneyLeft.Name = "lblMoneyLeft";
             this.lblMoneyLeft.Size = new System.Drawing.Size(68, 22);
@@ -529,8 +530,8 @@
             this.gbxProduct.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbxProduct.Controls.Add(this.dgridProduct);
             this.gbxProduct.Controls.Add(this.pnlQr);
+            this.gbxProduct.Controls.Add(this.dgridProduct);
             this.gbxProduct.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.gbxProduct.Location = new System.Drawing.Point(25, 72);
             this.gbxProduct.Name = "gbxProduct";
@@ -538,6 +539,72 @@
             this.gbxProduct.TabIndex = 6;
             this.gbxProduct.TabStop = false;
             this.gbxProduct.Text = "Sản phẩm";
+            // 
+            // pnlQr
+            // 
+            this.pnlQr.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlQr.Controls.Add(this.btnQr2);
+            this.pnlQr.Controls.Add(this.cmbCamera);
+            this.pnlQr.Controls.Add(this.pbxQr);
+            this.pnlQr.Location = new System.Drawing.Point(3, 26);
+            this.pnlQr.Name = "pnlQr";
+            this.pnlQr.Size = new System.Drawing.Size(996, 308);
+            this.pnlQr.TabIndex = 4;
+            this.pnlQr.Visible = false;
+            // 
+            // btnQr2
+            // 
+            this.btnQr2.ActiveBorderThickness = 1;
+            this.btnQr2.ActiveCornerRadius = 20;
+            this.btnQr2.ActiveFillColor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.ActiveForecolor = System.Drawing.Color.White;
+            this.btnQr2.ActiveLineColor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnQr2.BackColor = System.Drawing.Color.White;
+            this.btnQr2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQr2.BackgroundImage")));
+            this.btnQr2.ButtonText = "Quét mã";
+            this.btnQr2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnQr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnQr2.ForeColor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.IdleBorderThickness = 1;
+            this.btnQr2.IdleCornerRadius = 20;
+            this.btnQr2.IdleFillColor = System.Drawing.Color.White;
+            this.btnQr2.IdleForecolor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.IdleLineColor = System.Drawing.Color.SeaGreen;
+            this.btnQr2.Location = new System.Drawing.Point(572, 152);
+            this.btnQr2.Margin = new System.Windows.Forms.Padding(5);
+            this.btnQr2.Name = "btnQr2";
+            this.btnQr2.Size = new System.Drawing.Size(398, 95);
+            this.btnQr2.TabIndex = 27;
+            this.btnQr2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btnQr2.Click += new System.EventHandler(this.btnQr2_Click);
+            // 
+            // cmbCamera
+            // 
+            this.cmbCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.cmbCamera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbCamera.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbCamera.FormattingEnabled = true;
+            this.cmbCamera.Location = new System.Drawing.Point(572, 55);
+            this.cmbCamera.Name = "cmbCamera";
+            this.cmbCamera.Size = new System.Drawing.Size(398, 46);
+            this.cmbCamera.TabIndex = 1;
+            // 
+            // pbxQr
+            // 
+            this.pbxQr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.pbxQr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbxQr.Location = new System.Drawing.Point(94, 14);
+            this.pbxQr.Name = "pbxQr";
+            this.pbxQr.Size = new System.Drawing.Size(426, 265);
+            this.pbxQr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxQr.TabIndex = 0;
+            this.pbxQr.TabStop = false;
             // 
             // dgridProduct
             // 
@@ -700,72 +767,6 @@
             this.Column5.ReadOnly = true;
             this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // pnlQr
-            // 
-            this.pnlQr.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.pnlQr.Controls.Add(this.btnQr2);
-            this.pnlQr.Controls.Add(this.cmbCamera);
-            this.pnlQr.Controls.Add(this.pbxQr);
-            this.pnlQr.Location = new System.Drawing.Point(3, 26);
-            this.pnlQr.Name = "pnlQr";
-            this.pnlQr.Size = new System.Drawing.Size(996, 308);
-            this.pnlQr.TabIndex = 4;
-            this.pnlQr.Visible = false;
-            // 
-            // btnQr2
-            // 
-            this.btnQr2.ActiveBorderThickness = 1;
-            this.btnQr2.ActiveCornerRadius = 20;
-            this.btnQr2.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.ActiveForecolor = System.Drawing.Color.White;
-            this.btnQr2.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnQr2.BackColor = System.Drawing.Color.White;
-            this.btnQr2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnQr2.BackgroundImage")));
-            this.btnQr2.ButtonText = "Quét mã";
-            this.btnQr2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnQr2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnQr2.ForeColor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.IdleBorderThickness = 1;
-            this.btnQr2.IdleCornerRadius = 20;
-            this.btnQr2.IdleFillColor = System.Drawing.Color.White;
-            this.btnQr2.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnQr2.Location = new System.Drawing.Point(572, 152);
-            this.btnQr2.Margin = new System.Windows.Forms.Padding(5);
-            this.btnQr2.Name = "btnQr2";
-            this.btnQr2.Size = new System.Drawing.Size(398, 95);
-            this.btnQr2.TabIndex = 27;
-            this.btnQr2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.btnQr2.Click += new System.EventHandler(this.btnQr2_Click);
-            // 
-            // cmbCamera
-            // 
-            this.cmbCamera.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cmbCamera.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbCamera.Font = new System.Drawing.Font("Microsoft Sans Serif", 19.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cmbCamera.FormattingEnabled = true;
-            this.cmbCamera.Location = new System.Drawing.Point(572, 55);
-            this.cmbCamera.Name = "cmbCamera";
-            this.cmbCamera.Size = new System.Drawing.Size(398, 46);
-            this.cmbCamera.TabIndex = 1;
-            // 
-            // pbxQr
-            // 
-            this.pbxQr.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.pbxQr.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbxQr.Location = new System.Drawing.Point(94, 14);
-            this.pbxQr.Name = "pbxQr";
-            this.pbxQr.Size = new System.Drawing.Size(426, 265);
-            this.pbxQr.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbxQr.TabIndex = 0;
-            this.pbxQr.TabStop = false;
             // 
             // gbxOrder
             // 
@@ -1083,9 +1084,9 @@
             this.tlpRight.ResumeLayout(false);
             this.tlpRight.PerformLayout();
             this.gbxProduct.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).EndInit();
             this.pnlQr.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pbxQr)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgridProduct)).EndInit();
             this.gbxOrder.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgridOrder)).EndInit();
             this.tlpFilter.ResumeLayout(false);

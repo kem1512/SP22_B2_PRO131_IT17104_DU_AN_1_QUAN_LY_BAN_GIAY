@@ -17,7 +17,7 @@ namespace GUI_PresentationLayer
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmSendMail());
+            Application.Run(new FrmLogin());
         }
     }
 }

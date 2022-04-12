@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmEmployee));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -95,6 +96,8 @@
             this.bunifuThinButton21 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.btnAddMulti = new Bunifu.Framework.UI.BunifuThinButton2();
             this.bunifuThinButton23 = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.btnShipper = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pbxEmployee)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbxSearch)).BeginInit();
             this.tlpLeft.SuspendLayout();
@@ -107,6 +110,7 @@
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // txtEmail
@@ -1009,6 +1013,22 @@
             this.bunifuThinButton23.Size = new System.Drawing.Size(241, 62);
             this.bunifuThinButton23.TabIndex = 39;
             this.bunifuThinButton23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.bunifuThinButton23.Click += new System.EventHandler(this.bunifuThinButton23_Click_1);
+            // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnShipper});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(254, 56);
+            // 
+            // btnShipper
+            // 
+            this.btnShipper.Name = "btnShipper";
+            this.btnShipper.Size = new System.Drawing.Size(253, 24);
+            this.btnShipper.Text = "Thêm nhân viên giao hàng";
+            this.btnShipper.Click += new System.EventHandler(this.btnShipper_Click);
             // 
             // FrmEmployee
             // 
@@ -1016,6 +1036,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1405, 755);
+            this.ContextMenuStrip = this.contextMenuStrip1;
             this.Controls.Add(this.bunifuThinButton23);
             this.Controls.Add(this.btnAddMulti);
             this.Controls.Add(this.bunifuThinButton21);
@@ -1042,6 +1063,7 @@
             this.tabPage2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1105,5 +1127,7 @@
         private System.Windows.Forms.DataGridViewLinkColumn Column9;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pass;
         private System.Windows.Forms.DataGridViewTextBoxColumn EmployeeImage;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem btnShipper;
     }
 }

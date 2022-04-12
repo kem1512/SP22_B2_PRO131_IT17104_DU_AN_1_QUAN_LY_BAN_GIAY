@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Ganss.Excel;
 
 namespace BUS_BussinessLayer.Utilities
 {
@@ -56,6 +57,24 @@ namespace BUS_BussinessLayer.Utilities
                 workbook = null;
                 worksheet = null;
             }
+        }
+
+        public static List<T> AddMultipleFromExcel<T>()
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    var result = new ExcelMapper(openFileDialog.FileName).Fetch<T>().ToList();
+                    return result;
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message);
+            }
+            return null;
         }
     }
 }

@@ -22,10 +22,8 @@ namespace DAL_DataAccessLayer.Entities
         public string ShipperId { get; set; }
         public string ShipperName { get; set; }
         public string ShipperPhone { get; set; }
-        public string RoleId { get; set; }
         public bool ShipperStatus { get; set; }
     
         public virtual ICollection<Invoice> Invoice { get; set; }
-        public virtual Roles Roles { get; set; }
     }
 }

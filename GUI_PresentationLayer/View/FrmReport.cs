@@ -61,15 +61,15 @@ namespace GUI_PresentationLayer.View
             float total = 0;
             foreach (DataGridViewRow x in dgridInvoice.Rows)
             {
-                if (x.Cells[7].Value == "Đã hoàn thành")
+                if (x.Cells[7].Value.ToString() == "Đã hoàn thành")
                 {
                     done++;
                 }
-                if (x.Cells[7].Value == "Đang giao hàng")
+                if (x.Cells[7].Value.ToString() == "Đang giao hàng")
                 {
                     ship++;
                 }
-                if (x.Cells[7].Value == "Đã hủy")
+                if (x.Cells[7].Value.ToString() == "Đã hủy")
                 {
                     cancel++;
                 }
@@ -81,12 +81,40 @@ namespace GUI_PresentationLayer.View
             lblTotalPrice.Text = ConvertMoney.ConvertToVND(total) + " VNĐ";
         }
 
+        private void ShowMail()
+        {
+            string mail = null;
+            Form form = new Form();
+            TextBox textBox = new TextBox();
+            Button button = new Button();
+            button.Text = "Xác nhận";
+            textBox.Multiline = true;
+            textBox.Height = 150;
+            button.Height = 100;
+            button.Click += (o, args) =>
+            {
+                mail = textBox.Text;
+                if (MessageBox.Show("Bạn có chắc muốn gửi mail đến " + textBox.Text, "Thông báo",
+                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                {
+                    SendSMS.SendMail(Email, "Báo cáo hôm nay", $"Số đơn bán được: {lblSale.Text} \nSố hóa đơn hủy: {lblShip.Text} \nSố đơn đang giao: {lblShip.Text} \nTổng tiền trong ngày: {lblTotalPrice.Text}");
+                    MessageBox.Show("Gửi thành công!");
+                    form.Close();
+                }
+            };
+            textBox.Dock = DockStyle.Top;
+            button.Dock = DockStyle.Top;
+            textBox.Font = new Font("Arial", 12);
+            form.StartPosition = FormStartPosition.CenterScreen;
+            form.Controls.Add(button);
+            form.Controls.Add(textBox);
+            form.MaximizeBox = false;
+            form.ShowDialog();
+        }
+
         private void btnReport_Click(object sender, EventArgs e)
         {
-            if (Email != null)
-            {
-                SendSMS.SendMail(Email, "Báo cáo hôm nay", "Số đơn bán được");
-            }
+            ShowMail();
         }
     }
 }

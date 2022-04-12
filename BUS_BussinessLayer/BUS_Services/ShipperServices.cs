@@ -25,22 +25,22 @@ namespace BUS_BussinessLayer.BUS_Services
 
         public string AddShipper(Shipper shipper)
         {
-            throw new NotImplementedException();
+            return _iDalShipper.AddShipper(shipper);
         }
 
         public string UpdateShipper(Shipper shipper)
         {
-            throw new NotImplementedException();
+            return _iDalShipper.UpdateShipper(shipper);
         }
 
         public string RemoveShipper(string id)
         {
-            throw new NotImplementedException();
+            return _iDalShipper.RemoveShipper(id);
         }
 
         public Shipper GetShipperById(string id)
         {
-            throw new NotImplementedException();
+            return _iDalShipper.GetShipperById(id);
         }
     }
 }

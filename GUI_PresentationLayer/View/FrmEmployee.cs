@@ -314,7 +314,7 @@ namespace GUI_PresentationLayer.View
 
         private void btnAddMulti_Click(object sender, EventArgs e)
         {
-            var result = GenerateExcel.AddMultipleFromExcel<Employee>();
+            var result = GenerateDoucument.AddMultipleFromExcel<Employee>();
             if (result != null)
             {
                 if (MessageBox.Show($"Bạn có chắc muốn thêm {result.Count} nhân viên không?", "Thông báo",
@@ -396,6 +396,18 @@ namespace GUI_PresentationLayer.View
             {
                 Send(em, att);
             }
+        }
+
+        private void bunifuThinButton23_Click_1(object sender, EventArgs e)
+        {
+            FrmSendMail frmSendMail = new FrmSendMail();
+            frmSendMail.ShowDialog();
+        }
+
+        private void btnShipper_Click(object sender, EventArgs e)
+        {
+            FrmShipper frmShipper = new FrmShipper();
+            frmShipper.ShowDialog();
         }
     }
 }

@@ -40,6 +40,10 @@
             this.lblTitle = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgrid_Revenue = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlTurnover = new System.Windows.Forms.Panel();
             this.dgdtpcDateBegin = new Bunifu.Framework.UI.BunifuDatepicker();
             this.lblDateBegin = new System.Windows.Forms.Label();
@@ -62,10 +66,6 @@
             this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pnlCancel = new System.Windows.Forms.Panel();
             this.lblCancel = new System.Windows.Forms.Label();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Revenue)).BeginInit();
             this.pnlTurnover.SuspendLayout();
@@ -85,7 +85,7 @@
             this.lblTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 22.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTitle.Location = new System.Drawing.Point(0, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(1466, 118);
+            this.lblTitle.Size = new System.Drawing.Size(1466, 88);
             this.lblTitle.TabIndex = 0;
             this.lblTitle.Text = "THỐNG KÊ";
             this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -98,16 +98,16 @@
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel2.Controls.Add(this.dgrid_Revenue);
             this.panel2.Controls.Add(this.pnlTurnover);
-            this.panel2.Location = new System.Drawing.Point(12, 121);
+            this.panel2.Location = new System.Drawing.Point(12, 91);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1442, 311);
+            this.panel2.Size = new System.Drawing.Size(1442, 324);
             this.panel2.TabIndex = 2;
             // 
             // dgrid_Revenue
             // 
             this.dgrid_Revenue.AllowUserToAddRows = false;
             this.dgrid_Revenue.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             this.dgrid_Revenue.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgrid_Revenue.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrid_Revenue.BackgroundColor = System.Drawing.Color.Gainsboro;
@@ -129,7 +129,7 @@
             this.Column12});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -145,10 +145,38 @@
             this.dgrid_Revenue.ReadOnly = true;
             this.dgrid_Revenue.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Revenue.RowHeadersWidth = 51;
-            this.dgrid_Revenue.RowTemplate.Height = 24;
-            this.dgrid_Revenue.Size = new System.Drawing.Size(1440, 225);
+            this.dgrid_Revenue.RowTemplate.Height = 40;
+            this.dgrid_Revenue.Size = new System.Drawing.Size(1440, 238);
             this.dgrid_Revenue.StandardTab = true;
             this.dgrid_Revenue.TabIndex = 5;
+            // 
+            // Column9
+            // 
+            this.Column9.HeaderText = "Mã nhân viên";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.HeaderText = "Mã hoá đơn";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.HeaderText = "Ngày đặt hàng";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.HeaderText = "Giá trị hoá đơn";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
             // 
             // pnlTurnover
             // 
@@ -234,7 +262,7 @@
             this.sctnBot.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.sctnBot.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.sctnBot.Location = new System.Drawing.Point(13, 438);
+            this.sctnBot.Location = new System.Drawing.Point(13, 420);
             this.sctnBot.Name = "sctnBot";
             // 
             // sctnBot.Panel1
@@ -246,7 +274,7 @@
             // 
             this.sctnBot.Panel2.Controls.Add(this.dgrid_Cancel);
             this.sctnBot.Panel2.Controls.Add(this.pnlCancel);
-            this.sctnBot.Size = new System.Drawing.Size(1440, 318);
+            this.sctnBot.Size = new System.Drawing.Size(1440, 336);
             this.sctnBot.SplitterDistance = 736;
             this.sctnBot.SplitterWidth = 10;
             this.sctnBot.TabIndex = 3;
@@ -255,7 +283,7 @@
             // 
             this.dgrid_Brand.AllowUserToAddRows = false;
             this.dgrid_Brand.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             this.dgrid_Brand.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgrid_Brand.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrid_Brand.BackgroundColor = System.Drawing.Color.Gainsboro;
@@ -276,7 +304,7 @@
             this.Column3});
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -292,8 +320,8 @@
             this.dgrid_Brand.ReadOnly = true;
             this.dgrid_Brand.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Brand.RowHeadersWidth = 51;
-            this.dgrid_Brand.RowTemplate.Height = 24;
-            this.dgrid_Brand.Size = new System.Drawing.Size(734, 256);
+            this.dgrid_Brand.RowTemplate.Height = 35;
+            this.dgrid_Brand.Size = new System.Drawing.Size(734, 274);
             this.dgrid_Brand.TabIndex = 1;
             // 
             // Column1
@@ -360,7 +388,7 @@
             // 
             this.dgrid_Cancel.AllowUserToAddRows = false;
             this.dgrid_Cancel.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
             this.dgrid_Cancel.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgrid_Cancel.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgrid_Cancel.BackgroundColor = System.Drawing.Color.Gainsboro;
@@ -383,7 +411,7 @@
             this.Column8});
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Roboto", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Roboto", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -399,9 +427,9 @@
             this.dgrid_Cancel.ReadOnly = true;
             this.dgrid_Cancel.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Cancel.RowHeadersWidth = 51;
-            this.dgrid_Cancel.RowTemplate.Height = 24;
-            this.dgrid_Cancel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgrid_Cancel.Size = new System.Drawing.Size(692, 256);
+            this.dgrid_Cancel.RowTemplate.Height = 35;
+            this.dgrid_Cancel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dgrid_Cancel.Size = new System.Drawing.Size(692, 274);
             this.dgrid_Cancel.TabIndex = 2;
             // 
             // Column4
@@ -461,34 +489,6 @@
             this.lblCancel.TabIndex = 1;
             this.lblCancel.Text = "Đơn hàng bị hủy";
             // 
-            // Column9
-            // 
-            this.Column9.HeaderText = "Mã nhân viên";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.HeaderText = "Mã hoá đơn";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.HeaderText = "Ngày đặt hàng";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.HeaderText = "Giá trị hoá đơn";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
             // FrmStatistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -534,7 +534,6 @@
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcDateEnd;
         private Bunifu.Framework.UI.BunifuDatepicker dgdtpcDateBegin;
         private System.Windows.Forms.Label lblDateBegin;
-        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Revenue;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgrid_Brand;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
