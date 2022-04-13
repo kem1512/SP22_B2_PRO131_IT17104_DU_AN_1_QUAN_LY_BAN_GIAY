@@ -534,22 +534,6 @@ namespace GUI_PresentationLayer.View
                 }
                 pdfDocument.Save(saveFileDialog.FileName);
             }
-
-            // var result = GenerateExcel.AddMultipleFromExcel<Product>();
-            // if (result != null)
-            // {
-            //     if (MessageBox.Show($"Bạn có chắc muốn thêm {result.Count} sản phẩm?", "Thông báo",
-            //             MessageBoxButtons.YesNo) == DialogResult.Yes)
-            //     {
-            //         foreach (var x in result)
-            //         {
-            //             var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
-            //             x.ProductId = productId;
-            //             MessageBox.Show(_iProductServices.AddProduct(x, new ProductDetail() { ProductId = productId, UnitPrice = 0 }, new Inventory() { ProductId = productId, Amount = 0 }));
-            //         }
-            //         LoadData();
-            //     }
-            // }
         }
 
         private void bunifuThinButton21_Click(object sender, EventArgs e)

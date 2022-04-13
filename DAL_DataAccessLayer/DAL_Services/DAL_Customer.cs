@@ -56,14 +56,17 @@ namespace DAL_DataAccessLayer.DAL_Services
             using (_db = new QuanLyBanGiayEntities())
             {
                 var customer = _db.Customer.FirstOrDefault(c => c.CustomerId == id);
-                var invoice = _db.Invoice.FirstOrDefault(c => c.CustomerId == customer.CustomerId);
+                var invoice = _db.Invoice.FirstOrDefault(c => c.CustomerId == id);
                 if (id != null && customer != null)
                 {
-                    foreach (var x in _db.InvoiceDetail.Where(c => c.InvoiceId == invoice.InvoiceId))
+                    if (invoice != null)
                     {
-                        _db.InvoiceDetail.Remove(x);
+                        foreach (var x in _db.InvoiceDetail.Where(c => c.InvoiceId == invoice.InvoiceId))
+                        {
+                            _db.InvoiceDetail.Remove(x);
+                        }
+                        _db.Invoice.Remove(invoice);
                     }
-                    _db.Invoice.Remove(invoice);
                     _db.Customer.Remove(customer);
                     _db.SaveChanges();
                     return "Xóa thành công!";
@@ -119,9 +122,9 @@ namespace DAL_DataAccessLayer.DAL_Services
                 {
                     customer.ShoppingCount++;
                     _db.SaveChanges();
-                    return "Phục hồi thành công!";
+                    return "Thành công!";
                 }
-                return "Phục hồi thất bại!";
+                return "Thất bại!";
             }
         }
     }

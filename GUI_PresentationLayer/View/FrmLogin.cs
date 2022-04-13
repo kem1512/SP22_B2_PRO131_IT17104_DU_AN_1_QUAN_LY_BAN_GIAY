@@ -150,8 +150,6 @@ namespace GUI_PresentationLayer.View
         {
             tabctrlMain.SelectedIndex = 2;
         }
-
-        private int countCode = 4;
         private void btnOk_Click(object sender, EventArgs e)
         {
             if (txtEmailForgot.Text != "")
@@ -165,12 +163,16 @@ namespace GUI_PresentationLayer.View
                         {
                             if (em != null)
                             {
-                                MessageBox.Show(_iEmployeeServices.ChangePassword(em.Email, txtPass.Text));
-                                txtEmailForgot.Text = "";
-                                txtCode.Text = "";
-                                txtPass.Text = "";
-                                txtRePass.Text = "";
-                                code = null;
+                                if (MessageBox.Show("Bạn có chắc muốn đổi mật khẩu?", "Thông báo",
+                                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                                {
+                                    MessageBox.Show(_iEmployeeServices.ChangePassword(em.Email, txtPass.Text));
+                                    txtEmailForgot.Text = "";
+                                    txtCode.Text = "";
+                                    txtPass.Text = "";
+                                    txtRePass.Text = "";
+                                    code = null;
+                                }
                             }
                             else
                             {
@@ -184,7 +186,7 @@ namespace GUI_PresentationLayer.View
                     }
                     else
                     {
-                        MessageBox.Show($"Sai mã xác nhận, bạn còn {countCode} lần nhập!");
+                        MessageBox.Show($"Sai mã xác nhận!");
                     }
                 }
                 else

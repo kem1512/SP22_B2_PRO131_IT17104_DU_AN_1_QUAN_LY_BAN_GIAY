@@ -51,7 +51,7 @@ namespace GUI_PresentationLayer.View
 
         private string ValidateSale()
         {
-            if (cmbPhone.SelectedIndex == -1)
+            if (cmbPhone.Text == "")
             {
                 return "Vui lòng nhập số điện thoại!";
             }
@@ -328,6 +328,26 @@ namespace GUI_PresentationLayer.View
                     {
                         if (MessageBox.Show("Bạn có chắc muốn tạo hóa đơn?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                         {
+
+                            if (!_iCustomerServices.GetCustomers().Any(c => c.Phone == cmbPhone.Text))
+                            {
+                                if (MessageBox.Show("Bạn có chắc muốn thêm mới khách hàng", "Thông báo",
+                                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                                {
+                                    var customerId = !_iCustomerServices.GetCustomers().Any() ? "CT1" : "CT" + _iCustomerServices.GetCustomers().Max(c => int.Parse(c.CustomerId.Replace("CT", "")) + 1);
+                                    MessageBox.Show(_iCustomerServices.AddCustomer(new Customer()
+                                    {
+                                        CustomerId = customerId,
+                                        Address = txtAddress.Text,
+                                        CustomerName = txtName.Text,
+                                        Phone = cmbPhone.Text,
+                                        ShoppingCount = 0,
+                                        Status = true,
+                                    }));
+                                    cmbPhone.DataSource = _iCustomerServices.GetCustomers();
+                                    cmbPhone.SelectedValue = customerId;
+                                }
+                            }
                             var button = sender as BunifuThinButton2;
                             var invoiceId = !_iInvoiceServices.GetInvoices().Any()
                                     ? "IV1"
@@ -356,6 +376,7 @@ namespace GUI_PresentationLayer.View
                                 };
                                 invoiceDetails.Add(result);
                             }
+                            _iCustomerServices.IncreasePurchase(cmbPhone.SelectedValue.ToString());
                             MessageBox.Show(_iInvoiceServices.AddInvoice(invoice, invoiceDetails));
                             if (invoice.InvoiceStatus)
                             {
@@ -366,7 +387,6 @@ namespace GUI_PresentationLayer.View
                                     GenerateInvoice.PrintInvoice(result);
                                 }
                             }
-                            _iCustomerServices.IncreasePurchase(cmbPhone.SelectedValue.ToString());
                             LoadData();
                         }
                     }
@@ -422,8 +442,6 @@ namespace GUI_PresentationLayer.View
             else
             {
                 btnConfirm_Click(sender, e);
-                LoadData();
-                _frmMain.LoadData();
             }
         }
 
@@ -629,16 +647,16 @@ namespace GUI_PresentationLayer.View
 
         private void cmbPhone_TextChanged(object sender, EventArgs e)
         {
-            // if (cmbPhone.SelectedValue != null)
-            // {
-            //     txtAddress.Enabled = false;
-            //     txtName.Enabled = false;
-            // }
-            // else
-            // {
-            //     txtAddress.Enabled = true;
-            //     txtName.Enabled = true;
-            // }
+            if (cmbPhone.SelectedValue != null)
+            {
+                txtAddress.Enabled = false;
+                txtName.Enabled = false;
+            }
+            else
+            {
+                txtAddress.Enabled = true;
+                txtName.Enabled = true;
+            }
         }
 
         private void cmbBrand_MouseDoubleClick(object sender, MouseEventArgs e)

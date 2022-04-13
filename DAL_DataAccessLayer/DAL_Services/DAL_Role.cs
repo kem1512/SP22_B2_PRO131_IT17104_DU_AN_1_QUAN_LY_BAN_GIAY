@@ -48,7 +48,7 @@ namespace DAL_DataAccessLayer.DAL_Services
                         return "Sửa thành công";
                     }
 
-                    return "Thêm thất bại";
+                    return "Sửa thất bại";
                 }
             }
             catch (Exception e)

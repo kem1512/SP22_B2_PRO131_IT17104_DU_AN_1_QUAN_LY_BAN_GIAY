@@ -255,9 +255,9 @@ namespace DAL_DataAccessLayer.DAL_Services
                     {
                         inventory.Amount = inventory.Amount--;
                         _db.SaveChanges();
-                        return "Sản phẩm đã được chuyển vào thùng rác!";
+                        return "Thành công!";
                     }
-                    return "Xóa thất bại!";
+                    return "Thất bại!";
                 }
             }
             catch (Exception e)
