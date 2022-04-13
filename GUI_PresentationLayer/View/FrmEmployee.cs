@@ -58,6 +58,11 @@ namespace GUI_PresentationLayer.View
                 return "Vui lòng chọn vai trò";
             }
 
+            if (!txtEmail.Text.Contains("@") || txtEmail.Text.Contains("."))
+            {
+                return "Định dạng email không đúng!";
+            }
+
             if ((DateTime.Now.Year - dgdtpcStaff.Value.Year) < 18)
             {
                 return "Chưa đủ 18 tuổi!";
@@ -77,9 +82,9 @@ namespace GUI_PresentationLayer.View
                 else
                 {
                     var employeeId = !_iEmployeeServices.GetEmployees().Any()
-                        ? "NV1"
-                        : "NV" + _iEmployeeServices.GetEmployees()
-                            .Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
+                        ? "EM1"
+                        : "EM" + _iEmployeeServices.GetEmployees()
+                            .Max(c => int.Parse(c.EmployeeId.Replace("EM", "")) + 1);
                     if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) ==
                         DialogResult.Yes)
                     {
@@ -301,14 +306,7 @@ namespace GUI_PresentationLayer.View
         {
             foreach (DataGridViewRow x in dgridEmployee.Rows)
             {
-                if (true)
-                {
-
-                }
-                else
-                {
-                    x.Visible = x.Cells[1].Value.ToString().Contains(txtSearch.Text);
-                }
+                x.Visible = x.Cells[1].Value.ToString().Contains(txtSearch.Text);
             }
         }
 
@@ -329,9 +327,9 @@ namespace GUI_PresentationLayer.View
                         else
                         {
                             var employeeId = !_iEmployeeServices.GetEmployees().Any()
-                                ? "NV1"
-                                : "NV" + _iEmployeeServices.GetEmployees()
-                                    .Max(c => int.Parse(c.EmployeeId.Replace("NV", "")) + 1);
+                                ? "EM1"
+                                : "EM" + _iEmployeeServices.GetEmployees()
+                                    .Max(c => int.Parse(c.EmployeeId.Replace("EM", "")) + 1);
                             MessageBox.Show(_iEmployeeServices.AddEmployee(new Employee()
                             {
                                 DateOfBirth = x.DateOfBirth,
