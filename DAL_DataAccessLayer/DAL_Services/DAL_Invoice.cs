@@ -57,17 +57,18 @@ namespace DAL_DataAccessLayer.DAL_Services
                     {
                         // Sửa lại hóa đơn
                         inv.EmployeeId = invoice.EmployeeId;
-                        inv.CustomerId = invoice.CustomerId;
                         inv.DateCreate = invoice.DateCreate;
                         inv.Description = invoice.Description;
                         inv.InvoiceStatus = invoice.InvoiceStatus;
 
-                        for (int i = 0; i < invoiceDetail.Count; i++)
+                        foreach (var x in invd)
                         {
-                            invd[i].Price = invoiceDetail[i].Price;
-                            invd[i].ProductId = invoiceDetail[i].ProductId;
-                            invd[i].Quantity = invoiceDetail[i].Quantity;
-                            invd[i].TotalPrice = invoiceDetail[i].TotalPrice;
+                            _db.InvoiceDetail.Remove(x);
+                        }
+
+                        foreach (var x in invoiceDetail)
+                        {
+                            _db.InvoiceDetail.Add(x);
                         }
                         _db.SaveChanges();
                         return "Sửa thành công!";

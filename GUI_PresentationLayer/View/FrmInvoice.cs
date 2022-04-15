@@ -12,6 +12,7 @@ using BUS_BussinessLayer.iBUS_Services;
 using BUS_BussinessLayer.Models;
 using BUS_BussinessLayer.Utilities;
 using DAL_DataAccessLayer.Entities;
+using Color = System.Drawing.Color;
 
 namespace GUI_PresentationLayer.View
 {
@@ -20,10 +21,12 @@ namespace GUI_PresentationLayer.View
         private iInvoiceServices _iInvoiceServices = new InvoiceServices();
         private iCustomerServices _iCustomerServices = new CustomerServices();
         private iEmployeeServices _iEmployeeServices = new EmployeeServices();
-        public FrmInvoice()
+        private FrmMain _frmMain;
+        public FrmInvoice(FrmMain form)
         {
             InitializeComponent();
             LoadData();
+            _frmMain = form;
             cmbFilter.SelectedIndex = 0;
         }
 
@@ -43,12 +46,13 @@ namespace GUI_PresentationLayer.View
                     b.First().Invoice.InvoiceStatus,
                     TotalPrice = b.Sum(c => c.InvoiceDetail.TotalPrice),
                     ProductCount = b.Count(c => c.Invoice.InvoiceId == c.InvoiceDetail.InvoiceId),
-                    b.First().Invoice.ShipperId
+                    b.First().Invoice.ShipperId,
+                    b.First().Invoice.GuestPayments
                 };
             foreach (var x in result)
             {
                 dgridInvoice.Rows.Add(x.InvoiceId, x.DateCreate, x.CustomerName, x.FullName, x.ProductCount, ConvertMoney.ConvertToVND(x.TotalPrice), x.Description,
-                    x.InvoiceStatus ? "Đã hoàn thành" : !x.InvoiceStatus && x.Description != null ? "Đã hủy" : !x.InvoiceStatus && x.ShipperId != null ? "Đang giao hàng": "Chưa hoàn thành");
+                    x.InvoiceStatus ? "Đã hoàn thành" : !x.InvoiceStatus && x.Description != null ? "Đã hủy" : !x.InvoiceStatus && x.ShipperId != null ? "Đang giao hàng": x.GuestPayments <= 0 ? "Chưa thanh toán" : "Chưa hoàn thành");
             }
         }
 
@@ -73,7 +77,7 @@ namespace GUI_PresentationLayer.View
                     "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 var invoice = _iInvoiceServices.GetViewInvoices().Where(c => c.Invoice.InvoiceId == dgridInvoice.Rows[dgridInvoice.CurrentRow.Index].Cells[0].Value.ToString()).ToList();
-                GenerateInvoice.PrintInvoice(invoice);
+                GenerateDoucument.PrintInvoice(invoice);
             }
         }
 
@@ -88,9 +92,18 @@ namespace GUI_PresentationLayer.View
             }
         }
 
-        private void btnExcel_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
-            
+            if (dgridInvoice.CurrentRow != null)
+            {
+                var id = dgridInvoice.Rows[dgridInvoice.CurrentRow.Index].Cells[0].Value.ToString();
+                if (MessageBox.Show("Bạn có chắc muốn xóa hóa đơn số " + id, "Thông báo", MessageBoxButtons.YesNo) ==
+                    DialogResult.Yes)
+                {
+                    MessageBox.Show(_iInvoiceServices.RemoveInvoice(id));
+                    LoadData();
+                }
+            }
         }
 
         private void cmbFilter_SelectedIndexChanged(object sender, EventArgs e)
@@ -123,16 +136,21 @@ namespace GUI_PresentationLayer.View
             {
                 foreach (DataGridViewRow x in dgridInvoice.Rows)
                 {
-                    if(x.Visible )x.Visible = x.Cells[0].Value.ToString().Contains(txtSearch.Text);
+                    if(x.Visible )x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
                 }
             }
             else
             {
                 foreach (DataGridViewRow x in dgridInvoice.Rows)
                 {
-                    if (x.Visible) x.Visible = x.Cells[0].Value.ToString().Contains(txtSearch.Text);
+                    if (x.Visible) x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
                 }
             }
+        }
+
+        private void bunifuThinButton23_Click(object sender, EventArgs e)
+        {
+            _frmMain.OpenChildForm(new FrmStatistics());
         }
     }
 }

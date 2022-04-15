@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.BUS_Services;
@@ -44,17 +45,17 @@ namespace GUI_PresentationLayer.View
 
         private string ValidateCustomer()
         {
-            if (txtName.Text == "")
+            if (txtName.Text.Trim() == "")
             {
                 return "Tên không được bỏ trống!";
             }
 
-            if (txtPhone.Text == "")
+            if (txtPhone.Text.Trim() == "")
             {
                 return "Số điện thoại không được bỏ trống!";
             }
 
-            if (txtAddress.Text == "")
+            if (txtAddress.Text.Trim() == "")
             {
                 return "Địa chỉ không được bỏ trống!";
             }
@@ -190,6 +191,14 @@ namespace GUI_PresentationLayer.View
         private void btnAddMulti_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtPhone_OnValueChanged(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(txtPhone.Text, "^[0-9]+$"))
+            {
+                txtPhone.Text = "";
+            }
         }
     }
 }

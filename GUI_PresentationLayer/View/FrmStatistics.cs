@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
+using BUS_BussinessLayer.Utilities;
 using DAL_DataAccessLayer.Entities;
 
 namespace GUI_PresentationLayer.View
@@ -97,17 +98,17 @@ namespace GUI_PresentationLayer.View
                     HD.DateCreate,
                     CTHD.TotalPrice
                 }).ToList();
-            var stt = lst.Where(c => c.DateCreate >= from && c.DateCreate <= to);
+            var stt = lst.Where(c => c.DateCreate.Date >= from && c.DateCreate.Date <= to);
             if (stt.Count()>0)
             {
                 double total = 0;
                 foreach (var x in stt)
                 {
-                    dgrid_Revenue.Rows.Add(x.EmployeeId, x.InvoiceId, x.DateCreate, x.TotalPrice);
+                    dgrid_Revenue.Rows.Add(x.EmployeeId, x.InvoiceId, x.DateCreate, ConvertMoney.ConvertToVND(x.TotalPrice));
                     total = stt.Select(c => c.TotalPrice).Sum();
                 }
 
-                dgrid_Revenue.Rows.Add("Tổng", null, null, string.Format(new CultureInfo("vi-VN"), "{0:#,##0.00}", total));
+                dgrid_Revenue.Rows.Add("Tổng", null, null, ConvertMoney.ConvertToVND(total));
             }
         }
         void loadBrand()
@@ -129,9 +130,9 @@ namespace GUI_PresentationLayer.View
         private void dgdtpcDateEnd_onValueChanged(object sender, EventArgs e)
         {
             load_Statistics(dgdtpcDateBegin.Value,dgdtpcDateEnd.Value);
-            if (dgdtpcDateEnd.Value<dgdtpcDateBegin.Value)
+            if (dgdtpcDateEnd.Value < dgdtpcDateBegin.Value)
             {
-                dgdtpcDateEnd.Value=DateTime.Now;
+                dgdtpcDateEnd.Value = DateTime.Now;
             }
         }
         private void dgdtpcDateBegin_onValueChanged(object sender, EventArgs e)

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmMain));
             this.pnlTopBar = new System.Windows.Forms.Panel();
             this.pnlLeftBar = new System.Windows.Forms.Panel();
             this.btnReport = new FontAwesome.Sharp.IconButton();
@@ -439,6 +440,7 @@
             this.Controls.Add(this.pnlLeftBar);
             this.Controls.Add(this.pnlTopBar);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmMain";
             this.Text = "Form1";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;

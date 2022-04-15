@@ -43,11 +43,11 @@ namespace GUI_PresentationLayer.View
             {
                 return "Ảnh sản phẩm không được bỏ trống";
             }
-            if (txtName.Text == "")
+            if (txtName.Text.Trim() == "")
             {
                 return "Tên sản phẩm không được bỏ trống!";
             }
-            if (txtQuantity.Text == "")
+            if (txtQuantity.Text.Trim() == "")
             {
                 return "Số lượng sản phẩm không được bỏ trống!";
             }
@@ -55,7 +55,7 @@ namespace GUI_PresentationLayer.View
             {
                 return "Số lượng sản phẩm không được bằng 0!";
             }
-            if (txtPrice.Text == "0")
+            if (txtPrice.Text.Trim() == "")
             {
                 return "Giá sản phẩm không được bỏ trống!";
             }
@@ -63,7 +63,7 @@ namespace GUI_PresentationLayer.View
             {
                 return "Giá sản phẩm không được bằng 0!";
             }
-            if (txtNote.Text == "")
+            if (txtNote.Text.Trim() == "")
             {
                 return "Ghi chú không được bỏ trống";
             }
@@ -87,7 +87,7 @@ namespace GUI_PresentationLayer.View
             {
                 return "Kích thước không được bỏ trống";
             }
-            if (txtBarcode.Text == "")
+            if (txtBarcode.Text.Trim() == "")
             {
                 return "Mã vạch không được bỏ trống";
             }
@@ -490,6 +490,8 @@ namespace GUI_PresentationLayer.View
         private void btnQrCode_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = "barcode.pdf";
+            saveFileDialog.Filter = "Pdf File|*.pdf|All Files|*.*";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 PdfDocument pdfDocument = new PdfDocument();
@@ -539,6 +541,8 @@ namespace GUI_PresentationLayer.View
         private void bunifuThinButton21_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = "product.xlsx";
+            saveFileDialog.Filter = "File Excel|*.xlsx|All Files|*.*";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 GenerateDoucument.ToExcel(dgridProduct, saveFileDialog.FileName);

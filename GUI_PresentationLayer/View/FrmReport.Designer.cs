@@ -45,7 +45,6 @@
             this.lblTotalPrice = new System.Windows.Forms.Label();
             this.lblOrder = new System.Windows.Forms.Label();
             this.btnReport = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.bunifuThinButton22 = new Bunifu.Framework.UI.BunifuThinButton2();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.dgridInvoice = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -234,39 +233,13 @@
             this.btnReport.IdleFillColor = System.Drawing.Color.White;
             this.btnReport.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnReport.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnReport.Location = new System.Drawing.Point(1088, 557);
+            this.btnReport.Location = new System.Drawing.Point(1189, 557);
             this.btnReport.Margin = new System.Windows.Forms.Padding(5);
             this.btnReport.Name = "btnReport";
-            this.btnReport.Size = new System.Drawing.Size(225, 79);
+            this.btnReport.Size = new System.Drawing.Size(271, 92);
             this.btnReport.TabIndex = 7;
             this.btnReport.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnReport.Click += new System.EventHandler(this.btnReport_Click);
-            // 
-            // bunifuThinButton22
-            // 
-            this.bunifuThinButton22.ActiveBorderThickness = 1;
-            this.bunifuThinButton22.ActiveCornerRadius = 20;
-            this.bunifuThinButton22.ActiveFillColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.ActiveForecolor = System.Drawing.Color.White;
-            this.bunifuThinButton22.ActiveLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.bunifuThinButton22.BackColor = System.Drawing.Color.White;
-            this.bunifuThinButton22.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bunifuThinButton22.BackgroundImage")));
-            this.bunifuThinButton22.ButtonText = "Xem thống kê";
-            this.bunifuThinButton22.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.bunifuThinButton22.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.bunifuThinButton22.ForeColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.IdleBorderThickness = 1;
-            this.bunifuThinButton22.IdleCornerRadius = 20;
-            this.bunifuThinButton22.IdleFillColor = System.Drawing.Color.White;
-            this.bunifuThinButton22.IdleForecolor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.bunifuThinButton22.Location = new System.Drawing.Point(1333, 557);
-            this.bunifuThinButton22.Margin = new System.Windows.Forms.Padding(5);
-            this.bunifuThinButton22.Name = "bunifuThinButton22";
-            this.bunifuThinButton22.Size = new System.Drawing.Size(225, 79);
-            this.bunifuThinButton22.TabIndex = 8;
-            this.bunifuThinButton22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // tableLayoutPanel1
             // 
@@ -410,7 +383,6 @@
             this.ClientSize = new System.Drawing.Size(1583, 674);
             this.Controls.Add(this.dgridInvoice);
             this.Controls.Add(this.tableLayoutPanel1);
-            this.Controls.Add(this.bunifuThinButton22);
             this.Controls.Add(this.btnReport);
             this.Name = "FrmReport";
             this.Text = "FrmReport";
@@ -436,7 +408,6 @@
         private System.Windows.Forms.Panel pnlOrder;
         private System.Windows.Forms.Label lblOrder;
         private Bunifu.Framework.UI.BunifuThinButton2 btnReport;
-        private Bunifu.Framework.UI.BunifuThinButton2 bunifuThinButton22;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgridInvoice;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;

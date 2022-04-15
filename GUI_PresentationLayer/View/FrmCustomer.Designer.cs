@@ -39,10 +39,23 @@
             this.btnAdd = new Bunifu.Framework.UI.BunifuThinButton2();
             this.tabDisable = new System.Windows.Forms.TabPage();
             this.dgridDisable = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.dgrid_Disabled = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabCustomer = new System.Windows.Forms.TabPage();
             this.dgridCustomer = new Bunifu.Framework.UI.BunifuCustomDataGrid();
+            this.CustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.pbxProduct = new FontAwesome.Sharp.IconPictureBox();
@@ -56,19 +69,6 @@
             this.txtAddress = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.btnAddMulti = new Bunifu.Framework.UI.BunifuThinButton2();
             this.btnExcel = new Bunifu.Framework.UI.BunifuThinButton2();
-            this.CustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewLinkColumn1 = new System.Windows.Forms.DataGridViewLinkColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tabDisable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgridDisable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).BeginInit();
@@ -169,6 +169,62 @@
             this.dgridDisable.TabIndex = 1;
             this.dgridDisable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridDisable_CellContentClick);
             // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã khách hàng";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.FillWeight = 116.5149F;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Tên khách hàng";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.FillWeight = 116.5149F;
+            this.dataGridViewTextBoxColumn3.HeaderText = "Số điện thoại";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.FillWeight = 116.5149F;
+            this.dataGridViewTextBoxColumn4.HeaderText = "Địa chỉ";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.FillWeight = 116.5149F;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Số lần mua hàng";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.ReadOnly = true;
+            // 
+            // dataGridViewLinkColumn1
+            // 
+            this.dataGridViewLinkColumn1.FillWeight = 64.17112F;
+            this.dataGridViewLinkColumn1.HeaderText = "";
+            this.dataGridViewLinkColumn1.MinimumWidth = 4;
+            this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
+            this.dataGridViewLinkColumn1.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.FillWeight = 69.76938F;
+            this.Column7.HeaderText = "";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
             // dgrid_Disabled
             // 
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
@@ -267,6 +323,50 @@
             this.dgridCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridCustomer_CellClick);
             this.dgridCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridCustomer_CellContentClick);
             // 
+            // CustomerId
+            // 
+            this.CustomerId.HeaderText = "Mã khách hàng";
+            this.CustomerId.MinimumWidth = 6;
+            this.CustomerId.Name = "CustomerId";
+            this.CustomerId.ReadOnly = true;
+            this.CustomerId.Visible = false;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.HeaderText = "Tên khách hàng";
+            this.CustomerName.MinimumWidth = 6;
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            // 
+            // Phone
+            // 
+            this.Phone.HeaderText = "Số điện thoại";
+            this.Phone.MinimumWidth = 6;
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            // 
+            // Address
+            // 
+            this.Address.HeaderText = "Địa chỉ";
+            this.Address.MinimumWidth = 6;
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Số lần mua hàng";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.FillWeight = 50F;
+            this.Column6.HeaderText = "";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // lblEmail
             // 
             this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -330,6 +430,7 @@
             this.txtPhone.Size = new System.Drawing.Size(340, 34);
             this.txtPhone.TabIndex = 5;
             this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtPhone.OnValueChanged += new System.EventHandler(this.txtPhone_OnValueChanged);
             // 
             // lblName
             // 
@@ -527,106 +628,6 @@
             this.btnExcel.TabIndex = 43;
             this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
-            // 
-            // CustomerId
-            // 
-            this.CustomerId.HeaderText = "Mã khách hàng";
-            this.CustomerId.MinimumWidth = 6;
-            this.CustomerId.Name = "CustomerId";
-            this.CustomerId.ReadOnly = true;
-            this.CustomerId.Visible = false;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.HeaderText = "Tên khách hàng";
-            this.CustomerName.MinimumWidth = 6;
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Số điện thoại";
-            this.Phone.MinimumWidth = 6;
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "Địa chỉ";
-            this.Address.MinimumWidth = 6;
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Số lần mua hàng";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.FillWeight = 50F;
-            this.Column6.HeaderText = "";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mã khách hàng";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.FillWeight = 116.5149F;
-            this.dataGridViewTextBoxColumn2.HeaderText = "Tên khách hàng";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.FillWeight = 116.5149F;
-            this.dataGridViewTextBoxColumn3.HeaderText = "Số điện thoại";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.FillWeight = 116.5149F;
-            this.dataGridViewTextBoxColumn4.HeaderText = "Địa chỉ";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.ReadOnly = true;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.FillWeight = 116.5149F;
-            this.dataGridViewTextBoxColumn5.HeaderText = "Số lần mua hàng";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
-            // 
-            // dataGridViewLinkColumn1
-            // 
-            this.dataGridViewLinkColumn1.FillWeight = 64.17112F;
-            this.dataGridViewLinkColumn1.HeaderText = "";
-            this.dataGridViewLinkColumn1.MinimumWidth = 4;
-            this.dataGridViewLinkColumn1.Name = "dataGridViewLinkColumn1";
-            this.dataGridViewLinkColumn1.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.FillWeight = 69.76938F;
-            this.Column7.HeaderText = "";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
             // 
             // FrmCustomer
             // 

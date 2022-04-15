@@ -22,7 +22,6 @@ namespace GUI_PresentationLayer.View
         {
             InitializeComponent();
             this.Email = email;
-
         }
 
         public string Email { get; set; }
@@ -43,12 +42,13 @@ namespace GUI_PresentationLayer.View
                     b.First().Invoice.InvoiceStatus,
                     TotalPrice = b.Sum(c => c.InvoiceDetail.TotalPrice),
                     ProductCount = b.Count(c => c.Invoice.InvoiceId == c.InvoiceDetail.InvoiceId),
-                    b.First().Invoice.ShipperId
+                    b.First().Invoice.ShipperId,
+                    b.First().Invoice.GuestPayments
                 };
             foreach (var x in result.Where(c => c.DateCreate.Date.Equals(DateTime.Now.Date)))
             {
                 dgridInvoice.Rows.Add(x.InvoiceId, x.DateCreate, x.CustomerName, x.FullName, x.ProductCount, ConvertMoney.ConvertToVND(x.TotalPrice), x.Description,
-                    x.InvoiceStatus ? "Đã hoàn thành" : !x.InvoiceStatus && x.Description != null ? "Đã hủy" : !x.InvoiceStatus && x.ShipperId != null ? "Đang giao hàng" : "Chưa hoàn thành");
+                    x.InvoiceStatus ? "Đã hoàn thành" : !x.InvoiceStatus && x.Description != null ? "Đã hủy" : !x.InvoiceStatus && x.ShipperId != null ? "Đang giao hàng" : x.GuestPayments <= 0 ? "Chưa thanh toán" : "Chưa hoàn thành");
             }
         }
 
@@ -73,7 +73,11 @@ namespace GUI_PresentationLayer.View
                 {
                     cancel++;
                 }
-                total += float.Parse(x.Cells[5].Value.ToString());
+
+                if (x.Cells[7].Value.ToString() == "Đã hoàn thành")
+                {
+                    total += float.Parse(x.Cells[5].Value.ToString());
+                }
             }
             lblSale.Text = done.ToString();
             lblShip.Text = ship.ToString();
@@ -83,7 +87,6 @@ namespace GUI_PresentationLayer.View
 
         private void ShowMail()
         {
-            string mail = null;
             Form form = new Form();
             TextBox textBox = new TextBox();
             Button button = new Button();
@@ -93,13 +96,15 @@ namespace GUI_PresentationLayer.View
             button.Height = 100;
             button.Click += (o, args) =>
             {
-                mail = textBox.Text;
-                if (MessageBox.Show("Bạn có chắc muốn gửi mail đến " + textBox.Text, "Thông báo",
-                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                if (textBox.Text.Trim() != "")
                 {
-                    SendSMS.SendMail(Email, "Báo cáo hôm nay", $"Số đơn bán được: {lblSale.Text} \nSố hóa đơn hủy: {lblShip.Text} \nSố đơn đang giao: {lblShip.Text} \nTổng tiền trong ngày: {lblTotalPrice.Text}");
-                    MessageBox.Show("Gửi thành công!");
-                    form.Close();
+                    if (MessageBox.Show("Bạn có chắc muốn gửi mail đến " + textBox.Text, "Thông báo",
+                            MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    {
+                        SendSMS.SendMail(Email, "Báo cáo hôm nay", $"Số đơn bán được: {lblSale.Text} \nSố hóa đơn hủy: {lblShip.Text} \nSố đơn đang giao: {lblShip.Text} \nTổng tiền trong ngày: {lblTotalPrice.Text}");
+                        MessageBox.Show("Gửi thành công!");
+                        form.Close();
+                    }
                 }
             };
             textBox.Dock = DockStyle.Top;

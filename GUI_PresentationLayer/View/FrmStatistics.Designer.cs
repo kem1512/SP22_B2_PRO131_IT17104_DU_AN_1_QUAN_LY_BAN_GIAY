@@ -145,7 +145,7 @@
             this.dgrid_Revenue.ReadOnly = true;
             this.dgrid_Revenue.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Revenue.RowHeadersWidth = 51;
-            this.dgrid_Revenue.RowTemplate.Height = 40;
+            this.dgrid_Revenue.RowTemplate.Height = 50;
             this.dgrid_Revenue.Size = new System.Drawing.Size(1440, 238);
             this.dgrid_Revenue.StandardTab = true;
             this.dgrid_Revenue.TabIndex = 5;
@@ -320,7 +320,7 @@
             this.dgrid_Brand.ReadOnly = true;
             this.dgrid_Brand.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Brand.RowHeadersWidth = 51;
-            this.dgrid_Brand.RowTemplate.Height = 35;
+            this.dgrid_Brand.RowTemplate.Height = 50;
             this.dgrid_Brand.Size = new System.Drawing.Size(734, 274);
             this.dgrid_Brand.TabIndex = 1;
             // 
@@ -427,7 +427,7 @@
             this.dgrid_Cancel.ReadOnly = true;
             this.dgrid_Cancel.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
             this.dgrid_Cancel.RowHeadersWidth = 51;
-            this.dgrid_Cancel.RowTemplate.Height = 35;
+            this.dgrid_Cancel.RowTemplate.Height = 50;
             this.dgrid_Cancel.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgrid_Cancel.Size = new System.Drawing.Size(692, 274);
             this.dgrid_Cancel.TabIndex = 2;

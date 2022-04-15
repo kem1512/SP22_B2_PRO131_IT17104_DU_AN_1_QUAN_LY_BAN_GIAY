@@ -112,13 +112,14 @@ namespace GUI_PresentationLayer.View
 
         private void btnLogin2_Click(object sender, EventArgs e)
         {
-            if (txtEmail.Text == "")
+            if (txtEmail.Text.Trim() == "")
             {
                 MessageBox.Show("Vui lòng nhập email!");
-            }else if (txtPassword.Text == "")
+            }else if (txtPassword.Text.Trim() == "")
             {
                 MessageBox.Show("Vui lòng nhập mật khẩu!");
-            }else if(!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
+            }
+            else if(!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
             {
                 MessageBox.Show("Định dạng email không đúng!");
             }
@@ -152,7 +153,7 @@ namespace GUI_PresentationLayer.View
         }
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (txtEmailForgot.Text != "")
+            if (txtEmailForgot.Text.Trim() != "")
             {
                 var em = _iEmployeeServices.GetEmployees().FirstOrDefault(c => c.Email == txtEmailForgot.Text);
                 if (txtCode.Text != "")

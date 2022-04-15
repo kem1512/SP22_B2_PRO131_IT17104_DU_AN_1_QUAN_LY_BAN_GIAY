@@ -440,6 +440,7 @@
             this.txtPhone.Size = new System.Drawing.Size(324, 44);
             this.txtPhone.TabIndex = 29;
             this.txtPhone.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtPhone.OnValueChanged += new System.EventHandler(this.txtPhone_OnValueChanged);
             // 
             // lblAddress
             // 
@@ -1021,7 +1022,7 @@
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnShipper});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(254, 56);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(254, 28);
             // 
             // btnShipper
             // 
@@ -1069,7 +1070,6 @@
         }
 
         #endregion
-
         private Bunifu.Framework.UI.BunifuMaterialTextbox txtEmail;
         private System.Windows.Forms.TableLayoutPanel tlpLeft;
         private FontAwesome.Sharp.IconPictureBox pbxEmployee;

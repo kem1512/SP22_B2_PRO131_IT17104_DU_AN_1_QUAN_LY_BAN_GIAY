@@ -532,7 +532,7 @@
             this.txtRePass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtRePass.HintForeColor = System.Drawing.Color.Empty;
             this.txtRePass.HintText = "";
-            this.txtRePass.isPassword = false;
+            this.txtRePass.isPassword = true;
             this.txtRePass.LineFocusedColor = System.Drawing.Color.Blue;
             this.txtRePass.LineIdleColor = System.Drawing.Color.Gray;
             this.txtRePass.LineMouseHoverColor = System.Drawing.Color.Blue;
@@ -569,7 +569,7 @@
             this.txtPass.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.txtPass.HintForeColor = System.Drawing.Color.Empty;
             this.txtPass.HintText = "";
-            this.txtPass.isPassword = false;
+            this.txtPass.isPassword = true;
             this.txtPass.LineFocusedColor = System.Drawing.Color.Blue;
             this.txtPass.LineIdleColor = System.Drawing.Color.Gray;
             this.txtPass.LineMouseHoverColor = System.Drawing.Color.Blue;

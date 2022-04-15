@@ -139,7 +139,7 @@
             this.tlpRight.ColumnCount = 3;
             this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 51.23457F));
             this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.76543F));
-            this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 155F));
+            this.tlpRight.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 162F));
             this.tlpRight.Controls.Add(this.cmbShipper, 1, 5);
             this.tlpRight.Controls.Add(this.txtAddress, 1, 1);
             this.tlpRight.Controls.Add(this.lblAddress, 0, 1);
@@ -178,6 +178,7 @@
             this.tlpRight.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tlpRight.Size = new System.Drawing.Size(458, 670);
             this.tlpRight.TabIndex = 0;
+            this.tlpRight.Click += new System.EventHandler(this.tlpRight_Click);
             // 
             // cmbShipper
             // 
@@ -187,7 +188,7 @@
             this.cmbShipper.Enabled = false;
             this.cmbShipper.Font = new System.Drawing.Font("Microsoft Sans Serif", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbShipper.FormattingEnabled = true;
-            this.cmbShipper.Location = new System.Drawing.Point(170, 360);
+            this.cmbShipper.Location = new System.Drawing.Point(168, 359);
             this.cmbShipper.Name = "cmbShipper";
             this.cmbShipper.Size = new System.Drawing.Size(272, 39);
             this.cmbShipper.TabIndex = 23;
@@ -207,7 +208,7 @@
             this.txtAddress.LineIdleColor = System.Drawing.Color.Gray;
             this.txtAddress.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtAddress.LineThickness = 4;
-            this.txtAddress.Location = new System.Drawing.Point(170, 83);
+            this.txtAddress.Location = new System.Drawing.Point(168, 83);
             this.txtAddress.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(272, 41);
@@ -241,9 +242,9 @@
             this.lblShipCost.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblShipCost.AutoSize = true;
             this.lblShipCost.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold);
-            this.lblShipCost.Location = new System.Drawing.Point(3, 299);
+            this.lblShipCost.Location = new System.Drawing.Point(3, 288);
             this.lblShipCost.Name = "lblShipCost";
-            this.lblShipCost.Size = new System.Drawing.Size(147, 22);
+            this.lblShipCost.Size = new System.Drawing.Size(83, 44);
             this.lblShipCost.TabIndex = 5;
             this.lblShipCost.Text = "Phí vận chuyển";
             // 
@@ -297,7 +298,7 @@
             this.rbtnShop.AutoSize = true;
             this.rbtnShop.Checked = true;
             this.rbtnShop.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnShop.Location = new System.Drawing.Point(159, 229);
+            this.rbtnShop.Location = new System.Drawing.Point(154, 229);
             this.rbtnShop.Name = "rbtnShop";
             this.rbtnShop.Size = new System.Drawing.Size(138, 24);
             this.rbtnShop.TabIndex = 17;
@@ -311,7 +312,7 @@
             this.rbtnShip.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.rbtnShip.AutoSize = true;
             this.rbtnShip.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rbtnShip.Location = new System.Drawing.Point(305, 229);
+            this.rbtnShip.Location = new System.Drawing.Point(298, 229);
             this.rbtnShip.Name = "rbtnShip";
             this.rbtnShip.Size = new System.Drawing.Size(113, 24);
             this.rbtnShip.TabIndex = 18;
@@ -335,12 +336,13 @@
             this.txtShipCost.LineIdleColor = System.Drawing.Color.Gray;
             this.txtShipCost.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtShipCost.LineThickness = 4;
-            this.txtShipCost.Location = new System.Drawing.Point(170, 290);
+            this.txtShipCost.Location = new System.Drawing.Point(168, 290);
             this.txtShipCost.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtShipCost.Name = "txtShipCost";
             this.txtShipCost.Size = new System.Drawing.Size(272, 41);
             this.txtShipCost.TabIndex = 15;
             this.txtShipCost.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.txtShipCost.OnValueChanged += new System.EventHandler(this.txtShipCost_OnValueChanged);
             // 
             // btnConfirm
             // 
@@ -363,7 +365,7 @@
             this.btnConfirm.Location = new System.Drawing.Point(5, 584);
             this.btnConfirm.Margin = new System.Windows.Forms.Padding(5);
             this.btnConfirm.Name = "btnConfirm";
-            this.btnConfirm.Size = new System.Drawing.Size(145, 67);
+            this.btnConfirm.Size = new System.Drawing.Size(141, 67);
             this.btnConfirm.TabIndex = 20;
             this.btnConfirm.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnConfirm.Click += new System.EventHandler(this.btnConfirm_Click);
@@ -387,10 +389,10 @@
             this.btnOk.IdleFillColor = System.Drawing.Color.White;
             this.btnOk.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnOk.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnOk.Location = new System.Drawing.Point(160, 584);
+            this.btnOk.Location = new System.Drawing.Point(156, 584);
             this.btnOk.Margin = new System.Windows.Forms.Padding(5);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(137, 67);
+            this.btnOk.Size = new System.Drawing.Size(134, 67);
             this.btnOk.TabIndex = 21;
             this.btnOk.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -413,7 +415,7 @@
             this.btnCancel.IdleFillColor = System.Drawing.Color.White;
             this.btnCancel.IdleForecolor = System.Drawing.Color.Red;
             this.btnCancel.IdleLineColor = System.Drawing.Color.Red;
-            this.btnCancel.Location = new System.Drawing.Point(307, 584);
+            this.btnCancel.Location = new System.Drawing.Point(300, 584);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(101, 67);
@@ -426,7 +428,7 @@
             this.lblTotalPrice.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblTotalPrice.AutoSize = true;
             this.lblTotalPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold);
-            this.lblTotalPrice.Location = new System.Drawing.Point(165, 430);
+            this.lblTotalPrice.Location = new System.Drawing.Point(161, 430);
             this.lblTotalPrice.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
             this.lblTotalPrice.Name = "lblTotalPrice";
             this.lblTotalPrice.Size = new System.Drawing.Size(68, 22);
@@ -438,7 +440,7 @@
             this.lblMoneyLeft.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.lblMoneyLeft.AutoSize = true;
             this.lblMoneyLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.5F, System.Drawing.FontStyle.Bold);
-            this.lblMoneyLeft.Location = new System.Drawing.Point(165, 540);
+            this.lblMoneyLeft.Location = new System.Drawing.Point(161, 540);
             this.lblMoneyLeft.Margin = new System.Windows.Forms.Padding(10, 0, 3, 0);
             this.lblMoneyLeft.Name = "lblMoneyLeft";
             this.lblMoneyLeft.Size = new System.Drawing.Size(68, 22);
@@ -459,7 +461,7 @@
             this.txtCost.LineIdleColor = System.Drawing.Color.Gray;
             this.txtCost.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtCost.LineThickness = 4;
-            this.txtCost.Location = new System.Drawing.Point(170, 476);
+            this.txtCost.Location = new System.Drawing.Point(168, 476);
             this.txtCost.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtCost.Name = "txtCost";
             this.txtCost.Size = new System.Drawing.Size(272, 41);
@@ -504,7 +506,7 @@
             this.txtName.LineIdleColor = System.Drawing.Color.Gray;
             this.txtName.LineMouseHoverColor = System.Drawing.Color.Blue;
             this.txtName.LineThickness = 4;
-            this.txtName.Location = new System.Drawing.Point(170, 152);
+            this.txtName.Location = new System.Drawing.Point(168, 152);
             this.txtName.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(272, 41);
@@ -514,10 +516,12 @@
             // cmbPhone
             // 
             this.cmbPhone.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cmbPhone.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cmbPhone.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.tlpRight.SetColumnSpan(this.cmbPhone, 2);
             this.cmbPhone.Font = new System.Drawing.Font("Roboto", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbPhone.FormattingEnabled = true;
-            this.cmbPhone.Location = new System.Drawing.Point(168, 16);
+            this.cmbPhone.Location = new System.Drawing.Point(166, 16);
             this.cmbPhone.Name = "cmbPhone";
             this.cmbPhone.Size = new System.Drawing.Size(276, 36);
             this.cmbPhone.TabIndex = 19;
@@ -838,6 +842,8 @@
             this.dgridOrder.Size = new System.Drawing.Size(996, 297);
             this.dgridOrder.TabIndex = 1;
             this.dgridOrder.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridOrder_CellContentClick);
+            this.dgridOrder.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridOrder_CellDoubleClick);
+            this.dgridOrder.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgridOrder_CellValidating);
             // 
             // Column13
             // 
@@ -948,7 +954,8 @@
             this.cmbInvoice.FormattingEnabled = true;
             this.cmbInvoice.Items.AddRange(new object[] {
             "Tất cả",
-            "Đang giao hàng"});
+            "Đang giao hàng",
+            "Chưa thanh toán"});
             this.cmbInvoice.Location = new System.Drawing.Point(450, 11);
             this.cmbInvoice.Name = "cmbInvoice";
             this.cmbInvoice.Size = new System.Drawing.Size(173, 39);
@@ -1080,6 +1087,7 @@
             this.Text = "FrmSales";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmSales_FormClosing);
             this.Load += new System.EventHandler(this.FrmSales_Load);
+            this.Click += new System.EventHandler(this.FrmSales_Click);
             this.tlpRight.ResumeLayout(false);
             this.tlpRight.PerformLayout();
             this.gbxProduct.ResumeLayout(false);

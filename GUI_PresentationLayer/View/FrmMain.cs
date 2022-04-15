@@ -12,6 +12,9 @@ using System.Windows.Forms;
 using System.IO;
 using BUS_BussinessLayer.BUS_Services;
 using BUS_BussinessLayer.iBUS_Services;
+using DAL_DataAccessLayer.Entities;
+using Color = System.Drawing.Color;
+using Size = System.Drawing.Size;
 
 namespace GUI_PresentationLayer.View
 {
@@ -42,7 +45,7 @@ namespace GUI_PresentationLayer.View
             fpnlInvoice.Controls.Add(invoiceIcon);
             invoiceIcon.Status = invoice.InvoiceStatus ? "Đã hoàn thành" :
                 !invoice.InvoiceStatus && invoice.Description != null ? "Đã hủy" :
-                !invoice.InvoiceStatus && invoice.ShipperId != null ? "Đang giao hàng" : "Chưa hoàn thành";
+                !invoice.InvoiceStatus && invoice.ShipperId != null ? "Đang giao hàng" : invoice.GuestPayments <= 0 ? "Chưa thanh toán" : "Chưa hoàn thành";
             invoiceIcon.OnSelected += (sender, args) =>
             {
                 _frmSales.InvoidId = invoice.InvoiceId;
@@ -79,6 +82,28 @@ namespace GUI_PresentationLayer.View
             {
                 AddInvoice(x.InvoiceId);
             }
+
+            // if (!_iEmployeeServices.GetEmployees().Any(c => c.Email == "dangnvhph17447@fpt.edu.vn"))
+            // {
+            //     var employeeId = !_iEmployeeServices.GetEmployees().Any()
+            //         ? "EM1"
+            //         : "EM" + _iEmployeeServices.GetEmployees()
+            //             .Max(c => int.Parse(c.EmployeeId.Replace("EM", "")) + 1);
+            //     _iEmployeeServices.AddEmployee(new Employee()
+            //     {
+            //         Address = "",
+            //         DateOfBirth = DateTime.Now,
+            //         Email = "dangnvhph17447@fpt.edu.vn",
+            //         EmployeeId = employeeId,
+            //         EmployeeImage = "image",
+            //         FullName = "admin",
+            //         RoleId = "R1",
+            //         Status = true,
+            //         Phone = "123",
+            //         Pass = "123",
+            //         Gender = true,
+            //     });
+            // }
         }
 
         public void VisibleInvoice()
@@ -92,7 +117,7 @@ namespace GUI_PresentationLayer.View
             fpnlInvoice.BringToFront();
         }
 
-        private void ActiveteButton(object senserBtn, Color color)
+        public void ActiveteButton(object senserBtn, Color color)
         {
             if (senserBtn != null)
             {
@@ -112,7 +137,7 @@ namespace GUI_PresentationLayer.View
             }
         }
 
-        private void OpenChildForm(Form form)
+        public void OpenChildForm(Form form)
         {
             if (currentChildForm != null)
             {
@@ -185,7 +210,7 @@ namespace GUI_PresentationLayer.View
         private void btnOrder_Click_1(object sender, EventArgs e)
         {
             ActiveteButton(sender, Color.Azure);
-            OpenChildForm(new FrmInvoice());
+            OpenChildForm(new FrmInvoice(this));
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -221,6 +246,12 @@ namespace GUI_PresentationLayer.View
                 var employee = _iEmployeeServices.GetEmployees().FirstOrDefault(c => c.Email == Email);
                 if (employee != null)
                 {
+                    if (employee.RoleId != "R1")
+                    {
+                        btnProduct.Visible = false;
+                        btnThongKe.Visible = false;
+                        btnStaff.Visible = false;
+                    }
                     if (File.Exists(employee.EmployeeImage))
                     {
                         using (FileStream fileStream = new FileStream(employee.EmployeeImage, FileMode.Open))

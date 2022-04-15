@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -28,22 +29,22 @@ namespace GUI_PresentationLayer.View
 
         private string ValidateEmployee()
         {
-            if (txtName.Text == "")
+            if (txtName.Text.Trim() == "")
             {
                 return "Không được để trống tên";
             }
 
-            if (txtEmail.Text == "")
+            if (txtEmail.Text.Trim() == "")
             {
                 return "Không được để trống email";
             }
 
-            if (txtAddress.Text == "")
+            if (txtAddress.Text.Trim() == "")
             {
                 return "Không được để trống địa chỉ";
             }
 
-            if (txtPhone.Text == "")
+            if (txtPhone.Text.Trim() == "")
             {
                 return "Không được để trống số điện thoại";
             }
@@ -58,7 +59,7 @@ namespace GUI_PresentationLayer.View
                 return "Vui lòng chọn vai trò";
             }
 
-            if (!txtEmail.Text.Contains("@") || txtEmail.Text.Contains("."))
+            if (!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
             {
                 return "Định dạng email không đúng!";
             }
@@ -207,7 +208,7 @@ namespace GUI_PresentationLayer.View
             {
                 var employee = _iEmployeeServices.GetEmployeeById(dgridEmployee.Rows[dgridEmployee.CurrentRow.Index]
                     .Cells[0].Value.ToString());
-                if (MessageBox.Show("Bạn có muốn thêm không ?", "Thông báo", MessageBoxButtons.YesNo) ==
+                if (MessageBox.Show("Bạn có muốn sửa không ?", "Thông báo", MessageBoxButtons.YesNo) ==
                     DialogResult.Yes)
                 {
                     MessageBox.Show(_iEmployeeServices.UpdateEmployee(new Employee()
@@ -288,6 +289,7 @@ namespace GUI_PresentationLayer.View
         private void bunifuThinButton21_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.FileName = "employee.xlsx";
             if (saveFileDialog.ShowDialog() == DialogResult.OK)
             {
                 DataGridView dataGridView = dgridEmployee;
@@ -406,6 +408,14 @@ namespace GUI_PresentationLayer.View
         {
             FrmShipper frmShipper = new FrmShipper();
             frmShipper.ShowDialog();
+        }
+
+        private void txtPhone_OnValueChanged(object sender, EventArgs e)
+        {
+            if (!Regex.IsMatch(txtPhone.Text, "^[0-9]+$"))
+            {
+                txtPhone.Text = "";
+            }
         }
     }
 }
