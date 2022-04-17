@@ -38,12 +38,12 @@ namespace GUI_PresentationLayer.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string Passsword {
+        public string Password {
             get {
-                return ((string)(this["Passsword"]));
+                return ((string)(this["Password"]));
             }
             set {
-                this["Passsword"] = value;
+                this["Password"] = value;
             }
         }
     }

@@ -60,15 +60,30 @@ namespace DAL_DataAccessLayer.DAL_Services
                         inv.DateCreate = invoice.DateCreate;
                         inv.Description = invoice.Description;
                         inv.InvoiceStatus = invoice.InvoiceStatus;
+                        if (invoice.ShipperId != null)
+                        {
+                            inv.ShipperId = invoice.ShipperId;
+                            inv.ShipCost = invoice.ShipCost;
+                        }
 
                         foreach (var x in invd)
                         {
+                            var inventory = _db.Inventory.FirstOrDefault(c => c.ProductId == x.ProductId);
+                            if (inventory != null)
+                            {
+                                inventory.Amount += x.Quantity;
+                            }
                             _db.InvoiceDetail.Remove(x);
                         }
 
                         foreach (var x in invoiceDetail)
                         {
                             _db.InvoiceDetail.Add(x);
+                            var inventory = _db.Inventory.FirstOrDefault(c => c.ProductId == x.ProductId);
+                            if (inventory != null)
+                            {
+                                inventory.Amount -= x.Quantity;
+                            }
                         }
                         _db.SaveChanges();
                         return "Sửa thành công!";

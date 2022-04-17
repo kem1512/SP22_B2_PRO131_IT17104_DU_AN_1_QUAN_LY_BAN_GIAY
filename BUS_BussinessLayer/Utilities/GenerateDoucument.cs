@@ -67,16 +67,12 @@ namespace BUS_BussinessLayer.Utilities
             }
         }
 
-        public static List<T> AddMultipleFromExcel<T>()
+        public static List<T> AddMultipleFromExcel<T>(string fileName)
         {
             try
             {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                if (openFileDialog.ShowDialog() == DialogResult.OK)
-                {
-                    var result = new ExcelMapper(openFileDialog.FileName).Fetch<T>().ToList();
-                    return result;
-                }
+                var result = new ExcelMapper(fileName).Fetch<T>().ToList();
+                return result;
             }
             catch (Exception e)
             {

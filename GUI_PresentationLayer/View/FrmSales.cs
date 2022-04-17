@@ -51,22 +51,22 @@ namespace GUI_PresentationLayer.View
 
         private string ValidateSale()
         {
-            if (cmbPhone.Text == "")
+            if (cmbPhone.Text.Trim().Length > 0 && cmbPhone.Text.Trim().Length < 11)
             {
-                return "Vui lòng nhập số điện thoại!";
+                return "Số điện thoại phải có ít nhất 10 số!";
             }
 
-            if (txtAddress.Text == "")
+            if (txtAddress.Text.Trim().Length > 0 && txtAddress.Text.Trim().Length < 11)
             {
-                return "Vui lòng nhập địa chỉ!";
+                return "Địa chỉ phải có ít nhất 10 ký tự!";
             }
 
-            if (txtName.Text == "")
+            if (txtName.Text.Trim() == "")
             {
                 return "Vui lòng nhập tên khách hàng!";
             }
 
-            if (rbtnShip.Checked && txtShipCost.Text == "")
+            if (rbtnShip.Checked && txtShipCost.Text.Trim() == "")
             {
                 return "Vui lòng nhập giá ship!";
             }
@@ -81,14 +81,9 @@ namespace GUI_PresentationLayer.View
                 return "Chưa chọn sản phẩm!";
             }
             
-            if (txtCost.Text.Trim() != "" && float.Parse(txtCost.Text) < float.Parse(lblTotalPrice.Text))
+            if (txtCost.Text.Trim() != "" && float.Parse(txtCost.Text.Trim()) < float.Parse(lblTotalPrice.Text.Trim()))
             {
                 return "Khách chưa trả đủ tiền!";
-            }
-
-            if (!Regex.IsMatch(cmbPhone.Text, "^[0-9]+$"))
-            {
-                MessageBox.Show("Số điện thoại không được chứa chữ!");
             }
             return null;
         }
@@ -152,13 +147,14 @@ namespace GUI_PresentationLayer.View
             btnCancel.Tag = "";
             txtName.Text = "";
             txtAddress.Text = "";
-            lblTotalPrice.Text = "0 VNĐ";
+            lblTotalPrice.Text = "0";
             txtCost.Text = "";
-            lblMoneyLeft.Text = "0 VNĐ";
+            lblMoneyLeft.Text = "0";
             if (!cmbPhone.Enabled)
             {
                 cmbPhone.Enabled = true;
             }
+            rbtnShop.Checked = true;
         }
 
         private void btnViewOrder_Click(object sender, EventArgs e)
@@ -250,15 +246,16 @@ namespace GUI_PresentationLayer.View
                     if (MessageBox.Show("Bạn có chắc muốn xóa sản phẩm?", "Thông báo", MessageBoxButtons.YesNo) ==
                         DialogResult.Yes)
                     {
-                        var quantity = int.Parse(row.Cells[3].Value.ToString()) - 1;
-                        row.Cells[3].Value = quantity;
-                        row.Cells[5].Value = ConvertMoney.ConvertToVND(double.Parse(row.Cells[3].Value.ToString()) * double.Parse(row.Cells[4].Value.ToString()));
+                        dgridOrder.Rows.Remove(dgridOrder.Rows[e.RowIndex]);
                         lblTotalPrice.Text = TotalPrice();
                     }
                 }
                 else
                 {
-                    dgridOrder.Rows.Remove(dgridOrder.Rows[e.RowIndex]);
+                    var quantity = int.Parse(row.Cells[3].Value.ToString()) - 1;
+                    row.Cells[3].Value = quantity;
+                    row.Cells[5].Value = ConvertMoney.ConvertToVND(double.Parse(row.Cells[3].Value.ToString()) * double.Parse(row.Cells[4].Value.ToString()));
+                    lblTotalPrice.Text = TotalPrice();
                 }
             }
             if (e.ColumnIndex == 8)
@@ -266,6 +263,7 @@ namespace GUI_PresentationLayer.View
                 if (MessageBox.Show("Bạn có chắc muốn xóa?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 {
                     dgridOrder.Rows.RemoveAt(e.RowIndex);
+                    lblTotalPrice.Text = TotalPrice();
                 }
             }
         }
@@ -349,8 +347,8 @@ namespace GUI_PresentationLayer.View
                                     MessageBox.Show(_iCustomerServices.AddCustomer(new Customer()
                                     {
                                         CustomerId = customerId,
-                                        Address = txtAddress.Text,
-                                        CustomerName = txtName.Text,
+                                        Address = txtAddress.Text.Trim(),
+                                        CustomerName = txtName.Text.Trim(),
                                         Phone = cmbPhone.Text,
                                         ShoppingCount = 0,
                                         Status = true,
@@ -367,12 +365,12 @@ namespace GUI_PresentationLayer.View
                             {
                                 InvoiceId = invoiceId,
                                 DateCreate = DateTime.Now,
-                                CustomerId = cmbPhone.SelectedValue.ToString(),
+                                CustomerId = cmbPhone.SelectedValue.ToString().Trim(),
                                 EmployeeId = _iEmployeeServices.GetEmployees().First(c => c.Email == _frmMain.Email).EmployeeId,
                                 InvoiceStatus = button.ButtonText == "Xác nhận" ? false : true,
-                                ShipperId = cmbShipper.Enabled ? cmbShipper.SelectedValue.ToString() : null,
-                                ShipCost = txtShipCost.Text != "" ? float.Parse(txtShipCost.Text) : 0,
-                                GuestPayments = txtCost.Text.Trim() != "" ? float.Parse(txtCost.Text) : 0
+                                ShipperId = cmbShipper.Enabled ? cmbShipper.SelectedValue.ToString().Trim() : null,
+                                ShipCost = txtShipCost.Text != "" ? float.Parse(txtShipCost.Text.Trim()) : 0,
+                                GuestPayments = txtCost.Text.Trim() != "" ? float.Parse(txtCost.Text.Trim()) : 0
                             };
                             List<InvoiceDetail> invoiceDetails = new List<InvoiceDetail>();
                             foreach (DataGridViewRow x in dgridOrder.Rows)
@@ -411,6 +409,10 @@ namespace GUI_PresentationLayer.View
                     var invoice = _iInvoiceServices.GetInvoiceById(InvoidId);
                     if (invoice != null)
                     {
+                        if (invoice.ShipperId != null)
+                        {
+                            MessageBox.Show("Đơn hàng đang giao không thể sửa!");
+                        }
                         if (rbtnShip.Checked && txtShipCost.Text.Trim() == "")
                         {
                             MessageBox.Show("Vui lòng nhập giá ship!");
@@ -437,11 +439,10 @@ namespace GUI_PresentationLayer.View
                                     };
                                     invoiceDetails.Add(result);
                                 }
-
                                 if (rbtnShip.Checked)
                                 {
                                     invoice.ShipperId = cmbShipper.SelectedValue.ToString();
-                                    invoice.ShipCost = double.Parse(txtShipCost.Text);
+                                    invoice.ShipCost = double.Parse(txtShipCost.Text.Trim());
                                 }
                                 MessageBox.Show(_iInvoiceServices.UpdateInvoice(invoice, invoiceDetails));
                                 LoadData();
@@ -478,7 +479,7 @@ namespace GUI_PresentationLayer.View
                 var payments = result.First().Invoice;
                 if (payments.GuestPayments <= 0)
                 {
-                    if (float.Parse(txtCost.Text) > float.Parse(lblTotalPrice.Text))
+                    if (float.Parse(txtCost.Text.Trim()) > float.Parse(lblTotalPrice.Text.Trim()))
                     {
                         payments.GuestPayments = float.Parse(txtCost.Text);
                     }
@@ -550,6 +551,21 @@ namespace GUI_PresentationLayer.View
                 _videoCaptureDevice.Stop();
         }
 
+        private void CheckMoneyLeft()
+        {
+            if (txtCost.Text != "")
+            {
+                if (float.Parse(txtCost.Text) > float.Parse(lblTotalPrice.Text))
+                {
+                    lblMoneyLeft.Text = ConvertMoney.ConvertToVND(float.Parse(txtCost.Text) - float.Parse(lblTotalPrice.Text));
+                }
+                else
+                {
+                    lblMoneyLeft.Text = 0.ToString();
+                }
+            }
+        }
+
         private void AddProductToInvoice(string id)
         {
             var product = _iProductServices.GetViewProducts()
@@ -565,6 +581,7 @@ namespace GUI_PresentationLayer.View
                         x.Cells[5].Value = ConvertMoney.ConvertToVND(float.Parse(x.Cells[3].Value.ToString()) *
                                                                      float.Parse(x.Cells[4].Value.ToString()));
                         lblTotalPrice.Text = TotalPrice();
+                        CheckMoneyLeft();
                         return;
                     }
                 }
@@ -586,6 +603,7 @@ namespace GUI_PresentationLayer.View
                         ConvertMoney.ConvertToVND(product.productDetail.UnitPrice), "+", "-", "Xóa");
                 }
                 lblTotalPrice.Text = TotalPrice();
+                CheckMoneyLeft();
             }
         }
 
@@ -632,7 +650,7 @@ namespace GUI_PresentationLayer.View
         {
             if (Regex.IsMatch(txtCost.Text, "^[0-9.]+$"))
             {
-                if (txtCost.Text != "" && lblTotalPrice.Text != "0 VNĐ")
+                if (txtCost.Text != "")
                 {
                     if (float.Parse(txtCost.Text) > float.Parse(lblTotalPrice.Text))
                     {
@@ -714,7 +732,11 @@ namespace GUI_PresentationLayer.View
 
         private void cmbPhone_TextChanged(object sender, EventArgs e)
         {
-            if (cmbPhone.SelectedValue != null)
+            if (!Regex.IsMatch(cmbPhone.Text.Trim(), "^[0-9]+$"))
+            {
+                cmbPhone.Text = "";
+            }
+            else if (cmbPhone.SelectedValue != null)
             {
                 txtAddress.Enabled = false;
                 txtName.Enabled = false;
@@ -780,7 +802,7 @@ namespace GUI_PresentationLayer.View
 
         private void txtShipCost_OnValueChanged(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(txtShipCost.Text, "^[0-9]+$"))
+            if (!Regex.IsMatch(txtShipCost.Text, "^[0-9.]+$"))
             {
                 txtShipCost.Text = "";
             }

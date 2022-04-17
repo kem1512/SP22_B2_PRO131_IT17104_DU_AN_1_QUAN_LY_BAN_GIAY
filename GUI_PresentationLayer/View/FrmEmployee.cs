@@ -314,42 +314,46 @@ namespace GUI_PresentationLayer.View
 
         private void btnAddMulti_Click(object sender, EventArgs e)
         {
-            var result = GenerateDoucument.AddMultipleFromExcel<Employee>();
-            if (result != null)
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                if (MessageBox.Show($"Bạn có chắc muốn thêm {result.Count} nhân viên không?", "Thông báo",
-                        MessageBoxButtons.YesNo) == DialogResult.Yes)
+                var result = GenerateDoucument.AddMultipleFromExcel<Employee>(openFileDialog.FileName);
+                if (result != null)
                 {
-                    foreach (var x in result)
+                    if (MessageBox.Show($"Bạn có chắc muốn thêm {result.Count} nhân viên không?", "Thông báo",
+                            MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        if (_iEmployeeServices.GetEmployees().Any(c => c.Email == x.Email || c.Phone == x.Phone))
+                        foreach (var x in result)
                         {
-                            MessageBox.Show("Email hoặc số điện thoại đã tồn tại!");
-                        }
-                        else
-                        {
-                            var employeeId = !_iEmployeeServices.GetEmployees().Any()
-                                ? "EM1"
-                                : "EM" + _iEmployeeServices.GetEmployees()
-                                    .Max(c => int.Parse(c.EmployeeId.Replace("EM", "")) + 1);
-                            MessageBox.Show(_iEmployeeServices.AddEmployee(new Employee()
+                            if (_iEmployeeServices.GetEmployees().Any(c => c.Email == x.Email || c.Phone == x.Phone))
                             {
-                                DateOfBirth = x.DateOfBirth,
-                                Address = x.Address,
-                                Email = x.Email,
-                                EmployeeId = employeeId,
-                                EmployeeImage = x.EmployeeImage,
-                                FullName = x.FullName,
-                                Gender = x.Gender,
-                                Pass = x.Pass,
-                                Phone = x.Phone,
-                                RoleId = x.RoleId,
-                                Status = true
-                            }));
+                                MessageBox.Show("Email hoặc số điện thoại đã tồn tại!");
+                            }
+                            else
+                            {
+                                var employeeId = !_iEmployeeServices.GetEmployees().Any()
+                                    ? "EM1"
+                                    : "EM" + _iEmployeeServices.GetEmployees()
+                                        .Max(c => int.Parse(c.EmployeeId.Replace("EM", "")) + 1);
+                                MessageBox.Show(_iEmployeeServices.AddEmployee(new Employee()
+                                {
+                                    DateOfBirth = x.DateOfBirth,
+                                    Address = x.Address,
+                                    Email = x.Email,
+                                    EmployeeId = employeeId,
+                                    EmployeeImage = x.EmployeeImage,
+                                    FullName = x.FullName,
+                                    Gender = x.Gender,
+                                    Pass = x.Pass,
+                                    Phone = x.Phone,
+                                    RoleId = x.RoleId,
+                                    Status = true
+                                }));
+                            }
                         }
-                    }
 
-                    LoadData();
+                        LoadData();
+                    }
                 }
             }
         }

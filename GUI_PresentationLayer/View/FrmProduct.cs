@@ -2,6 +2,7 @@
 using BUS_BussinessLayer.iBUS_Services;
 using DAL_DataAccessLayer.Entities;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -671,6 +672,59 @@ namespace GUI_PresentationLayer.View
                     }
                 }
                 cmbColorTop.SelectedIndex = -1;
+            }
+        }
+
+        private void thêmHàngLoạtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                var product = GenerateDoucument.AddMultipleFromExcel<Product>(openFileDialog.FileName);
+                var productDetail = GenerateDoucument.AddMultipleFromExcel<ProductDetail>(openFileDialog.FileName);
+                var inventory = GenerateDoucument.AddMultipleFromExcel<Inventory>(openFileDialog.FileName);
+                if (product != null && productDetail != null && inventory != null)
+                {
+                    var total = (from a in product
+                                 join b in productDetail on a.ProductId equals b.ProductId
+                                 join c in inventory on b.ProductId equals c.ProductId
+                                 select new ViewProduct()
+                                 {
+                                     product = a,
+                                     productDetail = b,
+                                     inventory = c
+                                 }).ToList();
+                    foreach (var x in total)
+                    {
+                        var productId = !_iProductServices.GetProducts().Any() ? "PR1" : "PR" + _iProductServices.GetProducts().Max(c => int.Parse(c.ProductId.Replace("PR", "")) + 1);
+                        x.product.ProductId = productId;
+                        x.productDetail.ProductId = productId;
+                        x.inventory.ProductId = productId;
+                        x.product.Barcode = RandomBarcode();
+                        MessageBox.Show(_iProductServices.AddProduct(new Product()
+                        {
+                            Barcode = RandomBarcode(),
+                            Description = x.product.Description,
+                            ProductImage = x.product.ProductImage,
+                            ProductId = productId,
+                            ProductName = x.product.ProductName,
+                            Status = x.product.Status
+                        }, new ProductDetail()
+                        {
+                            ProductId = productId,
+                            BrandId = x.productDetail.BrandId,
+                            CategoryId = x.productDetail.CategoryId,
+                            MaterialId = x.productDetail.MaterialId,
+                            ColorId = x.productDetail.ColorId,
+                            SizeId = x.productDetail.SizeId,
+                            UnitPrice = x.productDetail.UnitPrice
+                        }, new Inventory()
+                        {
+                            ProductId = productId,
+                            Amount = x.inventory.Amount
+                        }));
+                    }
+                }
             }
         }
     }

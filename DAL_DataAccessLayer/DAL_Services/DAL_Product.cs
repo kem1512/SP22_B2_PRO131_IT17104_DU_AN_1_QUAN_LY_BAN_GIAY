@@ -50,7 +50,7 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
             catch(Exception e)
             {
-                return e.ToString();
+                return e.Message;
             }
         }
 

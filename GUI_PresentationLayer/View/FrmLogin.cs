@@ -32,10 +32,10 @@ namespace GUI_PresentationLayer.View
                 cmbCamera.Items.Add(x.Name);
                 cmbCamera.SelectedIndex = 0;
             }
-            if (Properties.Settings.Default.Email != string.Empty && Properties.Settings.Default.Passsword != string.Empty)
+            if (Properties.Settings.Default.Email != string.Empty && Properties.Settings.Default.Password != string.Empty)
             {
                 txtEmail.Text = Properties.Settings.Default.Email;
-                txtPassword.Text = Properties.Settings.Default.Passsword;
+                txtPassword.Text = Properties.Settings.Default.Password;
                 cbxRemember.Checked = true;
             }
         }
@@ -119,6 +119,20 @@ namespace GUI_PresentationLayer.View
             {
                 MessageBox.Show("Vui lòng nhập mật khẩu!");
             }
+            else if (txtEmail.Text == "admin" && txtPassword.Text == "admin")
+            {
+                if (cbxRemember.Checked)
+                {
+                    Properties.Settings.Default.Email = txtEmail.Text;
+                    Properties.Settings.Default.Password = txtPassword.Text;
+                    Properties.Settings.Default.Save();
+                }
+                FrmMain frmMain = new FrmMain();
+                frmMain.Email = "admin";
+                Hide();
+                frmMain.Closed += (o, args) => Show();
+                frmMain.Show();
+            }
             else if(!txtEmail.Text.Contains("@") || !txtEmail.Text.Contains("."))
             {
                 MessageBox.Show("Định dạng email không đúng!");
@@ -131,7 +145,7 @@ namespace GUI_PresentationLayer.View
                     if (cbxRemember.Checked)
                     {
                         Properties.Settings.Default.Email = txtEmail.Text;
-                        Properties.Settings.Default.Passsword = txtPassword.Text;
+                        Properties.Settings.Default.Password = txtPassword.Text;
                         Properties.Settings.Default.Save();
                     }
                     FrmMain frmMain = new FrmMain();

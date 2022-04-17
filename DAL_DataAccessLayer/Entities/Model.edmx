@@ -32,8 +32,8 @@
           </Key>
           <Property Name="CustomerId" Type="varchar" MaxLength="9" Nullable="false" />
           <Property Name="CustomerName" Type="nvarchar" MaxLength="250" Nullable="false" />
-          <Property Name="Phone" Type="varchar" MaxLength="12" Nullable="false" />
-          <Property Name="Address" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="Phone" Type="varchar" MaxLength="12" />
+          <Property Name="Address" Type="nvarchar" MaxLength="250" />
           <Property Name="ShoppingCount" Type="int" Nullable="false" />
           <Property Name="Status" Type="bit" Nullable="false" />
         </EntityType>
@@ -397,8 +397,8 @@
           </Key>
           <Property Name="CustomerId" Type="String" MaxLength="9" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CustomerName" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Phone" Type="String" MaxLength="12" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ShoppingCount" Type="Int32" Nullable="false" />
           <Property Name="Status" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Invoice" Relationship="Self.FK__Invoice__Custome__4316F928" FromRole="Customer" ToRole="Invoice" />
