@@ -65,12 +65,31 @@ namespace DAL_DataAccessLayer.DAL_Services
                     if (id != null)
                     {
                         var material = _db.Material.FirstOrDefault(c => c.MaterialId == id);
-                        var productDetail = _db.ProductDetail.FirstOrDefault(c => c.SizeId == id);
-                        var inventory = productDetail is null ? null : _db.Inventory.FirstOrDefault(c => c.ProductId == productDetail.ProductId);
-                        var product = productDetail is null ? null : _db.Product.FirstOrDefault(c => c.ProductId == productDetail.ProductId);
-                        if (inventory != null) _db.Inventory.Remove(inventory);
-                        if (productDetail != null) _db.ProductDetail.Remove(productDetail);
-                        if (product != null) _db.Product.Remove(product);
+                        var productDetail = _db.ProductDetail.Where(c => c.SizeId == id);
+                        foreach (var x in productDetail)
+                        {
+                            var invoiceDetail = _db.InvoiceDetail.Where(c => c.ProductId == x.ProductId);
+                            if (invoiceDetail.Any())
+                            {
+                                foreach (var y in invoiceDetail)
+                                {
+                                    var invoice = _db.Invoice.FirstOrDefault(c => c.InvoiceId == y.InvoiceId);
+                                    if (invoice != null)
+                                    {
+                                        _db.Invoice.Remove(invoice);
+                                    }
+                                    _db.InvoiceDetail.Remove(y);
+                                }
+                            }
+                            var product = _db.Product.FirstOrDefault(c => c.ProductId == x.ProductId);
+                            var inventory = _db.Inventory.FirstOrDefault(c => c.ProductId == x.ProductId);
+                            if (product != null && inventory != null)
+                            {
+                                _db.Product.Remove(product);
+                                _db.Inventory.Remove(inventory);
+                            }
+                            _db.ProductDetail.Remove(x);
+                        }
                         if (material != null) _db.Material.Remove(material);
                         _db.SaveChanges();
                         return "Xóa thành công!";

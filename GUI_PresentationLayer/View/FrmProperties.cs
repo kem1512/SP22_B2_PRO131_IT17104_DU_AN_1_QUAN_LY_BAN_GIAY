@@ -550,7 +550,7 @@ namespace GUI_PresentationLayer.View
                             DialogResult.Yes)
                         {
                             MessageBox.Show(_iRoleServices.RemoveRole(txtId.Text));
-                            LoadColors();
+                            LoadRoles();
                         }
                     }
                 }

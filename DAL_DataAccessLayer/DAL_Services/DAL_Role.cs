@@ -64,11 +64,35 @@ namespace DAL_DataAccessLayer.DAL_Services
                 using (_db = new QuanLyBanGiayEntities())
                 {
                     var rol = _db.Roles.FirstOrDefault(c => c.RoleId == id);
+                    var em = _db.Employee.Where(c => c.RoleId == id);
                     if (rol != null)
                     {
-                        _db.Roles.Remove(rol);
-                        _db.SaveChanges();
-                        return "Xoá thành công";
+                        if (em.Any())
+                        {
+                            foreach (var x in em)
+                            {
+                                var invoice = _db.Invoice.Where(c => c.EmployeeId == x.EmployeeId);
+                                if (invoice.Any())
+                                {
+                                    foreach (var y in invoice)
+                                    {
+                                        var invoiceDetail = _db.InvoiceDetail.Where(c => c.InvoiceId == y.InvoiceId);
+                                        if (invoiceDetail.Any())
+                                        {
+                                            foreach (var z in invoiceDetail)
+                                            {
+                                                _db.InvoiceDetail.Remove(z);
+                                            }
+                                        }
+                                        _db.Invoice.Remove(y);
+                                    }
+                                }
+                                _db.Employee.Remove(x);
+                            }
+                            _db.Roles.Remove(rol);
+                            _db.SaveChanges();
+                            return "Xoá thành công";
+                        }
                     }
                 }
 

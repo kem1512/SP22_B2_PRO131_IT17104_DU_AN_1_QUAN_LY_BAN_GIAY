@@ -423,7 +423,11 @@ namespace GUI_PresentationLayer.View
             {
                 foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    if (cmbColorTop.SelectedIndex != -1 && cmbStatus.SelectedIndex != -1)
+                    if (cmbStatus.SelectedIndex == 0 && cmbColorTop.SelectedIndex != -1 && cmbBrandTop.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                    }
+                    else if (cmbColorTop.SelectedIndex != -1 && cmbStatus.SelectedIndex != -1)
                     {
                         x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
                     }
@@ -448,7 +452,11 @@ namespace GUI_PresentationLayer.View
             {
                 foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    if (cmbBrandTop.SelectedIndex != -1 && cmbStatus.SelectedIndex != -1)
+                    if (cmbStatus.SelectedIndex == 0 && cmbColorTop.SelectedIndex != -1 && cmbBrandTop.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                    }
+                    else if (cmbBrandTop.SelectedIndex != -1 && cmbStatus.SelectedIndex != -1)
                     {
                         x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
                     }
@@ -569,7 +577,11 @@ namespace GUI_PresentationLayer.View
             {
                 foreach (DataGridViewRow x in dgridProduct.Rows)
                 {
-                    if (cmbBrandTop.SelectedIndex != -1 && cmbColorTop.SelectedIndex != -1)
+                    if (cmbStatus.SelectedIndex == 0 && cmbColorTop.SelectedIndex != -1 && cmbBrandTop.SelectedIndex != -1)
+                    {
+                        x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString());
+                    }
+                    else if (cmbBrandTop.SelectedIndex != -1 && cmbColorTop.SelectedIndex != -1)
                     {
                         x.Visible = x.Cells[6].Value.ToString().Equals(cmbBrandTop.SelectedValue.ToString()) && x.Cells[8].Value.ToString().Equals(cmbColorTop.SelectedValue.ToString()) && x.Cells[12].Value.ToString().Equals(cmbStatus.SelectedItem.ToString());
                     }

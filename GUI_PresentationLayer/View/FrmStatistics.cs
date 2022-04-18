@@ -64,7 +64,7 @@ namespace GUI_PresentationLayer.View
             var lst = (from KH in _iCustomerServices.GetCustomers()
                 join HD in _iInvoiceServices.GetInvoices() on KH.CustomerId equals HD.CustomerId
                 join CTHD in _iInvoiceServices.GetInvoicesDetail() on HD.InvoiceId equals CTHD.InvoiceId
-                where HD.InvoiceStatus == false
+                where HD.InvoiceStatus == false && HD.Description != null
                 select new
                 {
                     HD.InvoiceId,
