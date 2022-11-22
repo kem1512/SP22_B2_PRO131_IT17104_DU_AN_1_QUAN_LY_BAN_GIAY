@@ -233,7 +233,7 @@
             this.btnReport.IdleFillColor = System.Drawing.Color.White;
             this.btnReport.IdleForecolor = System.Drawing.Color.SeaGreen;
             this.btnReport.IdleLineColor = System.Drawing.Color.SeaGreen;
-            this.btnReport.Location = new System.Drawing.Point(1189, 557);
+            this.btnReport.Location = new System.Drawing.Point(1260, 557);
             this.btnReport.Margin = new System.Windows.Forms.Padding(5);
             this.btnReport.Name = "btnReport";
             this.btnReport.Size = new System.Drawing.Size(271, 92);

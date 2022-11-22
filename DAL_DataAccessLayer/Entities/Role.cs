@@ -12,16 +12,16 @@ namespace DAL_DataAccessLayer.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Roles
+    public partial class Role
     {
-        public Roles()
+        public Role()
         {
-            this.Employee = new HashSet<Employee>();
+            this.Employees = new HashSet<Employee>();
         }
     
         public string RoleId { get; set; }
         public string RoleName { get; set; }
     
-        public virtual ICollection<Employee> Employee { get; set; }
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

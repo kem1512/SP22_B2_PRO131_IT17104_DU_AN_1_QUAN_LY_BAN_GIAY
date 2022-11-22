@@ -281,9 +281,6 @@
     <None Include="Resources\failed.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\thank.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\beep.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

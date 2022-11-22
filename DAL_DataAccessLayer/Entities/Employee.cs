@@ -16,7 +16,7 @@ namespace DAL_DataAccessLayer.Entities
     {
         public Employee()
         {
-            this.Invoice = new HashSet<Invoice>();
+            this.Invoices = new HashSet<Invoice>();
         }
     
         public string EmployeeId { get; set; }
@@ -31,7 +31,7 @@ namespace DAL_DataAccessLayer.Entities
         public bool Status { get; set; }
         public string RoleId { get; set; }
     
-        public virtual Roles Roles { get; set; }
-        public virtual ICollection<Invoice> Invoice { get; set; }
+        public virtual Role Role { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

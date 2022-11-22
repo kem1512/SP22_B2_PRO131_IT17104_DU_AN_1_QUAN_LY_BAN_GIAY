@@ -77,7 +77,7 @@ namespace GUI_PresentationLayer.View
             lblId.Text = "Mã vai trò";
             lblName.Text = "Tên vai trò";
             dgridProperties.Rows.Clear();
-            foreach (var x in _iRoleServices.GetRoles())
+            foreach (var x in _iRoleServices.GetRole())
             {
                 dgridProperties.Rows.Add(x.RoleId, x.RoleName);
             }
@@ -297,20 +297,20 @@ namespace GUI_PresentationLayer.View
                 {
                     MessageBox.Show("Tên không được bỏ trống!");
                 }
-                else if (_iRoleServices.GetRoles().Any(c => c.RoleName == txtName.Text))
+                else if (_iRoleServices.GetRole().Any(c => c.RoleName == txtName.Text))
                 {
                     MessageBox.Show("Vai trò đã tồn tại!");
                 }
                 else
                 {
                     // tìm id lớn nhất và cộng thêm 1
-                    int roleId = !_iRoleServices.GetRoles().Any()
+                    int roleId = !_iRoleServices.GetRole().Any()
                         ? 1
-                        : _iRoleServices.GetRoles().Max(c => int.Parse(c.RoleId.Replace("R", ""))) + 1;
+                        : _iRoleServices.GetRole().Max(c => int.Parse(c.RoleId.Replace("R", ""))) + 1;
                     if (MessageBox.Show("Bạn có chắc muốn thêm không?", "Thông báo", MessageBoxButtons.YesNo) ==
                         DialogResult.Yes)
                     {
-                        MessageBox.Show(_iRoleServices.AddRole(new DAL_DataAccessLayer.Entities.Roles()
+                        MessageBox.Show(_iRoleServices.AddRole(new Role()
                         {
                             RoleId = "R" + roleId,
                             RoleName = txtName.Text
@@ -442,7 +442,7 @@ namespace GUI_PresentationLayer.View
                         if (MessageBox.Show("Bạn có chắc muốn sửa không?", "Thông báo", MessageBoxButtons.YesNo) ==
                             DialogResult.Yes)
                         {
-                            MessageBox.Show(_iRoleServices.UpdateRole(new DAL_DataAccessLayer.Entities.Roles()
+                            MessageBox.Show(_iRoleServices.UpdateRole(new Role()
                             {
                                 RoleId = role.RoleId,
                                 RoleName = txtName.Text

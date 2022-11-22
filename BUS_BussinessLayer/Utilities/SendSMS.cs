@@ -29,7 +29,7 @@ namespace BUS_BussinessLayer.Utilities
                 stream.Position = 0;
                 mail.Attachments.Add(new Attachment(stream, "image.jpg"));
                 smtpClient.Port = 587;
-                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "badao12345");
+                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "ohefwclzhmgxstsd");
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mail);
                 MessageBox.Show("Đã gửi");
@@ -51,7 +51,7 @@ namespace BUS_BussinessLayer.Utilities
                 mail.Subject = subject;
                 mail.Body = body;
                 smtpClient.Port = 587;
-                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "badao12345");
+                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "ohefwclzhmgxstsd");
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mail);
                 return "Đã gửi";
@@ -75,7 +75,7 @@ namespace BUS_BussinessLayer.Utilities
                 mail.Body = body;
                 mail.Attachments.Add(new Attachment(path));
                 smtpClient.Port = 587;
-                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "badao12345");
+                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "ohefwclzhmgxstsd");
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mail);
                 MessageBox.Show("Đã gửi");
@@ -110,7 +110,7 @@ namespace BUS_BussinessLayer.Utilities
                 mail.Subject = "Đổi mật khẩu";
                 mail.Body = "Mã xác nhận của bạn là: " + code;
                 smtpClient.Port = 587;
-                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "badao12345");
+                smtpClient.Credentials = new NetworkCredential("kem15122002@gmail.com", "ohefwclzhmgxstsd");
                 smtpClient.EnableSsl = true;
                 smtpClient.Send(mail);
                 return code;

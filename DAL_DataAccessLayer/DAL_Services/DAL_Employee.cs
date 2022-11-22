@@ -109,7 +109,7 @@ namespace DAL_DataAccessLayer.DAL_Services
                         {
                             foreach (var y in _db.InvoiceDetail.Where(c => c.InvoiceId == x.InvoiceId))
                             {
-                                x.InvoiceDetail.Remove(y);
+                                x.InvoiceDetails.Remove(y);
                             }
                             _db.Invoice.Remove(x);
                         }

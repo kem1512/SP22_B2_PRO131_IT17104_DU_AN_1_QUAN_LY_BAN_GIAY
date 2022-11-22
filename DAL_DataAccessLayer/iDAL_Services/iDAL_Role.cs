@@ -7,12 +7,12 @@ using DAL_DataAccessLayer.Entities;
 
 namespace DAL_DataAccessLayer.iDAL_Services
 {
-    public interface iDAL_Roles
+    public interface iDAL_Role
     {
-        string AddRole(Roles role);
-        string UpdateRole(Roles role);
+        string AddRole(Role role);
+        string UpdateRole(Role role);
         string RemoveRole(string id);
-        Roles GetRoleById(string id);
-        List<Roles> GetRoles();
+        Role GetRoleById(string id);
+        List<Role> GetRole();
     }
 }

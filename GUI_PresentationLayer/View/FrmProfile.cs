@@ -90,7 +90,7 @@ namespace GUI_PresentationLayer.View
             {
                 var em = _iEmployeeServices.GetEmployees().FirstOrDefault(c => c.Email == email);
                 var image = GenerateCode.CreateQRCode(em.Email, em.Pass);
-                SendSMS.SendMailQr(em.Email, "Gửi lại  mã QR", "Nè", image);
+                SendSMS.SendMailQr(em.Email, "Mã QR", "Gửi lại mã QR", image);
             }
         }
     }

@@ -103,13 +103,13 @@ namespace BUS_BussinessLayer.Utilities
                 double totalPrice = 0;
                 for (int i = 0; i < viewInvoices.Count; i++)
                 {
-                    pdfLightTable.Style = new PdfLightTableStyle() { ShowHeader = true, DefaultStyle = new PdfCellStyle(new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\Roboto.ttf", 12), new PdfSolidBrush(PdfColor.Empty), new PdfPen(Color.Red)), CellPadding = 8 };
+                    pdfLightTable.Style = new PdfLightTableStyle() { ShowHeader = true, DefaultStyle = new PdfCellStyle(new PdfTrueTypeFont(@"C:\Users\kem15\source\repos\DU_AN_1_QUAN_LY_BAN_GIAY\Font\Roboto.ttf", 12), new PdfSolidBrush(PdfColor.Empty), new PdfPen(Color.Red)), CellPadding = 8 };
                     table.Rows.Add(i, _iDalProduct.GetProductById(viewInvoices[i].InvoiceDetail.ProductId).ProductName, viewInvoices[i].InvoiceDetail.Quantity, string.Format("{0:0,0 VNĐ}", viewInvoices[i].InvoiceDetail.Price), string.Format("{0:0,0} VNĐ", viewInvoices[i].InvoiceDetail.TotalPrice));
                     totalPrice += viewInvoices[i].InvoiceDetail.TotalPrice;
                 }
                 pdfLightTable.DataSource = table;
                 PdfGraphics pdfGraphics = pdfPage.Graphics;
-                PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\Roboto.ttf", 12);
+                PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\source\repos\DU_AN_1_QUAN_LY_BAN_GIAY\Font\Roboto.ttf", 12);
                 pdfGraphics.DrawString("Hóa đơn mua hàng", pdfFont, new PdfPen(Color.Red), new PointF(0, 0));
                 var customer = _iDalCustomer.GetCustomerById(viewInvoices.First().Invoice.CustomerId);
                 pdfGraphics.DrawString("Tên khách hàng: " + customer.CustomerName, pdfFont, new PdfPen(Color.Black), new PointF(0, 18));

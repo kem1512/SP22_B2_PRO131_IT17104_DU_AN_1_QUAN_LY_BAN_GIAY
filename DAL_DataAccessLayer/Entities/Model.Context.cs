@@ -36,7 +36,7 @@ namespace DAL_DataAccessLayer.Entities
         public DbSet<Material> Material { get; set; }
         public DbSet<Product> Product { get; set; }
         public DbSet<ProductDetail> ProductDetail { get; set; }
-        public DbSet<Roles> Roles { get; set; }
+        public DbSet<Role> Role { get; set; }
         public DbSet<Shipper> Shipper { get; set; }
         public DbSet<Size> Size { get; set; }
     }

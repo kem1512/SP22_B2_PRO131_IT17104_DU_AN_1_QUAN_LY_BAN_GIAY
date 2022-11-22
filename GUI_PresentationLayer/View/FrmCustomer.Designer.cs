@@ -50,12 +50,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabCustomer = new System.Windows.Forms.TabPage();
             this.dgridCustomer = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.CustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.pbxProduct = new FontAwesome.Sharp.IconPictureBox();
@@ -69,6 +63,12 @@
             this.txtAddress = new Bunifu.Framework.UI.BunifuMaterialTextbox();
             this.btnAddMulti = new Bunifu.Framework.UI.BunifuThinButton2();
             this.btnExcel = new Bunifu.Framework.UI.BunifuThinButton2();
+            this.CustomerId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CustomerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Phone = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewLinkColumn();
             this.tabDisable.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgridDisable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrid_Disabled)).BeginInit();
@@ -322,50 +322,6 @@
             this.dgridCustomer.TabIndex = 0;
             this.dgridCustomer.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridCustomer_CellClick);
             this.dgridCustomer.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgridCustomer_CellContentClick);
-            // 
-            // CustomerId
-            // 
-            this.CustomerId.HeaderText = "Mã khách hàng";
-            this.CustomerId.MinimumWidth = 6;
-            this.CustomerId.Name = "CustomerId";
-            this.CustomerId.ReadOnly = true;
-            this.CustomerId.Visible = false;
-            // 
-            // CustomerName
-            // 
-            this.CustomerName.HeaderText = "Tên khách hàng";
-            this.CustomerName.MinimumWidth = 6;
-            this.CustomerName.Name = "CustomerName";
-            this.CustomerName.ReadOnly = true;
-            // 
-            // Phone
-            // 
-            this.Phone.HeaderText = "Số điện thoại";
-            this.Phone.MinimumWidth = 6;
-            this.Phone.Name = "Phone";
-            this.Phone.ReadOnly = true;
-            // 
-            // Address
-            // 
-            this.Address.HeaderText = "Địa chỉ";
-            this.Address.MinimumWidth = 6;
-            this.Address.Name = "Address";
-            this.Address.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.HeaderText = "Số lần mua hàng";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.FillWeight = 50F;
-            this.Column6.HeaderText = "";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
             // 
             // lblEmail
             // 
@@ -629,6 +585,50 @@
             this.btnExcel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.btnExcel.Click += new System.EventHandler(this.btnExcel_Click);
             // 
+            // CustomerId
+            // 
+            this.CustomerId.HeaderText = "Mã khách hàng";
+            this.CustomerId.MinimumWidth = 6;
+            this.CustomerId.Name = "CustomerId";
+            this.CustomerId.ReadOnly = true;
+            this.CustomerId.Visible = false;
+            // 
+            // CustomerName
+            // 
+            this.CustomerName.HeaderText = "Tên khách hàng";
+            this.CustomerName.MinimumWidth = 6;
+            this.CustomerName.Name = "CustomerName";
+            this.CustomerName.ReadOnly = true;
+            // 
+            // Phone
+            // 
+            this.Phone.HeaderText = "Số điện thoại";
+            this.Phone.MinimumWidth = 6;
+            this.Phone.Name = "Phone";
+            this.Phone.ReadOnly = true;
+            // 
+            // Address
+            // 
+            this.Address.HeaderText = "Địa chỉ";
+            this.Address.MinimumWidth = 6;
+            this.Address.Name = "Address";
+            this.Address.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.HeaderText = "Số đơn đã đặt";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.FillWeight = 50F;
+            this.Column6.HeaderText = "";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // FrmCustomer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(120F, 120F);
@@ -680,12 +680,6 @@
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgridDisable;
         private Bunifu.Framework.UI.BunifuThinButton2 btnAddMulti;
         private Bunifu.Framework.UI.BunifuThinButton2 btnExcel;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerId;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
-        private System.Windows.Forms.DataGridViewLinkColumn Column6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
@@ -693,5 +687,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewLinkColumn dataGridViewLinkColumn1;
         private System.Windows.Forms.DataGridViewLinkColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CustomerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Phone;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Address;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewLinkColumn Column6;
     }
 }

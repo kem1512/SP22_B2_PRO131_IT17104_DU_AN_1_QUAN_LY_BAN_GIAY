@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Media;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using AForge.Video.DirectShow;
 using Bunifu.Framework.UI;
@@ -133,7 +129,7 @@ namespace GUI_PresentationLayer.View
             cmbBrand.ValueMember = "BrandId";
             cmbBrand.SelectedIndex = -1;
 
-            cmbShipper.DataSource = _iShipperServices.GetListShipper().Where(c => !c.ShipperStatus).ToList();
+            cmbShipper.DataSource = _iShipperServices.GetListShipper().Where(c => c.ShipperStatus).ToList();
             cmbShipper.DisplayMember = "ShipperName";
             cmbShipper.ValueMember = "ShipperId";
             cmbShipper.SelectedIndex = -1;
@@ -241,7 +237,7 @@ namespace GUI_PresentationLayer.View
             if (e.ColumnIndex == 7)
             {
                 var row = dgridOrder.Rows[e.RowIndex];
-                if (int.Parse(row.Cells[3].Value.ToString()) < 1)
+                if (int.Parse(row.Cells[3].Value.ToString()) <= 1)
                 {
                     if (MessageBox.Show("Bạn có chắc muốn xóa sản phẩm?", "Thông báo", MessageBoxButtons.YesNo) ==
                         DialogResult.Yes)
@@ -270,16 +266,13 @@ namespace GUI_PresentationLayer.View
 
         private void txtSearch_OnValueChanged(object sender, EventArgs e)
         {
-            if (cmbBrand.SelectedIndex != -1 || cmbColor.SelectedIndex != -1 || cmbInvoice.SelectedIndex != -1)
+            foreach (DataGridViewRow x in dgridProduct.Rows)
             {
-                foreach (DataGridViewRow x in dgridOrder.Rows)
+                if (cmbBrand.SelectedIndex != -1 && cmbColor.SelectedIndex != -1 && cmbInvoice.SelectedIndex != -1)
                 {
                     if (x.Visible) x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
                 }
-            }
-            else
-            {
-                foreach (DataGridViewRow x in dgridOrder.Rows)
+                else
                 {
                     x.Visible = x.Cells[2].Value.ToString().Contains(txtSearch.Text);
                 }

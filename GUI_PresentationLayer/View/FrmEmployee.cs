@@ -177,7 +177,7 @@ namespace GUI_PresentationLayer.View
                     d.Address, d.DateOfBirth.ToShortDateString(), d.RoleId, "Phục hồi", "Xóa");
             }
 
-            cmbRoles.DataSource = _iRoleServices.GetRoles();
+            cmbRoles.DataSource = _iRoleServices.GetRole();
             cmbRoles.DisplayMember = "RoleName";
             cmbRoles.ValueMember = "RoleId";
         }
@@ -208,22 +208,28 @@ namespace GUI_PresentationLayer.View
             {
                 var employee = _iEmployeeServices.GetEmployeeById(dgridEmployee.Rows[dgridEmployee.CurrentRow.Index]
                     .Cells[0].Value.ToString());
-                if (MessageBox.Show("Bạn có muốn sửa không ?", "Thông báo", MessageBoxButtons.YesNo) ==
-                    DialogResult.Yes)
+                if (employee.RoleId != "R1")
                 {
-                    MessageBox.Show(_iEmployeeServices.UpdateEmployee(new Employee()
+                    MessageBox.Show("Không thể sửa quản lý");
+                }
+                else
+                {
+                    if (MessageBox.Show("Bạn có muốn sửa không ?", "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
-                        EmployeeId = employee.EmployeeId,
-                        FullName = txtName.Text,
-                        Email = txtEmail.Text,
-                        Phone = txtPhone.Text,
-                        Address = txtAddress.Text,
-                        DateOfBirth = DateTime.Parse(dgdtpcStaff.Value.ToShortDateString()),
-                        Gender = rbtnMale.Checked ? true : false,
-                        EmployeeImage = pbxEmployee.Tag.ToString(),
-                        RoleId = cmbRoles.SelectedValue.ToString(),
-                    }));
-                    LoadData();
+                        MessageBox.Show(_iEmployeeServices.UpdateEmployee(new Employee()
+                        {
+                            EmployeeId = employee.EmployeeId,
+                            FullName = txtName.Text,
+                            Email = txtEmail.Text,
+                            Phone = txtPhone.Text,
+                            Address = txtAddress.Text,
+                            DateOfBirth = DateTime.Parse(dgdtpcStaff.Value.ToShortDateString()),
+                            Gender = rbtnMale.Checked ? true : false,
+                            EmployeeImage = pbxEmployee.Tag.ToString(),
+                            RoleId = cmbRoles.SelectedValue.ToString(),
+                        }));
+                        LoadData();
+                    }
                 }
             }
             else

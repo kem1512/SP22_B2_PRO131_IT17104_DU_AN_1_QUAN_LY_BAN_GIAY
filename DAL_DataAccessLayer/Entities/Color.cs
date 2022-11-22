@@ -16,12 +16,12 @@ namespace DAL_DataAccessLayer.Entities
     {
         public Color()
         {
-            this.ProductDetail = new HashSet<ProductDetail>();
+            this.ProductDetails = new HashSet<ProductDetail>();
         }
     
         public string ColorId { get; set; }
         public string ColorName { get; set; }
     
-        public virtual ICollection<ProductDetail> ProductDetail { get; set; }
+        public virtual ICollection<ProductDetail> ProductDetails { get; set; }
     }
 }

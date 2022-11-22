@@ -16,7 +16,7 @@ namespace DAL_DataAccessLayer.Entities
     {
         public ProductDetail()
         {
-            this.InvoiceDetail = new HashSet<InvoiceDetail>();
+            this.InvoiceDetails = new HashSet<InvoiceDetail>();
         }
     
         public string ProductId { get; set; }
@@ -31,7 +31,7 @@ namespace DAL_DataAccessLayer.Entities
         public virtual Category Category { get; set; }
         public virtual Color Color { get; set; }
         public virtual Inventory Inventory { get; set; }
-        public virtual ICollection<InvoiceDetail> InvoiceDetail { get; set; }
+        public virtual ICollection<InvoiceDetail> InvoiceDetails { get; set; }
         public virtual Material Material { get; set; }
         public virtual Product Product { get; set; }
         public virtual Size Size { get; set; }

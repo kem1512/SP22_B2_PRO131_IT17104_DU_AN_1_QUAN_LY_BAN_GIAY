@@ -2,26 +2,17 @@
 using BUS_BussinessLayer.iBUS_Services;
 using DAL_DataAccessLayer.Entities;
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using BUS_BussinessLayer.Models;
 using BUS_BussinessLayer.Utilities;
-using Microsoft.Office.Interop.Excel;
 using Syncfusion.Pdf;
 using Syncfusion.Pdf.Graphics;
-// using Syncfusion.Pdf;
-// using Syncfusion.Pdf.Graphics;
-// using Syncfusion.Pdf.Tables;
 using Color = System.Drawing.Color;
-using DataGridViewCell = System.Windows.Forms.DataGridViewCell;
-using DataTable = System.Data.DataTable;
-// using PdfPage = Syncfusion.Pdf.PdfPage;
 
 namespace GUI_PresentationLayer.View
 {
@@ -345,7 +336,7 @@ namespace GUI_PresentationLayer.View
 
         private void txtPrice_OnValueChanged(object sender, EventArgs e)
         {
-            if (!Regex.IsMatch(txtPrice.Text, "^[0-9.]+$"))
+            if (!Regex.IsMatch(txtPrice.Text, "^[0-9,]+$"))
             {
                 txtPrice.Text = "";
             }
@@ -525,7 +516,7 @@ namespace GUI_PresentationLayer.View
                     PdfBitmap pdfBitmap = new PdfBitmap(image);
             
                     // set phông chữ
-                    PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\Downloads\QuanLyBanGiay\Font\FontBarcode.ttf", 18);
+                    PdfFont pdfFont = new PdfTrueTypeFont(@"C:\Users\kem15\source\repos\DU_AN_1_QUAN_LY_BAN_GIAY\Font\FontBarcode.ttf", 18);
             
                     // set vị trí của chữ
                     PdfStringFormat pdfStringFormat = new PdfStringFormat(PdfTextAlignment.Center, PdfVerticalAlignment.Middle);

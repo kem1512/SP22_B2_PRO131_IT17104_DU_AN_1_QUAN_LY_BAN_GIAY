@@ -16,7 +16,7 @@ namespace DAL_DataAccessLayer.Entities
     {
         public Customer()
         {
-            this.Invoice = new HashSet<Invoice>();
+            this.Invoices = new HashSet<Invoice>();
         }
     
         public string CustomerId { get; set; }
@@ -26,6 +26,6 @@ namespace DAL_DataAccessLayer.Entities
         public int ShoppingCount { get; set; }
         public bool Status { get; set; }
     
-        public virtual ICollection<Invoice> Invoice { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

@@ -107,7 +107,7 @@
     <Compile Include="Entities\ProductDetail.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
-    <Compile Include="Entities\Roles.cs">
+    <Compile Include="Entities\Role.cs">
       <DependentUpon>Model.tt</DependentUpon>
     </Compile>
     <Compile Include="Entities\Shipper.cs">
@@ -124,7 +124,7 @@
     <Compile Include="iDAL_Services\iDAL_Material.cs" />
     <Compile Include="iDAL_Services\iDAL_Invoice.cs" />
     <Compile Include="iDAL_Services\iDAL_Product.cs" />
-    <Compile Include="iDAL_Services\iDAL_Roles.cs" />
+    <Compile Include="iDAL_Services\iDAL_Role.cs" />
     <Compile Include="iDAL_Services\iDAL_Shipper.cs" />
     <Compile Include="iDAL_Services\iDAL_Size.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -154,7 +154,6 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="Entities\Model.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -16,7 +16,7 @@ namespace DAL_DataAccessLayer.Entities
     {
         public Shipper()
         {
-            this.Invoice = new HashSet<Invoice>();
+            this.Invoices = new HashSet<Invoice>();
         }
     
         public string ShipperId { get; set; }
@@ -24,6 +24,6 @@ namespace DAL_DataAccessLayer.Entities
         public string ShipperPhone { get; set; }
         public bool ShipperStatus { get; set; }
     
-        public virtual ICollection<Invoice> Invoice { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
     }
 }

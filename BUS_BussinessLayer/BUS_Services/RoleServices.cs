@@ -12,35 +12,35 @@ namespace BUS_BussinessLayer.BUS_Services
 {
     public class RoleServices:iRoleServices
     {
-        private iDAL_Roles _iDal_Roles;
+        private iDAL_Role _iDal_Role;
 
         public RoleServices()
         {
-            _iDal_Roles = new DAL_Role();
+            _iDal_Role = new DAL_Role();
         }
-        public string AddRole(Roles role)
+        public string AddRole(Role role)
         {
-            return _iDal_Roles.AddRole(role);
+            return _iDal_Role.AddRole(role);
         }
 
-        public string UpdateRole(Roles role)
+        public string UpdateRole(Role role)
         {
-            return _iDal_Roles.UpdateRole(role);
+            return _iDal_Role.UpdateRole(role);
         }
 
         public string RemoveRole(string id)
         {
-            return _iDal_Roles.RemoveRole(id);
+            return _iDal_Role.RemoveRole(id);
         }
 
-        public Roles GetRoleByID(string id)
+        public Role GetRoleByID(string id)
         {
-            return _iDal_Roles.GetRoleById(id);
+            return _iDal_Role.GetRoleById(id);
         }
 
-        public List<Roles> GetRoles()
+        public List<Role> GetRole()
         {
-            return _iDal_Roles.GetRoles();
+            return _iDal_Role.GetRole();
         }
     }
 }

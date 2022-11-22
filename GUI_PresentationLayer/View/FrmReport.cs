@@ -30,21 +30,21 @@ namespace GUI_PresentationLayer.View
         {
             dgridInvoice.Rows.Clear();
             var result = from a in _iInvoiceServices.GetViewInvoices()
-                group a by a.Invoice.InvoiceId
+                         group a by a.Invoice.InvoiceId
                 into b
-                select new
-                {
-                    b.First().Invoice.InvoiceId,
-                    b.First().Invoice.DateCreate,
-                    _iCustomerServices.GetCustomerById(b.First().Invoice.CustomerId).CustomerName,
-                    _iEmployeeServices.GetEmployeeById(b.First().Invoice.EmployeeId).FullName,
-                    b.First().Invoice.Description,
-                    b.First().Invoice.InvoiceStatus,
-                    TotalPrice = b.Sum(c => c.InvoiceDetail.TotalPrice),
-                    ProductCount = b.Count(c => c.Invoice.InvoiceId == c.InvoiceDetail.InvoiceId),
-                    b.First().Invoice.ShipperId,
-                    b.First().Invoice.GuestPayments
-                };
+                         select new
+                         {
+                             b.First().Invoice.InvoiceId,
+                             b.First().Invoice.DateCreate,
+                             _iCustomerServices.GetCustomerById(b.First().Invoice.CustomerId).CustomerName,
+                             _iEmployeeServices.GetEmployeeById(b.First().Invoice.EmployeeId).FullName,
+                             b.First().Invoice.Description,
+                             b.First().Invoice.InvoiceStatus,
+                             TotalPrice = b.Sum(c => c.InvoiceDetail.TotalPrice),
+                             ProductCount = b.Count(c => c.Invoice.InvoiceId == c.InvoiceDetail.InvoiceId),
+                             b.First().Invoice.ShipperId,
+                             b.First().Invoice.GuestPayments
+                         };
             foreach (var x in result.Where(c => c.DateCreate.Date.Equals(DateTime.Now.Date)))
             {
                 dgridInvoice.Rows.Add(x.InvoiceId, x.DateCreate, x.CustomerName, x.FullName, x.ProductCount, ConvertMoney.ConvertToVND(x.TotalPrice), x.Description,
@@ -98,12 +98,18 @@ namespace GUI_PresentationLayer.View
             {
                 if (textBox.Text.Trim() != "")
                 {
-                    if (MessageBox.Show("Bạn có chắc muốn gửi mail đến " + textBox.Text, "Thông báo",
-                            MessageBoxButtons.YesNo) == DialogResult.Yes)
+                    if (!textBox.Text.Contains("@") && !textBox.Text.Contains("."))
                     {
-                        SendSMS.SendMail(Email, "Báo cáo hôm nay", $"Số đơn bán được: {lblSale.Text} \nSố hóa đơn hủy: {lblShip.Text} \nSố đơn đang giao: {lblShip.Text} \nTổng tiền trong ngày: {lblTotalPrice.Text}");
-                        MessageBox.Show("Gửi thành công!");
-                        form.Close();
+                        MessageBox.Show("Không đúng định dạng email");
+                    }
+                    else
+                    {
+                        if (MessageBox.Show("Bạn có chắc muốn gửi mail đến " + textBox.Text, "Thông báo", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                        {
+                            SendSMS.SendMail(Email, "Báo cáo hôm nay", $"Số đơn bán được: {lblSale.Text} \nSố hóa đơn hủy: {lblShip.Text} \nSố đơn đang giao: {lblShip.Text} \nTổng tiền trong ngày: {lblTotalPrice.Text}");
+                            MessageBox.Show("Gửi thành công!");
+                            form.Close();
+                        }
                     }
                 }
             };

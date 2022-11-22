@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DAL_DataAccessLayer.Entities;
 using DAL_DataAccessLayer.iDAL_Services;
 
 namespace DAL_DataAccessLayer.DAL_Services
 {
-    public class DAL_Role : iDAL_Roles
+    public class DAL_Role : iDAL_Role
     {
         private QuanLyBanGiayEntities _db;
 
-        public string AddRole(Roles role)
+        public string AddRole(Role role)
         {
             try
             {
@@ -20,7 +18,7 @@ namespace DAL_DataAccessLayer.DAL_Services
                 {
                     if (role != null)
                     {
-                        _db.Roles.Add(role);
+                        _db.Role.Add(role);
                         _db.SaveChanges();
                         return "Thêm thành công";
                     }
@@ -34,13 +32,13 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public string UpdateRole(Roles role)
+        public string UpdateRole(Role role)
         {
             try
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    var rol = _db.Roles.FirstOrDefault(c => c.RoleId == role.RoleId);
+                    var rol = _db.Role.FirstOrDefault(c => c.RoleId == role.RoleId);
                     if (role != null && rol != null)
                     {
                         rol.RoleName = role.RoleName;
@@ -63,7 +61,7 @@ namespace DAL_DataAccessLayer.DAL_Services
             {
                 using (_db = new QuanLyBanGiayEntities())
                 {
-                    var rol = _db.Roles.FirstOrDefault(c => c.RoleId == id);
+                    var rol = _db.Role.FirstOrDefault(c => c.RoleId == id);
                     var em = _db.Employee.Where(c => c.RoleId == id);
                     if (rol != null)
                     {
@@ -89,7 +87,7 @@ namespace DAL_DataAccessLayer.DAL_Services
                                 }
                                 _db.Employee.Remove(x);
                             }
-                            _db.Roles.Remove(rol);
+                            _db.Role.Remove(rol);
                             _db.SaveChanges();
                             return "Xoá thành công";
                         }
@@ -104,19 +102,19 @@ namespace DAL_DataAccessLayer.DAL_Services
             }
         }
 
-        public Roles GetRoleById(string id)
+        public Role GetRoleById(string id)
         {
             using (_db = new QuanLyBanGiayEntities())
             {
-                return _db.Roles.FirstOrDefault(c => c.RoleId == id);
+                return _db.Role.FirstOrDefault(c => c.RoleId == id);
             }
         }
 
-        public List<Roles> GetRoles()
+        public List<Role> GetRole()
         {
             using (_db = new QuanLyBanGiayEntities())
             {
-                return _db.Roles.ToList();
+                return _db.Role.ToList();
             }
         }
     }
